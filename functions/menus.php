@@ -10,19 +10,33 @@ class Roverland_Menu_Walker extends Walker_Nav_Menu {
 	}
 
 	public function start_lvl( &$output, $depth = 0, $args = null ) {
+		if ( 'flat' === $this->context ) {
+			return;
+		}
+
 		$class = 'models' === $this->context ? 'models-dropdown' : 'nav-dropdown';
 		$output .= '<div class="' . esc_attr( $class ) . '">';
 	}
 
 	public function end_lvl( &$output, $depth = 0, $args = null ) {
+		if ( 'flat' === $this->context ) {
+			return;
+		}
+
 		$output .= '</div>';
 	}
 
 	public function start_el( &$output, $data_object, $depth = 0, $args = null, $current_object_id = 0 ) {
 		$item       = $data_object;
-		$is_models  = 'models' === $this->context;
 		$item_url   = ! empty( $item->url ) ? $item->url : '#';
 		$item_title = esc_html( apply_filters( 'the_title', $item->title, $item->ID ) );
+
+		if ( 'flat' === $this->context ) {
+			$output .= '<a href="' . esc_url( $item_url ) . '">' . $item_title . '</a>';
+			return;
+		}
+
+		$is_models = 'models' === $this->context;
 
 		/*
 		 * В исходной верстке RoverLand dropdown — это <div> с прямыми <a>,
@@ -62,7 +76,7 @@ class Roverland_Menu_Walker extends Walker_Nav_Menu {
 	}
 
 	public function end_el( &$output, $data_object, $depth = 0, $args = null ) {
-		if ( 0 === $depth ) {
+		if ( 'flat' !== $this->context && 0 === $depth ) {
 			$output .= '</li>';
 		}
 	}
