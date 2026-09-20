@@ -1,0 +1,366 @@
+{
+  "key": "group_roverland_home_page",
+  "title": "Главная страница",
+  "fields": [
+    {
+      "key": "field_rl_home_tab_hero",
+      "label": "Первый экран",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_home_hero_eyebrow",
+      "label": "Надзаголовок",
+      "name": "home_hero_eyebrow",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_home_hero_title_first",
+      "label": "H1 — первая строка",
+      "name": "home_hero_title_first",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_home_hero_title_second",
+      "label": "H1 — вторая строка",
+      "name": "home_hero_title_second",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_home_hero_text",
+      "label": "Описание",
+      "name": "home_hero_text",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_home_hero_image",
+      "label": "Фоновое изображение",
+      "name": "home_hero_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg",
+      "instructions": "Загружается вручную; JSON-импорт не перезаписывает."
+    },
+    {
+      "key": "field_rl_home_hero_primary",
+      "label": "Текст основной кнопки",
+      "name": "home_hero_primary_label",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_home_hero_secondary",
+      "label": "Текст второй кнопки",
+      "name": "home_hero_secondary_label",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_home_tab_stats",
+      "label": "Цифры",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_home_stats",
+      "label": "Показатели",
+      "name": "home_stats",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Добавить показатель",
+      "sub_fields": [
+        {
+          "key": "field_rl_home_stat_value",
+          "label": "Значение",
+          "name": "value",
+          "type": "text"
+        },
+        {
+          "key": "field_rl_home_stat_label",
+          "label": "Подпись",
+          "name": "label",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_rl_home_tab_services",
+      "label": "Возможности",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_home_services_title",
+      "label": "H2",
+      "name": "home_services_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_home_services_text",
+      "label": "Описание",
+      "name": "home_services_text",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_home_services_link_text",
+      "label": "Текст ссылки «Все услуги»",
+      "name": "home_services_link_text",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_home_services",
+      "label": "Карточки",
+      "name": "home_services",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить карточку",
+      "sub_fields": [
+        {
+          "key": "field_rl_home_service_title",
+          "label": "Заголовок",
+          "name": "title",
+          "type": "text",
+          "wrapper": {
+            "width": "25"
+          }
+        },
+        {
+          "key": "field_rl_home_service_url",
+          "label": "Ссылка",
+          "name": "url",
+          "type": "text",
+          "wrapper": {
+            "width": "35"
+          }
+        },
+        {
+          "key": "field_rl_home_service_image",
+          "label": "Изображение",
+          "name": "image",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "png,webp,jpg,jpeg",
+          "wrapper": {
+            "width": "40"
+          },
+          "instructions": "Загружается вручную; импорт не перезаписывает."
+        },
+        {
+          "key": "field_rl_home_service_text",
+          "label": "Описание",
+          "name": "text",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": ""
+        }
+      ]
+    },
+    {
+      "key": "field_rl_home_tab_advantages",
+      "label": "Преимущества",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_home_advantages",
+      "label": "Карточки",
+      "name": "home_advantages",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить преимущество",
+      "sub_fields": [
+        {
+          "key": "field_rl_home_advantage_icon",
+          "label": "SVG-иконка",
+          "name": "icon",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "svg",
+          "wrapper": {
+            "width": "20"
+          }
+        },
+        {
+          "key": "field_rl_home_advantage_title",
+          "label": "Заголовок",
+          "name": "title",
+          "type": "text",
+          "wrapper": {
+            "width": "30"
+          }
+        },
+        {
+          "key": "field_rl_home_advantage_text",
+          "label": "Описание",
+          "name": "text",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": "",
+          "wrapper": {
+            "width": "50"
+          }
+        }
+      ]
+    },
+    {
+      "key": "field_rl_home_tab_offers",
+      "label": "Предложения",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_home_offers_title",
+      "label": "H2",
+      "name": "home_offers_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_home_offers_text",
+      "label": "Описание",
+      "name": "home_offers_text",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_home_offers",
+      "label": "Карточки",
+      "name": "home_offers",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить предложение",
+      "sub_fields": [
+        {
+          "key": "field_rl_home_offer_title",
+          "label": "Заголовок",
+          "name": "title",
+          "type": "text",
+          "wrapper": {
+            "width": "25"
+          }
+        },
+        {
+          "key": "field_rl_home_offer_url",
+          "label": "Ссылка",
+          "name": "url",
+          "type": "text",
+          "wrapper": {
+            "width": "35"
+          }
+        },
+        {
+          "key": "field_rl_home_offer_image",
+          "label": "Изображение",
+          "name": "image",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "png,webp,jpg,jpeg",
+          "wrapper": {
+            "width": "40"
+          },
+          "instructions": "Загружается вручную; импорт не перезаписывает."
+        },
+        {
+          "key": "field_rl_home_offer_text",
+          "label": "Описание",
+          "name": "text",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": ""
+        }
+      ]
+    },
+    {
+      "key": "field_rl_home_tab_common",
+      "label": "Общие блоки",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_home_show_appointment",
+      "label": "Показывать запись",
+      "name": "home_show_appointment",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_home_show_branches",
+      "label": "Показывать филиалы",
+      "name": "home_show_branches",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_home_show_map",
+      "label": "Показывать карту",
+      "name": "home_show_map",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "33"
+      }
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_type",
+        "operator": "==",
+        "value": "front_page"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Секции главной страницы. Растровые изображения загружаются вручную.",
+  "show_in_rest": 0,
+  "modified": 1790001100
+}

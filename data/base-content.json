@@ -129,9 +129,161 @@
     "common_appointment_accent": "прямо сейчас",
     "common_appointment_description": "Оставьте свои контактные данные, и наш мастер-консультант перезвонит вам в течение 15 минут для уточнения деталей и записи.",
     "common_appointment_phone": "+7 (495) 797-30-31",
-    "common_appointment_button": "Отправить заявку"
+    "common_appointment_button": "Отправить заявку",
+    "careers_contact_name": "Заверняев Геннадий",
+    "careers_contact_phone": "+7 (495) 668-06-58"
   },
   "pages": [
+    {
+      "key": "home",
+      "title": "Главная",
+      "slug": "glavnaya",
+      "template": "default",
+      "seo": {
+        "title": "Сервис и ремонт Land Rover и Jaguar в Москве — Rover Land",
+        "description": "Специализированный сервис Land Rover и Jaguar в Москве: ремонт, техническое обслуживание, диагностика, запчасти и кузовные работы в техцентрах Rover Land.",
+        "focus_keyword": "сервис Land Rover Москва"
+      },
+      "fields": {
+        "home_hero_eyebrow": "Премиальный сервис в Москве",
+        "home_hero_title_first": "Специализированный сервис",
+        "home_hero_title_second": "Ленд Ровер и Ягуар в Москве!",
+        "home_hero_text": "Широкий спектр услуг по ремонту и техническому обслуживанию Land Rover и Jaguar. Вся наша слесарно-механическая и электронная работа, в том числе качественный ремонт.",
+        "home_hero_image": {
+          "manual_image": true
+        },
+        "home_hero_primary_label": "Запись на ТО",
+        "home_hero_secondary_label": "Наши акции",
+        "home_stats": [
+          {
+            "value": "25+",
+            "label": "лет опыта"
+          },
+          {
+            "value": "50к+",
+            "label": "авто обслужено"
+          },
+          {
+            "value": "5/5",
+            "label": "рейтинг Yandex"
+          },
+          {
+            "value": "1 год",
+            "label": "гарантия"
+          }
+        ],
+        "home_services_title": "Наши возможности",
+        "home_services_text": "Полный спектр услуг для поддержания вашего автомобиля в идеальном состоянии.",
+        "home_services_link_text": "Все услуги",
+        "home_services": [
+          {
+            "title": "Ремонт",
+            "text": "Сложный технический ремонт агрегатов любой сложности.",
+            "image": {
+              "manual_image": true
+            },
+            "url": "/remont/"
+          },
+          {
+            "title": "Сервис",
+            "text": "Плановое техническое обслуживание по стандартам JLR.",
+            "image": {
+              "manual_image": true
+            },
+            "url": "/servis/"
+          },
+          {
+            "title": "Запчасти",
+            "text": "Оригинальные детали и качественные аналоги в наличии.",
+            "image": {
+              "manual_image": true
+            },
+            "url": "/zapchasti/"
+          },
+          {
+            "title": "Кузовной цех",
+            "text": "Восстановление геометрии и кузовная покраска.",
+            "image": {
+              "manual_image": true
+            },
+            "url": "/remont/#bodyshop"
+          },
+          {
+            "title": "Подменное авто",
+            "text": "Оставайтесь мобильными, пока мы обслуживаем ваш Rover.",
+            "image": {
+              "manual_image": true
+            },
+            "url": "/servis/"
+          },
+          {
+            "title": "Покупка авто",
+            "text": "Услуги по подбору и покупке автомобилей из Кореи и Европы.",
+            "image": {
+              "manual_image": true
+            },
+            "url": "/servis/"
+          }
+        ],
+        "home_advantages": [
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/advantage_1.svg",
+              "alt": ""
+            },
+            "title": "Гарантия на все",
+            "text": "Мы предоставляем честную гарантию 1 год на все выполненные работы и установленные запчасти, обеспечивая ваше спокойствие."
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/advantage_2.svg",
+              "alt": ""
+            },
+            "title": "Работаем с 1998 года",
+            "text": "Уже более четверти века мы специализируемся на британских марках и накопили большую техническую экспертизу."
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/advantage_3.svg",
+              "alt": ""
+            },
+            "title": "Свое оборудование",
+            "text": "Используем дилерские диагностические сканеры и специализированный инструмент для автомобилей JLR."
+          }
+        ],
+        "home_offers_title": "Наши предложения",
+        "home_offers_text": "Актуальные акции и специальные условия для владельцев Jaguar и Land Rover.",
+        "home_offers": [
+          {
+            "title": "Возвращаем деньги!",
+            "text": "Специально для клиентов создана дополнительная дисконтная программа.",
+            "image": {
+              "manual_image": true
+            },
+            "url": "/aktsii/vozvrashchaem-dengi/"
+          },
+          {
+            "title": "Улучшим любое предложение",
+            "text": "Если у вас есть калькуляция другого сервиса, мы готовы предложить более выгодные условия.",
+            "image": {
+              "manual_image": true
+            },
+            "url": "/aktsii/uluchshim-lyuboe-predlozhenie/"
+          },
+          {
+            "title": "Дисконтная накопительная программа",
+            "text": "Система участия дает постоянную выгоду на работы и запасные части.",
+            "image": {
+              "manual_image": true
+            },
+            "url": "/aktsii/"
+          }
+        ],
+        "home_show_appointment": 1,
+        "home_show_branches": 1,
+        "home_show_map": 1
+      }
+    },
     {
       "key": "contacts",
       "title": "Контакты",
@@ -246,6 +398,58 @@
           "theme_image": "assets/images/content/about-hero.png",
           "alt": "Rover Land"
         }
+      }
+    },
+    {
+      "key": "vacancies",
+      "title": "Вакансии",
+      "slug": "vakansii",
+      "template": "page-vacancies.php",
+      "parent_key": "about",
+      "seo": {
+        "title": "Вакансии Rover Land — работа в сервисе Land Rover и Jaguar",
+        "description": "Открытые вакансии Rover Land в Москве: автомеханик, автодиагност и мастер-приемщик слесарного цеха. Условия работы и требования к кандидатам.",
+        "focus_keyword": "вакансии Rover Land"
+      },
+      "fields": {
+        "vacancies_hero_title": "Вакансии нашей\nкомпании",
+        "vacancies_hero_lead": "Компания Ровер Ленд постоянно совершенствуется и развивается. В связи с этим нашей дружной команде требуются новые сотрудники, стремящиеся к экспертному росту.",
+        "vacancies_hero_image": {
+          "manual_image": true
+        },
+        "vacancies_advantages": [
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancies-distributor.svg",
+              "alt": ""
+            },
+            "title": "Официальный дистрибьютор",
+            "text": "Одна из старейших компаний в России, специализирующихся на легендарных британских внедорожниках."
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancies-team.svg",
+              "alt": ""
+            },
+            "title": "Экспертная среда",
+            "text": "Работа в команде профессионалов, где ценят качество, точность и глубокое знание автомобилей."
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancies-growth.svg",
+              "alt": ""
+            },
+            "title": "Развитие",
+            "text": "Мы поддерживаем профессиональный рост и предоставляем доступ к современному оборудованию."
+          }
+        ],
+        "vacancies_list_title": "Открытые позиции",
+        "vacancies_contact_title": "Не нашли подходящую вакансию?",
+        "vacancies_contact_text": "Мы всегда рады талантливым специалистам. Свяжитесь с нами напрямую или оставьте заявку — мы обязательно рассмотрим ваше резюме.",
+        "vacancies_form_title": "Присоединяйтесь к команде",
+        "vacancies_form_text": "Заполните короткую анкету, и наш менеджер по персоналу свяжется с вами в ближайшее время для уточнения деталей.",
+        "vacancies_show_branches": 1,
+        "vacancies_show_map": 1
       }
     },
     {
@@ -490,6 +694,366 @@
         ],
         "privacy_note_title": "",
         "privacy_note_text": ""
+      }
+    }
+  ],
+  "vacancies": [
+    {
+      "key": "vacancy-master",
+      "title": "Мастер-приемщик слесарного цеха",
+      "slug": "master-priemshchik-slesarnogo-tsekha",
+      "menu_order": 10,
+      "seo": {
+        "title": "Вакансия мастер-приемщик слесарного цеха — Rover Land",
+        "description": "Работа мастером-приемщиком слесарного цеха в Rover Land: прием автомобилей, работа с клиентами, контроль ремонта и оформление заказ-нарядов.",
+        "focus_keyword": "вакансия мастер-приемщик Rover Land"
+      },
+      "fields": {
+        "vacancy_hero_title": "Мастер-приемщик\nслесарного цеха",
+        "vacancy_hero_image": {
+          "manual_image": true
+        },
+        "vacancy_card_label": "КЛИЕНТЫ",
+        "vacancy_card_icon": {
+          "theme_image": "assets/images/icons/ui/vacancy-adviser.svg",
+          "alt": ""
+        },
+        "vacancy_summary": "Организация приема автомобилей, консультирование клиентов по ремонту и сервису, контроль качества выполненных работ.",
+        "vacancy_responsibilities_title": "Обязанности",
+        "vacancy_responsibilities": [
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-car.svg",
+              "alt": ""
+            },
+            "text": "Приём автомобилей в ремонт и выдача после завершения работ"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-clipboard.svg",
+              "alt": ""
+            },
+            "text": "Проведение согласований по результатам диагностики с клиентом"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-control.svg",
+              "alt": ""
+            },
+            "text": "Контроль и курирование всех этапов процесса ремонта"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-consult.svg",
+              "alt": ""
+            },
+            "text": "Консультирование клиентов лично и по телефону по вопросам слесарного ремонта"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-docs.svg",
+              "alt": ""
+            },
+            "text": "Ведение технической документации и формирование заказ-нарядов"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-sales.svg",
+              "alt": ""
+            },
+            "text": "Активная продажа сервисных услуг и сервисных продуктов"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-car.svg",
+              "alt": ""
+            },
+            "text": "Выдача автомобилей из ремонта"
+          }
+        ],
+        "vacancy_requirements_title": "Требования",
+        "vacancy_requirements": [
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-education.svg",
+              "alt": ""
+            },
+            "text": "Среднее профессиональное / высшее техническое образование"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-experience.svg",
+              "alt": ""
+            },
+            "text": "Опыт работы на аналогичной должности от 2 лет с Jaguar Land Rover"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-car.svg",
+              "alt": ""
+            },
+            "text": "Знание устройства автомобиля и технологии ремонта"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-person.svg",
+              "alt": ""
+            },
+            "text": "Доброжелательность, коммуникабельность, клиентоориентированность, стрессоустойчивость"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-pc.svg",
+              "alt": ""
+            },
+            "text": "Преимуществом будет опыт работы в 1С"
+          }
+        ],
+        "vacancy_offer_title": "Компания предлагает",
+        "vacancy_offer": [
+          {
+            "label": "Команда",
+            "text": "Работа в стабильной компании"
+          },
+          {
+            "label": "График",
+            "text": "Сменный график 2/2/3, с 9:00 до 21:00"
+          },
+          {
+            "label": "Договор",
+            "text": "Оформление согласно ТК РФ"
+          },
+          {
+            "label": "Оплата",
+            "text": "Достойный уровень заработной платы"
+          },
+          {
+            "label": "Коллектив",
+            "text": "Дружный молодой коллектив"
+          },
+          {
+            "label": "Льготы",
+            "text": "Скидки сотрудникам на услуги компании"
+          }
+        ]
+      }
+    },
+    {
+      "key": "vacancy-mechanic",
+      "title": "Автомеханик",
+      "slug": "avtomekhanik",
+      "menu_order": 20,
+      "seo": {
+        "title": "Вакансия автомеханик Land Rover и Jaguar — Rover Land",
+        "description": "Работа автомехаником в Rover Land в Москве: ремонт узлов и агрегатов, техническое обслуживание, шиномонтаж и регулировка сход-развала.",
+        "focus_keyword": "вакансия автомеханик Land Rover"
+      },
+      "fields": {
+        "vacancy_hero_title": "Работа автомехаником",
+        "vacancy_hero_image": {
+          "manual_image": true
+        },
+        "vacancy_card_label": "МЕХАНИКА",
+        "vacancy_card_icon": {
+          "theme_image": "assets/images/icons/ui/vacancy-mechanic.svg",
+          "alt": ""
+        },
+        "vacancy_summary": "Техническое обслуживание и сложный ремонт автомобилей Land Rover и Jaguar. Требуется опыт работы с марками и знание технологии ремонта.",
+        "vacancy_responsibilities_title": "Обязанности",
+        "vacancy_responsibilities": [
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-control.svg",
+              "alt": ""
+            },
+            "text": "Ремонт узлов и агрегатов автомобилей: рулевое управление, подвеска, ДВС и другие системы"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-clipboard.svg",
+              "alt": ""
+            },
+            "text": "Проведение технического обслуживания согласно регламентам завода-изготовителя"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-car.svg",
+              "alt": ""
+            },
+            "text": "Шиномонтаж и регулировка сход-развала"
+          }
+        ],
+        "vacancy_requirements_title": "Требования",
+        "vacancy_requirements": [
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-experience.svg",
+              "alt": ""
+            },
+            "text": "Опыт работы автомехаником от 3 лет с брендами Land Rover и Jaguar"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-car.svg",
+              "alt": ""
+            },
+            "text": "Знание устройства автомобиля и типовых неисправностей"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-education.svg",
+              "alt": ""
+            },
+            "text": "Знание технологии ремонта"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-car.svg",
+              "alt": ""
+            },
+            "text": "Опыт ремонта двигателя, ГРМ и подвески"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-person.svg",
+              "alt": ""
+            },
+            "text": "Организованность и умение соблюдать сроки выполнения задач"
+          }
+        ],
+        "vacancy_offer_title": "Компания предлагает",
+        "vacancy_offer": [
+          {
+            "label": "Команда",
+            "text": "Работа в стабильной компании"
+          },
+          {
+            "label": "График",
+            "text": "Сменный график 2/2/3, с 9:00 до 21:00"
+          },
+          {
+            "label": "Договор",
+            "text": "Оформление согласно ТК РФ"
+          },
+          {
+            "label": "Оплата",
+            "text": "Достойный уровень заработной платы"
+          },
+          {
+            "label": "Коллектив",
+            "text": "Дружный молодой коллектив"
+          },
+          {
+            "label": "Льготы",
+            "text": "Скидки сотрудникам на услуги компании"
+          },
+          {
+            "label": "Оснащение",
+            "text": "Сервис оборудован всем необходимым для работы"
+          }
+        ]
+      }
+    },
+    {
+      "key": "vacancy-diagnostic",
+      "title": "Автодиагност",
+      "slug": "avtodiagnost",
+      "menu_order": 30,
+      "seo": {
+        "title": "Вакансия автодиагност Land Rover и Jaguar — Rover Land",
+        "description": "Работа автодиагностом в Rover Land: диагностика электронных узлов Land Rover и Jaguar, ремонт автомобилей и работа с профессиональным оборудованием.",
+        "focus_keyword": "вакансия автодиагност Land Rover"
+      },
+      "fields": {
+        "vacancy_hero_title": "Автодиагност",
+        "vacancy_hero_image": {
+          "manual_image": true
+        },
+        "vacancy_card_label": "ДИАГНОСТИКА",
+        "vacancy_card_icon": {
+          "theme_image": "assets/images/icons/ui/vacancy-diagnostic.svg",
+          "alt": ""
+        },
+        "vacancy_summary": "Диагностика электронных узлов Land Rover и Jaguar, поиск неисправностей и ремонт автомобилей с использованием профессионального оборудования.",
+        "vacancy_responsibilities_title": "Обязанности",
+        "vacancy_responsibilities": [
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-clipboard.svg",
+              "alt": ""
+            },
+            "text": "Диагностика электронных узлов Land Rover и Jaguar"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-duty-car.svg",
+              "alt": ""
+            },
+            "text": "Ремонт автомобилей Land Rover и Jaguar"
+          }
+        ],
+        "vacancy_requirements_title": "Требования",
+        "vacancy_requirements": [
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-experience.svg",
+              "alt": ""
+            },
+            "text": "Опыт работы автоэлектриком-диагностом от 3 лет с марками Land Rover и Jaguar"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-car.svg",
+              "alt": ""
+            },
+            "text": "Знание устройства автомобиля и типовых неисправностей"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-education.svg",
+              "alt": ""
+            },
+            "text": "Знание технологии ремонта"
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/vacancy-requirement-person.svg",
+              "alt": ""
+            },
+            "text": "Ответственность и аккуратность"
+          }
+        ],
+        "vacancy_offer_title": "Компания предлагает",
+        "vacancy_offer": [
+          {
+            "label": "Команда",
+            "text": "Работа в стабильной компании"
+          },
+          {
+            "label": "График",
+            "text": "Сменный график 2/2/3, с 9:00 до 21:00"
+          },
+          {
+            "label": "Договор",
+            "text": "Оформление согласно ТК РФ"
+          },
+          {
+            "label": "Оплата",
+            "text": "Достойный уровень заработной платы"
+          },
+          {
+            "label": "Коллектив",
+            "text": "Дружный молодой коллектив"
+          },
+          {
+            "label": "Льготы",
+            "text": "Скидки сотрудникам на услуги компании"
+          },
+          {
+            "label": "Оснащение",
+            "text": "Сервис оборудован всем необходимым для работы"
+          }
+        ]
       }
     }
   ]

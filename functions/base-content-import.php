@@ -51,7 +51,7 @@ function roverland_base_import_render_page() {
 		<h1>Импорт базовых данных Rover Land</h1>
 		<p class="description">
 			Источник: <code>data/base-content.json</code>. Импорт создаёт или обновляет страницы
-			«Контакты», «О компании», «История», «Политика конфиденциальности» и «Политика использования cookie»,
+			главную, «Контакты», «О компании», «Историю», «Вакансии», юридические страницы и отдельные вакансии,
 			заполняет глобальные настройки и автоматически загружает только SVG-иконки в медиатеку.
 		</p>
 
@@ -76,7 +76,7 @@ function roverland_base_import_render_page() {
 		<div class="roverland-import__card">
 			<h2>Что делает импорт</h2>
 			<div class="roverland-import__grid">
-				<div><strong>Страницы</strong><span>Создаёт/обновляет 5 базовых страниц и назначает нужные шаблоны.</span></div>
+				<div><strong>Страницы</strong><span>Создаёт/обновляет базовые страницы и вакансии и назначает нужные шаблоны.</span></div>
 				<div><strong>ACF</strong><span>Заполняет поля страниц, глобальные данные и общие блоки.</span></div>
 				<div><strong>Медиа</strong><span>Автоматически импортируются только SVG. PNG/JPG/WebP импортёр не трогает — их загружаем вручную.</span></div>
 				<div><strong>Повторный запуск</strong><span>Безопасно обновляет созданные записи по стабильному ключу, без дублей.</span></div>
@@ -151,19 +151,18 @@ function roverland_base_import_handle() {
 
 	if ( ! empty( $data['options'] ) && is_array( $data['options'] ) ) {
 		foreach ( $data['options'] as $field_name => $value ) {
-			if ( roverland_base_import_contains_raster_theme_image( $value ) ) {
-				continue;
-			}
+			$current_value = get_field( $field_name, 'option' );
 
 			update_field(
 				$field_name,
-				roverland_base_import_resolve_value( $value, $report ),
+				roverland_base_import_resolve_value( $value, $report, $current_value ),
 				'option'
 			);
 		}
 	}
 
-	$page_ids = array();
+	$page_ids    = array();
+	$vacancy_ids = array();
 
 	if ( ! empty( $data['pages'] ) && is_array( $data['pages'] ) ) {
 		foreach ( $data['pages'] as $page_data ) {
@@ -181,15 +180,18 @@ function roverland_base_import_handle() {
 
 			$page_ids[ $page_data['key'] ] = $page_id;
 
+			if ( 'home' === $page_data['key'] ) {
+				update_option( 'show_on_front', 'page' );
+				update_option( 'page_on_front', $page_id );
+			}
+
 			if ( ! empty( $page_data['fields'] ) && is_array( $page_data['fields'] ) ) {
 				foreach ( $page_data['fields'] as $field_name => $value ) {
-					if ( roverland_base_import_contains_raster_theme_image( $value ) ) {
-						continue;
-					}
+					$current_value = get_field( $field_name, $page_id );
 
 					update_field(
 						$field_name,
-						roverland_base_import_resolve_value( $value, $report ),
+						roverland_base_import_resolve_value( $value, $report, $current_value ),
 						$page_id
 					);
 				}
@@ -201,11 +203,39 @@ function roverland_base_import_handle() {
 		}
 	}
 
+	if ( ! empty( $data['vacancies'] ) && is_array( $data['vacancies'] ) ) {
+		foreach ( $data['vacancies'] as $vacancy_data ) {
+			$vacancy_id = roverland_base_import_upsert_vacancy( $vacancy_data, $report );
+
+			if ( ! $vacancy_id ) {
+				continue;
+			}
+
+			$vacancy_ids[ $vacancy_data['key'] ] = $vacancy_id;
+
+			if ( ! empty( $vacancy_data['fields'] ) && is_array( $vacancy_data['fields'] ) ) {
+				foreach ( $vacancy_data['fields'] as $field_name => $value ) {
+					$current_value = get_field( $field_name, $vacancy_id );
+
+					update_field(
+						$field_name,
+						roverland_base_import_resolve_value( $value, $report, $current_value ),
+						$vacancy_id
+					);
+				}
+			}
+
+			if ( ! empty( $vacancy_data['seo'] ) && is_array( $vacancy_data['seo'] ) ) {
+				roverland_base_import_apply_rank_math( $vacancy_id, $vacancy_data['seo'] );
+			}
+		}
+	}
+
 	if ( ! empty( $page_ids['privacy'] ) ) {
 		update_option( 'wp_page_for_privacy_policy', (int) $page_ids['privacy'] );
 	}
 
-	roverland_base_import_fix_primary_menu_hierarchy( $page_ids );
+	roverland_base_import_fix_primary_menu_hierarchy( $page_ids, $vacancy_ids );
 
 	flush_rewrite_rules();
 	roverland_base_import_finish( $report );
@@ -230,6 +260,10 @@ function roverland_base_import_upsert_page( $page_data, &$report, $parent_id = 0
 	);
 
 	$page_id = $existing ? (int) $existing[0] : 0;
+
+	if ( ! $page_id && 'home' === $page_data['key'] ) {
+		$page_id = (int) get_option( 'page_on_front' );
+	}
 
 	if ( ! $page_id ) {
 		$page = get_page_by_path( $page_data['slug'] );
@@ -279,6 +313,67 @@ function roverland_base_import_upsert_page( $page_data, &$report, $parent_id = 0
 	return $page_id;
 }
 
+function roverland_base_import_upsert_vacancy( $vacancy_data, &$report ) {
+	if ( empty( $vacancy_data['key'] ) || empty( $vacancy_data['title'] ) || empty( $vacancy_data['slug'] ) ) {
+		$report['errors'][] = 'В JSON найдена вакансия без key/title/slug.';
+		return 0;
+	}
+
+	$existing = get_posts(
+		array(
+			'post_type' => 'vacancy',
+			'post_status' => 'any',
+			'posts_per_page' => 1,
+			'fields' => 'ids',
+			'meta_key' => '_roverland_base_import_key',
+			'meta_value' => sanitize_key( $vacancy_data['key'] ),
+			'no_found_rows' => true,
+		)
+	);
+
+	$post_id = $existing ? (int) $existing[0] : 0;
+
+	if ( ! $post_id ) {
+		$post = get_page_by_path( $vacancy_data['slug'], OBJECT, 'vacancy' );
+		if ( $post ) {
+			$post_id = (int) $post->ID;
+		}
+	}
+
+	$postarr = array(
+		'post_type' => 'vacancy',
+		'post_status' => 'publish',
+		'post_title' => $vacancy_data['title'],
+		'post_name' => $vacancy_data['slug'],
+		'menu_order' => isset( $vacancy_data['menu_order'] ) ? (int) $vacancy_data['menu_order'] : 0,
+	);
+
+	$is_new = ! $post_id;
+
+	if ( $post_id ) {
+		$postarr['ID'] = $post_id;
+		$result = wp_update_post( wp_slash( $postarr ), true );
+	} else {
+		$result = wp_insert_post( wp_slash( $postarr ), true );
+	}
+
+	if ( is_wp_error( $result ) ) {
+		$report['errors'][] = 'Не удалось сохранить вакансию «' . $vacancy_data['title'] . '»: ' . $result->get_error_message();
+		return 0;
+	}
+
+	$post_id = (int) $result;
+	update_post_meta( $post_id, '_roverland_base_import_key', sanitize_key( $vacancy_data['key'] ) );
+
+	if ( $is_new ) {
+		$report['created']++;
+	} else {
+		$report['updated']++;
+	}
+
+	return $post_id;
+}
+
 function roverland_base_import_apply_rank_math( $page_id, $seo ) {
 	$page_id = (int) $page_id;
 
@@ -302,84 +397,88 @@ function roverland_base_import_apply_rank_math( $page_id, $seo ) {
 	update_post_meta( $page_id, 'rank_math_canonical_url', get_permalink( $page_id ) );
 }
 
-function roverland_base_import_fix_primary_menu_hierarchy( $page_ids ) {
-	if ( empty( $page_ids['about'] ) || empty( $page_ids['history'] ) ) {
+function roverland_base_import_find_menu_item( $items, $object, $object_id ) {
+	foreach ( $items as $item ) {
+		if ( $item->object === $object && (int) $item->object_id === (int) $object_id ) {
+			return $item;
+		}
+	}
+	return null;
+}
+
+function roverland_base_import_ensure_menu_item( $menu_id, $object, $object_id, $parent_id = 0 ) {
+	$items = wp_get_nav_menu_items( $menu_id );
+	$items = is_array( $items ) ? $items : array();
+	$item  = roverland_base_import_find_menu_item( $items, $object, $object_id );
+
+	return wp_update_nav_menu_item(
+		$menu_id,
+		$item ? (int) $item->ID : 0,
+		array(
+			'menu-item-object-id' => (int) $object_id,
+			'menu-item-object' => $object,
+			'menu-item-type' => 'post_type',
+			'menu-item-status' => 'publish',
+			'menu-item-parent-id' => (int) $parent_id,
+		)
+	);
+}
+
+function roverland_base_import_fix_primary_menu_hierarchy( $page_ids, $vacancy_ids = array() ) {
+	if ( empty( $page_ids['about'] ) || empty( $page_ids['vacancies'] ) ) {
 		return;
 	}
 
 	$locations = get_theme_mod( 'nav_menu_locations', array() );
-
 	if ( empty( $locations['primary-menu'] ) ) {
 		return;
 	}
 
 	$menu_id = (int) $locations['primary-menu'];
 	$items   = wp_get_nav_menu_items( $menu_id );
+	$items   = is_array( $items ) ? $items : array();
+	$about_item = roverland_base_import_find_menu_item( $items, 'page', $page_ids['about'] );
 
-	if ( ! is_array( $items ) ) {
+	if ( ! $about_item ) {
 		return;
 	}
 
-	$about_item   = null;
-	$history_item = null;
-
-	foreach ( $items as $item ) {
-		if ( 'post_type' !== $item->type || 'page' !== $item->object ) {
-			continue;
-		}
-
-		if ( (int) $item->object_id === (int) $page_ids['about'] ) {
-			$about_item = $item;
-		}
-
-		if ( (int) $item->object_id === (int) $page_ids['history'] ) {
-			$history_item = $item;
-		}
+	if ( ! empty( $page_ids['history'] ) ) {
+		roverland_base_import_ensure_menu_item( $menu_id, 'page', $page_ids['history'], $about_item->ID );
 	}
 
-	if ( ! $about_item || ! $history_item ) {
+	$vacancies_item_id = roverland_base_import_ensure_menu_item( $menu_id, 'page', $page_ids['vacancies'], $about_item->ID );
+	if ( is_wp_error( $vacancies_item_id ) || ! $vacancies_item_id ) {
 		return;
 	}
 
-	wp_update_nav_menu_item(
-		$menu_id,
-		(int) $history_item->ID,
-		array(
-			'menu-item-object-id' => (int) $page_ids['history'],
-			'menu-item-object'    => 'page',
-			'menu-item-type'      => 'post_type',
-			'menu-item-status'    => 'publish',
-			'menu-item-parent-id' => (int) $about_item->ID,
-		)
-	);
+	foreach ( $vacancy_ids as $vacancy_id ) {
+		roverland_base_import_ensure_menu_item( $menu_id, 'vacancy', $vacancy_id, $vacancies_item_id );
+	}
 }
 
-function roverland_base_import_contains_raster_theme_image( $value ) {
-	if ( ! is_array( $value ) ) {
-		return false;
+function roverland_base_import_preserve_media_value( $current ) {
+	if ( is_array( $current ) && ! empty( $current['ID'] ) ) {
+		return (int) $current['ID'];
 	}
-
-	if ( ! empty( $value['theme_image'] ) ) {
-		return 'svg' !== strtolower( pathinfo( $value['theme_image'], PATHINFO_EXTENSION ) );
+	if ( is_numeric( $current ) ) {
+		return (int) $current;
 	}
-
-	foreach ( $value as $item ) {
-		if ( roverland_base_import_contains_raster_theme_image( $item ) ) {
-			return true;
-		}
-	}
-
-	return false;
+	return 0;
 }
 
-function roverland_base_import_resolve_value( $value, &$report ) {
+function roverland_base_import_resolve_value( $value, &$report, $current = null ) {
 	if ( ! is_array( $value ) ) {
 		return $value;
 	}
 
+	if ( ! empty( $value['manual_image'] ) ) {
+		return roverland_base_import_preserve_media_value( $current );
+	}
+
 	if ( ! empty( $value['theme_image'] ) ) {
 		if ( 'svg' !== strtolower( pathinfo( $value['theme_image'], PATHINFO_EXTENSION ) ) ) {
-			return 0;
+			return roverland_base_import_preserve_media_value( $current );
 		}
 
 		return roverland_base_import_media(
@@ -390,11 +489,10 @@ function roverland_base_import_resolve_value( $value, &$report ) {
 	}
 
 	$result = array();
-
 	foreach ( $value as $key => $item ) {
-		$result[ $key ] = roverland_base_import_resolve_value( $item, $report );
+		$current_item = is_array( $current ) && array_key_exists( $key, $current ) ? $current[ $key ] : null;
+		$result[ $key ] = roverland_base_import_resolve_value( $item, $report, $current_item );
 	}
-
 	return $result;
 }
 

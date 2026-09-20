@@ -236,6 +236,30 @@
       "type": "text",
       "default_value": "6b4eac7a-0149-488d-b8c5-391ae43a22e4",
       "instructions": "Используется на страницах с общим блоком карты."
+    },
+    {
+      "key": "field_rl_site_tab_careers",
+      "label": "Карьера",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_site_careers_name",
+      "label": "Контактное лицо",
+      "name": "careers_contact_name",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_site_careers_phone",
+      "label": "Телефон по вакансиям",
+      "name": "careers_contact_phone",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      }
     }
   ],
   "location": [
@@ -256,5 +280,5 @@
   "active": true,
   "description": "Глобальные данные сайта: логотипы, контакты, филиалы, соцсети и карта.",
   "show_in_rest": 0,
-  "modified": 1789920000
+  "modified": 1790001000
 }

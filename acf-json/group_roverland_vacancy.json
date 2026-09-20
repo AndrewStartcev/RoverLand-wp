@@ -1,0 +1,233 @@
+{
+  "key": "group_roverland_vacancy",
+  "title": "Вакансия",
+  "fields": [
+    {
+      "key": "field_rl_vacancy_tab_card",
+      "label": "Карточка",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancy_card_label",
+      "label": "Категория",
+      "name": "vacancy_card_label",
+      "type": "text",
+      "wrapper": {
+        "width": "30"
+      }
+    },
+    {
+      "key": "field_rl_vacancy_card_icon",
+      "label": "SVG-иконка",
+      "name": "vacancy_card_icon",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "svg",
+      "wrapper": {
+        "width": "30"
+      }
+    },
+    {
+      "key": "field_rl_vacancy_summary",
+      "label": "Краткое описание",
+      "name": "vacancy_summary",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "",
+      "wrapper": {
+        "width": "40"
+      }
+    },
+    {
+      "key": "field_rl_vacancy_tab_hero",
+      "label": "Первый экран",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancy_hero_title",
+      "label": "H1",
+      "name": "vacancy_hero_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_vacancy_hero_image",
+      "label": "Фоновое изображение",
+      "name": "vacancy_hero_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg",
+      "instructions": "Загружается вручную; импорт не перезаписывает."
+    },
+    {
+      "key": "field_rl_vacancy_tab_duties",
+      "label": "Обязанности",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancy_resp_title",
+      "label": "H2",
+      "name": "vacancy_responsibilities_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_vacancy_resp",
+      "label": "Обязанности",
+      "name": "vacancy_responsibilities",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить обязанность",
+      "sub_fields": [
+        {
+          "key": "field_rl_vacancy_resp_icon",
+          "label": "SVG-иконка",
+          "name": "icon",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "svg",
+          "wrapper": {
+            "width": "20"
+          }
+        },
+        {
+          "key": "field_rl_vacancy_resp_text",
+          "label": "Текст",
+          "name": "text",
+          "type": "textarea",
+          "rows": 2,
+          "new_lines": "",
+          "wrapper": {
+            "width": "80"
+          }
+        }
+      ]
+    },
+    {
+      "key": "field_rl_vacancy_tab_req",
+      "label": "Требования",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancy_req_title",
+      "label": "H2",
+      "name": "vacancy_requirements_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_vacancy_req",
+      "label": "Требования",
+      "name": "vacancy_requirements",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить требование",
+      "sub_fields": [
+        {
+          "key": "field_rl_vacancy_req_icon",
+          "label": "SVG-иконка",
+          "name": "icon",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "svg",
+          "wrapper": {
+            "width": "20"
+          }
+        },
+        {
+          "key": "field_rl_vacancy_req_text",
+          "label": "Текст",
+          "name": "text",
+          "type": "textarea",
+          "rows": 2,
+          "new_lines": "",
+          "wrapper": {
+            "width": "80"
+          }
+        }
+      ]
+    },
+    {
+      "key": "field_rl_vacancy_tab_offer",
+      "label": "Условия",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancy_offer_title",
+      "label": "H2",
+      "name": "vacancy_offer_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_vacancy_offer",
+      "label": "Условия",
+      "name": "vacancy_offer",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Добавить условие",
+      "sub_fields": [
+        {
+          "key": "field_rl_vacancy_offer_label",
+          "label": "Метка",
+          "name": "label",
+          "type": "text"
+        },
+        {
+          "key": "field_rl_vacancy_offer_text",
+          "label": "Текст",
+          "name": "text",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_rl_vacancy_contact_note",
+      "label": "Контактное лицо",
+      "type": "message",
+      "message": "Контактное лицо и телефон редактируются глобально: Rover Land → Карьера.",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "vacancy"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Карточка и содержание отдельной вакансии.",
+  "show_in_rest": 0,
+  "modified": 1790001300
+}

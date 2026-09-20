@@ -1,0 +1,205 @@
+{
+  "key": "group_roverland_vacancies_page",
+  "title": "Страница вакансий",
+  "fields": [
+    {
+      "key": "field_rl_vacancies_tab_hero",
+      "label": "Первый экран",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancies_hero_title",
+      "label": "H1",
+      "name": "vacancies_hero_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_vacancies_hero_lead",
+      "label": "Описание",
+      "name": "vacancies_hero_lead",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_vacancies_hero_image",
+      "label": "Фоновое изображение",
+      "name": "vacancies_hero_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg",
+      "instructions": "Загружается вручную; импорт не перезаписывает."
+    },
+    {
+      "key": "field_rl_vacancies_tab_adv",
+      "label": "Преимущества",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancies_advantages",
+      "label": "Карточки",
+      "name": "vacancies_advantages",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить карточку",
+      "sub_fields": [
+        {
+          "key": "field_rl_vacancies_adv_icon",
+          "label": "SVG-иконка",
+          "name": "icon",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "svg",
+          "wrapper": {
+            "width": "20"
+          }
+        },
+        {
+          "key": "field_rl_vacancies_adv_title",
+          "label": "H2",
+          "name": "title",
+          "type": "text",
+          "wrapper": {
+            "width": "30"
+          }
+        },
+        {
+          "key": "field_rl_vacancies_adv_text",
+          "label": "Описание",
+          "name": "text",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": "",
+          "wrapper": {
+            "width": "50"
+          }
+        }
+      ]
+    },
+    {
+      "key": "field_rl_vacancies_tab_list",
+      "label": "Список вакансий",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancies_list_title",
+      "label": "H2",
+      "name": "vacancies_list_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_vacancies_tab_contact",
+      "label": "Контакт",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancies_contact_title",
+      "label": "H2",
+      "name": "vacancies_contact_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_vacancies_contact_text",
+      "label": "Описание",
+      "name": "vacancies_contact_text",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_vacancies_contact_note",
+      "label": "Контактное лицо",
+      "type": "message",
+      "message": "Имя и телефон редактируются глобально: Rover Land → Карьера.",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
+      "key": "field_rl_vacancies_tab_form",
+      "label": "Форма отклика",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancies_form_title",
+      "label": "H2",
+      "name": "vacancies_form_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_vacancies_form_text",
+      "label": "Описание",
+      "name": "vacancies_form_text",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_vacancies_tab_common",
+      "label": "Общие блоки",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_vacancies_show_branches",
+      "label": "Показывать филиалы",
+      "name": "vacancies_show_branches",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_vacancies_show_map",
+      "label": "Показывать карту",
+      "name": "vacancies_show_map",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "50"
+      }
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-vacancies.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Страница списка вакансий Rover Land.",
+  "show_in_rest": 0,
+  "modified": 1790001200
+}
