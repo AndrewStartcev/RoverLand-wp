@@ -35,10 +35,30 @@ function roverland_enqueue_assets() {
 		true
 	);
 
+	if ( is_page_template( array( 'page-contacts.php', 'page-history.php' ) ) ) {
+		$api_key = trim( (string) roverland_option( 'site_yandex_maps_api_key', '6b4eac7a-0149-488d-b8c5-391ae43a22e4' ) );
+
+		if ( $api_key ) {
+			wp_enqueue_script(
+				'roverland-yandex-maps',
+				'https://api-maps.yandex.ru/2.1/?apikey=' . rawurlencode( $api_key ) . '&lang=ru_RU',
+				array(),
+				null,
+				true
+			);
+		}
+	}
+
+	$main_deps = array( 'roverland-swiper' );
+
+	if ( wp_script_is( 'roverland-yandex-maps', 'enqueued' ) ) {
+		$main_deps[] = 'roverland-yandex-maps';
+	}
+
 	wp_enqueue_script(
 		'roverland-main',
 		get_theme_file_uri( 'assets/js/main.js' ),
-		array( 'roverland-swiper' ),
+		$main_deps,
 		roverland_asset_version( 'assets/js/main.js' ),
 		true
 	);

@@ -40,5 +40,15 @@ add_action(
 				'icon_url'   => 'dashicons-car',
 			)
 		);
+
+		acf_add_options_sub_page(
+			array(
+				'page_title'  => 'Общие блоки Rover Land',
+				'menu_title'  => 'Общие блоки',
+				'menu_slug'   => 'roverland-common-blocks',
+				'parent_slug' => 'roverland-settings',
+				'capability'  => 'manage_options',
+			)
+		);
 	}
 );
