@@ -1,0 +1,227 @@
+{
+  "key": "group_roverland_about_page",
+  "title": "О компании",
+  "fields": [
+    {
+      "key": "field_rl_about_tab_hero",
+      "label": "Первый экран",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_about_hero_eyebrow",
+      "label": "Надзаголовок",
+      "name": "about_hero_eyebrow",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_about_hero_title",
+      "label": "H1",
+      "name": "about_hero_title",
+      "type": "text",
+      "instructions": "Обычное текстовое поле. Перенос строки можно сделать Enter."
+    },
+    {
+      "key": "field_rl_about_hero_lead",
+      "label": "Описание",
+      "name": "about_hero_lead",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_about_tab_service",
+      "label": "СТО и ремонт",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_about_service_title",
+      "label": "H2",
+      "name": "about_service_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_about_service_content",
+      "label": "Текст",
+      "name": "about_service_content",
+      "type": "wysiwyg",
+      "tabs": "visual",
+      "toolbar": "full",
+      "media_upload": 0
+    },
+    {
+      "key": "field_rl_about_service_award",
+      "label": "Награда",
+      "name": "about_service_award",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg"
+    },
+    {
+      "key": "field_rl_about_tab_parts",
+      "label": "Запчасти",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_about_parts_title",
+      "label": "H2",
+      "name": "about_parts_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_about_parts_content",
+      "label": "Текст",
+      "name": "about_parts_content",
+      "type": "wysiwyg",
+      "tabs": "visual",
+      "toolbar": "full",
+      "media_upload": 0
+    },
+    {
+      "key": "field_rl_about_parts_gallery",
+      "label": "Галерея",
+      "name": "about_parts_gallery",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Добавить изображение",
+      "sub_fields": [
+        {
+          "key": "field_rl_about_parts_gallery_image",
+          "label": "Изображение",
+          "name": "image",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "png,webp,jpg,jpeg"
+        }
+      ]
+    },
+    {
+      "key": "field_rl_about_tab_stats",
+      "label": "Цифры",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_about_stats",
+      "label": "Показатели",
+      "name": "about_stats",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Добавить показатель",
+      "sub_fields": [
+        {
+          "key": "field_rl_about_stat_value",
+          "label": "Значение",
+          "name": "value",
+          "type": "text"
+        },
+        {
+          "key": "field_rl_about_stat_label",
+          "label": "Подпись",
+          "name": "label",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_rl_about_tab_benefits",
+      "label": "Преимущества",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_about_benefits_title",
+      "label": "H2",
+      "name": "about_benefits_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_about_benefits_lead",
+      "label": "Описание",
+      "name": "about_benefits_lead",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_about_benefits",
+      "label": "Карточки",
+      "name": "about_benefits",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить карточку",
+      "sub_fields": [
+        {
+          "key": "field_rl_about_benefit_icon",
+          "label": "Иконка",
+          "name": "icon",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "svg,png,webp",
+          "wrapper": {
+            "width": "20"
+          }
+        },
+        {
+          "key": "field_rl_about_benefit_title",
+          "label": "Заголовок",
+          "name": "title",
+          "type": "text",
+          "wrapper": {
+            "width": "30"
+          }
+        },
+        {
+          "key": "field_rl_about_benefit_text",
+          "label": "Описание",
+          "name": "text",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": "",
+          "wrapper": {
+            "width": "50"
+          }
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-about.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Контент страницы «О компании».",
+  "show_in_rest": 0,
+  "modified": 1789920300
+}
