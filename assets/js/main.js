@@ -138,7 +138,8 @@
       var address = addressNode.textContent.trim();
       var key = address.toLowerCase();
 
-      var customMapAddress = card.getAttribute("data-map-address");\n      if (!grouped[key]) grouped[key] = { name: name, address: address, geocodeAddress: customMapAddress || ("Москва, " + address), offices: [] };
+      var customMapAddress = card.getAttribute("data-map-address");
+      if (!grouped[key]) grouped[key] = { name: name, address: address, geocodeAddress: customMapAddress || ("Москва, " + address), offices: [] };
       grouped[key].offices.push({ office: office, phone: phone ? phone.textContent.trim() : "" });
     });
     return Object.keys(grouped).map(function (key) { return grouped[key]; });
