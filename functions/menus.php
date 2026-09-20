@@ -87,15 +87,32 @@ function roverland_primary_menu_fallback() {
 		array( 'Ремонт', roverland_page_url( 'services' ) . '#repair' ),
 		array( 'Сервис', roverland_page_url( 'service' ) ),
 		array( 'Запчасти', roverland_page_url( 'parts' ) ),
-		array( 'О компании', roverland_page_url( 'about' ) ),
-		array( 'Акции', roverland_page_url( 'promotions' ) ),
-		array( 'Портфолио', roverland_page_url( 'portfolio' ) ),
-		array( 'Контакты', roverland_page_url( 'contacts' ) ),
 	);
 
 	echo '<ul class="main-nav__list">';
 
 	foreach ( $items as $item ) {
+		printf(
+			'<li class="main-nav__item"><a class="main-nav__link" href="%1$s">%2$s</a></li>',
+			esc_url( $item[1] ),
+			esc_html( $item[0] )
+		);
+	}
+
+	printf(
+		'<li class="main-nav__item main-nav__item--dropdown"><a class="main-nav__link" href="%1$s" aria-haspopup="true">О компании <img class="main-nav__arrow" src="%2$s" width="10" height="6" alt="" aria-hidden="true"></a><div class="nav-dropdown"><a href="%3$s">История</a></div></li>',
+		esc_url( roverland_page_url( 'kompaniya' ) ),
+		esc_url( roverland_asset( 'assets/images/icons/ui/chevron-gray.svg' ) ),
+		esc_url( roverland_page_url( 'kompaniya/istoriya' ) )
+	);
+
+	$tail = array(
+		array( 'Акции', roverland_page_url( 'promotions' ) ),
+		array( 'Портфолио', roverland_page_url( 'portfolio' ) ),
+		array( 'Контакты', roverland_page_url( 'contacts' ) ),
+	);
+
+	foreach ( $tail as $item ) {
 		printf(
 			'<li class="main-nav__item"><a class="main-nav__link" href="%1$s">%2$s</a></li>',
 			esc_url( $item[1] ),
