@@ -1,0 +1,105 @@
+{
+  "key": "group_roverland_contacts_page",
+  "title": "Контакты",
+  "fields": [
+    {
+      "key": "field_rl_contacts_tab_intro",
+      "label": "Первый экран",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_contacts_title",
+      "label": "H1",
+      "name": "contacts_title",
+      "type": "text",
+      "instructions": "Обычное текстовое поле. Перенос строки можно сделать Enter."
+    },
+    {
+      "key": "field_rl_contacts_lead",
+      "label": "Описание",
+      "name": "contacts_lead",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_contacts_tab_blocks",
+      "label": "Общие блоки",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_contacts_centers",
+      "label": "Показывать филиалы",
+      "name": "contacts_show_centers",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_contacts_map",
+      "label": "Показывать карту",
+      "name": "contacts_show_map",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_contacts_appointment",
+      "label": "Показывать запись",
+      "name": "contacts_show_appointment",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_contacts_note",
+      "label": "Где редактировать данные",
+      "type": "message",
+      "message": "Филиалы, карта и блок записи вынесены в глобальные настройки Rover Land.",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-contacts.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Уникальный контент страницы контактов.",
+  "show_in_rest": 0,
+  "modified": 1789920200
+}
