@@ -1,0 +1,260 @@
+{
+  "key": "group_roverland_site_settings",
+  "title": "Rover Land — общие данные",
+  "fields": [
+    {
+      "key": "field_rl_site_tab_brand",
+      "label": "Бренд",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_site_header_logo",
+      "label": "Логотип в шапке",
+      "name": "site_header_logo",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "svg,png,webp,jpg,jpeg",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_site_footer_logo",
+      "label": "Логотип в подвале",
+      "name": "site_footer_logo",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "svg,png,webp,jpg,jpeg",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_site_header_button",
+      "label": "Текст кнопки записи",
+      "name": "site_header_appointment_label",
+      "type": "text",
+      "default_value": "Записаться на ТО",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_site_footer_description",
+      "label": "Описание в подвале",
+      "name": "site_footer_description",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "",
+      "wrapper": {
+        "width": "100"
+      }
+    },
+    {
+      "key": "field_rl_site_copyright",
+      "label": "Копирайт",
+      "name": "site_copyright",
+      "type": "text",
+      "default_value": "РоверЛэнд. Все права защищены.",
+      "wrapper": {
+        "width": "100"
+      }
+    },
+    {
+      "key": "field_rl_site_tab_contacts",
+      "label": "Контакты",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_site_main_phone",
+      "label": "Основной телефон",
+      "name": "site_main_phone",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_site_email",
+      "label": "E-mail",
+      "name": "site_email",
+      "type": "email",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_site_work_hours",
+      "label": "Режим работы",
+      "name": "site_work_hours",
+      "type": "text",
+      "wrapper": {
+        "width": "100"
+      }
+    },
+    {
+      "key": "field_rl_site_tab_branches",
+      "label": "Филиалы",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_site_branches",
+      "label": "Филиалы",
+      "name": "site_branches",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить филиал",
+      "sub_fields": [
+        {
+          "key": "field_rl_branch_name",
+          "label": "Название",
+          "name": "name",
+          "type": "text",
+          "wrapper": {
+            "width": "30"
+          }
+        },
+        {
+          "key": "field_rl_branch_department",
+          "label": "Подразделение",
+          "name": "department",
+          "type": "text",
+          "instructions": "Например: Сервис или Кузовной. Можно оставить пустым.",
+          "wrapper": {
+            "width": "30"
+          }
+        },
+        {
+          "key": "field_rl_branch_phone",
+          "label": "Телефон",
+          "name": "phone",
+          "type": "text",
+          "wrapper": {
+            "width": "40"
+          }
+        },
+        {
+          "key": "field_rl_branch_address",
+          "label": "Адрес",
+          "name": "address",
+          "type": "textarea",
+          "rows": 2,
+          "new_lines": "",
+          "wrapper": {
+            "width": "50"
+          }
+        },
+        {
+          "key": "field_rl_branch_map_address",
+          "label": "Адрес для карты",
+          "name": "map_address",
+          "type": "textarea",
+          "rows": 2,
+          "new_lines": "",
+          "wrapper": {
+            "width": "35"
+          }
+        },
+        {
+          "key": "field_rl_branch_footer",
+          "label": "Показывать в подвале",
+          "name": "show_in_footer",
+          "type": "true_false",
+          "ui": 1,
+          "default_value": 1,
+          "wrapper": {
+            "width": "15"
+          }
+        }
+      ]
+    },
+    {
+      "key": "field_rl_site_tab_social",
+      "label": "Соцсети",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_site_social",
+      "label": "Социальные сети",
+      "name": "site_social_links",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить соцсеть",
+      "sub_fields": [
+        {
+          "key": "field_rl_social_name",
+          "label": "Название",
+          "name": "name",
+          "type": "text",
+          "wrapper": {
+            "width": "25"
+          }
+        },
+        {
+          "key": "field_rl_social_url",
+          "label": "Ссылка",
+          "name": "url",
+          "type": "text",
+          "instructions": "Можно указать https://, tel:, tg:// или временно #.",
+          "wrapper": {
+            "width": "45"
+          }
+        },
+        {
+          "key": "field_rl_social_icon",
+          "label": "Иконка",
+          "name": "icon",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "svg,png,webp",
+          "wrapper": {
+            "width": "30"
+          }
+        }
+      ]
+    },
+    {
+      "key": "field_rl_site_tab_map",
+      "label": "Карта",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_site_map_key",
+      "label": "API-ключ Яндекс.Карт",
+      "name": "site_yandex_maps_api_key",
+      "type": "text",
+      "default_value": "6b4eac7a-0149-488d-b8c5-391ae43a22e4",
+      "instructions": "Используется на страницах с общим блоком карты."
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "options_page",
+        "operator": "==",
+        "value": "roverland-settings"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "Глобальные данные сайта: логотипы, контакты, филиалы, соцсети и карта.",
+  "show_in_rest": 0,
+  "modified": 1789920000
+}
