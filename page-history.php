@@ -9,7 +9,9 @@ while ( have_posts() ) :
 	the_post();
 
 	$hero_title = roverland_field( 'history_hero_title', get_the_title() );
-	$hero_lead  = roverland_field( 'history_hero_lead', '' );\n\t$hero_image = roverland_field( 'history_hero_image', array() );\n\t$hero_image_url = roverland_image_url( $hero_image, 'assets/images/content/history-hero.png' );
+	$hero_lead      = roverland_field( 'history_hero_lead', '' );
+	$hero_image     = roverland_field( 'history_hero_image', array() );
+	$hero_image_url = roverland_image_url( $hero_image, 'assets/images/content/history-hero.png' );
 
 	$expertise_title   = roverland_field( 'history_expertise_title', '' );
 	$expertise_content = roverland_field( 'history_expertise_content', '' );
