@@ -35,7 +35,7 @@ function roverland_enqueue_assets() {
 		true
 	);
 
-	if ( is_page_template( array( 'page-contacts.php', 'page-history.php' ) ) ) {
+	if ( is_front_page() || is_singular( 'vacancy' ) || is_page_template( array( 'page-contacts.php', 'page-history.php', 'page-vacancies.php' ) ) ) {
 		$api_key = trim( (string) roverland_option( 'site_yandex_maps_api_key', '6b4eac7a-0149-488d-b8c5-391ae43a22e4' ) );
 
 		if ( $api_key ) {

@@ -14,6 +14,11 @@ class Roverland_Menu_Walker extends Walker_Nav_Menu {
 			return;
 		}
 
+		if ( 'main' === $this->context && $depth >= 1 ) {
+			$output .= '<div class="nav-subdropdown">';
+			return;
+		}
+
 		$class = 'models' === $this->context ? 'models-dropdown' : 'nav-dropdown';
 		$output .= '<div class="' . esc_attr( $class ) . '">';
 	}
@@ -27,30 +32,31 @@ class Roverland_Menu_Walker extends Walker_Nav_Menu {
 	}
 
 	public function start_el( &$output, $data_object, $depth = 0, $args = null, $current_object_id = 0 ) {
-		$item       = $data_object;
-		$item_url   = ! empty( $item->url ) ? $item->url : '#';
-		$item_title = esc_html( apply_filters( 'the_title', $item->title, $item->ID ) );
+		$item        = $data_object;
+		$item_url    = ! empty( $item->url ) ? $item->url : '#';
+		$item_title  = esc_html( apply_filters( 'the_title', $item->title, $item->ID ) );
+		$is_models   = 'models' === $this->context;
+		$has_children = ! empty( $args->has_children );
 
 		if ( 'flat' === $this->context ) {
 			$output .= '<a href="' . esc_url( $item_url ) . '">' . $item_title . '</a>';
 			return;
 		}
 
-		$is_models = 'models' === $this->context;
-
-		/*
-		 * В исходной верстке RoverLand dropdown — это <div> с прямыми <a>,
-		 * без вложенного <ul>/<li>. Сохраняем эту структуру один в один.
-		 */
 		if ( $depth > 0 ) {
+			if ( 'main' === $this->context && 1 === $depth && $has_children ) {
+				$output .= '<div class="nav-dropdown__item nav-dropdown__item--has-children">';
+				$output .= '<a href="' . esc_url( $item_url ) . '">' . $item_title . '<span class="nav-dropdown__chevron" aria-hidden="true">›</span></a>';
+				return;
+			}
+
 			$output .= '<a href="' . esc_url( $item_url ) . '">' . $item_title . '</a>';
 			return;
 		}
 
-		$has_children = ! empty( $args->has_children );
-		$item_class   = $is_models ? 'models-nav__item' : 'main-nav__item';
-		$link_class   = $is_models ? 'models-nav__link' : 'main-nav__link';
-		$arrow_class  = $is_models ? 'models-nav__arrow' : 'main-nav__arrow';
+		$item_class  = $is_models ? 'models-nav__item' : 'main-nav__item';
+		$link_class  = $is_models ? 'models-nav__link' : 'main-nav__link';
+		$arrow_class = $is_models ? 'models-nav__arrow' : 'main-nav__arrow';
 
 		if ( $has_children ) {
 			$item_class .= $is_models ? ' models-nav__item--dropdown' : ' main-nav__item--dropdown';
@@ -59,13 +65,11 @@ class Roverland_Menu_Walker extends Walker_Nav_Menu {
 		$output .= '<li class="' . esc_attr( $item_class ) . '">';
 
 		$attributes = ' class="' . esc_attr( $link_class ) . '" href="' . esc_url( $item_url ) . '"';
-
 		if ( $has_children ) {
 			$attributes .= ' aria-haspopup="true"';
 		}
 
-		$output .= '<a' . $attributes . '>';
-		$output .= $item_title;
+		$output .= '<a' . $attributes . '>' . $item_title;
 
 		if ( $has_children ) {
 			$arrow = $is_models ? 'chevron-white.svg' : 'chevron-gray.svg';
@@ -76,50 +80,54 @@ class Roverland_Menu_Walker extends Walker_Nav_Menu {
 	}
 
 	public function end_el( &$output, $data_object, $depth = 0, $args = null ) {
-		if ( 'flat' !== $this->context && 0 === $depth ) {
+		if ( 'flat' === $this->context ) {
+			return;
+		}
+
+		if ( 0 === $depth ) {
 			$output .= '</li>';
+			return;
+		}
+
+		if ( 'main' === $this->context && 1 === $depth && ! empty( $args->has_children ) ) {
+			$output .= '</div>';
 		}
 	}
 }
 
 function roverland_primary_menu_fallback() {
-	$items = array(
-		array( 'Ремонт', roverland_page_url( 'services' ) . '#repair' ),
-		array( 'Сервис', roverland_page_url( 'service' ) ),
-		array( 'Запчасти', roverland_page_url( 'parts' ) ),
-	);
-
 	echo '<ul class="main-nav__list">';
+	printf( '<li class="main-nav__item"><a class="main-nav__link" href="%s#repair">Ремонт</a></li>', esc_url( roverland_page_url( 'remont' ) ) );
+	printf( '<li class="main-nav__item"><a class="main-nav__link" href="%s">Сервис</a></li>', esc_url( roverland_page_url( 'servis' ) ) );
+	printf( '<li class="main-nav__item"><a class="main-nav__link" href="%s">Запчасти</a></li>', esc_url( roverland_page_url( 'zapchasti' ) ) );
 
-	foreach ( $items as $item ) {
-		printf(
-			'<li class="main-nav__item"><a class="main-nav__link" href="%1$s">%2$s</a></li>',
-			esc_url( $item[1] ),
-			esc_html( $item[0] )
-		);
-	}
+	echo '<li class="main-nav__item main-nav__item--dropdown">';
+	printf( '<a class="main-nav__link" href="%s" aria-haspopup="true">О компании <img class="main-nav__arrow" src="%s" width="10" height="6" alt="" aria-hidden="true"></a>', esc_url( roverland_page_url( 'kompaniya' ) ), esc_url( roverland_asset( 'assets/images/icons/ui/chevron-gray.svg' ) ) );
+	echo '<div class="nav-dropdown">';
+	printf( '<a href="%s">История</a>', esc_url( roverland_page_url( 'kompaniya/istoriya' ) ) );
 
-	printf(
-		'<li class="main-nav__item main-nav__item--dropdown"><a class="main-nav__link" href="%1$s" aria-haspopup="true">О компании <img class="main-nav__arrow" src="%2$s" width="10" height="6" alt="" aria-hidden="true"></a><div class="nav-dropdown"><a href="%3$s">История</a></div></li>',
-		esc_url( roverland_page_url( 'kompaniya' ) ),
-		esc_url( roverland_asset( 'assets/images/icons/ui/chevron-gray.svg' ) ),
-		esc_url( roverland_page_url( 'kompaniya/istoriya' ) )
+	echo '<div class="nav-dropdown__item nav-dropdown__item--has-children">';
+	printf( '<a href="%s">Вакансии <span class="nav-dropdown__chevron" aria-hidden="true">›</span></a>', esc_url( roverland_page_url( 'kompaniya/vakansii' ) ) );
+	echo '<div class="nav-subdropdown">';
+
+	$vacancies = get_posts(
+		array(
+			'post_type'      => 'vacancy',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+		)
 	);
 
-	$tail = array(
-		array( 'Акции', roverland_page_url( 'promotions' ) ),
-		array( 'Портфолио', roverland_page_url( 'portfolio' ) ),
-		array( 'Контакты', roverland_page_url( 'contacts' ) ),
-	);
-
-	foreach ( $tail as $item ) {
-		printf(
-			'<li class="main-nav__item"><a class="main-nav__link" href="%1$s">%2$s</a></li>',
-			esc_url( $item[1] ),
-			esc_html( $item[0] )
-		);
+	foreach ( $vacancies as $vacancy ) {
+		printf( '<a href="%s">%s</a>', esc_url( get_permalink( $vacancy ) ), esc_html( get_the_title( $vacancy ) ) );
 	}
 
+	echo '</div></div></div></li>';
+
+	printf( '<li class="main-nav__item"><a class="main-nav__link" href="%s">Акции</a></li>', esc_url( roverland_page_url( 'aktsii' ) ) );
+	printf( '<li class="main-nav__item"><a class="main-nav__link" href="%s">Портфолио</a></li>', esc_url( roverland_page_url( 'portfolio' ) ) );
+	printf( '<li class="main-nav__item"><a class="main-nav__link" href="%s">Контакты</a></li>', esc_url( roverland_page_url( 'contacts' ) ) );
 	echo '</ul>';
 }
 
@@ -137,13 +145,8 @@ function roverland_models_menu_fallback() {
 	);
 
 	echo '<ul class="models-nav__list">';
-
 	foreach ( $items as $item ) {
-		printf(
-			'<li class="models-nav__item"><a class="models-nav__link" href="#">%s</a></li>',
-			esc_html( $item )
-		);
+		printf( '<li class="models-nav__item"><a class="models-nav__link" href="#">%s</a></li>', esc_html( $item ) );
 	}
-
 	echo '</ul>';
 }

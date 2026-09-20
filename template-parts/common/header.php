@@ -24,7 +24,7 @@ $socials           = roverland_get_social_links();
 							'theme_location' => 'primary-menu',
 							'container'      => false,
 							'menu_class'     => 'main-nav__list',
-							'depth'          => 2,
+							'depth'          => 3,
 							'walker'         => new Roverland_Menu_Walker( 'main' ),
 						)
 					);
@@ -105,6 +105,7 @@ $socials           = roverland_get_social_links();
 			<a href="<?php echo esc_url( roverland_page_url( 'service' ) ); ?>">Сервис</a>
 			<a href="<?php echo esc_url( roverland_page_url( 'parts' ) ); ?>">Запчасти</a>
 			<a href="<?php echo esc_url( roverland_page_url( 'kompaniya' ) ); ?>">О компании</a>
+			<a href="<?php echo esc_url( roverland_page_url( 'kompaniya/vakansii' ) ); ?>">Вакансии</a>
 			<a href="<?php echo esc_url( roverland_page_url( 'vacancies' ) ); ?>">Вакансии</a>
 			<a href="<?php echo esc_url( roverland_page_url( 'promotions' ) ); ?>">Акции</a>
 			<a href="<?php echo esc_url( roverland_page_url( 'portfolio' ) ); ?>">Портфолио</a>

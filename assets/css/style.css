@@ -143,3 +143,74 @@ body.admin-bar .site-header {
     background-image: var(--history-hero-image, url("../images/content/history-hero.png"));
   }
 }
+
+
+/* Home / careers raster images are managed manually in ACF. */
+.hero {
+  background-image:
+    linear-gradient(90deg, #fdfcff 0%, #fdfcff 31.7642%, rgba(253, 252, 255, 0.6) 50.72%, rgba(253, 252, 255, 0) 80.2885%),
+    var(--home-hero-image, none);
+}
+
+.vacancies-hero {
+  background-image:
+    linear-gradient(90deg, #fdfcff 0%, rgba(253,252,255,.98) 30%, rgba(253,252,255,.72) 48%, rgba(253,252,255,0) 74%),
+    var(--vacancies-hero-image, none);
+}
+
+.vacancy-hero {
+  background-image:
+    linear-gradient(90deg,#fdfcff 0%,rgba(253,252,255,.98) 30%,rgba(253,252,255,.65) 50%,rgba(253,252,255,0) 76%),
+    var(--vacancy-hero-image, none);
+}
+
+.nav-dropdown__item { position: relative; }
+.nav-dropdown__item > a { position: relative; padding-right: 32px; }
+.nav-dropdown__chevron { position: absolute; top: 50%; right: 12px; font-size: 18px; line-height: 1; transform: translateY(-50%); }
+
+.nav-subdropdown {
+  position: absolute;
+  top: -12px;
+  left: calc(100% + 10px);
+  z-index: 90;
+  display: block;
+  min-width: 275px;
+  padding: 12px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(8px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  box-shadow: var(--shadow-menu);
+  pointer-events: none;
+  transition: opacity var(--transition-duration) ease, transform var(--transition-duration) ease, visibility var(--transition-duration) ease;
+}
+
+.nav-subdropdown::before {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 12px;
+  height: 100%;
+  content: "";
+}
+
+.nav-dropdown__item--has-children:hover > .nav-subdropdown,
+.nav-dropdown__item--has-children:focus-within > .nav-subdropdown {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+  .hero::after {
+    background-image:
+      linear-gradient(180deg, rgba(253,252,255,0) 60%, #fdfcff 100%),
+      var(--home-hero-image, none);
+  }
+
+  .vacancies-hero::after { background-image: var(--vacancies-hero-image, none); }
+  .vacancy-hero::after { background-image: var(--vacancy-hero-image, none); }
+}
