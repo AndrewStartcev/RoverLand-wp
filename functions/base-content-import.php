@@ -193,6 +193,8 @@ function roverland_base_import_handle() {
 		update_option( 'wp_page_for_privacy_policy', (int) $page_ids['privacy'] );
 	}
 
+	roverland_base_import_fix_primary_menu_hierarchy( $page_ids );
+
 	flush_rewrite_rules();
 	roverland_base_import_finish( $report );
 }
@@ -263,6 +265,58 @@ function roverland_base_import_upsert_page( $page_data, &$report, $parent_id = 0
 	}
 
 	return $page_id;
+}
+
+function roverland_base_import_fix_primary_menu_hierarchy( $page_ids ) {
+	if ( empty( $page_ids['about'] ) || empty( $page_ids['history'] ) ) {
+		return;
+	}
+
+	$locations = get_theme_mod( 'nav_menu_locations', array() );
+
+	if ( empty( $locations['primary-menu'] ) ) {
+		return;
+	}
+
+	$menu_id = (int) $locations['primary-menu'];
+	$items   = wp_get_nav_menu_items( $menu_id );
+
+	if ( ! is_array( $items ) ) {
+		return;
+	}
+
+	$about_item   = null;
+	$history_item = null;
+
+	foreach ( $items as $item ) {
+		if ( 'post_type' !== $item->type || 'page' !== $item->object ) {
+			continue;
+		}
+
+		if ( (int) $item->object_id === (int) $page_ids['about'] ) {
+			$about_item = $item;
+		}
+
+		if ( (int) $item->object_id === (int) $page_ids['history'] ) {
+			$history_item = $item;
+		}
+	}
+
+	if ( ! $about_item || ! $history_item ) {
+		return;
+	}
+
+	wp_update_nav_menu_item(
+		$menu_id,
+		(int) $history_item->ID,
+		array(
+			'menu-item-object-id' => (int) $page_ids['history'],
+			'menu-item-object'    => 'page',
+			'menu-item-type'      => 'post_type',
+			'menu-item-status'    => 'publish',
+			'menu-item-parent-id' => (int) $about_item->ID,
+		)
+	);
 }
 
 function roverland_base_import_resolve_value( $value, &$report ) {
