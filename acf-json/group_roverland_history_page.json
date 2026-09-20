@@ -1,0 +1,266 @@
+{
+  "key": "group_roverland_history_page",
+  "title": "История",
+  "fields": [
+    {
+      "key": "field_rl_history_tab_hero",
+      "label": "Первый экран",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_history_hero_title",
+      "label": "H1",
+      "name": "history_hero_title",
+      "type": "text",
+      "instructions": "Обычное текстовое поле. Перенос строки можно сделать Enter."
+    },
+    {
+      "key": "field_rl_history_hero_lead",
+      "label": "Описание",
+      "name": "history_hero_lead",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_history_tab_expertise",
+      "label": "Экспертиза",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_history_expertise_title",
+      "label": "H2",
+      "name": "history_expertise_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_history_expertise_content",
+      "label": "Текст",
+      "name": "history_expertise_content",
+      "type": "wysiwyg",
+      "tabs": "visual",
+      "toolbar": "full",
+      "media_upload": 0
+    },
+    {
+      "key": "field_rl_history_expertise_images",
+      "label": "Изображения",
+      "name": "history_expertise_images",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Добавить изображение",
+      "max": 2,
+      "sub_fields": [
+        {
+          "key": "field_rl_history_expertise_image",
+          "label": "Изображение",
+          "name": "image",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "png,webp,jpg,jpeg"
+        }
+      ]
+    },
+    {
+      "key": "field_rl_history_tab_timeline",
+      "label": "Хронология",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_history_timeline_eyebrow",
+      "label": "Надзаголовок",
+      "name": "history_timeline_eyebrow",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_history_timeline_title",
+      "label": "H2",
+      "name": "history_timeline_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_history_timeline",
+      "label": "Вехи",
+      "name": "history_timeline",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить веху",
+      "sub_fields": [
+        {
+          "key": "field_rl_history_timeline_year",
+          "label": "Год",
+          "name": "year",
+          "type": "text",
+          "wrapper": {
+            "width": "15"
+          }
+        },
+        {
+          "key": "field_rl_history_timeline_icon",
+          "label": "Иконка",
+          "name": "icon",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "svg,png,webp",
+          "wrapper": {
+            "width": "20"
+          }
+        },
+        {
+          "key": "field_rl_history_timeline_item_title",
+          "label": "Заголовок",
+          "name": "title",
+          "type": "text",
+          "wrapper": {
+            "width": "25"
+          }
+        },
+        {
+          "key": "field_rl_history_timeline_text",
+          "label": "Описание",
+          "name": "text",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": "",
+          "wrapper": {
+            "width": "40"
+          }
+        }
+      ]
+    },
+    {
+      "key": "field_rl_history_tab_values",
+      "label": "Ценности",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_history_values_eyebrow",
+      "label": "Надзаголовок",
+      "name": "history_values_eyebrow",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_history_values_title",
+      "label": "H2",
+      "name": "history_values_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_history_values",
+      "label": "Карточки",
+      "name": "history_values",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить ценность",
+      "sub_fields": [
+        {
+          "key": "field_rl_history_value_icon",
+          "label": "Иконка",
+          "name": "icon",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "svg,png,webp",
+          "wrapper": {
+            "width": "20"
+          }
+        },
+        {
+          "key": "field_rl_history_value_title",
+          "label": "Заголовок",
+          "name": "title",
+          "type": "text",
+          "wrapper": {
+            "width": "30"
+          }
+        },
+        {
+          "key": "field_rl_history_value_text",
+          "label": "Описание",
+          "name": "text",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": "",
+          "wrapper": {
+            "width": "50"
+          }
+        }
+      ]
+    },
+    {
+      "key": "field_rl_history_tab_common",
+      "label": "Общие блоки",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_history_branches_title",
+      "label": "H2 блока филиалов",
+      "name": "history_branches_title",
+      "type": "text",
+      "instructions": "Если пусто, используется заголовок из «Общие блоки»."
+    },
+    {
+      "key": "field_rl_history_show_branches",
+      "label": "Показывать филиалы",
+      "name": "history_show_branches",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_history_show_map",
+      "label": "Показывать карту",
+      "name": "history_show_map",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "50"
+      }
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-history.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Контент страницы истории Rover Land.",
+  "show_in_rest": 0,
+  "modified": 1789920400
+}
