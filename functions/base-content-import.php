@@ -52,7 +52,7 @@ function roverland_base_import_render_page() {
 		<p class="description">
 			Источник: <code>data/base-content.json</code>. Импорт создаёт или обновляет страницы
 			«Контакты», «О компании», «История», «Политика конфиденциальности»,
-			заполняет глобальные настройки и загружает используемые изображения в медиатеку.
+			заполняет глобальные настройки и автоматически загружает только SVG-иконки в медиатеку.
 		</p>
 
 		<?php if ( is_array( $report ) ) : ?>
@@ -78,7 +78,7 @@ function roverland_base_import_render_page() {
 			<div class="roverland-import__grid">
 				<div><strong>Страницы</strong><span>Создаёт/обновляет 4 базовые страницы и назначает нужные шаблоны.</span></div>
 				<div><strong>ACF</strong><span>Заполняет поля страниц, глобальные данные и общие блоки.</span></div>
-				<div><strong>Медиа</strong><span>Файлы из темы, указанные в JSON, один раз копируются в медиатеку.</span></div>
+				<div><strong>Медиа</strong><span>Автоматически импортируются только SVG. PNG/JPG/WebP импортёр не трогает — их загружаем вручную.</span></div>
 				<div><strong>Повторный запуск</strong><span>Безопасно обновляет созданные записи по стабильному ключу, без дублей.</span></div>
 			</div>
 
@@ -151,6 +151,10 @@ function roverland_base_import_handle() {
 
 	if ( ! empty( $data['options'] ) && is_array( $data['options'] ) ) {
 		foreach ( $data['options'] as $field_name => $value ) {
+			if ( roverland_base_import_contains_raster_theme_image( $value ) ) {
+				continue;
+			}
+
 			update_field(
 				$field_name,
 				roverland_base_import_resolve_value( $value, $report ),
@@ -179,6 +183,10 @@ function roverland_base_import_handle() {
 
 			if ( ! empty( $page_data['fields'] ) && is_array( $page_data['fields'] ) ) {
 				foreach ( $page_data['fields'] as $field_name => $value ) {
+					if ( roverland_base_import_contains_raster_theme_image( $value ) ) {
+						continue;
+					}
+
 					update_field(
 						$field_name,
 						roverland_base_import_resolve_value( $value, $report ),
@@ -319,12 +327,34 @@ function roverland_base_import_fix_primary_menu_hierarchy( $page_ids ) {
 	);
 }
 
+function roverland_base_import_contains_raster_theme_image( $value ) {
+	if ( ! is_array( $value ) ) {
+		return false;
+	}
+
+	if ( ! empty( $value['theme_image'] ) ) {
+		return 'svg' !== strtolower( pathinfo( $value['theme_image'], PATHINFO_EXTENSION ) );
+	}
+
+	foreach ( $value as $item ) {
+		if ( roverland_base_import_contains_raster_theme_image( $item ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 function roverland_base_import_resolve_value( $value, &$report ) {
 	if ( ! is_array( $value ) ) {
 		return $value;
 	}
 
 	if ( ! empty( $value['theme_image'] ) ) {
+		if ( 'svg' !== strtolower( pathinfo( $value['theme_image'], PATHINFO_EXTENSION ) ) ) {
+			return 0;
+		}
+
 		return roverland_base_import_media(
 			$value['theme_image'],
 			isset( $value['alt'] ) ? $value['alt'] : '',
@@ -343,7 +373,12 @@ function roverland_base_import_resolve_value( $value, &$report ) {
 
 function roverland_base_import_media( $relative_path, $alt, &$report ) {
 	$relative_path = ltrim( str_replace( '\\', '/', (string) $relative_path ), '/' );
-	$source        = get_template_directory() . '/' . $relative_path;
+
+	if ( 'svg' !== strtolower( pathinfo( $relative_path, PATHINFO_EXTENSION ) ) ) {
+		return 0;
+	}
+
+	$source = get_template_directory() . '/' . $relative_path;
 
 	if ( ! is_readable( $source ) ) {
 		$report['errors'][] = 'Не найден медиафайл темы: ' . $relative_path;
