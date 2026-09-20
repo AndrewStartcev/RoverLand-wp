@@ -1,0 +1,114 @@
+{
+  "key": "group_roverland_privacy_page",
+  "title": "Политика конфиденциальности",
+  "fields": [
+    {
+      "key": "field_rl_privacy_tab_header",
+      "label": "Шапка",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_privacy_title",
+      "label": "H1",
+      "name": "privacy_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_privacy_lead",
+      "label": "Описание",
+      "name": "privacy_lead",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_privacy_tab_content",
+      "label": "Разделы",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_privacy_sections",
+      "label": "Разделы документа",
+      "name": "privacy_sections",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить раздел",
+      "sub_fields": [
+        {
+          "key": "field_rl_privacy_section_title",
+          "label": "H2",
+          "name": "title",
+          "type": "text"
+        },
+        {
+          "key": "field_rl_privacy_section_content",
+          "label": "Текст",
+          "name": "content",
+          "type": "wysiwyg",
+          "tabs": "visual",
+          "toolbar": "full",
+          "media_upload": 0
+        }
+      ]
+    },
+    {
+      "key": "field_rl_privacy_tab_note",
+      "label": "Примечание",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_privacy_note_title",
+      "label": "Заголовок примечания",
+      "name": "privacy_note_title",
+      "type": "text",
+      "wrapper": {
+        "width": "30"
+      }
+    },
+    {
+      "key": "field_rl_privacy_note_text",
+      "label": "Текст примечания",
+      "name": "privacy_note_text",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "",
+      "wrapper": {
+        "width": "70"
+      }
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-privacy.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Юридическая текстовая страница: H2 — отдельные текстовые поля, текст разделов — WYSIWYG.",
+  "show_in_rest": 0,
+  "modified": 1789920500
+}
