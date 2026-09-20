@@ -1,0 +1,96 @@
+{
+  "key": "group_roverland_promotions_page",
+  "title": "Страница акций",
+  "fields": [
+    {
+      "key": "field_rl_promotions_tab_hero",
+      "label": "Первый экран",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_promotions_hero_title",
+      "label": "H1",
+      "name": "promotions_hero_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_promotions_hero_lead",
+      "label": "Описание",
+      "name": "promotions_hero_lead",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_promotions_hero_image",
+      "label": "Фоновое изображение",
+      "name": "promotions_hero_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg",
+      "instructions": "Загружается вручную; JSON-импорт не перезаписывает."
+    },
+    {
+      "key": "field_rl_promotions_tab_catalog",
+      "label": "Каталог",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_promotions_catalog_note",
+      "label": "Карточки акций",
+      "type": "message",
+      "message": "Карточки собираются автоматически из раздела «Акции» в админке.",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
+      "key": "field_rl_promotions_tab_common",
+      "label": "Общие блоки",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_promotions_show_appointment",
+      "label": "Показывать запись",
+      "name": "promotions_show_appointment",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-promotions.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Каталог акций Rover Land.",
+  "show_in_rest": 0,
+  "modified": 1790002000
+}
