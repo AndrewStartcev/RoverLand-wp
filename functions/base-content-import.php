@@ -163,7 +163,13 @@ function roverland_base_import_handle() {
 
 	if ( ! empty( $data['pages'] ) && is_array( $data['pages'] ) ) {
 		foreach ( $data['pages'] as $page_data ) {
-			$page_id = roverland_base_import_upsert_page( $page_data, $report );
+			$parent_id = 0;
+
+			if ( ! empty( $page_data['parent_key'] ) && ! empty( $page_ids[ $page_data['parent_key'] ] ) ) {
+				$parent_id = (int) $page_ids[ $page_data['parent_key'] ];
+			}
+
+			$page_id = roverland_base_import_upsert_page( $page_data, $report, $parent_id );
 
 			if ( ! $page_id ) {
 				continue;
@@ -191,7 +197,7 @@ function roverland_base_import_handle() {
 	roverland_base_import_finish( $report );
 }
 
-function roverland_base_import_upsert_page( $page_data, &$report ) {
+function roverland_base_import_upsert_page( $page_data, &$report, $parent_id = 0 ) {
 	if ( empty( $page_data['key'] ) || empty( $page_data['title'] ) || empty( $page_data['slug'] ) ) {
 		$report['errors'][] = 'В JSON найдена страница без key/title/slug.';
 		return 0;
@@ -224,6 +230,7 @@ function roverland_base_import_upsert_page( $page_data, &$report ) {
 		'post_status'  => 'publish',
 		'post_title'   => $page_data['title'],
 		'post_name'    => $page_data['slug'],
+		'post_parent'  => (int) $parent_id,
 		'post_content' => '',
 	);
 
