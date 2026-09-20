@@ -5,6 +5,41 @@
   background: #f2f2f2;
 }
 
+/*
+ * WordPress admin bar.
+ * The front-end header is fixed, so while the admin bar is visible it must
+ * start below it. WordPress itself already offsets the document content.
+ */
+body.admin-bar .site-header {
+  top: 32px;
+}
+
+@media (max-width: 1199px) {
+  body.admin-bar .mobile-menu {
+    top: 32px;
+    height: calc(100dvh - 32px);
+  }
+
+  body.admin-bar .mobile-menu-backdrop {
+    top: 32px;
+  }
+}
+
+@media (max-width: 782px) {
+  body.admin-bar .site-header {
+    top: 46px;
+  }
+
+  body.admin-bar .mobile-menu {
+    top: 46px;
+    height: calc(100dvh - 46px);
+  }
+
+  body.admin-bar .mobile-menu-backdrop {
+    top: 46px;
+  }
+}
+
 @media (max-width: 767px) {
   /*
    * On mobile the hero image must precede the copy and CTA.

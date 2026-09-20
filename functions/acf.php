@@ -36,7 +36,7 @@ add_action(
 				'menu_slug'  => 'roverland-settings',
 				'capability' => 'manage_options',
 				'redirect'   => false,
-				'position'   => 59,
+				'position'   => 3,
 				'icon_url'   => 'dashicons-car',
 			)
 		);

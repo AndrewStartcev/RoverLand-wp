@@ -7,9 +7,7 @@ $logo_url = roverland_asset( 'assets/images/content/logo-black.png' );
 <footer class="site-footer">
 	<div class="container site-footer__top">
 		<div class="site-footer__brand">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> — на главную">
-				<img src="<?php echo esc_url( $logo_url ); ?>" width="183" height="36" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-			</a>
+			<img src="<?php echo esc_url( $logo_url ); ?>" width="183" height="36" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 			<p>РоверЛэнд — сервис и ремонт Land Rover. Профессиональное обслуживание для истинных ценителей британского качества.</p>
 		</div>
 
