@@ -37,7 +37,7 @@ while ( have_posts() ) :
 					array(
 						'items' => array(
 							array( 'label' => 'Главная', 'url' => home_url( '/' ) ),
-							array( 'label' => 'О компании', 'url' => roverland_page_url( 'about' ) ),
+							array( 'label' => 'О компании', 'url' => roverland_page_url( 'kompaniya' ) ),
 							array( 'label' => get_the_title() ),
 						),
 					)
