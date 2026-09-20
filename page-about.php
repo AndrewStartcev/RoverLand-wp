@@ -10,7 +10,7 @@ while ( have_posts() ) :
 
 	$hero_eyebrow = roverland_field( 'about_hero_eyebrow', '' );
 	$hero_title   = roverland_field( 'about_hero_title', get_the_title() );
-	$hero_lead    = roverland_field( 'about_hero_lead', '' );
+	$hero_lead    = roverland_field( 'about_hero_lead', '' );\n\t$hero_image   = roverland_field( 'about_hero_image', array() );\n\t$hero_image_url = roverland_image_url( $hero_image, 'assets/images/content/about-hero.png' );
 
 	$service_title   = roverland_field( 'about_service_title', '' );
 	$service_content = roverland_field( 'about_service_content', '' );
@@ -26,7 +26,7 @@ while ( have_posts() ) :
 	$benefits_lead  = roverland_field( 'about_benefits_lead', '' );
 	$benefits       = roverland_field( 'about_benefits', array() );
 	?>
-	<section class="about-hero">
+	<section class="about-hero"<?php if ( $hero_image_url ) : ?> style="--about-hero-image: url('<?php echo esc_url( $hero_image_url ); ?>');"<?php endif; ?>>
 		<div class="container about-hero__container">
 			<div class="about-hero__content">
 				<?php
