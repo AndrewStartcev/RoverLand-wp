@@ -33,6 +33,7 @@ $logo_url = roverland_asset( 'assets/images/content/logo-black.png' );
 						'container'      => false,
 						'items_wrap'     => '%3$s',
 						'depth'          => 1,
+						'walker'         => new Roverland_Menu_Walker( 'flat' ),
 					)
 				);
 				?>
