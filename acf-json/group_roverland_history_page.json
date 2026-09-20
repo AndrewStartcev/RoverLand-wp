@@ -24,6 +24,16 @@
       "new_lines": ""
     },
     {
+      "key": "field_rl_history_hero_image",
+      "label": "Фоновое изображение",
+      "name": "history_hero_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg"
+    },
+    {
       "key": "field_rl_history_tab_expertise",
       "label": "Экспертиза",
       "type": "tab",
