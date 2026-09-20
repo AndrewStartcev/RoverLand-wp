@@ -695,6 +695,43 @@
         "privacy_note_title": "",
         "privacy_note_text": ""
       }
+    },
+    {
+      "key": "promotions",
+      "title": "Акции",
+      "slug": "aktsii",
+      "template": "page-promotions.php",
+      "seo": {
+        "title": "Акции и специальные предложения Rover Land",
+        "description": "Акции, скидки и программы лояльности Rover Land для владельцев Land Rover и Jaguar в Москве.",
+        "focus_keyword": "акции Rover Land"
+      },
+      "fields": {
+        "promotions_hero_title": "Акции и подарки\nв РоверЛенд",
+        "promotions_hero_lead": "Специальные условия, бонусы и программы лояльности для владельцев Land Rover и Jaguar. Мы заботимся о техническом совершенстве вашего автомобиля.",
+        "promotions_hero_image": {
+          "manual_image": true
+        },
+        "promotions_show_appointment": 1
+      }
+    },
+    {
+      "key": "portfolio",
+      "title": "Портфолио",
+      "slug": "portfolio",
+      "template": "page-portfolio.php",
+      "seo": {
+        "title": "Портфолио выполненных работ Rover Land",
+        "description": "Примеры выполненных работ Rover Land: кузовной ремонт, окраска и антикоррозийная обработка автомобилей Land Rover и Range Rover.",
+        "focus_keyword": "портфолио Rover Land"
+      },
+      "fields": {
+        "portfolio_title": "Портфолио\nвыполненных работ",
+        "portfolio_lead": "Каждый автомобиль в RoverLand получает обслуживание профессионального уровня. Мы документируем сложные работы, чтобы показать качество процессов и результата.",
+        "portfolio_cta_title": "Ваш автомобиль достоин лучшего",
+        "portfolio_cta_text": "Запишитесь на диагностику или обслуживание. Мы проведём осмотр автомобиля и предложим подходящий вариант работ.",
+        "portfolio_cta_button": "Записаться в сервис"
+      }
     }
   ],
   "vacancies": [
@@ -1054,6 +1091,148 @@
             "text": "Сервис оборудован всем необходимым для работы"
           }
         ]
+      }
+    }
+  ],
+  "promotions": [
+    {
+      "key": "promotion-cashback",
+      "title": "Возвращаем деньги!",
+      "slug": "vozvrashchaem-dengi",
+      "menu_order": 10,
+      "seo": {
+        "title": "Возвращаем деньги — акция Rover Land",
+        "description": "Дополнительная дисконтная программа Rover Land: сертификат при единовременной покупке от 30 000 рублей.",
+        "focus_keyword": "акция Rover Land возвращаем деньги"
+      },
+      "fields": {
+        "promotion_summary": "Специально для клиентов Rover Land действует дополнительная дисконтная программа.",
+        "promotion_card_image": {
+          "manual_image": true
+        },
+        "promotion_h1": "Возвращаем деньги!",
+        "promotion_hero_image": {
+          "manual_image": true
+        },
+        "promotion_content": "<p>Специально для наших клиентов создана дополнительная дисконтная программа.</p><p>Сертификат можно получить при единовременной покупке на сумму от <strong>30 000 рублей</strong>.</p><p>Количество сертификатов ограничено. Подробные условия и доступность предложения уточняйте у сотрудников техцентров Rover Land.</p>",
+        "promotion_note": "Акция проводится в техцентрах Rover Land.",
+        "promotion_show_branches": 1,
+        "promotion_show_appointment": 1
+      }
+    },
+    {
+      "key": "promotion-better-offer",
+      "title": "Улучшим любое предложение",
+      "slug": "uluchshim-lyuboe-predlozhenie",
+      "menu_order": 20,
+      "seo": {
+        "title": "Улучшим любое предложение — акция Rover Land",
+        "description": "Привезите калькуляцию ремонта или перечень рекомендованных работ из другого сервиса — Rover Land предложит более выгодные условия.",
+        "focus_keyword": "улучшим любое предложение Rover Land"
+      },
+      "fields": {
+        "promotion_summary": "Есть калькуляция ремонта из другого сервиса? Мы готовы предложить более выгодные условия.",
+        "promotion_card_image": {
+          "manual_image": true
+        },
+        "promotion_h1": "Улучшим любое предложение",
+        "promotion_hero_image": {
+          "manual_image": true
+        },
+        "promotion_content": "<p>Если у вас на руках есть калькуляция ремонта или перечень рекомендованных работ из другого сервиса, мы готовы предложить эти же работы и запчасти по более низкой цене.</p><p>Приезжайте в Rover Land с имеющимся расчётом — специалисты изучат перечень работ и подготовят индивидуальное предложение.</p>",
+        "promotion_note": "Итоговые условия рассчитываются индивидуально после проверки перечня работ и запчастей.",
+        "promotion_show_branches": 1,
+        "promotion_show_appointment": 1
+      }
+    },
+    {
+      "key": "promotion-discount",
+      "title": "Дисконтная накопительная программа",
+      "slug": "diskontnaya-programma",
+      "menu_order": 30,
+      "seo": {
+        "title": "Дисконтная накопительная программа Rover Land",
+        "description": "Накопительная программа Rover Land со скидкой до 6% на работы и запчасти.",
+        "focus_keyword": "дисконтная программа Rover Land"
+      },
+      "fields": {
+        "promotion_summary": "Накопительная система скидок на работы и запчасти для постоянных клиентов Rover Land.",
+        "promotion_card_image": {
+          "manual_image": true
+        },
+        "promotion_h1": "Дисконтная накопительная программа",
+        "promotion_hero_image": {
+          "manual_image": true
+        },
+        "promotion_content": "<p>Клиенты техцентров Rover Land могут стать участниками дисконтной накопительной программы на работы и запчасти.</p><ul><li>при получении карты — <strong>3%</strong>;</li><li>при достижении суммы 80 000 рублей — <strong>4%</strong>;</li><li>при достижении суммы 130 000 рублей — <strong>5%</strong>;</li><li>при достижении суммы 200 000 рублей — <strong>6%</strong>.</li></ul>",
+        "promotion_note": "Программа действует с 1 марта 2016 года. Актуальные условия уточняйте в техцентрах Rover Land.",
+        "promotion_show_branches": 1,
+        "promotion_show_appointment": 1
+      }
+    }
+  ],
+  "portfolio_items": [
+    {
+      "key": "portfolio-44",
+      "title": "Полная окраска кузова Range Rover Sport (L320)",
+      "slug": "44",
+      "menu_order": 10,
+      "seo": {
+        "title": "Полная окраска кузова Range Rover Sport L320 — Rover Land",
+        "description": "Пример выполненной работы Rover Land: полная окраска кузова Range Rover Sport L320.",
+        "focus_keyword": "покраска Range Rover Sport L320"
+      },
+      "fields": {
+        "portfolio_card_image": {
+          "manual_image": true
+        },
+        "portfolio_summary": "Пример комплексной кузовной работы и полной окраски Range Rover Sport поколения L320.",
+        "portfolio_h1": "Полная окраска кузова\nRange Rover Sport (L320)",
+        "portfolio_lead": "Работа из портфолио Rover Land с подробной фотогалереей этапов и результата.",
+        "portfolio_content": "<p>Комплексная окраска кузова требует последовательной подготовки поверхностей и аккуратной работы с каждым элементом автомобиля.</p><p>На странице старого сайта этот проект представлен большой фотосерией, которая показывает процесс и итоговый внешний вид автомобиля.</p>",
+        "portfolio_service_title": "Нужна покраска Range Rover Sport?"
+      }
+    },
+    {
+      "key": "portfolio-51",
+      "title": "Антикоррозийная обработка порогов Range Rover",
+      "slug": "51",
+      "menu_order": 20,
+      "seo": {
+        "title": "Антикоррозийная обработка порогов Range Rover — Rover Land",
+        "description": "Пример выполненной работы Rover Land: обработка и защита порогов Range Rover от коррозии.",
+        "focus_keyword": "антикоррозийная обработка Range Rover"
+      },
+      "fields": {
+        "portfolio_card_image": {
+          "manual_image": true
+        },
+        "portfolio_summary": "Работа по восстановлению и антикоррозийной защите порогов Range Rover.",
+        "portfolio_h1": "Антикоррозийная обработка\nпорогов Range Rover",
+        "portfolio_lead": "Пример кузовной работы Rover Land по защите уязвимых элементов автомобиля от дальнейшего развития коррозии.",
+        "portfolio_content": "<p>Пороги относятся к зонам кузова, которые регулярно контактируют с влагой, реагентами и дорожной грязью.</p><p>В подобных работах важны качественная подготовка поверхности, устранение очагов коррозии и последующая защитная обработка.</p>",
+        "portfolio_service_title": "Нужна антикоррозийная обработка?"
+      }
+    },
+    {
+      "key": "portfolio-45",
+      "title": "Удаление коррозии порогов и арок Range Rover Sport",
+      "slug": "45",
+      "menu_order": 30,
+      "seo": {
+        "title": "Удаление коррозии порогов и арок Range Rover Sport — Rover Land",
+        "description": "Пример выполненной работы Rover Land: устранение коррозии порогов и колёсных арок Range Rover Sport.",
+        "focus_keyword": "удаление коррозии Range Rover Sport"
+      },
+      "fields": {
+        "portfolio_card_image": {
+          "manual_image": true
+        },
+        "portfolio_summary": "Кузовная работа по устранению коррозии на порогах и арках Range Rover Sport.",
+        "portfolio_h1": "Удаление коррозии порогов\nи арок Range Rover Sport",
+        "portfolio_lead": "Работа Rover Land по восстановлению кузовных элементов, наиболее подверженных воздействию влаги и дорожных реагентов.",
+        "portfolio_content": "<p>Коррозия порогов и колёсных арок требует своевременного вмешательства, чтобы повреждение не распространялось на соседние участки кузова.</p><p>Работа включает подготовку проблемных зон и восстановление защитного покрытия с последующей проверкой результата.</p>",
+        "portfolio_service_title": "Обнаружили коррозию на кузове?"
       }
     }
   ]
