@@ -1,0 +1,86 @@
+@import url("./style-core.css");
+
+/* Rover Land — visual corrections */
+.site-footer {
+  background: #f2f2f2;
+}
+
+@media (max-width: 767px) {
+  /*
+   * On mobile the hero image must precede the copy and CTA.
+   * Existing hero images are rendered through ::after, so making the
+   * section a flex column and moving the pseudo-element first preserves
+   * the current artwork/crop without duplicating page markup.
+   */
+  .hero,
+  .about-hero,
+  .promotions-hero,
+  .history-hero,
+  .vacancies-hero,
+  .vacancy-hero,
+  .parts-hero,
+  .service-detail-hero,
+  .engine-hero,
+  .discovery-repair-hero {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero::after,
+  .about-hero::after,
+  .promotions-hero::after,
+  .history-hero::after,
+  .vacancies-hero::after,
+  .vacancy-hero::after,
+  .parts-hero::after,
+  .service-detail-hero::after,
+  .engine-hero::after,
+  .discovery-repair-hero::after {
+    order: -1;
+  }
+
+  /* Home hero had a fade at the top while the image was below the copy.
+     Flip the fade so the image now blends into the copy underneath. */
+  .hero::after {
+    background-image:
+      linear-gradient(0deg, #fdfcff 0%, rgba(253, 252, 255, 0.72) 7%, rgba(253, 252, 255, 0) 24%),
+      url("../images/content/hero-range-rover.png");
+  }
+
+  /* These two heroes used the image as a bottom-aligned section background
+     instead of a pseudo-element, so expose it as a media block above copy. */
+  .maintenance-hero,
+  .maintenance-model-hero {
+    display: flex;
+    min-height: 0;
+    padding: 0;
+    flex-direction: column;
+    background-image: none;
+    background-color: var(--color-background);
+  }
+
+  .maintenance-hero::before,
+  .maintenance-model-hero::before {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    order: -1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    content: "";
+  }
+
+  .maintenance-hero::before {
+    background-image: url("../images/content/maintenance-hero.png");
+    background-position: 62% center;
+  }
+
+  .maintenance-model-hero::before {
+    background-image: url("../images/content/maintenance-discovery-3-hero.png");
+    background-position: center;
+  }
+
+  .maintenance-hero__content {
+    padding: 54px 0 36px;
+  }
+}
