@@ -1,0 +1,97 @@
+{
+  "key": "group_roverland_portfolio_page",
+  "title": "Страница портфолио",
+  "fields": [
+    {
+      "key": "field_rl_portfolio_tab_intro",
+      "label": "Первый экран",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_portfolio_title",
+      "label": "H1",
+      "name": "portfolio_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_portfolio_lead",
+      "label": "Описание",
+      "name": "portfolio_lead",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_portfolio_tab_catalog",
+      "label": "Каталог",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_portfolio_catalog_note",
+      "label": "Работы",
+      "type": "message",
+      "message": "Карточки собираются автоматически из раздела «Портфолио» в админке.",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
+      "key": "field_rl_portfolio_tab_cta",
+      "label": "CTA",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_portfolio_cta_title",
+      "label": "H2",
+      "name": "portfolio_cta_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_portfolio_cta_text",
+      "label": "Описание",
+      "name": "portfolio_cta_text",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_portfolio_cta_button",
+      "label": "Текст кнопки",
+      "name": "portfolio_cta_button",
+      "type": "text"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-portfolio.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Каталог выполненных работ Rover Land.",
+  "show_in_rest": 0,
+  "modified": 1790002200
+}
