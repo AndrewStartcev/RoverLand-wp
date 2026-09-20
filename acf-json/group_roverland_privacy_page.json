@@ -1,6 +1,6 @@
 {
   "key": "group_roverland_privacy_page",
-  "title": "Политика конфиденциальности",
+  "title": "Юридическая страница",
   "fields": [
     {
       "key": "field_rl_privacy_tab_header",
@@ -87,6 +87,13 @@
         "operator": "==",
         "value": "page-privacy.php"
       }
+    ],
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-cookie.php"
+      }
     ]
   ],
   "menu_order": 0,
@@ -108,7 +115,7 @@
     "send-trackbacks"
   ],
   "active": true,
-  "description": "Юридическая текстовая страница: H2 — отдельные текстовые поля, текст разделов — WYSIWYG.",
+  "description": "Общая ACF-схема юридических страниц: H1 и H2 — текстовые поля, содержание разделов — WYSIWYG.",
   "show_in_rest": 0,
-  "modified": 1789920500
+  "modified": 1790000000
 }

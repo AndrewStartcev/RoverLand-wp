@@ -86,7 +86,8 @@ $socials     = roverland_get_social_links();
 				<a href="<?php echo esc_url( roverland_page_url( 'services' ) ); ?>">Диагностика</a>
 				<a href="<?php echo esc_url( roverland_page_url( 'services' ) ); ?>#bodyshop">Кузовной ремонт</a>
 				<a href="<?php echo esc_url( roverland_page_url( 'engine-repair' ) ); ?>">Ремонт двигателя</a>
-				<a href="<?php echo esc_url( roverland_page_url( 'privacy' ) ); ?>">Политика конфиденциальности</a>
+				<a href="<?php echo esc_url( roverland_page_url( 'politika-konfidentsialnosti' ) ); ?>">Политика конфиденциальности</a>
+				<a href="<?php echo esc_url( roverland_page_url( 'politika-ispolzovaniya-cookie' ) ); ?>">Политика использования cookie</a>
 			<?php endif; ?>
 		</nav>
 	</div>

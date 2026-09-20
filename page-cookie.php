@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Политика конфиденциальности
+Template Name: Политика использования cookie
 */
 
 get_header();

@@ -51,7 +51,7 @@ function roverland_base_import_render_page() {
 		<h1>Импорт базовых данных Rover Land</h1>
 		<p class="description">
 			Источник: <code>data/base-content.json</code>. Импорт создаёт или обновляет страницы
-			«Контакты», «О компании», «История», «Политика конфиденциальности»,
+			«Контакты», «О компании», «История», «Политика конфиденциальности» и «Политика использования cookie»,
 			заполняет глобальные настройки и автоматически загружает только SVG-иконки в медиатеку.
 		</p>
 
@@ -76,7 +76,7 @@ function roverland_base_import_render_page() {
 		<div class="roverland-import__card">
 			<h2>Что делает импорт</h2>
 			<div class="roverland-import__grid">
-				<div><strong>Страницы</strong><span>Создаёт/обновляет 4 базовые страницы и назначает нужные шаблоны.</span></div>
+				<div><strong>Страницы</strong><span>Создаёт/обновляет 5 базовых страниц и назначает нужные шаблоны.</span></div>
 				<div><strong>ACF</strong><span>Заполняет поля страниц, глобальные данные и общие блоки.</span></div>
 				<div><strong>Медиа</strong><span>Автоматически импортируются только SVG. PNG/JPG/WebP импортёр не трогает — их загружаем вручную.</span></div>
 				<div><strong>Повторный запуск</strong><span>Безопасно обновляет созданные записи по стабильному ключу, без дублей.</span></div>
@@ -194,6 +194,10 @@ function roverland_base_import_handle() {
 					);
 				}
 			}
+
+			if ( ! empty( $page_data['seo'] ) && is_array( $page_data['seo'] ) ) {
+				roverland_base_import_apply_rank_math( $page_id, $page_data['seo'] );
+			}
 		}
 	}
 
@@ -273,6 +277,29 @@ function roverland_base_import_upsert_page( $page_data, &$report, $parent_id = 0
 	}
 
 	return $page_id;
+}
+
+function roverland_base_import_apply_rank_math( $page_id, $seo ) {
+	$page_id = (int) $page_id;
+
+	if ( ! $page_id || ! is_array( $seo ) ) {
+		return;
+	}
+
+	if ( ! empty( $seo['title'] ) ) {
+		update_post_meta( $page_id, 'rank_math_title', sanitize_text_field( $seo['title'] ) );
+	}
+
+	if ( ! empty( $seo['description'] ) ) {
+		update_post_meta( $page_id, 'rank_math_description', sanitize_textarea_field( $seo['description'] ) );
+	}
+
+	if ( ! empty( $seo['focus_keyword'] ) ) {
+		update_post_meta( $page_id, 'rank_math_focus_keyword', sanitize_text_field( $seo['focus_keyword'] ) );
+	}
+
+	update_post_meta( $page_id, 'rank_math_robots', array( 'index', 'follow' ) );
+	update_post_meta( $page_id, 'rank_math_canonical_url', get_permalink( $page_id ) );
 }
 
 function roverland_base_import_fix_primary_menu_hierarchy( $page_ids ) {

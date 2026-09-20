@@ -69,7 +69,7 @@ $branches    = roverland_get_branches();
 				<input type="checkbox" name="consent" required>
 				<span>
 					Нажимая на кнопку, я принимаю согласие на обработку
-					<a href="<?php echo esc_url( roverland_page_url( 'privacy' ) ); ?>">персональных данных</a>
+					<a href="<?php echo esc_url( roverland_page_url( 'politika-konfidentsialnosti' ) ); ?>">персональных данных</a>
 				</span>
 			</label>
 
