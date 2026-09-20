@@ -30,6 +30,16 @@
       "new_lines": ""
     },
     {
+      "key": "field_rl_about_hero_image",
+      "label": "Фоновое изображение",
+      "name": "about_hero_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg"
+    },
+    {
       "key": "field_rl_about_tab_service",
       "label": "СТО и ремонт",
       "type": "tab",
