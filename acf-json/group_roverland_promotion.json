@@ -1,0 +1,124 @@
+{
+  "key": "group_roverland_promotion",
+  "title": "Акция",
+  "fields": [
+    {
+      "key": "field_rl_promotion_tab_card",
+      "label": "Карточка",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_promotion_summary",
+      "label": "Краткое описание",
+      "name": "promotion_summary",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_promotion_card_image",
+      "label": "Изображение карточки",
+      "name": "promotion_card_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg",
+      "instructions": "Загружается вручную; импорт не перезаписывает."
+    },
+    {
+      "key": "field_rl_promotion_tab_page",
+      "label": "Страница акции",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_promotion_h1",
+      "label": "H1",
+      "name": "promotion_h1",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_promotion_hero_image",
+      "label": "Основное изображение",
+      "name": "promotion_hero_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "large",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg",
+      "instructions": "Загружается вручную; импорт не перезаписывает."
+    },
+    {
+      "key": "field_rl_promotion_content",
+      "label": "Условия акции",
+      "name": "promotion_content",
+      "type": "wysiwyg",
+      "tabs": "visual",
+      "toolbar": "full",
+      "media_upload": 0
+    },
+    {
+      "key": "field_rl_promotion_note",
+      "label": "Примечание",
+      "name": "promotion_note",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_promotion_show_branches",
+      "label": "Показывать филиалы",
+      "name": "promotion_show_branches",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_promotion_show_appointment",
+      "label": "Показывать запись",
+      "name": "promotion_show_appointment",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "50"
+      }
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "promotion"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Карточка и содержание отдельной акции.",
+  "show_in_rest": 0,
+  "modified": 1790002100
+}
