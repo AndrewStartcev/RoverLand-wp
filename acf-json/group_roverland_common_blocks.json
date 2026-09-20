@@ -1,0 +1,107 @@
+{
+  "key": "group_roverland_common_blocks",
+  "title": "Rover Land — общие блоки",
+  "fields": [
+    {
+      "key": "field_rl_common_tab_branches",
+      "label": "Филиалы",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_common_branches_title",
+      "label": "Заголовок блока филиалов",
+      "name": "common_branches_title",
+      "type": "text",
+      "default_value": "Специализированный сервис Ленд Ровер и Ягуар в Москве!"
+    },
+    {
+      "key": "field_rl_common_branches_note",
+      "label": "Данные филиалов",
+      "type": "message",
+      "message": "Карточки филиалов, телефоны и адреса редактируются в «Rover Land → Филиалы».",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
+      "key": "field_rl_common_tab_appointment",
+      "label": "Запись на сервис",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_common_appointment_title",
+      "label": "Заголовок",
+      "name": "common_appointment_title",
+      "type": "text",
+      "default_value": "Запишитесь на сервис",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_common_appointment_accent",
+      "label": "Акцент в заголовке",
+      "name": "common_appointment_accent",
+      "type": "text",
+      "default_value": "прямо сейчас",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_common_appointment_desc",
+      "label": "Описание",
+      "name": "common_appointment_description",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_common_appointment_phone",
+      "label": "Телефон блока",
+      "name": "common_appointment_phone",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_common_appointment_button",
+      "label": "Текст кнопки",
+      "name": "common_appointment_button",
+      "type": "text",
+      "default_value": "Отправить заявку",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_common_appointment_note",
+      "label": "Форма",
+      "type": "message",
+      "message": "Сейчас используется форма из утверждённой вёрстки. Обработчик/CF7 подключим отдельным этапом.",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "options_page",
+        "operator": "==",
+        "value": "roverland-common-blocks"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "Сквозные секции, которые используются на нескольких страницах.",
+  "show_in_rest": 0,
+  "modified": 1789920100
+}
