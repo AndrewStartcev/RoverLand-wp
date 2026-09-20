@@ -1,0 +1,375 @@
+{
+  "version": 1,
+  "options": {
+    "site_header_logo": {
+      "theme_image": "assets/images/content/logo-black.png",
+      "alt": "Rover Land"
+    },
+    "site_footer_logo": {
+      "theme_image": "assets/images/content/logo-black.png",
+      "alt": "Rover Land"
+    },
+    "site_header_appointment_label": "Записаться на ТО",
+    "site_footer_description": "РоверЛэнд — сервис и ремонт Land Rover. Профессиональное обслуживание для истинных ценителей британского качества.",
+    "site_copyright": "РоверЛэнд. Все права защищены.",
+    "site_main_phone": "+7 (495) 797-30-31",
+    "site_email": "",
+    "site_work_hours": "",
+    "site_yandex_maps_api_key": "6b4eac7a-0149-488d-b8c5-391ae43a22e4",
+    "site_branches": [
+      {
+        "name": "Запад",
+        "department": "",
+        "phone": "8 (495) 119-91-99",
+        "address": "Новорижское шоссе, 17-й километр, 1",
+        "map_address": "Москва, Новорижское шоссе, 17-й километр, 1",
+        "show_in_footer": 1
+      },
+      {
+        "name": "Юго-Запад",
+        "department": "",
+        "phone": "8 (495) 668-07-76",
+        "address": "Никулинская улица, 23, корп. 4, стр. 1",
+        "map_address": "Москва, Никулинская улица, 23, корп. 4, стр. 1",
+        "show_in_footer": 1
+      },
+      {
+        "name": "Северо-Запад",
+        "department": "Сервис",
+        "phone": "8 (495) 268-04-24",
+        "address": "Волоколамское шоссе, вл 79А",
+        "map_address": "Москва, Волоколамское шоссе, вл. 79А",
+        "show_in_footer": 1
+      },
+      {
+        "name": "Северо-Запад",
+        "department": "Кузовной",
+        "phone": "8 (495) 268-04-24",
+        "address": "Волоколамское шоссе, вл 79А",
+        "map_address": "Москва, Волоколамское шоссе, вл. 79А",
+        "show_in_footer": 0
+      },
+      {
+        "name": "Юг",
+        "department": "",
+        "phone": "8 (495) 668-06-58",
+        "address": "Нагатинская улица, 16, корп. 1, стр. 5",
+        "map_address": "Москва, Нагатинская улица, 16, корп. 1, стр. 5",
+        "show_in_footer": 1
+      }
+    ],
+    "site_social_links": [
+      {
+        "name": "Телефон",
+        "url": "tel:+74957973031",
+        "icon": {
+          "theme_image": "assets/images/icons/social/phone.svg",
+          "alt": ""
+        }
+      },
+      {
+        "name": "WhatsApp",
+        "url": "#",
+        "icon": {
+          "theme_image": "assets/images/icons/social/whatsapp.svg",
+          "alt": ""
+        }
+      },
+      {
+        "name": "Telegram",
+        "url": "#",
+        "icon": {
+          "theme_image": "assets/images/icons/social/telegram.svg",
+          "alt": ""
+        }
+      },
+      {
+        "name": "ВКонтакте",
+        "url": "#",
+        "icon": {
+          "theme_image": "assets/images/icons/social/vk.svg",
+          "alt": ""
+        }
+      },
+      {
+        "name": "Viber",
+        "url": "#",
+        "icon": {
+          "theme_image": "assets/images/icons/social/viber.svg",
+          "alt": ""
+        }
+      },
+      {
+        "name": "Дзен",
+        "url": "#",
+        "icon": {
+          "theme_image": "assets/images/icons/social/dzen.svg",
+          "alt": ""
+        }
+      },
+      {
+        "name": "YouTube",
+        "url": "#",
+        "icon": {
+          "theme_image": "assets/images/icons/social/youtube.svg",
+          "alt": ""
+        }
+      },
+      {
+        "name": "Одноклассники",
+        "url": "#",
+        "icon": {
+          "theme_image": "assets/images/icons/social/ok.svg",
+          "alt": ""
+        }
+      }
+    ],
+    "common_branches_title": "Специализированный сервис Ленд Ровер и Ягуар в Москве!",
+    "common_appointment_title": "Запишитесь на сервис",
+    "common_appointment_accent": "прямо сейчас",
+    "common_appointment_description": "Оставьте свои контактные данные, и наш мастер-консультант перезвонит вам в течение 15 минут для уточнения деталей и записи.",
+    "common_appointment_phone": "+7 (495) 797-30-31",
+    "common_appointment_button": "Отправить заявку"
+  },
+  "pages": [
+    {
+      "key": "contacts",
+      "title": "Контакты",
+      "slug": "contacts",
+      "template": "page-contacts.php",
+      "fields": {
+        "contacts_title": "Наши техцентры",
+        "contacts_lead": "Четыре специализированных центра Jaguar Land Rover в Москве. Профессиональное оборудование, склад запчастей и экспертный сервис в каждом районе.",
+        "contacts_show_centers": 1,
+        "contacts_show_map": 1,
+        "contacts_show_appointment": 1
+      }
+    },
+    {
+      "key": "about",
+      "title": "О компании",
+      "slug": "about",
+      "template": "page-about.php",
+      "fields": {
+        "about_hero_eyebrow": "Основано в 1998 году",
+        "about_hero_title": "О компании\nRoverLand",
+        "about_hero_lead": "Старейший специализированный техцентр Jaguar и Land Rover в Москве. Мы объединяем британское наследие и современные технологии ремонта.",
+        "about_service_title": "Станции технического обслуживания\nи ремонта автомобилей:",
+        "about_service_content": "<p>Широкий спектр услуг по ремонту и техническому обслуживанию Land Rover и Jaguar. Все виды слесарно-механических и электрических работ, в том числе качественный ремонт:</p><ul><li>двигателей;</li><li>механических коробок передач;</li><li>раздаточных коробок;</li><li>рулевых механизмов;</li><li>подвески (в том числе развал-схождение).</li></ul><p>На территории техцентра «Ровер Ленд Запад» работает цех кузовного ремонта, осуществляющий жестяные работы любой сложности, включая стапельные и сварочные работы, покраску, замену стекол.</p><p>Всегда в наличии необходимые расходные материалы и детали для Вашего автомобиля. Бесплатная диагностика ходовой. Компьютерная диагностика TestBOOK T4, IDS и Autologic.</p><p>Стоимость работ по прейскуранту.</p><p>Высококвалифицированный персонал с многолетним опытом работы. Строгое соблюдение технологии ремонта. Выполнение рекомендаций завода-изготовителя. Оригинальное диагностическое оборудование и специнструмент.</p>",
+        "about_service_award": {
+          "theme_image": "assets/images/content/about-yandex-award.png",
+          "alt": "Награда Яндекс — Хорошее место"
+        },
+        "about_parts_title": "Магазины запасных частей\nи аксессуаров:",
+        "about_parts_content": "<p>Компания Ровер Ленд предлагает большой выбор оригинальных и неоригинальных запчастей и аксессуаров для автомобилей Land Rover Discovery, Range Rover, Defender, Freelander по очень доступным ценам со склада в Москве и на заказ.</p><p>Срок поставки заказов (при условии наличия на складах в Великобритании) от 30 до 40 дней.</p><p>Продажа в розницу, оптом, в регионы. Квалифицированные консультации.</p>",
+        "about_parts_gallery": [
+          {
+            "image": {
+              "theme_image": "assets/images/content/about-parts-1.png",
+              "alt": "Магазин запасных частей Rover Land"
+            }
+          },
+          {
+            "image": {
+              "theme_image": "assets/images/content/about-parts-2.png",
+              "alt": "Зона сервиса и запасных частей Rover Land"
+            }
+          },
+          {
+            "image": {
+              "theme_image": "assets/images/content/about-parts-1.png",
+              "alt": "Магазин запасных частей Rover Land"
+            }
+          },
+          {
+            "image": {
+              "theme_image": "assets/images/content/about-parts-2.png",
+              "alt": "Зона сервиса и запасных частей Rover Land"
+            }
+          }
+        ],
+        "about_stats": [
+          {
+            "value": "25+",
+            "label": "Лет опыта"
+          },
+          {
+            "value": "30к+",
+            "label": "Клиентов"
+          },
+          {
+            "value": "100%",
+            "label": "Гарантия"
+          },
+          {
+            "value": "4",
+            "label": "Филиала"
+          }
+        ],
+        "about_benefits_title": "Почему выбирают\nRoverLand",
+        "about_benefits_lead": "Мы обеспечиваем дилерский уровень сервиса при индивидуальном подходе к каждому автомобилю.",
+        "about_benefits": [
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/about-guarantee.svg",
+              "alt": ""
+            },
+            "title": "Сохранение гарантии",
+            "text": "Все работы проводятся по стандартам JLR с внесением данных в электронную сервисную книжку."
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/about-experience.svg",
+              "alt": ""
+            },
+            "title": "Богатейший опыт",
+            "text": "Более 25 лет работы с самыми сложными случаями ремонта Range Rover и Jaguar."
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/about-warranty.svg",
+              "alt": ""
+            },
+            "title": "Гарантия 1 год",
+            "text": "Мы несем полную ответственность за результат и предоставляем годовую гарантию на работы."
+          },
+          {
+            "icon": {
+              "theme_image": "assets/images/icons/ui/about-supply.svg",
+              "alt": ""
+            },
+            "title": "Прямые поставки",
+            "text": "Собственный склад запчастей с прямыми поставками из Европы и ОАЭ."
+          }
+        ]
+      }
+    },
+    {
+      "key": "history",
+      "title": "История",
+      "slug": "history",
+      "template": "page-history.php",
+      "fields": {
+        "history_hero_title": "История техцентра\nи группы компаний\nРоверЛенд",
+        "history_hero_lead": "Один из старейших независимых сервисов Land Rover и Jaguar в России. Наследие точности и страсти к совершенству британских внедорожников.",
+        "history_expertise_title": "Более четверти века\nэкспертизы",
+        "history_expertise_content": "<p>Техцентр РоверЛенд — один из старейших ныне действующих независимых сервисов по обслуживанию Land Rover и Jaguar в России.</p><p>Предприятие начало свою работу в 1998 году: в непростое послекризисное время, когда отношение сервиса было выстроено вокруг профессионализма, уважения к клиентам и оптимального сочетания цены и качества. На протяжении многих лет техцентр РоверЛенд развивает собственную техническую экспертизу и партнёрские связи.</p>",
+        "history_expertise_images": [
+          {
+            "image": {
+              "theme_image": "assets/images/content/history-expertise-1.png",
+              "alt": "История Rover Land"
+            }
+          },
+          {
+            "image": {
+              "theme_image": "assets/images/content/history-expertise-2.png",
+              "alt": "Техническая экспертиза Rover Land"
+            }
+          }
+        ],
+        "history_timeline_eyebrow": "Хронология успеха",
+        "history_timeline_title": "Ключевые вехи развития",
+        "history_timeline": [
+          {
+            "year": "1998",
+            "title": "Начало пути",
+            "text": "Основание компании в сложный экономический период. Ставка на профессионализм и лояльность клиентов в обслуживании легендарных британских марок.",
+            "icon": {
+              "theme_image": "assets/images/icons/ui/history-start.svg",
+              "alt": ""
+            }
+          },
+          {
+            "year": "2001",
+            "title": "Официальный дистрибьютор",
+            "text": "Группа компаний РоверЛенд становится официальным дистрибьютором внедорожного оборудования TerraFirma4x4 в России.",
+            "icon": {
+              "theme_image": "assets/images/icons/ui/history-distributor.svg",
+              "alt": ""
+            }
+          },
+          {
+            "year": "2010",
+            "title": "РоверЛенд Запад",
+            "text": "Открытие второго технического центра, оборудованного по всем стандартам официального дилерства. Технологичный склад и кузовное отделение.",
+            "icon": {
+              "theme_image": "assets/images/icons/ui/history-west.svg",
+              "alt": ""
+            }
+          },
+          {
+            "year": "2015",
+            "title": "Международная поддержка",
+            "text": "Техническая поддержка российской команды и участие в международных проектах и соревнованиях Land Rover.",
+            "icon": {
+              "theme_image": "assets/images/icons/ui/history-support.svg",
+              "alt": ""
+            }
+          }
+        ],
+        "history_values_eyebrow": "Наши ценности",
+        "history_values_title": "Приверженность\nбританским\nтрадициям",
+        "history_values": [
+          {
+            "title": "Технологии",
+            "text": "Использование оригинальных специализированных и дилерского диагностического оборудования Autologic, TestBOOK T4 и IDS для безупречного результата.",
+            "icon": {
+              "theme_image": "assets/images/icons/ui/history-technology.svg",
+              "alt": ""
+            }
+          },
+          {
+            "title": "Экспертиза",
+            "text": "Постоянное обучение персонала и поддержка актуального многолетнего опыта позволяют нам оставаться лидерами постгарантийного обслуживания.",
+            "icon": {
+              "theme_image": "assets/images/icons/ui/history-expertise.svg",
+              "alt": ""
+            }
+          }
+        ],
+        "history_branches_title": "Специализированный сервис Ленд Ровер и Ягуар в Москве!",
+        "history_show_branches": 1,
+        "history_show_map": 1
+      }
+    },
+    {
+      "key": "privacy",
+      "title": "Политика конфиденциальности",
+      "slug": "privacy",
+      "template": "page-privacy.php",
+      "fields": {
+        "privacy_title": "Политика конфиденциальности",
+        "privacy_lead": "Демонстрационная текстовая страница для согласования верстки. Финальная редакция документа, реквизиты оператора и юридические формулировки будут размещены при интеграции сайта с CMS.",
+        "privacy_sections": [
+          {
+            "title": "1. Общие положения",
+            "content": "<p>Настоящая страница демонстрирует оформление юридического текстового материала на сайте Rover Land. В рабочей версии здесь будет опубликована утвержденная политика обработки и защиты персональных данных.</p>"
+          },
+          {
+            "title": "2. Какие данные могут обрабатываться",
+            "content": "<p>После подключения форм и сервисов сайт может обрабатывать сведения, которые пользователь передает добровольно, например:</p><ul><li>имя;</li><li>номер телефона;</li><li>выбранный филиал или услугу;</li><li>текст обращения и прикрепленные материалы;</li><li>технические данные, необходимые для работы сайта.</li></ul>"
+          },
+          {
+            "title": "3. Цели обработки",
+            "content": "<p>Данные могут использоваться для обработки обращений, обратной связи, записи на обслуживание, улучшения качества работы сайта и исполнения требований законодательства.</p>"
+          },
+          {
+            "title": "4. Файлы cookie",
+            "content": "<p>Сайт может использовать cookie и локальное хранилище браузера для сохранения пользовательских настроек, корректной работы интерфейса и подключаемых сервисов. Конкретный перечень технологий будет уточнен после интеграции CMS и внешних систем.</p>"
+          },
+          {
+            "title": "5. Сторонние сервисы",
+            "content": "<p>В рабочей версии сайта могут использоваться сервисы карт, аналитики, форм и иные внешние интеграции. Их фактический состав и условия обработки данных будут отражены в финальной редакции политики.</p>"
+          },
+          {
+            "title": "6. Обратная связь",
+            "content": "<p>Контактные данные оператора, порядок отзыва согласия и обращения по вопросам персональных данных будут добавлены при публикации юридически утвержденной версии документа.</p>"
+          }
+        ],
+        "privacy_note_title": "Важно:",
+        "privacy_note_text": "сейчас это пример текстовой страницы в составе HTML-верстки, а не финальный юридический документ."
+      }
+    }
+  ]
+}
