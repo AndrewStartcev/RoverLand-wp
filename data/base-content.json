@@ -241,7 +241,11 @@
             "title": "Прямые поставки",
             "text": "Собственный склад запчастей с прямыми поставками из Европы и ОАЭ."
           }
-        ]
+        ],
+        "about_hero_image": {
+          "theme_image": "assets/images/content/about-hero.png",
+          "alt": "Rover Land"
+        }
       }
     },
     {
@@ -330,7 +334,11 @@
         ],
         "history_branches_title": "Специализированный сервис Ленд Ровер и Ягуар в Москве!",
         "history_show_branches": 1,
-        "history_show_map": 1
+        "history_show_map": 1,
+        "history_hero_image": {
+          "theme_image": "assets/images/content/history-hero.png",
+          "alt": "История Rover Land"
+        }
       }
     },
     {
