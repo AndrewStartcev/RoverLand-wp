@@ -148,7 +148,7 @@
     {
       "key": "about",
       "title": "О компании",
-      "slug": "about",
+      "slug": "kompaniya",
       "template": "page-about.php",
       "fields": {
         "about_hero_eyebrow": "Основано в 1998 году",
@@ -251,7 +251,7 @@
     {
       "key": "history",
       "title": "История",
-      "slug": "history",
+      "slug": "istoriya",
       "template": "page-history.php",
       "fields": {
         "history_hero_title": "История техцентра\nи группы компаний\nРоверЛенд",
@@ -339,7 +339,8 @@
           "theme_image": "assets/images/content/history-hero.png",
           "alt": "История Rover Land"
         }
-      }
+      },
+      "parent_key": "about"
     },
     {
       "key": "privacy",
