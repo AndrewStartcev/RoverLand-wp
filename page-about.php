@@ -77,7 +77,7 @@ while ( have_posts() ) :
 
 				<div class="about-parts__actions">
 					<a class="button button--primary" href="<?php echo esc_url( roverland_page_url( 'vacancies' ) ); ?>">Стать частью команды</a>
-					<a class="button button--primary" href="<?php echo esc_url( roverland_page_url( 'history' ) ); ?>">Наша история</a>
+					<a class="button button--primary" href="<?php echo esc_url( roverland_page_url( 'kompaniya/istoriya' ) ); ?>">Наша история</a>
 				</div>
 			</div>
 
