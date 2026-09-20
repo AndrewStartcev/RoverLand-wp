@@ -1,0 +1,118 @@
+{
+  "key": "group_roverland_portfolio_item",
+  "title": "Работа в портфолио",
+  "fields": [
+    {
+      "key": "field_rl_portfolio_item_tab_card",
+      "label": "Карточка",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_portfolio_item_card_image",
+      "label": "Изображение карточки",
+      "name": "portfolio_card_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg",
+      "instructions": "Загружается вручную; импорт не перезаписывает."
+    },
+    {
+      "key": "field_rl_portfolio_item_summary",
+      "label": "Краткое описание",
+      "name": "portfolio_summary",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_portfolio_item_tab_page",
+      "label": "Страница работы",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_portfolio_item_h1",
+      "label": "H1",
+      "name": "portfolio_h1",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_portfolio_item_lead",
+      "label": "Лид",
+      "name": "portfolio_lead",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_portfolio_item_content",
+      "label": "Описание работы",
+      "name": "portfolio_content",
+      "type": "wysiwyg",
+      "tabs": "visual",
+      "toolbar": "full",
+      "media_upload": 0
+    },
+    {
+      "key": "field_rl_portfolio_item_gallery",
+      "label": "Галерея",
+      "name": "portfolio_gallery",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Добавить изображение",
+      "sub_fields": [
+        {
+          "key": "field_rl_portfolio_item_gallery_image",
+          "label": "Изображение",
+          "name": "image",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "png,webp,jpg,jpeg",
+          "instructions": "Загружается вручную; импорт не перезаписывает."
+        }
+      ]
+    },
+    {
+      "key": "field_rl_portfolio_item_cta_title",
+      "label": "H2 блока записи",
+      "name": "portfolio_service_title",
+      "type": "text"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "portfolio_item"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Отдельная работа: карточка, описание и фотогалерея.",
+  "show_in_rest": 0,
+  "modified": 1790002300
+}
