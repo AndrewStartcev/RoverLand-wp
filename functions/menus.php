@@ -19,9 +19,21 @@ class Roverland_Menu_Walker extends Walker_Nav_Menu {
 	}
 
 	public function start_el( &$output, $data_object, $depth = 0, $args = null, $current_object_id = 0 ) {
-		$item          = $data_object;
+		$item       = $data_object;
+		$is_models  = 'models' === $this->context;
+		$item_url   = ! empty( $item->url ) ? $item->url : '#';
+		$item_title = esc_html( apply_filters( 'the_title', $item->title, $item->ID ) );
+
+		/*
+		 * В исходной верстке RoverLand dropdown — это <div> с прямыми <a>,
+		 * без вложенного <ul>/<li>. Сохраняем эту структуру один в один.
+		 */
+		if ( $depth > 0 ) {
+			$output .= '<a href="' . esc_url( $item_url ) . '">' . $item_title . '</a>';
+			return;
+		}
+
 		$has_children = ! empty( $args->has_children );
-		$is_models    = 'models' === $this->context;
 		$item_class   = $is_models ? 'models-nav__item' : 'main-nav__item';
 		$link_class   = $is_models ? 'models-nav__link' : 'main-nav__link';
 		$arrow_class  = $is_models ? 'models-nav__arrow' : 'main-nav__arrow';
@@ -32,23 +44,14 @@ class Roverland_Menu_Walker extends Walker_Nav_Menu {
 
 		$output .= '<li class="' . esc_attr( $item_class ) . '">';
 
-		$atts = array(
-			'class' => $link_class,
-			'href'  => ! empty( $item->url ) ? $item->url : '#',
-		);
+		$attributes = ' class="' . esc_attr( $link_class ) . '" href="' . esc_url( $item_url ) . '"';
 
 		if ( $has_children ) {
-			$atts['aria-haspopup'] = 'true';
-		}
-
-		$attributes = '';
-
-		foreach ( $atts as $name => $value ) {
-			$attributes .= ' ' . $name . '="' . esc_attr( $value ) . '"';
+			$attributes .= ' aria-haspopup="true"';
 		}
 
 		$output .= '<a' . $attributes . '>';
-		$output .= esc_html( apply_filters( 'the_title', $item->title, $item->ID ) );
+		$output .= $item_title;
 
 		if ( $has_children ) {
 			$arrow = $is_models ? 'chevron-white.svg' : 'chevron-gray.svg';
@@ -59,7 +62,9 @@ class Roverland_Menu_Walker extends Walker_Nav_Menu {
 	}
 
 	public function end_el( &$output, $data_object, $depth = 0, $args = null ) {
-		$output .= '</li>';
+		if ( 0 === $depth ) {
+			$output .= '</li>';
+		}
 	}
 }
 
