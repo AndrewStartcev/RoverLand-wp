@@ -9,7 +9,7 @@ while ( have_posts() ) :
 	the_post();
 
 	$hero_title = roverland_field( 'history_hero_title', get_the_title() );
-	$hero_lead  = roverland_field( 'history_hero_lead', '' );
+	$hero_lead  = roverland_field( 'history_hero_lead', '' );\n\t$hero_image = roverland_field( 'history_hero_image', array() );\n\t$hero_image_url = roverland_image_url( $hero_image, 'assets/images/content/history-hero.png' );
 
 	$expertise_title   = roverland_field( 'history_expertise_title', '' );
 	$expertise_content = roverland_field( 'history_expertise_content', '' );
@@ -25,7 +25,7 @@ while ( have_posts() ) :
 
 	$branches_title = roverland_field( 'history_branches_title', roverland_option( 'common_branches_title', '' ) );
 	?>
-	<section class="history-hero">
+	<section class="history-hero"<?php if ( $hero_image_url ) : ?> style="--history-hero-image: url('<?php echo esc_url( $hero_image_url ); ?>');"<?php endif; ?>>
 		<div class="container history-hero__container">
 			<div class="history-hero__content">
 				<?php
