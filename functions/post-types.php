@@ -73,5 +73,47 @@ add_action(
 				),
 			)
 		);
+
+		register_post_type(
+			'rover_model',
+			array(
+				'labels' => array(
+					'name'          => 'Модели автомобилей',
+					'singular_name' => 'Модель',
+					'add_new_item'  => 'Добавить модель',
+					'edit_item'     => 'Редактировать модель',
+					'menu_name'     => 'Модели',
+				),
+				'public'             => false,
+				'publicly_queryable' => false,
+				'show_ui'            => true,
+				'show_in_rest'       => false,
+				'hierarchical'       => true,
+				'menu_icon'          => 'dashicons-car',
+				'menu_position'      => 24,
+				'supports'           => array( 'title', 'page-attributes' ),
+			)
+		);
+
+		register_post_type(
+			'rover_service',
+			array(
+				'labels' => array(
+					'name'          => 'Справочник услуг',
+					'singular_name' => 'Услуга',
+					'add_new_item'  => 'Добавить услугу',
+					'edit_item'     => 'Редактировать услугу',
+					'menu_name'     => 'Услуги',
+				),
+				'public'             => false,
+				'publicly_queryable' => false,
+				'show_ui'            => true,
+				'show_in_rest'       => false,
+				'hierarchical'       => true,
+				'menu_icon'          => 'dashicons-admin-tools',
+				'menu_position'      => 25,
+				'supports'           => array( 'title', 'page-attributes' ),
+			)
+		);
 	}
 );
