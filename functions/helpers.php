@@ -82,3 +82,123 @@ function roverland_get_social_links() {
 
 	return is_array( $items ) ? $items : array();
 }
+
+
+function roverland_service_page_kind( $post_id = 0 ) {
+	$post_id = $post_id ? (int) $post_id : get_the_ID();
+
+	return trim( (string) roverland_field( 'service_page_kind', '', $post_id ) );
+}
+
+function roverland_get_service_page_for_model( $model_id ) {
+	$model_id = (int) $model_id;
+
+	if ( ! $model_id ) {
+		return null;
+	}
+
+	$pages = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'posts_per_page' => 1,
+			'meta_query'     => array(
+				'relation' => 'AND',
+				array(
+					'key'   => 'service_page_kind',
+					'value' => 'model',
+				),
+				array(
+					'key'   => 'service_related_model',
+					'value' => $model_id,
+				),
+			),
+			'no_found_rows'  => true,
+		)
+	);
+
+	return $pages ? $pages[0] : null;
+}
+
+function roverland_get_related_service_pages( $post_id = 0, $limit = -1 ) {
+	$post_id    = $post_id ? (int) $post_id : get_the_ID();
+	$kind       = roverland_service_page_kind( $post_id );
+	$model_id   = (int) roverland_field( 'service_related_model', 0, $post_id );
+	$service_id = (int) roverland_field( 'service_related_service', 0, $post_id );
+
+	$meta_query = array( 'relation' => 'AND' );
+
+	if ( 'model' === $kind && $model_id ) {
+		$meta_query[] = array(
+			'key'     => 'service_related_model',
+			'value'   => $model_id,
+			'compare' => '=',
+		);
+		$meta_query[] = array(
+			'key'     => 'service_page_kind',
+			'value'   => array( 'model_service', 'maintenance' ),
+			'compare' => 'IN',
+		);
+	} elseif ( 'service' === $kind && $service_id ) {
+		$meta_query[] = array(
+			'key'     => 'service_related_service',
+			'value'   => $service_id,
+			'compare' => '=',
+		);
+		$meta_query[] = array(
+			'key'     => 'service_page_kind',
+			'value'   => array( 'model_service', 'maintenance' ),
+			'compare' => 'IN',
+		);
+	} elseif ( in_array( $kind, array( 'model_service', 'maintenance' ), true ) && $model_id ) {
+		$meta_query[] = array(
+			'key'     => 'service_related_model',
+			'value'   => $model_id,
+			'compare' => '=',
+		);
+		$meta_query[] = array(
+			'key'     => 'service_page_kind',
+			'value'   => array( 'model_service', 'maintenance' ),
+			'compare' => 'IN',
+		);
+	} else {
+		return array();
+	}
+
+	return get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'posts_per_page' => (int) $limit,
+			'post__not_in'   => array( $post_id ),
+			'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+			'meta_query'     => $meta_query,
+			'no_found_rows'  => true,
+		)
+	);
+}
+
+function roverland_service_breadcrumb_items( $post_id = 0 ) {
+	$post_id = $post_id ? (int) $post_id : get_the_ID();
+	$items   = array(
+		array(
+			'label' => 'Главная',
+			'url'   => home_url( '/' ),
+		),
+	);
+
+	$ancestors = array_reverse( get_post_ancestors( $post_id ) );
+
+	foreach ( $ancestors as $ancestor_id ) {
+		$items[] = array(
+			'label' => get_the_title( $ancestor_id ),
+			'url'   => get_permalink( $ancestor_id ),
+		);
+	}
+
+	$items[] = array(
+		'label' => get_the_title( $post_id ),
+	);
+
+	return $items;
+}
