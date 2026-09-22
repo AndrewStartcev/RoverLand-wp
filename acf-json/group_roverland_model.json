@@ -1,0 +1,93 @@
+{
+  "key": "group_roverland_model",
+  "title": "Модель автомобиля",
+  "fields": [
+    {
+      "key": "field_rl_model_slug",
+      "label": "Системный slug",
+      "name": "model_slug",
+      "type": "text",
+      "instructions": "Используется для импорта и связей. Обычно совпадает со старым URL-сегментом.",
+      "wrapper": {
+        "width": "35"
+      }
+    },
+    {
+      "key": "field_rl_model_short",
+      "label": "Короткое название",
+      "name": "model_short_name",
+      "type": "text",
+      "wrapper": {
+        "width": "35"
+      }
+    },
+    {
+      "key": "field_rl_model_menu",
+      "label": "Название в меню",
+      "name": "model_menu_name",
+      "type": "text",
+      "wrapper": {
+        "width": "30"
+      }
+    },
+    {
+      "key": "field_rl_model_image",
+      "label": "Изображение модели",
+      "name": "model_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg",
+      "instructions": "Растровые изображения загружаются вручную; импорт не перезаписывает."
+    },
+    {
+      "key": "field_rl_model_intro",
+      "label": "Краткое описание",
+      "name": "model_intro",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_model_sort",
+      "label": "Порядок",
+      "name": "model_sort",
+      "type": "number",
+      "default_value": 100,
+      "min": 0,
+      "step": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "rover_model"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Справочник моделей и поколений. Публичные URL хранятся в обычных WordPress Pages.",
+  "show_in_rest": 0,
+  "modified": 1790003000
+}
