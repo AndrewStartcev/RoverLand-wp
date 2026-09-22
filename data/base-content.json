@@ -1235,5 +1235,534 @@
         "portfolio_service_title": "Обнаружили коррозию на кузове?"
       }
     }
+  ],
+  "models": [
+    {
+      "key": "model-discovery",
+      "title": "Discovery",
+      "slug": "discovery",
+      "menu_order": 10,
+      "fields": {
+        "model_slug": "discovery",
+        "model_short_name": "Discovery",
+        "model_menu_name": "Discovery",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_intro": "Семейство Land Rover Discovery.",
+        "model_sort": 10
+      }
+    },
+    {
+      "key": "model-discovery-3",
+      "title": "Discovery 3",
+      "slug": "discovery-3",
+      "parent_key": "model-discovery",
+      "menu_order": 11,
+      "fields": {
+        "model_slug": "discovery-3",
+        "model_short_name": "Discovery 3",
+        "model_menu_name": "Discovery 3",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 11
+      }
+    },
+    {
+      "key": "model-discovery-4",
+      "title": "Discovery 4",
+      "slug": "discovery-4",
+      "parent_key": "model-discovery",
+      "menu_order": 12,
+      "fields": {
+        "model_slug": "discovery-4",
+        "model_short_name": "Discovery 4",
+        "model_menu_name": "Discovery 4",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 12
+      }
+    },
+    {
+      "key": "model-discovery-5",
+      "title": "Discovery 5",
+      "slug": "discovery-5",
+      "parent_key": "model-discovery",
+      "menu_order": 13,
+      "fields": {
+        "model_slug": "discovery-5",
+        "model_short_name": "Discovery 5",
+        "model_menu_name": "Discovery 5",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 13
+      }
+    },
+    {
+      "key": "model-discovery-sport",
+      "title": "Discovery Sport",
+      "slug": "discovery-sport",
+      "parent_key": "model-discovery",
+      "menu_order": 14,
+      "fields": {
+        "model_slug": "discovery-sport",
+        "model_short_name": "Discovery Sport",
+        "model_menu_name": "Discovery Sport",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 14
+      }
+    },
+    {
+      "key": "model-range-rover",
+      "title": "Range Rover",
+      "slug": "range-rover",
+      "menu_order": 20,
+      "fields": {
+        "model_slug": "range-rover",
+        "model_short_name": "Range Rover",
+        "model_menu_name": "Range Rover",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_intro": "Семейство Range Rover.",
+        "model_sort": 20
+      }
+    },
+    {
+      "key": "model-range-rover-sport",
+      "title": "Range Rover Sport",
+      "slug": "range-rover-sport",
+      "parent_key": "model-range-rover",
+      "menu_order": 21,
+      "fields": {
+        "model_slug": "range-rover-sport",
+        "model_short_name": "Range Rover Sport",
+        "model_menu_name": "Range Rover Sport",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 21
+      }
+    },
+    {
+      "key": "model-range-rover-evoque",
+      "title": "Range Rover Evoque",
+      "slug": "range-rover-evoque",
+      "parent_key": "model-range-rover",
+      "menu_order": 22,
+      "fields": {
+        "model_slug": "range-rover-evoque",
+        "model_short_name": "Range Rover Evoque",
+        "model_menu_name": "Range Rover Evoque",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 22
+      }
+    },
+    {
+      "key": "model-range-rover-velar",
+      "title": "Range Rover Velar",
+      "slug": "range-rover-velar",
+      "parent_key": "model-range-rover",
+      "menu_order": 23,
+      "fields": {
+        "model_slug": "range-rover-velar",
+        "model_short_name": "Range Rover Velar",
+        "model_menu_name": "Range Rover Velar",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 23
+      }
+    },
+    {
+      "key": "model-defender",
+      "title": "Defender",
+      "slug": "defender",
+      "menu_order": 30,
+      "fields": {
+        "model_slug": "defender",
+        "model_short_name": "Defender",
+        "model_menu_name": "Defender",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 30
+      }
+    },
+    {
+      "key": "model-defender-90",
+      "title": "Defender 90",
+      "slug": "defender-90",
+      "parent_key": "model-defender",
+      "menu_order": 31,
+      "fields": {
+        "model_slug": "defender-90",
+        "model_short_name": "Defender 90",
+        "model_menu_name": "Defender 90",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 31
+      }
+    },
+    {
+      "key": "model-defender-110",
+      "title": "Defender 110",
+      "slug": "defender-110",
+      "parent_key": "model-defender",
+      "menu_order": 32,
+      "fields": {
+        "model_slug": "defender-110",
+        "model_short_name": "Defender 110",
+        "model_menu_name": "Defender 110",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 32
+      }
+    },
+    {
+      "key": "model-defender-130",
+      "title": "Defender 130",
+      "slug": "defender-130",
+      "parent_key": "model-defender",
+      "menu_order": 33,
+      "fields": {
+        "model_slug": "defender-130",
+        "model_short_name": "Defender 130",
+        "model_menu_name": "Defender 130",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 33
+      }
+    },
+    {
+      "key": "model-freelander",
+      "title": "Freelander",
+      "slug": "freelander",
+      "menu_order": 40,
+      "fields": {
+        "model_slug": "freelander",
+        "model_short_name": "Freelander",
+        "model_menu_name": "Freelander",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 40
+      }
+    },
+    {
+      "key": "model-freelander-1",
+      "title": "Freelander 1",
+      "slug": "freelander-1",
+      "parent_key": "model-freelander",
+      "menu_order": 41,
+      "fields": {
+        "model_slug": "freelander-1",
+        "model_short_name": "Freelander 1",
+        "model_menu_name": "Freelander 1",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 41
+      }
+    },
+    {
+      "key": "model-freelander-2",
+      "title": "Freelander 2",
+      "slug": "freelander-2",
+      "parent_key": "model-freelander",
+      "menu_order": 42,
+      "fields": {
+        "model_slug": "freelander-2",
+        "model_short_name": "Freelander 2",
+        "model_menu_name": "Freelander 2",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 42
+      }
+    },
+    {
+      "key": "model-jaguar",
+      "title": "Jaguar",
+      "slug": "jaguar",
+      "menu_order": 50,
+      "fields": {
+        "model_slug": "jaguar",
+        "model_short_name": "Jaguar",
+        "model_menu_name": "Jaguar",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 50
+      }
+    },
+    {
+      "key": "model-jaguar-xe",
+      "title": "Jaguar XE",
+      "slug": "jaguar-xe",
+      "parent_key": "model-jaguar",
+      "menu_order": 51,
+      "fields": {
+        "model_slug": "jaguar-xe",
+        "model_short_name": "Jaguar XE",
+        "model_menu_name": "Jaguar XE",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 51
+      }
+    },
+    {
+      "key": "model-jaguar-xf",
+      "title": "Jaguar XF",
+      "slug": "jaguar-xf",
+      "parent_key": "model-jaguar",
+      "menu_order": 52,
+      "fields": {
+        "model_slug": "jaguar-xf",
+        "model_short_name": "Jaguar XF",
+        "model_menu_name": "Jaguar XF",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 52
+      }
+    },
+    {
+      "key": "model-jaguar-xj",
+      "title": "Jaguar XJ",
+      "slug": "jaguar-xj",
+      "parent_key": "model-jaguar",
+      "menu_order": 53,
+      "fields": {
+        "model_slug": "jaguar-xj",
+        "model_short_name": "Jaguar XJ",
+        "model_menu_name": "Jaguar XJ",
+        "model_image": {
+          "manual_image": true
+        },
+        "model_sort": 53
+      }
+    }
+  ],
+  "services": [
+    {
+      "key": "service-repair",
+      "title": "Ремонт",
+      "slug": "remont",
+      "menu_order": 10,
+      "fields": {
+        "service_slug": "remont",
+        "service_short_name": "Ремонт",
+        "service_menu_name": "Ремонт",
+        "service_intro": "Технический ремонт автомобилей Land Rover и Jaguar.",
+        "service_sort": 10
+      }
+    },
+    {
+      "key": "service-engine",
+      "title": "Ремонт двигателя",
+      "slug": "remont-dvigatelya",
+      "parent_key": "service-repair",
+      "menu_order": 11,
+      "fields": {
+        "service_slug": "remont-dvigatelya",
+        "service_short_name": "Ремонт двигателя",
+        "service_menu_name": "Двигатель",
+        "service_sort": 11
+      }
+    },
+    {
+      "key": "service-transmission",
+      "title": "Ремонт трансмиссии",
+      "slug": "remont-transmissii",
+      "parent_key": "service-repair",
+      "menu_order": 12,
+      "fields": {
+        "service_slug": "remont-transmissii",
+        "service_short_name": "Ремонт трансмиссии",
+        "service_menu_name": "Трансмиссия",
+        "service_sort": 12
+      }
+    },
+    {
+      "key": "service-steering",
+      "title": "Ремонт рулевого управления",
+      "slug": "remont-rulevogo-upravleniya",
+      "parent_key": "service-repair",
+      "menu_order": 13,
+      "fields": {
+        "service_slug": "remont-rulevogo-upravleniya",
+        "service_short_name": "Рулевое управление",
+        "service_menu_name": "Рулевое управление",
+        "service_sort": 13
+      }
+    },
+    {
+      "key": "service-body",
+      "title": "Кузовной ремонт",
+      "slug": "kuzovnoy-remont",
+      "parent_key": "service-repair",
+      "menu_order": 14,
+      "fields": {
+        "service_slug": "kuzovnoy-remont",
+        "service_short_name": "Кузовной ремонт",
+        "service_menu_name": "Кузовной ремонт",
+        "service_sort": 14
+      }
+    },
+    {
+      "key": "service-maintenance-root",
+      "title": "Сервис",
+      "slug": "servis",
+      "menu_order": 20,
+      "fields": {
+        "service_slug": "servis",
+        "service_short_name": "Сервис",
+        "service_menu_name": "Сервис",
+        "service_intro": "Сервисное и регламентное обслуживание автомобилей.",
+        "service_sort": 20
+      }
+    },
+    {
+      "key": "service-to",
+      "title": "Техническое обслуживание",
+      "slug": "to",
+      "parent_key": "service-maintenance-root",
+      "menu_order": 21,
+      "fields": {
+        "service_slug": "to",
+        "service_short_name": "Техническое обслуживание",
+        "service_menu_name": "ТО",
+        "service_sort": 21
+      }
+    },
+    {
+      "key": "service-oil",
+      "title": "Замена масла",
+      "slug": "zamena-masla",
+      "parent_key": "service-maintenance-root",
+      "menu_order": 22,
+      "fields": {
+        "service_slug": "zamena-masla",
+        "service_short_name": "Замена масла",
+        "service_menu_name": "Замена масла",
+        "service_sort": 22
+      }
+    },
+    {
+      "key": "service-diagnostics",
+      "title": "Диагностика",
+      "slug": "diagnostika",
+      "parent_key": "service-maintenance-root",
+      "menu_order": 23,
+      "fields": {
+        "service_slug": "diagnostika",
+        "service_short_name": "Диагностика",
+        "service_menu_name": "Диагностика",
+        "service_sort": 23
+      }
+    },
+    {
+      "key": "service-prepurchase",
+      "title": "Проверка перед покупкой",
+      "slug": "proverka-pered-pokupkoy",
+      "parent_key": "service-maintenance-root",
+      "menu_order": 24,
+      "fields": {
+        "service_slug": "proverka-pered-pokupkoy",
+        "service_short_name": "Проверка перед покупкой",
+        "service_menu_name": "Проверка перед покупкой",
+        "service_sort": 24
+      }
+    },
+    {
+      "key": "service-tow",
+      "title": "Эвакуация",
+      "slug": "evakuatsiya",
+      "parent_key": "service-maintenance-root",
+      "menu_order": 25,
+      "fields": {
+        "service_slug": "evakuatsiya",
+        "service_short_name": "Эвакуация",
+        "service_menu_name": "Эвакуация",
+        "service_sort": 25
+      }
+    },
+    {
+      "key": "service-tire",
+      "title": "Шиномонтаж",
+      "slug": "shinomontazh",
+      "parent_key": "service-maintenance-root",
+      "menu_order": 26,
+      "fields": {
+        "service_slug": "shinomontazh",
+        "service_short_name": "Шиномонтаж",
+        "service_menu_name": "Шиномонтаж",
+        "service_sort": 26
+      }
+    },
+    {
+      "key": "service-cleaning",
+      "title": "Химчистка",
+      "slug": "khimchistka",
+      "parent_key": "service-maintenance-root",
+      "menu_order": 27,
+      "fields": {
+        "service_slug": "khimchistka",
+        "service_short_name": "Химчистка",
+        "service_menu_name": "Химчистка",
+        "service_sort": 27
+      }
+    },
+    {
+      "key": "service-polishing",
+      "title": "Полировка",
+      "slug": "polirovka",
+      "parent_key": "service-maintenance-root",
+      "menu_order": 28,
+      "fields": {
+        "service_slug": "polirovka",
+        "service_short_name": "Полировка",
+        "service_menu_name": "Полировка",
+        "service_sort": 28
+      }
+    },
+    {
+      "key": "service-offroad",
+      "title": "Off-Road",
+      "slug": "off-road",
+      "parent_key": "service-maintenance-root",
+      "menu_order": 29,
+      "fields": {
+        "service_slug": "off-road",
+        "service_short_name": "Off-Road",
+        "service_menu_name": "Off-Road",
+        "service_sort": 29
+      }
+    },
+    {
+      "key": "service-buyout",
+      "title": "Выкуп авто",
+      "slug": "vykup-avto",
+      "parent_key": "service-maintenance-root",
+      "menu_order": 30,
+      "fields": {
+        "service_slug": "vykup-avto",
+        "service_short_name": "Выкуп авто",
+        "service_menu_name": "Выкуп авто",
+        "service_sort": 30
+      }
+    }
   ]
 }
