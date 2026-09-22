@@ -35,7 +35,9 @@ function roverland_enqueue_assets() {
 		true
 	);
 
-	if ( is_front_page() || is_singular( 'vacancy' ) || is_page_template( array( 'page-contacts.php', 'page-history.php', 'page-vacancies.php' ) ) ) {
+	$service_page_has_map = is_page() && roverland_service_page_kind( get_queried_object_id() ) && roverland_field( 'service_show_map', true, get_queried_object_id() );
+
+	if ( is_front_page() || is_singular( 'vacancy' ) || $service_page_has_map || is_page_template( array( 'page-contacts.php', 'page-history.php', 'page-vacancies.php' ) ) ) {
 		$api_key = trim( (string) roverland_option( 'site_yandex_maps_api_key', '6b4eac7a-0149-488d-b8c5-391ae43a22e4' ) );
 
 		if ( $api_key ) {
