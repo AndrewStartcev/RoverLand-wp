@@ -202,3 +202,22 @@ function roverland_service_breadcrumb_items( $post_id = 0 ) {
 
 	return $items;
 }
+
+
+function roverland_model_public_url( $model_id ) {
+	$model_id = (int) $model_id;
+
+	if ( ! $model_id ) {
+		return '#';
+	}
+
+	$page = roverland_get_service_page_for_model( $model_id );
+
+	if ( $page ) {
+		return get_permalink( $page );
+	}
+
+	$slug = trim( (string) roverland_field( 'model_slug', '', $model_id ) );
+
+	return $slug ? home_url( '/' . trim( $slug, '/' ) . '/' ) : '#';
+}
