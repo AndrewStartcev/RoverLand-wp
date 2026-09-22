@@ -1,0 +1,92 @@
+{
+  "key": "group_roverland_service_reference",
+  "title": "Услуга",
+  "fields": [
+    {
+      "key": "field_rl_service_slug",
+      "label": "Системный slug",
+      "name": "service_slug",
+      "type": "text",
+      "instructions": "Используется для импорта и связей.",
+      "wrapper": {
+        "width": "35"
+      }
+    },
+    {
+      "key": "field_rl_service_short",
+      "label": "Короткое название",
+      "name": "service_short_name",
+      "type": "text",
+      "wrapper": {
+        "width": "35"
+      }
+    },
+    {
+      "key": "field_rl_service_menu",
+      "label": "Название в меню",
+      "name": "service_menu_name",
+      "type": "text",
+      "wrapper": {
+        "width": "30"
+      }
+    },
+    {
+      "key": "field_rl_service_icon",
+      "label": "SVG-иконка",
+      "name": "service_icon",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "svg"
+    },
+    {
+      "key": "field_rl_service_intro",
+      "label": "Краткое описание",
+      "name": "service_intro",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_service_sort",
+      "label": "Порядок",
+      "name": "service_sort",
+      "type": "number",
+      "default_value": 100,
+      "min": 0,
+      "step": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "rover_service"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "revisions",
+    "author",
+    "format",
+    "featured_image",
+    "categories",
+    "tags",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": "Справочник услуг. Конкретные публичные страницы связываются с этой сущностью через ACF.",
+  "show_in_rest": 0,
+  "modified": 1790003100
+}
