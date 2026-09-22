@@ -1,0 +1,546 @@
+{
+  "key": "group_roverland_service_page",
+  "title": "Rover Land — страница услуги / модели",
+  "fields": [
+    {
+      "key": "field_rl_service_page_tab_logic",
+      "label": "Логика страницы",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_service_page_kind",
+      "label": "Тип страницы",
+      "name": "service_page_kind",
+      "type": "select",
+      "choices": {
+        "": "Обычная страница",
+        "hub": "Каталог / раздел",
+        "model": "Страница модели",
+        "service": "Общая страница услуги",
+        "model_service": "Услуга для конкретной модели",
+        "maintenance": "Техническое обслуживание модели"
+      },
+      "default_value": "",
+      "allow_null": 0,
+      "multiple": 0,
+      "ui": 1,
+      "return_format": "value"
+    },
+    {
+      "key": "field_rl_service_page_model",
+      "label": "Модель",
+      "name": "service_related_model",
+      "type": "post_object",
+      "post_type": [
+        "rover_model"
+      ],
+      "return_format": "id",
+      "ui": 1,
+      "allow_null": 1,
+      "multiple": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_rl_service_page_kind",
+            "operator": "==",
+            "value": "model"
+          }
+        ],
+        [
+          {
+            "field": "field_rl_service_page_kind",
+            "operator": "==",
+            "value": "model_service"
+          }
+        ],
+        [
+          {
+            "field": "field_rl_service_page_kind",
+            "operator": "==",
+            "value": "maintenance"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_rl_service_page_service",
+      "label": "Услуга",
+      "name": "service_related_service",
+      "type": "post_object",
+      "post_type": [
+        "rover_service"
+      ],
+      "return_format": "id",
+      "ui": 1,
+      "allow_null": 1,
+      "multiple": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_rl_service_page_kind",
+            "operator": "==",
+            "value": "service"
+          }
+        ],
+        [
+          {
+            "field": "field_rl_service_page_kind",
+            "operator": "==",
+            "value": "model_service"
+          }
+        ],
+        [
+          {
+            "field": "field_rl_service_page_kind",
+            "operator": "==",
+            "value": "maintenance"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_rl_service_page_auto_related",
+      "label": "Автоматически выводить связанные страницы",
+      "name": "service_auto_related",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1
+    },
+    {
+      "key": "field_rl_service_page_tab_hero",
+      "label": "Первый экран",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_service_page_eyebrow",
+      "label": "Надзаголовок",
+      "name": "service_hero_eyebrow",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_service_page_h1",
+      "label": "H1",
+      "name": "service_page_h1",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_service_page_lead",
+      "label": "Описание",
+      "name": "service_hero_lead",
+      "type": "textarea",
+      "rows": 4,
+      "new_lines": ""
+    },
+    {
+      "key": "field_rl_service_page_image",
+      "label": "Фоновое / основное изображение",
+      "name": "service_hero_image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "png,webp,jpg,jpeg",
+      "instructions": "Загружается вручную; JSON-импорт не перезаписывает."
+    },
+    {
+      "key": "field_rl_service_page_primary_label",
+      "label": "Текст основной кнопки",
+      "name": "service_primary_button_label",
+      "type": "text",
+      "default_value": "Записаться на сервис",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_service_page_secondary_label",
+      "label": "Текст второй кнопки",
+      "name": "service_secondary_button_label",
+      "type": "text",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_service_page_tab_sections",
+      "label": "Секции",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_service_sections",
+      "label": "Содержание страницы",
+      "name": "service_sections",
+      "type": "flexible_content",
+      "button_label": "Добавить секцию",
+      "layouts": {
+        "layout_rl_service_text": {
+          "key": "layout_rl_service_text",
+          "name": "text",
+          "label": "Текстовый блок",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_rl_service_text_title",
+              "label": "H2",
+              "name": "title",
+              "type": "text"
+            },
+            {
+              "key": "field_rl_service_text_content",
+              "label": "Текст",
+              "name": "content",
+              "type": "wysiwyg",
+              "tabs": "visual",
+              "toolbar": "full",
+              "media_upload": 0
+            },
+            {
+              "key": "field_rl_service_text_image",
+              "label": "Изображение",
+              "name": "image",
+              "type": "image",
+              "return_format": "array",
+              "preview_size": "medium",
+              "library": "all",
+              "mime_types": "png,webp,jpg,jpeg",
+              "instructions": "Загружается вручную; импорт не перезаписывает."
+            },
+            {
+              "key": "field_rl_service_text_image_position",
+              "label": "Позиция изображения",
+              "name": "image_position",
+              "type": "select",
+              "choices": {
+                "right": "Справа",
+                "left": "Слева",
+                "none": "Без изображения"
+              },
+              "default_value": "none",
+              "return_format": "value"
+            }
+          ]
+        },
+        "layout_rl_service_benefits": {
+          "key": "layout_rl_service_benefits",
+          "name": "benefits",
+          "label": "Преимущества",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_rl_service_benefits_title",
+              "label": "H2",
+              "name": "title",
+              "type": "text"
+            },
+            {
+              "key": "field_rl_service_benefits_items",
+              "label": "Карточки",
+              "name": "items",
+              "type": "repeater",
+              "layout": "row",
+              "button_label": "Добавить карточку",
+              "sub_fields": [
+                {
+                  "key": "field_rl_service_benefit_icon",
+                  "label": "SVG",
+                  "name": "icon",
+                  "type": "image",
+                  "return_format": "array",
+                  "preview_size": "medium",
+                  "library": "all",
+                  "mime_types": "svg",
+                  "wrapper": {
+                    "width": "20"
+                  }
+                },
+                {
+                  "key": "field_rl_service_benefit_title",
+                  "label": "Заголовок",
+                  "name": "title",
+                  "type": "text",
+                  "wrapper": {
+                    "width": "30"
+                  }
+                },
+                {
+                  "key": "field_rl_service_benefit_text",
+                  "label": "Описание",
+                  "name": "text",
+                  "type": "textarea",
+                  "rows": 3,
+                  "new_lines": "",
+                  "wrapper": {
+                    "width": "50"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "layout_rl_service_price_table": {
+          "key": "layout_rl_service_price_table",
+          "name": "price_table",
+          "label": "Прайс",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_rl_service_price_title",
+              "label": "H2",
+              "name": "title",
+              "type": "text"
+            },
+            {
+              "key": "field_rl_service_price_note",
+              "label": "Примечание",
+              "name": "note",
+              "type": "textarea",
+              "rows": 2,
+              "new_lines": ""
+            },
+            {
+              "key": "field_rl_service_price_groups",
+              "label": "Группы",
+              "name": "groups",
+              "type": "repeater",
+              "layout": "block",
+              "button_label": "Добавить группу",
+              "sub_fields": [
+                {
+                  "key": "field_rl_service_price_group_title",
+                  "label": "Название группы",
+                  "name": "title",
+                  "type": "text"
+                },
+                {
+                  "key": "field_rl_service_price_rows",
+                  "label": "Строки",
+                  "name": "rows",
+                  "type": "repeater",
+                  "layout": "table",
+                  "button_label": "Добавить строку",
+                  "sub_fields": [
+                    {
+                      "key": "field_rl_service_price_name",
+                      "label": "Работа",
+                      "name": "name",
+                      "type": "text"
+                    },
+                    {
+                      "key": "field_rl_service_price_work",
+                      "label": "Работа, ₽",
+                      "name": "work_price",
+                      "type": "text"
+                    },
+                    {
+                      "key": "field_rl_service_price_parts",
+                      "label": "Запчасти, ₽",
+                      "name": "parts_price",
+                      "type": "text"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "layout_rl_service_matrix": {
+          "key": "layout_rl_service_matrix",
+          "name": "matrix_table",
+          "label": "Универсальная таблица / ТО",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_rl_service_matrix_title",
+              "label": "H2",
+              "name": "title",
+              "type": "text"
+            },
+            {
+              "key": "field_rl_service_matrix_headers",
+              "label": "Заголовки колонок",
+              "name": "headers",
+              "type": "repeater",
+              "layout": "table",
+              "button_label": "Добавить колонку",
+              "sub_fields": [
+                {
+                  "key": "field_rl_service_matrix_header",
+                  "label": "Заголовок",
+                  "name": "label",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "key": "field_rl_service_matrix_rows",
+              "label": "Строки",
+              "name": "rows",
+              "type": "repeater",
+              "layout": "block",
+              "button_label": "Добавить строку",
+              "sub_fields": [
+                {
+                  "key": "field_rl_service_matrix_row_name",
+                  "label": "Название",
+                  "name": "name",
+                  "type": "text"
+                },
+                {
+                  "key": "field_rl_service_matrix_cells",
+                  "label": "Ячейки",
+                  "name": "cells",
+                  "type": "repeater",
+                  "layout": "table",
+                  "button_label": "Добавить ячейку",
+                  "sub_fields": [
+                    {
+                      "key": "field_rl_service_matrix_cell",
+                      "label": "Значение",
+                      "name": "value",
+                      "type": "text"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "field_rl_service_matrix_note",
+              "label": "Примечание",
+              "name": "note",
+              "type": "textarea",
+              "rows": 2,
+              "new_lines": ""
+            }
+          ]
+        },
+        "layout_rl_service_cards": {
+          "key": "layout_rl_service_cards",
+          "name": "cards",
+          "label": "Карточки услуг / ссылок",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_rl_service_cards_title",
+              "label": "H2",
+              "name": "title",
+              "type": "text"
+            },
+            {
+              "key": "field_rl_service_cards_items",
+              "label": "Карточки",
+              "name": "items",
+              "type": "repeater",
+              "layout": "row",
+              "button_label": "Добавить карточку",
+              "sub_fields": [
+                {
+                  "key": "field_rl_service_card_icon",
+                  "label": "SVG",
+                  "name": "icon",
+                  "type": "image",
+                  "return_format": "array",
+                  "preview_size": "medium",
+                  "library": "all",
+                  "mime_types": "svg",
+                  "wrapper": {
+                    "width": "15"
+                  }
+                },
+                {
+                  "key": "field_rl_service_card_title",
+                  "label": "Заголовок",
+                  "name": "title",
+                  "type": "text",
+                  "wrapper": {
+                    "width": "25"
+                  }
+                },
+                {
+                  "key": "field_rl_service_card_text",
+                  "label": "Описание",
+                  "name": "text",
+                  "type": "textarea",
+                  "rows": 2,
+                  "new_lines": "",
+                  "wrapper": {
+                    "width": "35"
+                  }
+                },
+                {
+                  "key": "field_rl_service_card_url",
+                  "label": "URL",
+                  "name": "url",
+                  "type": "text",
+                  "wrapper": {
+                    "width": "25"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "key": "field_rl_service_page_tab_common",
+      "label": "Общие блоки",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_service_page_show_appointment",
+      "label": "Запись на сервис",
+      "name": "service_show_appointment",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_service_page_show_branches",
+      "label": "Филиалы",
+      "name": "service_show_branches",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_service_page_show_map",
+      "label": "Карта",
+      "name": "service_show_map",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "33"
+      }
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "default"
+      }
+    ]
+  ],
+  "menu_order": 20,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [],
+  "active": true,
+  "description": "Универсальная модель страниц ремонта, сервиса, модели автомобиля и услуг для конкретной модели.",
+  "show_in_rest": 0,
+  "modified": 1790003200
+}
