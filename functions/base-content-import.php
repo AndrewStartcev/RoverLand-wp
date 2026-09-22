@@ -627,18 +627,21 @@ function roverland_base_import_entity_id( $reference ) {
 
 	list( $type, $slug ) = array_map( 'trim', explode( ':', $reference, 2 ) );
 
-	$post_type = '';
-	$key       = '';
+	$post_type  = '';
+	$key_prefix = '';
+	$slug_field = '';
 
 	if ( 'model' === $type ) {
-		$post_type = 'rover_model';
-		$key       = 'model-' . sanitize_key( $slug );
+		$post_type  = 'rover_model';
+		$key_prefix = 'model-';
+		$slug_field = 'model_slug';
 	} elseif ( 'service' === $type ) {
-		$post_type = 'rover_service';
-		$key       = 'service-' . sanitize_key( $slug );
+		$post_type  = 'rover_service';
+		$key_prefix = 'service-';
+		$slug_field = 'service_slug';
 	}
 
-	if ( ! $post_type || ! $key ) {
+	if ( ! $post_type || ! $slug ) {
 		return 0;
 	}
 
@@ -649,7 +652,23 @@ function roverland_base_import_entity_id( $reference ) {
 			'posts_per_page' => 1,
 			'fields'         => 'ids',
 			'meta_key'       => '_roverland_base_import_key',
-			'meta_value'     => $key,
+			'meta_value'     => $key_prefix . sanitize_key( $slug ),
+			'no_found_rows'  => true,
+		)
+	);
+
+	if ( $ids ) {
+		return (int) $ids[0];
+	}
+
+	$ids = get_posts(
+		array(
+			'post_type'      => $post_type,
+			'post_status'    => 'any',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'meta_key'       => $slug_field,
+			'meta_value'     => sanitize_title( $slug ),
 			'no_found_rows'  => true,
 		)
 	);
