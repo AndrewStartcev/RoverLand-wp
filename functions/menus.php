@@ -132,21 +132,54 @@ function roverland_primary_menu_fallback() {
 }
 
 function roverland_models_menu_fallback() {
-	$items = array(
-		'Discovery',
-		'Discovery Sport',
-		'Range Rover',
-		'Range Rover Sport',
-		'Jaguar',
-		'Defender',
-		'Freelander',
-		'Range Rover Evoque',
-		'Range Rover Velar',
+	$models = get_posts(
+		array(
+			'post_type'      => 'rover_model',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'post_parent'    => 0,
+			'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+			'no_found_rows'  => true,
+		)
 	);
 
 	echo '<ul class="models-nav__list">';
-	foreach ( $items as $item ) {
-		printf( '<li class="models-nav__item"><a class="models-nav__link" href="#">%s</a></li>', esc_html( $item ) );
+
+	foreach ( $models as $model ) {
+		$children = get_posts(
+			array(
+				'post_type'      => 'rover_model',
+				'post_status'    => 'publish',
+				'posts_per_page' => -1,
+				'post_parent'    => $model->ID,
+				'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+				'no_found_rows'  => true,
+			)
+		);
+
+		$item_class = 'models-nav__item' . ( $children ? ' models-nav__item--dropdown' : '' );
+
+		echo '<li class="' . esc_attr( $item_class ) . '">';
+		echo '<a class="models-nav__link" href="' . esc_url( roverland_model_public_url( $model->ID ) ) . '">';
+		echo esc_html( roverland_field( 'model_menu_name', get_the_title( $model ), $model->ID ) );
+
+		if ( $children ) {
+			echo ' <img class="models-nav__arrow" src="' . esc_url( roverland_asset( 'assets/images/icons/ui/chevron-white.svg' ) ) . '" width="10" height="6" alt="" aria-hidden="true">';
+		}
+
+		echo '</a>';
+
+		if ( $children ) {
+			echo '<div class="models-dropdown">';
+			foreach ( $children as $child ) {
+				echo '<a href="' . esc_url( roverland_model_public_url( $child->ID ) ) . '">' . esc_html( roverland_field( 'model_menu_name', get_the_title( $child ), $child->ID ) ) . '</a>';
+			}
+			echo '</div>';
+		}
+
+		echo '</li>';
 	}
+
 	echo '</ul>';
 }
+
