@@ -732,6 +732,801 @@
         "portfolio_cta_text": "Запишитесь на диагностику или обслуживание. Мы проведём осмотр автомобиля и предложим подходящий вариант работ.",
         "portfolio_cta_button": "Записаться в сервис"
       }
+    },
+    {
+      "key": "repair",
+      "title": "Ремонт",
+      "slug": "remont",
+      "template": "default",
+      "seo": {
+        "title": "Ремонт Land Rover и Jaguar в Москве — Rover Land",
+        "description": "Ремонт Land Rover, Range Rover и Jaguar в Москве: двигатель, трансмиссия, рулевое управление и кузовные работы в специализированных техцентрах Rover Land.",
+        "focus_keyword": "ремонт Land Rover Москва"
+      },
+      "fields": {
+        "service_page_kind": "hub",
+        "service_related_service": {
+          "entity_ref": "service:remont"
+        },
+        "service_auto_related": 0,
+        "service_hero_eyebrow": "Специализированный сервис Rover Land",
+        "service_page_h1": "Ремонт Land Rover\nи Jaguar",
+        "service_hero_lead": "Профессиональный ремонт автомобилей Land Rover, Range Rover и Jaguar с 1998 года. Диагностика, агрегатный и кузовной ремонт в специализированных техцентрах Москвы.",
+        "service_hero_image": {
+          "manual_image": true
+        },
+        "service_primary_button_label": "Записаться на ремонт",
+        "service_secondary_button_label": "Выбрать услугу",
+        "service_sections": [
+          {
+            "acf_fc_layout": "cards",
+            "title": "Основные направления ремонта",
+            "items": [
+              {
+                "title": "Ремонт двигателя",
+                "text": "Диагностика, дефектовка и восстановление бензиновых и дизельных двигателей JLR.",
+                "url": "/remont/dvigatel/"
+              },
+              {
+                "title": "Ремонт трансмиссии",
+                "text": "Ремонт и обслуживание автоматических коробок передач, раздаточных коробок и редукторов.",
+                "url": "/remont/transmissiya/"
+              },
+              {
+                "title": "Рулевое управление",
+                "text": "Диагностика и ремонт рулевых реек, насосов и связанных узлов.",
+                "url": "/remont/rulevoe-upravlenie/"
+              },
+              {
+                "title": "Кузовной ремонт",
+                "text": "Восстановление кузова, устранение коррозии, подготовка и окраска.",
+                "url": "/remont/kuzovnoy-remont/"
+              }
+            ]
+          },
+          {
+            "acf_fc_layout": "benefits",
+            "title": "Почему Rover Land",
+            "items": [
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_1.svg",
+                  "alt": ""
+                },
+                "title": "Гарантия 1 год",
+                "text": "Гарантия на выполненные работы и установленные запчасти."
+              },
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_2.svg",
+                  "alt": ""
+                },
+                "title": "С 1998 года",
+                "text": "Более четверти века специализации на автомобилях Land Rover и Jaguar."
+              },
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_3.svg",
+                  "alt": ""
+                },
+                "title": "Спецоборудование",
+                "text": "Диагностическое оборудование и специализированный инструмент для автомобилей JLR."
+              }
+            ]
+          }
+        ],
+        "service_show_appointment": 1,
+        "service_show_branches": 1,
+        "service_show_map": 1
+      }
+    },
+    {
+      "key": "service",
+      "title": "Сервис",
+      "slug": "servis",
+      "template": "default",
+      "seo": {
+        "title": "Сервис Land Rover и Jaguar в Москве — Rover Land",
+        "description": "Техническое обслуживание и сервис Land Rover и Jaguar в Москве: ТО, диагностика, шиномонтаж, эвакуация и другие услуги Rover Land.",
+        "focus_keyword": "сервис Land Rover Москва"
+      },
+      "fields": {
+        "service_page_kind": "hub",
+        "service_related_service": {
+          "entity_ref": "service:servis"
+        },
+        "service_auto_related": 0,
+        "service_hero_eyebrow": "Профессиональное обслуживание",
+        "service_page_h1": "Сервисное обслуживание\nLand Rover и Jaguar",
+        "service_hero_lead": "Специализированный технический центр для британских внедорожников и премиальных автомобилей. Дилерские стандарты, профильная экспертиза и гибкость независимого сервиса.",
+        "service_hero_image": {
+          "manual_image": true
+        },
+        "service_primary_button_label": "Записаться на сервис",
+        "service_secondary_button_label": "Каталог услуг",
+        "service_sections": [
+          {
+            "acf_fc_layout": "text",
+            "title": "Мастерство, проверенное временем",
+            "content": "<p>Rover Land предлагает полный спектр услуг по ремонту и обслуживанию автомобилей Land Rover и Jaguar. Мы понимаем особенности британской инженерии и используем специализированное диагностическое оборудование.</p><p>От планового ТО до сложного ремонта — каждый этап работ проходит внутренний контроль качества.</p>",
+            "image": {
+              "manual_image": true
+            },
+            "image_position": "right"
+          },
+          {
+            "acf_fc_layout": "cards",
+            "title": "Каталог услуг",
+            "items": [
+              {
+                "title": "Техническое обслуживание (ТО)",
+                "text": "Регламентные работы по требованиям производителя.",
+                "url": "/servis/to/"
+              },
+              {
+                "title": "Диагностика",
+                "text": "Компьютерная диагностика электронных систем автомобиля.",
+                "url": "/servis/diagnostika/"
+              },
+              {
+                "title": "Проверка перед покупкой",
+                "text": "Комплексная оценка технического состояния автомобиля.",
+                "url": "/servis/proverka-pered-pokupkoy/"
+              },
+              {
+                "title": "Эвакуация",
+                "text": "Помощь с доставкой автомобиля в техцентр.",
+                "url": "/servis/evakuatsiya/"
+              },
+              {
+                "title": "Шиномонтаж",
+                "text": "Сезонная смена шин, балансировка и сопутствующие работы.",
+                "url": "/servis/shinomontazh/"
+              },
+              {
+                "title": "Химчистка и полировка",
+                "text": "Уход за интерьером и кузовом автомобиля.",
+                "url": "/servis/khimchistka/"
+              }
+            ]
+          }
+        ],
+        "service_show_appointment": 1,
+        "service_show_branches": 1,
+        "service_show_map": 1
+      }
+    },
+    {
+      "key": "parts",
+      "title": "Запчасти",
+      "slug": "zapchasti",
+      "template": "default",
+      "seo": {
+        "title": "Запчасти Land Rover, Range Rover и Jaguar в Москве — Rover Land",
+        "description": "Оригинальные запчасти и качественные аналоги для Land Rover, Range Rover и Jaguar. Подбор комплектующих специалистами Rover Land.",
+        "focus_keyword": "запчасти Land Rover Москва"
+      },
+      "fields": {
+        "service_page_kind": "service",
+        "service_related_service": {
+          "entity_ref": "service:zapchasti"
+        },
+        "service_auto_related": 0,
+        "service_hero_eyebrow": "Запчасти Rover Land",
+        "service_page_h1": "Запчасти Range Rover\nи Jaguar в Москве",
+        "service_hero_lead": "Широкий ассортимент запчастей в наличии и на заказ. Профессиональный подбор комплектующих специалистами с многолетним опытом.",
+        "service_hero_image": {
+          "manual_image": true
+        },
+        "service_primary_button_label": "Заказать подбор",
+        "service_secondary_button_label": "",
+        "service_sections": [
+          {
+            "acf_fc_layout": "benefits",
+            "title": "Запчасти в Rover Land",
+            "items": [
+              {
+                "title": "Наличие",
+                "text": "На складе и дополнительных складах доступен широкий ассортимент востребованных комплектующих."
+              },
+              {
+                "title": "Оригинал",
+                "text": "Оригинальные запасные части для тех, кому важны заводское качество и ресурс."
+              },
+              {
+                "title": "Качественные аналоги",
+                "text": "Подбираем проверенные альтернативы, когда важен баланс цены и качества."
+              }
+            ]
+          },
+          {
+            "acf_fc_layout": "text",
+            "title": "Комплектующие в магазине Rover Land",
+            "content": "<p>Наши специалисты подбирают запасные части для Land Rover, Range Rover и Jaguar с учетом модификации автомобиля, задач ремонта и бюджета.</p><p>Большие объемы закупок и профильная специализация позволяют предлагать оригинальные детали и проверенные аналоги на разумных условиях.</p>",
+            "image": {
+              "manual_image": true
+            },
+            "image_position": "right"
+          }
+        ],
+        "service_show_appointment": 1,
+        "service_show_branches": 1,
+        "service_show_map": 1
+      }
+    },
+    {
+      "key": "engine-repair",
+      "title": "Ремонт двигателя",
+      "slug": "dvigatel",
+      "parent_key": "repair",
+      "template": "default",
+      "seo": {
+        "title": "Ремонт двигателя Land Rover и Jaguar в Москве — Rover Land",
+        "description": "Ремонт бензиновых и дизельных двигателей Land Rover и Jaguar: диагностика, дефектовка и ремонт под ключ в Rover Land.",
+        "focus_keyword": "ремонт двигателя Land Rover"
+      },
+      "fields": {
+        "service_page_kind": "service",
+        "service_related_service": {
+          "entity_ref": "service:remont-dvigatelya"
+        },
+        "service_auto_related": 1,
+        "service_hero_eyebrow": "Ремонт под ключ",
+        "service_page_h1": "Ремонт двигателя\nLand Rover и Jaguar",
+        "service_hero_lead": "Диагностика, дефектовка и восстановление бензиновых и дизельных двигателей JLR с применением специализированного инструмента.",
+        "service_hero_image": {
+          "manual_image": true
+        },
+        "service_primary_button_label": "Записаться на диагностику",
+        "service_secondary_button_label": "Цены под ключ",
+        "service_sections": [
+          {
+            "acf_fc_layout": "text",
+            "title": "Бензиновые агрегаты",
+            "content": "<p>К бензиновым двигателям объёмами 4.4, 5.0 и 3.0 литра относимся с особым вниманием. Проводим комплексную диагностику, дефектовку и восстановление с применением специализированного инструмента.</p><p>Проверяем систему ГРМ, охлаждение, масляные каналы и навесное оборудование. После ремонта двигатель проходит контрольные проверки.</p>",
+            "image": {
+              "manual_image": true
+            },
+            "image_position": "right"
+          },
+          {
+            "acf_fc_layout": "text",
+            "title": "Дизельные ДВС",
+            "content": "<p>Дизельные агрегаты требуют точной диагностики из-за высокой нагрузки на силовой агрегат и турбокомпрессоры.</p><p>Проводим дефектовку, ремонт топливной аппаратуры, турбин и головок блока цилиндров с обязательными контрольными замерами.</p>",
+            "image": {
+              "manual_image": true
+            },
+            "image_position": "left"
+          },
+          {
+            "acf_fc_layout": "matrix_table",
+            "title": "Стоимость ремонта «Под ключ»",
+            "headers": [
+              {
+                "label": "Вариант исполнения"
+              },
+              {
+                "label": "Итоговая цена"
+              }
+            ],
+            "rows": [
+              {
+                "name": "ДВС 2.7",
+                "cells": [
+                  {
+                    "value": "Коленвал в рабочем состоянии"
+                  },
+                  {
+                    "value": "370 000 ₽"
+                  }
+                ]
+              },
+              {
+                "name": "ДВС 3.0",
+                "cells": [
+                  {
+                    "value": "Новый блок цилиндров"
+                  },
+                  {
+                    "value": "825 000 ₽"
+                  }
+                ]
+              },
+              {
+                "name": "ДВС 3.0",
+                "cells": [
+                  {
+                    "value": "С подготовкой техцентра"
+                  },
+                  {
+                    "value": "495 000 ₽"
+                  }
+                ]
+              }
+            ],
+            "note": "Цены носят информационный характер и не являются публичной офертой. Окончательная стоимость зависит от состояния автомобиля и выбранных запчастей."
+          },
+          {
+            "acf_fc_layout": "benefits",
+            "title": "Преимущества Rover Land",
+            "items": [
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_1.svg",
+                  "alt": ""
+                },
+                "title": "Гарантия 1 год",
+                "text": "Гарантия на работы и установленные запасные части."
+              },
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_2.svg",
+                  "alt": ""
+                },
+                "title": "Опыт с 1998 года",
+                "text": "Многолетняя специализация на двигателях Land Rover и Jaguar."
+              },
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_3.svg",
+                  "alt": ""
+                },
+                "title": "Дилерское оборудование",
+                "text": "Специализированный инструмент и профессиональная диагностика."
+              }
+            ]
+          }
+        ],
+        "service_show_appointment": 1,
+        "service_show_branches": 1,
+        "service_show_map": 1
+      }
+    },
+    {
+      "key": "discovery",
+      "title": "Discovery",
+      "slug": "discovery",
+      "template": "default",
+      "seo": {
+        "title": "Ремонт Land Rover Discovery в Москве — Rover Land",
+        "description": "Ремонт и обслуживание Land Rover Discovery в Москве: диагностика, ТО, двигатель, трансмиссия и другие работы в Rover Land.",
+        "focus_keyword": "ремонт Land Rover Discovery"
+      },
+      "fields": {
+        "service_page_kind": "model",
+        "service_related_model": {
+          "entity_ref": "model:discovery"
+        },
+        "service_auto_related": 1,
+        "service_hero_eyebrow": "Премиальный сервис в Москве",
+        "service_page_h1": "Ремонт Land Rover\nDiscovery",
+        "service_hero_lead": "Специализированный сервис Discovery в Москве. Обслуживаем автомобили Land Rover с 1998 года и работаем по профильным регламентам.",
+        "service_hero_image": {
+          "manual_image": true
+        },
+        "service_primary_button_label": "Записаться на диагностику",
+        "service_secondary_button_label": "Услуги Discovery",
+        "service_sections": [
+          {
+            "acf_fc_layout": "text",
+            "title": "Характеристика модели",
+            "content": "<p>Discovery — среднеразмерный премиальный внедорожник Land Rover. Сложность ремонта зависит не только от характера неисправности, но и от поколения, года выпуска и установленного двигателя.</p><p>За годы выпуска модель получила широкий набор бензиновых и дизельных силовых агрегатов, электронных систем и вариантов трансмиссии.</p>",
+            "image": {
+              "manual_image": true
+            },
+            "image_position": "right"
+          },
+          {
+            "acf_fc_layout": "benefits",
+            "title": "Почему Rover Land",
+            "items": [
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_3.svg",
+                  "alt": ""
+                },
+                "title": "Профильное оборудование",
+                "text": "Используем оборудование и инструмент для автомобилей Land Rover."
+              },
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_2.svg",
+                  "alt": ""
+                },
+                "title": "Работаем с 1998 года",
+                "text": "Более 25 лет специализации на британских автомобилях."
+              },
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_1.svg",
+                  "alt": ""
+                },
+                "title": "Гарантия 1 год",
+                "text": "Гарантия на выполненные работы и установленные запчасти."
+              }
+            ]
+          },
+          {
+            "acf_fc_layout": "price_table",
+            "title": "Цены на диагностику и ремонт",
+            "groups": [
+              {
+                "title": "Диагностика автомобиля",
+                "rows": [
+                  {
+                    "name": "Комплексная диагностика",
+                    "work_price": "3 800",
+                    "parts_price": "—"
+                  },
+                  {
+                    "name": "Снятие ошибок",
+                    "work_price": "1 900",
+                    "parts_price": "—"
+                  }
+                ]
+              },
+              {
+                "title": "Двигатель",
+                "rows": [
+                  {
+                    "name": "Замена масла в ДВС",
+                    "work_price": "1 140",
+                    "parts_price": "от 5 800"
+                  },
+                  {
+                    "name": "Замена ремня ГРМ",
+                    "work_price": "7 410",
+                    "parts_price": "от 17 000"
+                  }
+                ]
+              },
+              {
+                "title": "Трансмиссия",
+                "rows": [
+                  {
+                    "name": "Замена масла АКПП",
+                    "work_price": "4 750",
+                    "parts_price": "от 17 438"
+                  },
+                  {
+                    "name": "Замена АКПП / МКПП",
+                    "work_price": "13 110",
+                    "parts_price": "от 95 000"
+                  }
+                ]
+              }
+            ],
+            "note": "Цены носят информационный характер и не являются публичной офертой."
+          }
+        ],
+        "service_show_appointment": 1,
+        "service_show_branches": 1,
+        "service_show_map": 1
+      }
+    },
+    {
+      "key": "maintenance",
+      "title": "Техническое обслуживание",
+      "slug": "to",
+      "parent_key": "service",
+      "template": "default",
+      "seo": {
+        "title": "Техническое обслуживание Land Rover и Jaguar — Rover Land",
+        "description": "Регламентное техническое обслуживание Land Rover и Jaguar в Москве. Выбор модели, обслуживание по пробегу и профильный сервис Rover Land.",
+        "focus_keyword": "техническое обслуживание Land Rover"
+      },
+      "fields": {
+        "service_page_kind": "service",
+        "service_related_service": {
+          "entity_ref": "service:to"
+        },
+        "service_auto_related": 1,
+        "service_hero_eyebrow": "Регламентный сервис",
+        "service_page_h1": "Техническое обслуживание\nLand Rover и Jaguar",
+        "service_hero_lead": "Профессиональный регламентный сервис для поддержания автомобиля в исправном состоянии и своевременной замены технических жидкостей и расходных материалов.",
+        "service_hero_image": {
+          "manual_image": true
+        },
+        "service_primary_button_label": "Записаться на ТО",
+        "service_secondary_button_label": "Выбрать модель",
+        "service_sections": [
+          {
+            "acf_fc_layout": "cards",
+            "title": "Выберите модель",
+            "items": [
+              {
+                "title": "Discovery",
+                "text": "Discovery, Discovery 3, Discovery 4, Discovery 5 и Discovery Sport.",
+                "url": "/discovery/to/"
+              },
+              {
+                "title": "Range Rover",
+                "text": "Range Rover, Range Rover Sport, Evoque и Velar.",
+                "url": "/range-rover/to/"
+              },
+              {
+                "title": "Defender и Freelander",
+                "text": "Регламентное ТО моделей Defender и Freelander.",
+                "url": "/defender/to/"
+              },
+              {
+                "title": "Jaguar",
+                "text": "Техническое обслуживание моделей Jaguar.",
+                "url": "/jaguar/to/"
+              }
+            ]
+          },
+          {
+            "acf_fc_layout": "text",
+            "title": "Почему регулярное ТО критически важно?",
+            "content": "<p>Техническое обслуживание — комплекс профилактических работ, который помогает своевременно выявлять износ узлов и поддерживать автомобиль в исправном состоянии.</p><p>Регламент зависит от модели, двигателя, пробега и условий эксплуатации, поэтому для каждого автомобиля используется свой перечень работ и расходных материалов.</p>",
+            "image": {
+              "manual_image": true
+            },
+            "image_position": "right"
+          }
+        ],
+        "service_show_appointment": 1,
+        "service_show_branches": 1,
+        "service_show_map": 1
+      }
+    },
+    {
+      "key": "discovery-3",
+      "title": "Discovery 3",
+      "slug": "discovery-3",
+      "template": "default",
+      "seo": {
+        "title": "Ремонт Land Rover Discovery 3 в Москве — Rover Land",
+        "description": "Ремонт и обслуживание Land Rover Discovery 3 в Москве в специализированных техцентрах Rover Land.",
+        "focus_keyword": "ремонт Discovery 3"
+      },
+      "fields": {
+        "service_page_kind": "model",
+        "service_related_model": {
+          "entity_ref": "model:discovery-3"
+        },
+        "service_auto_related": 1,
+        "service_hero_eyebrow": "Land Rover Discovery",
+        "service_page_h1": "Ремонт и обслуживание\nDiscovery 3",
+        "service_hero_lead": "Профильный сервис Land Rover Discovery 3: диагностика, техническое обслуживание и ремонт основных систем автомобиля.",
+        "service_hero_image": {
+          "manual_image": true
+        },
+        "service_primary_button_label": "Записаться на сервис",
+        "service_secondary_button_label": "Услуги Discovery 3",
+        "service_sections": [
+          {
+            "acf_fc_layout": "benefits",
+            "title": "Rover Land для Discovery 3",
+            "items": [
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_3.svg",
+                  "alt": ""
+                },
+                "title": "Профильная диагностика",
+                "text": "Знаем особенности электронных и механических систем Discovery 3."
+              },
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_2.svg",
+                  "alt": ""
+                },
+                "title": "Опыт",
+                "text": "Работаем с автомобилями Land Rover с 1998 года."
+              },
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_1.svg",
+                  "alt": ""
+                },
+                "title": "Гарантия",
+                "text": "Предоставляем гарантию на выполненные работы."
+              }
+            ]
+          }
+        ],
+        "service_show_appointment": 1,
+        "service_show_branches": 1,
+        "service_show_map": 1
+      }
+    },
+    {
+      "key": "discovery-3-maintenance",
+      "title": "Техническое обслуживание Discovery 3",
+      "slug": "to",
+      "parent_key": "discovery-3",
+      "template": "default",
+      "seo": {
+        "title": "ТО Discovery 3 — цена технического обслуживания в Rover Land",
+        "description": "Техническое обслуживание Land Rover Discovery 3: регламентные работы для дизельных и бензиновых автомобилей, цены и запись в Rover Land.",
+        "focus_keyword": "ТО Discovery 3"
+      },
+      "fields": {
+        "service_page_kind": "maintenance",
+        "service_related_model": {
+          "entity_ref": "model:discovery-3"
+        },
+        "service_related_service": {
+          "entity_ref": "service:to"
+        },
+        "service_auto_related": 1,
+        "service_hero_eyebrow": "Регламентное обслуживание",
+        "service_page_h1": "Техническое обслуживание\nDiscovery 3",
+        "service_hero_lead": "Плановое обслуживание Discovery 3 с учетом двигателя, пробега и регламента. Используем профильные расходные материалы и проверяем основные системы автомобиля.",
+        "service_hero_image": {
+          "manual_image": true
+        },
+        "service_primary_button_label": "Записаться на ТО",
+        "service_secondary_button_label": "Цены ТО",
+        "service_sections": [
+          {
+            "acf_fc_layout": "matrix_table",
+            "title": "Land Rover Discovery 3 (дизель)",
+            "headers": [
+              {
+                "label": "Детали"
+              },
+              {
+                "label": "Стоимость"
+              }
+            ],
+            "rows": [
+              {
+                "name": "ТО 13 000",
+                "cells": [
+                  {
+                    "value": "Масло ДВС, масляный, воздушный и салонный фильтры, пробка, расходные материалы"
+                  },
+                  {
+                    "value": "32 000 ₽"
+                  }
+                ]
+              },
+              {
+                "name": "ТО 26 000",
+                "cells": [
+                  {
+                    "value": "Масло ДВС, масляный, воздушный, салонный и топливный фильтры, пробка, расходные материалы"
+                  },
+                  {
+                    "value": "46 000 ₽"
+                  }
+                ]
+              },
+              {
+                "name": "ТО 39 000",
+                "cells": [
+                  {
+                    "value": "Масло ДВС, масляный, воздушный и салонный фильтры, пробка, расходные материалы"
+                  },
+                  {
+                    "value": "32 000 ₽"
+                  }
+                ]
+              },
+              {
+                "name": "ТО 130 000",
+                "cells": [
+                  {
+                    "value": "Комплексное ТО, масла в редукторах, раздатке и АКПП, охлаждающая жидкость"
+                  },
+                  {
+                    "value": "118 000 ₽"
+                  }
+                ]
+              }
+            ],
+            "note": "Цены носят ознакомительный характер и могут меняться в зависимости от выбранных запчастей."
+          },
+          {
+            "acf_fc_layout": "matrix_table",
+            "title": "Land Rover Discovery 3 (бензин)",
+            "headers": [
+              {
+                "label": "Детали"
+              },
+              {
+                "label": "Запчасти"
+              },
+              {
+                "label": "Работы"
+              },
+              {
+                "label": "Итого"
+              }
+            ],
+            "rows": [
+              {
+                "name": "ТО 13 000",
+                "cells": [
+                  {
+                    "value": "Масло ДВС, фильтры, расходные материалы"
+                  },
+                  {
+                    "value": "15 614 ₽"
+                  },
+                  {
+                    "value": "2 280 ₽"
+                  },
+                  {
+                    "value": "17 894 ₽"
+                  }
+                ]
+              },
+              {
+                "name": "ТО 26 000",
+                "cells": [
+                  {
+                    "value": "Масло ДВС, расширенный комплект фильтров и расходных материалов"
+                  },
+                  {
+                    "value": "30 377 ₽"
+                  },
+                  {
+                    "value": "8 550 ₽"
+                  },
+                  {
+                    "value": "38 927 ₽"
+                  }
+                ]
+              },
+              {
+                "name": "ТО 117 000",
+                "cells": [
+                  {
+                    "value": "Плановое ТО и инспекция основных узлов"
+                  },
+                  {
+                    "value": "41 665 ₽"
+                  },
+                  {
+                    "value": "9 120 ₽"
+                  },
+                  {
+                    "value": "50 785 ₽"
+                  }
+                ]
+              }
+            ],
+            "note": "Цены носят ознакомительный характер и могут меняться в зависимости от выбранного бренда запчастей."
+          },
+          {
+            "acf_fc_layout": "benefits",
+            "title": "Преимущества обслуживания",
+            "items": [
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_3.svg",
+                  "alt": ""
+                },
+                "title": "Профильный сервис",
+                "text": "Специализация на автомобилях Land Rover."
+              },
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_2.svg",
+                  "alt": ""
+                },
+                "title": "Опыт с 1998 года",
+                "text": "Многолетний опыт обслуживания Discovery."
+              },
+              {
+                "icon": {
+                  "theme_image": "assets/images/icons/ui/advantage_1.svg",
+                  "alt": ""
+                },
+                "title": "Гарантия 1 год",
+                "text": "Гарантия на выполненные работы и установленные запчасти."
+              }
+            ]
+          }
+        ],
+        "service_show_appointment": 1,
+        "service_show_branches": 1,
+        "service_show_map": 1
+      }
     }
   ],
   "vacancies": [
@@ -1762,6 +2557,19 @@
         "service_short_name": "Выкуп авто",
         "service_menu_name": "Выкуп авто",
         "service_sort": 30
+      }
+    },
+    {
+      "key": "service-parts",
+      "title": "Запчасти",
+      "slug": "zapchasti",
+      "menu_order": 40,
+      "fields": {
+        "service_slug": "zapchasti",
+        "service_short_name": "Запчасти",
+        "service_menu_name": "Запчасти",
+        "service_intro": "Подбор и поставка запчастей для Land Rover, Range Rover и Jaguar.",
+        "service_sort": 40
       }
     }
   ]
