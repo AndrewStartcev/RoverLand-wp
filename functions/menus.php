@@ -146,6 +146,8 @@ function roverland_models_menu_fallback() {
 	echo '<ul class="models-nav__list">';
 
 	foreach ( $models as $model ) {
+		$model_page = roverland_get_service_page_for_model( $model->ID );
+
 		$children = get_posts(
 			array(
 				'post_type'      => 'rover_model',
@@ -157,10 +159,24 @@ function roverland_models_menu_fallback() {
 			)
 		);
 
+		$children = array_values(
+			array_filter(
+				$children,
+				static function ( $child ) {
+					return (bool) roverland_get_service_page_for_model( $child->ID );
+				}
+			)
+		);
+
+		if ( ! $model_page && ! $children ) {
+			continue;
+		}
+
 		$item_class = 'models-nav__item' . ( $children ? ' models-nav__item--dropdown' : '' );
+		$model_url  = $model_page ? get_permalink( $model_page ) : '#';
 
 		echo '<li class="' . esc_attr( $item_class ) . '">';
-		echo '<a class="models-nav__link" href="' . esc_url( roverland_model_public_url( $model->ID ) ) . '">';
+		echo '<a class="models-nav__link" href="' . esc_url( $model_url ) . '">';
 		echo esc_html( roverland_field( 'model_menu_name', get_the_title( $model ), $model->ID ) );
 
 		if ( $children ) {
@@ -172,7 +188,12 @@ function roverland_models_menu_fallback() {
 		if ( $children ) {
 			echo '<div class="models-dropdown">';
 			foreach ( $children as $child ) {
-				echo '<a href="' . esc_url( roverland_model_public_url( $child->ID ) ) . '">' . esc_html( roverland_field( 'model_menu_name', get_the_title( $child ), $child->ID ) ) . '</a>';
+				$child_page = roverland_get_service_page_for_model( $child->ID );
+				if ( ! $child_page ) {
+					continue;
+				}
+
+				echo '<a href="' . esc_url( get_permalink( $child_page ) ) . '">' . esc_html( roverland_field( 'model_menu_name', get_the_title( $child ), $child->ID ) ) . '</a>';
 			}
 			echo '</div>';
 		}
