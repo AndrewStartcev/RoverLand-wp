@@ -131,7 +131,12 @@
     "common_appointment_phone": "+7 (495) 797-30-31",
     "common_appointment_button": "Отправить заявку",
     "careers_contact_name": "Заверняев Геннадий",
-    "careers_contact_phone": "+7 (495) 668-06-58"
+    "careers_contact_phone": "+7 (495) 668-06-58",
+    "yandex_feed_enabled": 1,
+    "yandex_feed_path": "yandex-services.yml",
+    "yandex_feed_vendor": "Rover Land",
+    "yandex_feed_currency": "RUB",
+    "yandex_feed_default_category": "Автосервис"
   },
   "pages": [
     {
