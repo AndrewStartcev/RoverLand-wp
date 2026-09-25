@@ -108,6 +108,13 @@
       "default_value": 1
     },
     {
+      "key": "field_rl_service_page_legacy_url",
+      "label": "Источник на старом сайте",
+      "name": "legacy_source_url",
+      "type": "url",
+      "instructions": "Служебное поле для миграции и сверки контента с roverland.ru."
+    },
+    {
       "key": "field_rl_service_page_tab_hero",
       "label": "Первый экран",
       "type": "tab",
@@ -647,5 +654,5 @@
   "active": true,
   "description": "Универсальная модель страниц ремонта, сервиса, модели автомобиля и услуг для конкретной модели.",
   "show_in_rest": 0,
-  "modified": 1790373901
+  "modified": 1790374000
 }
