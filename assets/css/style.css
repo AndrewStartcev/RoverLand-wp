@@ -764,3 +764,49 @@ body.admin-bar .site-header {
   .service-benefit-card,
   .service-related-card { padding: 24px; }
 }
+
+
+/* Dynamic nested mobile navigation */
+.mobile-nav__group {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-nav__group summary {
+  position: relative;
+  display: block;
+  padding: 14px 28px 14px 0;
+  cursor: pointer;
+  font: inherit;
+  list-style: none;
+}
+
+.mobile-nav__group summary::-webkit-details-marker { display: none; }
+
+.mobile-nav__group summary::after {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  content: "+";
+  transform: translateY(-50%);
+}
+
+.mobile-nav__group[open] summary::after { content: "−"; }
+
+.mobile-nav__group > a {
+  display: block;
+  border: 0;
+}
+
+.mobile-nav__root {
+  font-weight: 600;
+}
+
+.mobile-nav__child {
+  padding-left: 14px !important;
+}
+
+.mobile-nav__grandchild {
+  padding-left: 28px !important;
+  font-size: 14px !important;
+  opacity: .78;
+}

@@ -18,19 +18,7 @@ $socials           = roverland_get_social_links();
 
 			<nav class="main-nav" aria-label="Основная навигация" data-desktop-nav>
 				<?php
-				if ( has_nav_menu( 'primary-menu' ) ) {
-					wp_nav_menu(
-						array(
-							'theme_location' => 'primary-menu',
-							'container'      => false,
-							'menu_class'     => 'main-nav__list',
-							'depth'          => 3,
-							'walker'         => new Roverland_Menu_Walker( 'main' ),
-						)
-					);
-				} else {
-					roverland_primary_menu_fallback();
-				}
+				roverland_primary_menu_fallback();
 				?>
 			</nav>
 
@@ -54,19 +42,7 @@ $socials           = roverland_get_social_links();
 		<div class="site-header__wide site-header__wide--models">
 			<nav class="models-nav" aria-label="Модели автомобилей">
 				<?php
-				if ( has_nav_menu( 'models-menu' ) ) {
-					wp_nav_menu(
-						array(
-							'theme_location' => 'models-menu',
-							'container'      => false,
-							'menu_class'     => 'models-nav__list',
-							'depth'          => 2,
-							'walker'         => new Roverland_Menu_Walker( 'models' ),
-						)
-					);
-				} else {
-					roverland_models_menu_fallback();
-				}
+				roverland_models_menu_fallback();
 				?>
 			</nav>
 
@@ -101,15 +77,7 @@ $socials           = roverland_get_social_links();
 		</div>
 
 		<nav class="mobile-nav" aria-label="Мобильная навигация">
-			<a href="<?php echo esc_url( roverland_page_url( 'services' ) ); ?>">Ремонт</a>
-			<a href="<?php echo esc_url( roverland_page_url( 'service' ) ); ?>">Сервис</a>
-			<a href="<?php echo esc_url( roverland_page_url( 'parts' ) ); ?>">Запчасти</a>
-			<a href="<?php echo esc_url( roverland_page_url( 'kompaniya' ) ); ?>">О компании</a>
-			<a href="<?php echo esc_url( roverland_page_url( 'kompaniya/vakansii' ) ); ?>">Вакансии</a>
-			<a href="<?php echo esc_url( roverland_page_url( 'vacancies' ) ); ?>">Вакансии</a>
-			<a href="<?php echo esc_url( roverland_page_url( 'promotions' ) ); ?>">Акции</a>
-			<a href="<?php echo esc_url( roverland_page_url( 'portfolio' ) ); ?>">Портфолио</a>
-			<a href="<?php echo esc_url( roverland_page_url( 'contacts' ) ); ?>">Контакты</a>
+			<?php roverland_mobile_menu_fallback(); ?>
 		</nav>
 
 		<a class="button button--primary button--wide" href="<?php echo esc_url( $appointment_url ); ?>">
