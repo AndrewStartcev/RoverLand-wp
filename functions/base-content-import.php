@@ -347,7 +347,7 @@ function roverland_base_import_upsert_page( $page_data, &$report, $parent_id = 0
 
 	$postarr = array(
 		'post_type'    => 'page',
-		'post_status'  => 'publish',
+		'post_status'  => ! empty( $page_data['status'] ) && in_array( $page_data['status'], array( 'publish', 'draft', 'private' ), true ) ? $page_data['status'] : 'publish',
 		'post_title'   => $page_data['title'],
 		'post_name'    => $page_data['slug'],
 		'post_parent'  => (int) $parent_id,
