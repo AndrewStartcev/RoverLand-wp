@@ -260,6 +260,79 @@
       "wrapper": {
         "width": "50"
       }
+    },
+    {
+      "key": "field_rl_site_tab_yandex_feed",
+      "label": "Яндекс-фид услуг",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_yandex_feed_enabled",
+      "label": "Включить YML-фид",
+      "name": "yandex_feed_enabled",
+      "type": "true_false",
+      "ui": 1,
+      "default_value": 1,
+      "wrapper": {
+        "width": "25"
+      }
+    },
+    {
+      "key": "field_rl_yandex_feed_path",
+      "label": "Имя файла",
+      "name": "yandex_feed_path",
+      "type": "text",
+      "default_value": "yandex-services.yml",
+      "instructions": "Фид будет доступен по адресу /yandex-services.yml. Используйте только имя файла без домена.",
+      "wrapper": {
+        "width": "35"
+      }
+    },
+    {
+      "key": "field_rl_yandex_feed_vendor",
+      "label": "Бренд / vendor",
+      "name": "yandex_feed_vendor",
+      "type": "text",
+      "default_value": "Rover Land",
+      "wrapper": {
+        "width": "25"
+      }
+    },
+    {
+      "key": "field_rl_yandex_feed_currency",
+      "label": "Валюта",
+      "name": "yandex_feed_currency",
+      "type": "select",
+      "choices": {
+        "RUB": "RUB",
+        "KZT": "KZT",
+        "BYN": "BYN"
+      },
+      "default_value": "RUB",
+      "return_format": "value",
+      "wrapper": {
+        "width": "15"
+      }
+    },
+    {
+      "key": "field_rl_yandex_feed_default_category",
+      "label": "Категория по умолчанию",
+      "name": "yandex_feed_default_category",
+      "type": "text",
+      "default_value": "Автосервис",
+      "instructions": "Используется, если у позиции фида не указана собственная категория.",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_yandex_feed_note",
+      "label": "Важно",
+      "type": "message",
+      "message": "В фид попадают только включенные позиции с точной ценой больше 0. Яндекс Бизнес не публикует позиции без цены или с диапазоном цен.",
+      "new_lines": "wpautop",
+      "esc_html": 0
     }
   ],
   "location": [
@@ -280,5 +353,5 @@
   "active": true,
   "description": "Глобальные данные сайта: логотипы, контакты, филиалы, соцсети и карта.",
   "show_in_rest": 0,
-  "modified": 1790001000
+  "modified": 1790373900
 }
