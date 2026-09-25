@@ -485,6 +485,111 @@
       }
     },
     {
+      "key": "field_rl_service_page_tab_yandex",
+      "label": "Яндекс-фид",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_service_yandex_note",
+      "label": "Позиции YML",
+      "type": "message",
+      "message": "Одна страница может отдавать несколько услуг в Яндекс Бизнес. Указывайте только точную актуальную цену.",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
+      "key": "field_rl_service_yandex_offers",
+      "label": "Услуги для Яндекс Бизнеса",
+      "name": "yandex_feed_offers",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Добавить услугу",
+      "sub_fields": [
+        {
+          "key": "field_rl_service_yandex_enabled",
+          "label": "Публиковать",
+          "name": "enabled",
+          "type": "true_false",
+          "ui": 1,
+          "default_value": 1,
+          "wrapper": {
+            "width": "15"
+          }
+        },
+        {
+          "key": "field_rl_service_yandex_name",
+          "label": "Название",
+          "name": "name",
+          "type": "text",
+          "maxlength": 250,
+          "wrapper": {
+            "width": "45"
+          }
+        },
+        {
+          "key": "field_rl_service_yandex_category",
+          "label": "Категория",
+          "name": "category",
+          "type": "text",
+          "maxlength": 250,
+          "wrapper": {
+            "width": "40"
+          }
+        },
+        {
+          "key": "field_rl_service_yandex_price",
+          "label": "Цена",
+          "name": "price",
+          "type": "number",
+          "min": 0,
+          "step": "0.01",
+          "instructions": "Только точная цена.",
+          "wrapper": {
+            "width": "20"
+          }
+        },
+        {
+          "key": "field_rl_service_yandex_short",
+          "label": "Короткое описание",
+          "name": "short_description",
+          "type": "textarea",
+          "rows": 2,
+          "maxlength": 250,
+          "new_lines": "",
+          "wrapper": {
+            "width": "40"
+          }
+        },
+        {
+          "key": "field_rl_service_yandex_description",
+          "label": "Описание",
+          "name": "description",
+          "type": "textarea",
+          "rows": 3,
+          "maxlength": 3000,
+          "new_lines": "",
+          "wrapper": {
+            "width": "40"
+          }
+        },
+        {
+          "key": "field_rl_service_yandex_picture",
+          "label": "Изображение",
+          "name": "picture",
+          "type": "image",
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all",
+          "mime_types": "png,jpg,jpeg",
+          "instructions": "Необязательно. Если пусто — используется hero страницы.",
+          "wrapper": {
+            "width": "30"
+          }
+        }
+      ]
+    },
+    {
       "key": "field_rl_service_page_tab_common",
       "label": "Общие блоки",
       "type": "tab",
@@ -542,5 +647,5 @@
   "active": true,
   "description": "Универсальная модель страниц ремонта, сервиса, модели автомобиля и услуг для конкретной модели.",
   "show_in_rest": 0,
-  "modified": 1790003200
+  "modified": 1790373901
 }
