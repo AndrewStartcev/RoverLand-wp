@@ -12,8 +12,8 @@
     "site_header_appointment_label": "Записаться на ТО",
     "site_footer_description": "РоверЛэнд — сервис и ремонт Land Rover. Профессиональное обслуживание для истинных ценителей британского качества.",
     "site_copyright": "РоверЛэнд. Все права защищены.",
-    "site_main_phone": "+7 (495) 797-30-31",
-    "site_email": "",
+    "site_main_phone": "+7 (495) 668-06-58",
+    "site_email": "info@roverland.ru",
     "site_work_hours": "",
     "site_yandex_maps_api_key": "6b4eac7a-0149-488d-b8c5-391ae43a22e4",
     "site_branches": [
@@ -61,65 +61,25 @@
     "site_social_links": [
       {
         "name": "Телефон",
-        "url": "tel:+74957973031",
+        "url": "tel:+74956680658",
         "icon": {
           "theme_image": "assets/images/icons/social/phone.svg",
           "alt": ""
         }
       },
       {
-        "name": "WhatsApp",
-        "url": "#",
-        "icon": {
-          "theme_image": "assets/images/icons/social/whatsapp.svg",
-          "alt": ""
-        }
-      },
-      {
         "name": "Telegram",
-        "url": "#",
+        "url": "https://t.me/roverlandservice",
         "icon": {
           "theme_image": "assets/images/icons/social/telegram.svg",
           "alt": ""
         }
       },
       {
-        "name": "ВКонтакте",
-        "url": "#",
-        "icon": {
-          "theme_image": "assets/images/icons/social/vk.svg",
-          "alt": ""
-        }
-      },
-      {
-        "name": "Viber",
-        "url": "#",
-        "icon": {
-          "theme_image": "assets/images/icons/social/viber.svg",
-          "alt": ""
-        }
-      },
-      {
-        "name": "Дзен",
-        "url": "#",
-        "icon": {
-          "theme_image": "assets/images/icons/social/dzen.svg",
-          "alt": ""
-        }
-      },
-      {
         "name": "YouTube",
-        "url": "#",
+        "url": "https://www.youtube.com/channel/UCaQ-8REmuTeJ08uotwYNNig",
         "icon": {
           "theme_image": "assets/images/icons/social/youtube.svg",
-          "alt": ""
-        }
-      },
-      {
-        "name": "Одноклассники",
-        "url": "#",
-        "icon": {
-          "theme_image": "assets/images/icons/social/ok.svg",
           "alt": ""
         }
       }
@@ -128,7 +88,7 @@
     "common_appointment_title": "Запишитесь на сервис",
     "common_appointment_accent": "прямо сейчас",
     "common_appointment_description": "Оставьте свои контактные данные, и наш мастер-консультант перезвонит вам в течение 15 минут для уточнения деталей и записи.",
-    "common_appointment_phone": "+7 (495) 797-30-31",
+    "common_appointment_phone": "+7 (495) 668-06-58",
     "common_appointment_button": "Отправить заявку",
     "careers_contact_name": "Заверняев Геннадий",
     "careers_contact_phone": "+7 (495) 668-06-58",
@@ -292,7 +252,7 @@
     {
       "key": "contacts",
       "title": "Контакты",
-      "slug": "contacts",
+      "slug": "kontakty",
       "template": "page-contacts.php",
       "fields": {
         "contacts_title": "Наши техцентры",
@@ -300,6 +260,9 @@
         "contacts_show_centers": 1,
         "contacts_show_map": 1,
         "contacts_show_appointment": 1
+      },
+      "seo": {
+        "title": "Контакты Rover Land — техцентры в Москве"
       }
     },
     {
@@ -2721,7 +2684,7 @@
       "slug": "to",
       "parent_key": "discovery",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Discovery — Rover Land",
         "description": "Техническое обслуживание Discovery в специализированных техцентрах Rover Land в Москве.",
@@ -2757,7 +2720,7 @@
       "slug": "zamena-masla",
       "parent_key": "discovery",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Discovery — Rover Land",
         "description": "Замена масла в двигателе Discovery в специализированных техцентрах Rover Land в Москве.",
@@ -2793,7 +2756,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "discovery",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Discovery — Rover Land",
         "description": "Замена масла в АКПП Discovery в специализированных техцентрах Rover Land в Москве.",
@@ -2826,10 +2789,10 @@
     {
       "key": "legacy-discovery-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Discovery",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "discovery",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Discovery — Rover Land",
         "description": "Замена тормозных колодок Discovery в специализированных техцентрах Rover Land в Москве.",
@@ -2844,7 +2807,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/discovery/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/discovery/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Discovery",
         "service_hero_lead": "Замена тормозных колодок Discovery: профильное обслуживание и ремонт в Rover Land.",
@@ -2862,10 +2825,10 @@
     {
       "key": "legacy-discovery-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Discovery",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "discovery",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Discovery — Rover Land",
         "description": "Замена ремня ГРМ Discovery в специализированных техцентрах Rover Land в Москве.",
@@ -2880,7 +2843,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/discovery/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/discovery/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Discovery",
         "service_hero_lead": "Замена ремня ГРМ Discovery: профильное обслуживание и ремонт в Rover Land.",
@@ -2901,7 +2864,7 @@
       "slug": "diagnostika",
       "parent_key": "discovery",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Discovery — Rover Land",
         "description": "Диагностика Discovery в специализированных техцентрах Rover Land в Москве.",
@@ -2937,7 +2900,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "discovery",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Discovery — Rover Land",
         "description": "Ремонт двигателя Discovery в специализированных техцентрах Rover Land в Москве.",
@@ -2973,7 +2936,7 @@
       "slug": "remont-akpp",
       "parent_key": "discovery",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Discovery — Rover Land",
         "description": "Ремонт АКПП Discovery в специализированных техцентрах Rover Land в Москве.",
@@ -3009,7 +2972,7 @@
       "slug": "remont-turbiny",
       "parent_key": "discovery",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Discovery — Rover Land",
         "description": "Ремонт турбины Discovery в специализированных техцентрах Rover Land в Москве.",
@@ -3045,7 +3008,7 @@
       "slug": "zamena-masla",
       "parent_key": "discovery-3",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Discovery 3 — Rover Land",
         "description": "Замена масла в двигателе Discovery 3 в специализированных техцентрах Rover Land в Москве.",
@@ -3081,7 +3044,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "discovery-3",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Discovery 3 — Rover Land",
         "description": "Замена масла в АКПП Discovery 3 в специализированных техцентрах Rover Land в Москве.",
@@ -3114,10 +3077,10 @@
     {
       "key": "legacy-discovery-3-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Discovery 3",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "discovery-3",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Discovery 3 — Rover Land",
         "description": "Замена тормозных колодок Discovery 3 в специализированных техцентрах Rover Land в Москве.",
@@ -3132,7 +3095,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/discovery-3/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/discovery-3/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Discovery 3",
         "service_hero_lead": "Замена тормозных колодок Discovery 3: профильное обслуживание и ремонт в Rover Land.",
@@ -3153,7 +3116,7 @@
       "slug": "remont-akpp",
       "parent_key": "discovery-3",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Discovery 3 — Rover Land",
         "description": "Ремонт АКПП Discovery 3 в специализированных техцентрах Rover Land в Москве.",
@@ -3189,7 +3152,7 @@
       "slug": "to",
       "parent_key": "model-page-discovery-4",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Discovery 4 — Rover Land",
         "description": "Техническое обслуживание Discovery 4 в специализированных техцентрах Rover Land в Москве.",
@@ -3225,7 +3188,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-discovery-4",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Discovery 4 — Rover Land",
         "description": "Замена масла в двигателе Discovery 4 в специализированных техцентрах Rover Land в Москве.",
@@ -3261,7 +3224,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-discovery-4",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Discovery 4 — Rover Land",
         "description": "Замена масла в АКПП Discovery 4 в специализированных техцентрах Rover Land в Москве.",
@@ -3294,10 +3257,10 @@
     {
       "key": "legacy-discovery-4-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Discovery 4",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-discovery-4",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Discovery 4 — Rover Land",
         "description": "Замена тормозных колодок Discovery 4 в специализированных техцентрах Rover Land в Москве.",
@@ -3312,7 +3275,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/discovery-4/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/discovery-4/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Discovery 4",
         "service_hero_lead": "Замена тормозных колодок Discovery 4: профильное обслуживание и ремонт в Rover Land.",
@@ -3333,7 +3296,7 @@
       "slug": "to",
       "parent_key": "model-page-discovery-5",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Discovery 5 — Rover Land",
         "description": "Техническое обслуживание Discovery 5 в специализированных техцентрах Rover Land в Москве.",
@@ -3369,7 +3332,7 @@
       "slug": "to",
       "parent_key": "model-page-discovery-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Discovery Sport — Rover Land",
         "description": "Техническое обслуживание Discovery Sport в специализированных техцентрах Rover Land в Москве.",
@@ -3405,7 +3368,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-discovery-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Discovery Sport — Rover Land",
         "description": "Замена масла в двигателе Discovery Sport в специализированных техцентрах Rover Land в Москве.",
@@ -3441,7 +3404,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-discovery-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Discovery Sport — Rover Land",
         "description": "Замена масла в АКПП Discovery Sport в специализированных техцентрах Rover Land в Москве.",
@@ -3474,10 +3437,10 @@
     {
       "key": "legacy-discovery-sport-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Discovery Sport",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-discovery-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Discovery Sport — Rover Land",
         "description": "Замена тормозных колодок Discovery Sport в специализированных техцентрах Rover Land в Москве.",
@@ -3492,7 +3455,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/discovery-sport/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/discovery-sport/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Discovery Sport",
         "service_hero_lead": "Замена тормозных колодок Discovery Sport: профильное обслуживание и ремонт в Rover Land.",
@@ -3510,10 +3473,10 @@
     {
       "key": "legacy-discovery-sport-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Discovery Sport",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-discovery-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Discovery Sport — Rover Land",
         "description": "Замена ремня ГРМ Discovery Sport в специализированных техцентрах Rover Land в Москве.",
@@ -3528,7 +3491,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/discovery-sport/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/discovery-sport/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Discovery Sport",
         "service_hero_lead": "Замена ремня ГРМ Discovery Sport: профильное обслуживание и ремонт в Rover Land.",
@@ -3549,7 +3512,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-discovery-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Discovery Sport — Rover Land",
         "description": "Диагностика Discovery Sport в специализированных техцентрах Rover Land в Москве.",
@@ -3585,7 +3548,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-discovery-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Discovery Sport — Rover Land",
         "description": "Ремонт двигателя Discovery Sport в специализированных техцентрах Rover Land в Москве.",
@@ -3621,7 +3584,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-discovery-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Discovery Sport — Rover Land",
         "description": "Ремонт АКПП Discovery Sport в специализированных техцентрах Rover Land в Москве.",
@@ -3657,7 +3620,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-discovery-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Discovery Sport — Rover Land",
         "description": "Ремонт турбины Discovery Sport в специализированных техцентрах Rover Land в Москве.",
@@ -3693,7 +3656,7 @@
       "slug": "to",
       "parent_key": "model-page-range-rover",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Range Rover — Rover Land",
         "description": "Техническое обслуживание Range Rover в специализированных техцентрах Rover Land в Москве.",
@@ -3729,7 +3692,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-range-rover",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Range Rover — Rover Land",
         "description": "Замена масла в двигателе Range Rover в специализированных техцентрах Rover Land в Москве.",
@@ -3765,7 +3728,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-range-rover",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Range Rover — Rover Land",
         "description": "Замена масла в АКПП Range Rover в специализированных техцентрах Rover Land в Москве.",
@@ -3798,10 +3761,10 @@
     {
       "key": "legacy-range-rover-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Range Rover",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-range-rover",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Range Rover — Rover Land",
         "description": "Замена тормозных колодок Range Rover в специализированных техцентрах Rover Land в Москве.",
@@ -3816,7 +3779,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/range-rover/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/range-rover/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Range Rover",
         "service_hero_lead": "Замена тормозных колодок Range Rover: профильное обслуживание и ремонт в Rover Land.",
@@ -3834,10 +3797,10 @@
     {
       "key": "legacy-range-rover-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Range Rover",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-range-rover",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Range Rover — Rover Land",
         "description": "Замена ремня ГРМ Range Rover в специализированных техцентрах Rover Land в Москве.",
@@ -3852,7 +3815,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/range-rover/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/range-rover/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Range Rover",
         "service_hero_lead": "Замена ремня ГРМ Range Rover: профильное обслуживание и ремонт в Rover Land.",
@@ -3873,7 +3836,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-range-rover",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Range Rover — Rover Land",
         "description": "Диагностика Range Rover в специализированных техцентрах Rover Land в Москве.",
@@ -3909,7 +3872,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-range-rover",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Range Rover — Rover Land",
         "description": "Ремонт двигателя Range Rover в специализированных техцентрах Rover Land в Москве.",
@@ -3945,7 +3908,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-range-rover",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Range Rover — Rover Land",
         "description": "Ремонт АКПП Range Rover в специализированных техцентрах Rover Land в Москве.",
@@ -3981,7 +3944,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-range-rover",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Range Rover — Rover Land",
         "description": "Ремонт турбины Range Rover в специализированных техцентрах Rover Land в Москве.",
@@ -4017,7 +3980,7 @@
       "slug": "to",
       "parent_key": "model-page-range-rover-vogue",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Range Rover Vogue — Rover Land",
         "description": "Техническое обслуживание Range Rover Vogue в специализированных техцентрах Rover Land в Москве.",
@@ -4053,7 +4016,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-range-rover-vogue",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Range Rover Vogue — Rover Land",
         "description": "Замена масла в двигателе Range Rover Vogue в специализированных техцентрах Rover Land в Москве.",
@@ -4089,7 +4052,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-range-rover-vogue",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Range Rover Vogue — Rover Land",
         "description": "Замена масла в АКПП Range Rover Vogue в специализированных техцентрах Rover Land в Москве.",
@@ -4122,10 +4085,10 @@
     {
       "key": "legacy-range-rover-vogue-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Range Rover Vogue",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-range-rover-vogue",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Range Rover Vogue — Rover Land",
         "description": "Замена тормозных колодок Range Rover Vogue в специализированных техцентрах Rover Land в Москве.",
@@ -4140,7 +4103,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/range-rover-vogue/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/range-rover-vogue/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Range Rover Vogue",
         "service_hero_lead": "Замена тормозных колодок Range Rover Vogue: профильное обслуживание и ремонт в Rover Land.",
@@ -4161,7 +4124,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-range-rover-vogue",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Range Rover Vogue — Rover Land",
         "description": "Диагностика Range Rover Vogue в специализированных техцентрах Rover Land в Москве.",
@@ -4197,7 +4160,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-range-rover-vogue",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Range Rover Vogue — Rover Land",
         "description": "Ремонт двигателя Range Rover Vogue в специализированных техцентрах Rover Land в Москве.",
@@ -4233,7 +4196,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-range-rover-vogue",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Range Rover Vogue — Rover Land",
         "description": "Ремонт АКПП Range Rover Vogue в специализированных техцентрах Rover Land в Москве.",
@@ -4269,7 +4232,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-range-rover-vogue",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Range Rover Vogue — Rover Land",
         "description": "Ремонт турбины Range Rover Vogue в специализированных техцентрах Rover Land в Москве.",
@@ -4305,7 +4268,7 @@
       "slug": "to",
       "parent_key": "model-page-range-rover-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Range Rover Sport — Rover Land",
         "description": "Техническое обслуживание Range Rover Sport в специализированных техцентрах Rover Land в Москве.",
@@ -4341,7 +4304,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-range-rover-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Range Rover Sport — Rover Land",
         "description": "Замена масла в двигателе Range Rover Sport в специализированных техцентрах Rover Land в Москве.",
@@ -4377,7 +4340,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-range-rover-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Range Rover Sport — Rover Land",
         "description": "Замена масла в АКПП Range Rover Sport в специализированных техцентрах Rover Land в Москве.",
@@ -4410,10 +4373,10 @@
     {
       "key": "legacy-range-rover-sport-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Range Rover Sport",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-range-rover-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Range Rover Sport — Rover Land",
         "description": "Замена тормозных колодок Range Rover Sport в специализированных техцентрах Rover Land в Москве.",
@@ -4428,7 +4391,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/range-rover-sport/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/range-rover-sport/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Range Rover Sport",
         "service_hero_lead": "Замена тормозных колодок Range Rover Sport: профильное обслуживание и ремонт в Rover Land.",
@@ -4446,10 +4409,10 @@
     {
       "key": "legacy-range-rover-sport-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Range Rover Sport",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-range-rover-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Range Rover Sport — Rover Land",
         "description": "Замена ремня ГРМ Range Rover Sport в специализированных техцентрах Rover Land в Москве.",
@@ -4464,7 +4427,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/range-rover-sport/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/range-rover-sport/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Range Rover Sport",
         "service_hero_lead": "Замена ремня ГРМ Range Rover Sport: профильное обслуживание и ремонт в Rover Land.",
@@ -4485,7 +4448,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-range-rover-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Range Rover Sport — Rover Land",
         "description": "Диагностика Range Rover Sport в специализированных техцентрах Rover Land в Москве.",
@@ -4521,7 +4484,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-range-rover-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Range Rover Sport — Rover Land",
         "description": "Ремонт двигателя Range Rover Sport в специализированных техцентрах Rover Land в Москве.",
@@ -4557,7 +4520,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-range-rover-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Range Rover Sport — Rover Land",
         "description": "Ремонт АКПП Range Rover Sport в специализированных техцентрах Rover Land в Москве.",
@@ -4593,7 +4556,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-range-rover-sport",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Range Rover Sport — Rover Land",
         "description": "Ремонт турбины Range Rover Sport в специализированных техцентрах Rover Land в Москве.",
@@ -4629,7 +4592,7 @@
       "slug": "to",
       "parent_key": "model-page-jaguar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Jaguar — Rover Land",
         "description": "Техническое обслуживание Jaguar в специализированных техцентрах Rover Land в Москве.",
@@ -4665,7 +4628,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-jaguar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Jaguar — Rover Land",
         "description": "Замена масла в двигателе Jaguar в специализированных техцентрах Rover Land в Москве.",
@@ -4701,7 +4664,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-jaguar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Jaguar — Rover Land",
         "description": "Замена масла в АКПП Jaguar в специализированных техцентрах Rover Land в Москве.",
@@ -4734,10 +4697,10 @@
     {
       "key": "legacy-jaguar-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Jaguar",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-jaguar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Jaguar — Rover Land",
         "description": "Замена тормозных колодок Jaguar в специализированных техцентрах Rover Land в Москве.",
@@ -4752,7 +4715,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/jaguar/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/jaguar/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Jaguar",
         "service_hero_lead": "Замена тормозных колодок Jaguar: профильное обслуживание и ремонт в Rover Land.",
@@ -4770,10 +4733,10 @@
     {
       "key": "legacy-jaguar-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Jaguar",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-jaguar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Jaguar — Rover Land",
         "description": "Замена ремня ГРМ Jaguar в специализированных техцентрах Rover Land в Москве.",
@@ -4788,7 +4751,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/jaguar/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/jaguar/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Jaguar",
         "service_hero_lead": "Замена ремня ГРМ Jaguar: профильное обслуживание и ремонт в Rover Land.",
@@ -4809,7 +4772,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-jaguar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Jaguar — Rover Land",
         "description": "Диагностика Jaguar в специализированных техцентрах Rover Land в Москве.",
@@ -4845,7 +4808,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-jaguar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Jaguar — Rover Land",
         "description": "Ремонт двигателя Jaguar в специализированных техцентрах Rover Land в Москве.",
@@ -4881,7 +4844,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-jaguar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Jaguar — Rover Land",
         "description": "Ремонт АКПП Jaguar в специализированных техцентрах Rover Land в Москве.",
@@ -4917,7 +4880,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-jaguar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Jaguar — Rover Land",
         "description": "Ремонт турбины Jaguar в специализированных техцентрах Rover Land в Москве.",
@@ -4953,7 +4916,7 @@
       "slug": "to",
       "parent_key": "model-page-jaguar-fpace",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Jaguar F-Pace — Rover Land",
         "description": "Техническое обслуживание Jaguar F-Pace в специализированных техцентрах Rover Land в Москве.",
@@ -4989,7 +4952,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-jaguar-fpace",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Jaguar F-Pace — Rover Land",
         "description": "Замена масла в двигателе Jaguar F-Pace в специализированных техцентрах Rover Land в Москве.",
@@ -5025,7 +4988,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-jaguar-fpace",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Jaguar F-Pace — Rover Land",
         "description": "Замена масла в АКПП Jaguar F-Pace в специализированных техцентрах Rover Land в Москве.",
@@ -5058,10 +5021,10 @@
     {
       "key": "legacy-fpace-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Jaguar F-Pace",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-jaguar-fpace",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Jaguar F-Pace — Rover Land",
         "description": "Замена тормозных колодок Jaguar F-Pace в специализированных техцентрах Rover Land в Москве.",
@@ -5076,7 +5039,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/jaguar/fpace/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/jaguar/fpace/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Jaguar F-Pace",
         "service_hero_lead": "Замена тормозных колодок Jaguar F-Pace: профильное обслуживание и ремонт в Rover Land.",
@@ -5094,10 +5057,10 @@
     {
       "key": "legacy-fpace-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Jaguar F-Pace",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-jaguar-fpace",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Jaguar F-Pace — Rover Land",
         "description": "Замена ремня ГРМ Jaguar F-Pace в специализированных техцентрах Rover Land в Москве.",
@@ -5112,7 +5075,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/jaguar/fpace/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/jaguar/fpace/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Jaguar F-Pace",
         "service_hero_lead": "Замена ремня ГРМ Jaguar F-Pace: профильное обслуживание и ремонт в Rover Land.",
@@ -5133,7 +5096,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-jaguar-fpace",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Jaguar F-Pace — Rover Land",
         "description": "Диагностика Jaguar F-Pace в специализированных техцентрах Rover Land в Москве.",
@@ -5169,7 +5132,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-jaguar-fpace",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Jaguar F-Pace — Rover Land",
         "description": "Ремонт двигателя Jaguar F-Pace в специализированных техцентрах Rover Land в Москве.",
@@ -5205,7 +5168,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-jaguar-fpace",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Jaguar F-Pace — Rover Land",
         "description": "Ремонт АКПП Jaguar F-Pace в специализированных техцентрах Rover Land в Москве.",
@@ -5241,7 +5204,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-jaguar-fpace",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Jaguar F-Pace — Rover Land",
         "description": "Ремонт турбины Jaguar F-Pace в специализированных техцентрах Rover Land в Москве.",
@@ -5277,7 +5240,7 @@
       "slug": "to",
       "parent_key": "model-page-jaguar-xj",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Jaguar XJ — Rover Land",
         "description": "Техническое обслуживание Jaguar XJ в специализированных техцентрах Rover Land в Москве.",
@@ -5313,7 +5276,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-jaguar-xj",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Jaguar XJ — Rover Land",
         "description": "Замена масла в двигателе Jaguar XJ в специализированных техцентрах Rover Land в Москве.",
@@ -5349,7 +5312,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-jaguar-xj",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Jaguar XJ — Rover Land",
         "description": "Замена масла в АКПП Jaguar XJ в специализированных техцентрах Rover Land в Москве.",
@@ -5382,10 +5345,10 @@
     {
       "key": "legacy-xj-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Jaguar XJ",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-jaguar-xj",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Jaguar XJ — Rover Land",
         "description": "Замена тормозных колодок Jaguar XJ в специализированных техцентрах Rover Land в Москве.",
@@ -5400,7 +5363,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/jaguar/xj/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/jaguar/xj/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Jaguar XJ",
         "service_hero_lead": "Замена тормозных колодок Jaguar XJ: профильное обслуживание и ремонт в Rover Land.",
@@ -5418,10 +5381,10 @@
     {
       "key": "legacy-xj-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Jaguar XJ",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-jaguar-xj",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Jaguar XJ — Rover Land",
         "description": "Замена ремня ГРМ Jaguar XJ в специализированных техцентрах Rover Land в Москве.",
@@ -5436,7 +5399,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/jaguar/xj/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/jaguar/xj/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Jaguar XJ",
         "service_hero_lead": "Замена ремня ГРМ Jaguar XJ: профильное обслуживание и ремонт в Rover Land.",
@@ -5457,7 +5420,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-jaguar-xj",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Jaguar XJ — Rover Land",
         "description": "Диагностика Jaguar XJ в специализированных техцентрах Rover Land в Москве.",
@@ -5493,7 +5456,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-jaguar-xj",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Jaguar XJ — Rover Land",
         "description": "Ремонт двигателя Jaguar XJ в специализированных техцентрах Rover Land в Москве.",
@@ -5529,7 +5492,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-jaguar-xj",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Jaguar XJ — Rover Land",
         "description": "Ремонт АКПП Jaguar XJ в специализированных техцентрах Rover Land в Москве.",
@@ -5565,7 +5528,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-jaguar-xj",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Jaguar XJ — Rover Land",
         "description": "Ремонт турбины Jaguar XJ в специализированных техцентрах Rover Land в Москве.",
@@ -5601,7 +5564,7 @@
       "slug": "to",
       "parent_key": "model-page-jaguar-xf",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Jaguar XF — Rover Land",
         "description": "Техническое обслуживание Jaguar XF в специализированных техцентрах Rover Land в Москве.",
@@ -5637,7 +5600,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-jaguar-xf",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Jaguar XF — Rover Land",
         "description": "Замена масла в двигателе Jaguar XF в специализированных техцентрах Rover Land в Москве.",
@@ -5673,7 +5636,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-jaguar-xf",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Jaguar XF — Rover Land",
         "description": "Замена масла в АКПП Jaguar XF в специализированных техцентрах Rover Land в Москве.",
@@ -5706,10 +5669,10 @@
     {
       "key": "legacy-xf-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Jaguar XF",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-jaguar-xf",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Jaguar XF — Rover Land",
         "description": "Замена тормозных колодок Jaguar XF в специализированных техцентрах Rover Land в Москве.",
@@ -5724,7 +5687,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/jaguar/xf/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/jaguar/xf/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Jaguar XF",
         "service_hero_lead": "Замена тормозных колодок Jaguar XF: профильное обслуживание и ремонт в Rover Land.",
@@ -5742,10 +5705,10 @@
     {
       "key": "legacy-xf-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Jaguar XF",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-jaguar-xf",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Jaguar XF — Rover Land",
         "description": "Замена ремня ГРМ Jaguar XF в специализированных техцентрах Rover Land в Москве.",
@@ -5760,7 +5723,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/jaguar/xf/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/jaguar/xf/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Jaguar XF",
         "service_hero_lead": "Замена ремня ГРМ Jaguar XF: профильное обслуживание и ремонт в Rover Land.",
@@ -5781,7 +5744,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-jaguar-xf",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Jaguar XF — Rover Land",
         "description": "Диагностика Jaguar XF в специализированных техцентрах Rover Land в Москве.",
@@ -5817,7 +5780,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-jaguar-xf",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Jaguar XF — Rover Land",
         "description": "Ремонт двигателя Jaguar XF в специализированных техцентрах Rover Land в Москве.",
@@ -5853,7 +5816,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-jaguar-xf",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Jaguar XF — Rover Land",
         "description": "Ремонт АКПП Jaguar XF в специализированных техцентрах Rover Land в Москве.",
@@ -5889,7 +5852,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-jaguar-xf",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Jaguar XF — Rover Land",
         "description": "Ремонт турбины Jaguar XF в специализированных техцентрах Rover Land в Москве.",
@@ -5925,7 +5888,7 @@
       "slug": "to",
       "parent_key": "model-page-jaguar-x-type",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Jaguar X-Type — Rover Land",
         "description": "Техническое обслуживание Jaguar X-Type в специализированных техцентрах Rover Land в Москве.",
@@ -5961,7 +5924,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-jaguar-x-type",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Jaguar X-Type — Rover Land",
         "description": "Замена масла в двигателе Jaguar X-Type в специализированных техцентрах Rover Land в Москве.",
@@ -5997,7 +5960,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-jaguar-x-type",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Jaguar X-Type — Rover Land",
         "description": "Замена масла в АКПП Jaguar X-Type в специализированных техцентрах Rover Land в Москве.",
@@ -6030,10 +5993,10 @@
     {
       "key": "legacy-x-type-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Jaguar X-Type",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-jaguar-x-type",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Jaguar X-Type — Rover Land",
         "description": "Замена тормозных колодок Jaguar X-Type в специализированных техцентрах Rover Land в Москве.",
@@ -6048,7 +6011,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/jaguar/x-type/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/jaguar/x-type/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Jaguar X-Type",
         "service_hero_lead": "Замена тормозных колодок Jaguar X-Type: профильное обслуживание и ремонт в Rover Land.",
@@ -6066,10 +6029,10 @@
     {
       "key": "legacy-x-type-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Jaguar X-Type",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-jaguar-x-type",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Jaguar X-Type — Rover Land",
         "description": "Замена ремня ГРМ Jaguar X-Type в специализированных техцентрах Rover Land в Москве.",
@@ -6084,7 +6047,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/jaguar/x-type/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/jaguar/x-type/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Jaguar X-Type",
         "service_hero_lead": "Замена ремня ГРМ Jaguar X-Type: профильное обслуживание и ремонт в Rover Land.",
@@ -6105,7 +6068,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-jaguar-x-type",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Jaguar X-Type — Rover Land",
         "description": "Диагностика Jaguar X-Type в специализированных техцентрах Rover Land в Москве.",
@@ -6141,7 +6104,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-jaguar-x-type",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Jaguar X-Type — Rover Land",
         "description": "Ремонт двигателя Jaguar X-Type в специализированных техцентрах Rover Land в Москве.",
@@ -6177,7 +6140,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-jaguar-x-type",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Jaguar X-Type — Rover Land",
         "description": "Ремонт АКПП Jaguar X-Type в специализированных техцентрах Rover Land в Москве.",
@@ -6213,7 +6176,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-jaguar-x-type",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Jaguar X-Type — Rover Land",
         "description": "Ремонт турбины Jaguar X-Type в специализированных техцентрах Rover Land в Москве.",
@@ -6249,7 +6212,7 @@
       "slug": "to",
       "parent_key": "model-page-defender",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Defender — Rover Land",
         "description": "Техническое обслуживание Defender в специализированных техцентрах Rover Land в Москве.",
@@ -6285,7 +6248,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-defender",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Defender — Rover Land",
         "description": "Замена масла в двигателе Defender в специализированных техцентрах Rover Land в Москве.",
@@ -6321,7 +6284,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-defender",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Defender — Rover Land",
         "description": "Замена масла в АКПП Defender в специализированных техцентрах Rover Land в Москве.",
@@ -6354,10 +6317,10 @@
     {
       "key": "legacy-defender-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Defender",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-defender",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Defender — Rover Land",
         "description": "Замена тормозных колодок Defender в специализированных техцентрах Rover Land в Москве.",
@@ -6372,7 +6335,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/defender/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/defender/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Defender",
         "service_hero_lead": "Замена тормозных колодок Defender: профильное обслуживание и ремонт в Rover Land.",
@@ -6390,10 +6353,10 @@
     {
       "key": "legacy-defender-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Defender",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-defender",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Defender — Rover Land",
         "description": "Замена ремня ГРМ Defender в специализированных техцентрах Rover Land в Москве.",
@@ -6408,7 +6371,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/defender/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/defender/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Defender",
         "service_hero_lead": "Замена ремня ГРМ Defender: профильное обслуживание и ремонт в Rover Land.",
@@ -6429,7 +6392,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-defender",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Defender — Rover Land",
         "description": "Диагностика Defender в специализированных техцентрах Rover Land в Москве.",
@@ -6465,7 +6428,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-defender",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Defender — Rover Land",
         "description": "Ремонт двигателя Defender в специализированных техцентрах Rover Land в Москве.",
@@ -6501,7 +6464,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-defender",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Defender — Rover Land",
         "description": "Ремонт АКПП Defender в специализированных техцентрах Rover Land в Москве.",
@@ -6537,7 +6500,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-defender",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Defender — Rover Land",
         "description": "Ремонт турбины Defender в специализированных техцентрах Rover Land в Москве.",
@@ -6573,7 +6536,7 @@
       "slug": "to",
       "parent_key": "model-page-freelander",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Freelander — Rover Land",
         "description": "Техническое обслуживание Freelander в специализированных техцентрах Rover Land в Москве.",
@@ -6609,7 +6572,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-freelander",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Freelander — Rover Land",
         "description": "Замена масла в двигателе Freelander в специализированных техцентрах Rover Land в Москве.",
@@ -6645,7 +6608,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-freelander",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Freelander — Rover Land",
         "description": "Замена масла в АКПП Freelander в специализированных техцентрах Rover Land в Москве.",
@@ -6678,10 +6641,10 @@
     {
       "key": "legacy-freelander-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Freelander",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-freelander",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Freelander — Rover Land",
         "description": "Замена тормозных колодок Freelander в специализированных техцентрах Rover Land в Москве.",
@@ -6696,7 +6659,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/freelander/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/freelander/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Freelander",
         "service_hero_lead": "Замена тормозных колодок Freelander: профильное обслуживание и ремонт в Rover Land.",
@@ -6714,10 +6677,10 @@
     {
       "key": "legacy-freelander-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Freelander",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-freelander",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Freelander — Rover Land",
         "description": "Замена ремня ГРМ Freelander в специализированных техцентрах Rover Land в Москве.",
@@ -6732,7 +6695,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/freelander/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/freelander/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Freelander",
         "service_hero_lead": "Замена ремня ГРМ Freelander: профильное обслуживание и ремонт в Rover Land.",
@@ -6753,7 +6716,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-freelander",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Freelander — Rover Land",
         "description": "Диагностика Freelander в специализированных техцентрах Rover Land в Москве.",
@@ -6789,7 +6752,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-freelander",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Freelander — Rover Land",
         "description": "Ремонт двигателя Freelander в специализированных техцентрах Rover Land в Москве.",
@@ -6825,7 +6788,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-freelander",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Freelander — Rover Land",
         "description": "Ремонт АКПП Freelander в специализированных техцентрах Rover Land в Москве.",
@@ -6861,7 +6824,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-freelander",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Freelander — Rover Land",
         "description": "Ремонт турбины Freelander в специализированных техцентрах Rover Land в Москве.",
@@ -6897,7 +6860,7 @@
       "slug": "remont-reduktora",
       "parent_key": "model-page-freelander",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт редуктора Freelander — Rover Land",
         "description": "Ремонт редуктора Freelander в специализированных техцентрах Rover Land в Москве.",
@@ -6933,7 +6896,7 @@
       "slug": "to",
       "parent_key": "model-page-evoque",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Range Rover Evoque — Rover Land",
         "description": "Техническое обслуживание Range Rover Evoque в специализированных техцентрах Rover Land в Москве.",
@@ -6969,7 +6932,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-evoque",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Range Rover Evoque — Rover Land",
         "description": "Замена масла в двигателе Range Rover Evoque в специализированных техцентрах Rover Land в Москве.",
@@ -7005,7 +6968,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-evoque",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Range Rover Evoque — Rover Land",
         "description": "Замена масла в АКПП Range Rover Evoque в специализированных техцентрах Rover Land в Москве.",
@@ -7038,10 +7001,10 @@
     {
       "key": "legacy-range-rover-evoque-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Range Rover Evoque",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-evoque",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Range Rover Evoque — Rover Land",
         "description": "Замена тормозных колодок Range Rover Evoque в специализированных техцентрах Rover Land в Москве.",
@@ -7056,7 +7019,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/range-rover-evoque/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/range-rover-evoque/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Range Rover Evoque",
         "service_hero_lead": "Замена тормозных колодок Range Rover Evoque: профильное обслуживание и ремонт в Rover Land.",
@@ -7074,10 +7037,10 @@
     {
       "key": "legacy-range-rover-evoque-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Range Rover Evoque",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-evoque",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Range Rover Evoque — Rover Land",
         "description": "Замена ремня ГРМ Range Rover Evoque в специализированных техцентрах Rover Land в Москве.",
@@ -7092,7 +7055,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/range-rover-evoque/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/range-rover-evoque/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Range Rover Evoque",
         "service_hero_lead": "Замена ремня ГРМ Range Rover Evoque: профильное обслуживание и ремонт в Rover Land.",
@@ -7113,7 +7076,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-evoque",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Range Rover Evoque — Rover Land",
         "description": "Диагностика Range Rover Evoque в специализированных техцентрах Rover Land в Москве.",
@@ -7149,7 +7112,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-evoque",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Range Rover Evoque — Rover Land",
         "description": "Ремонт двигателя Range Rover Evoque в специализированных техцентрах Rover Land в Москве.",
@@ -7185,7 +7148,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-evoque",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Range Rover Evoque — Rover Land",
         "description": "Ремонт АКПП Range Rover Evoque в специализированных техцентрах Rover Land в Москве.",
@@ -7221,7 +7184,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-evoque",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Range Rover Evoque — Rover Land",
         "description": "Ремонт турбины Range Rover Evoque в специализированных техцентрах Rover Land в Москве.",
@@ -7257,7 +7220,7 @@
       "slug": "remont-reduktora",
       "parent_key": "model-page-evoque",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт редуктора Range Rover Evoque — Rover Land",
         "description": "Ремонт редуктора Range Rover Evoque в специализированных техцентрах Rover Land в Москве.",
@@ -7293,7 +7256,7 @@
       "slug": "to",
       "parent_key": "model-page-velar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Техническое обслуживание Range Rover Velar — Rover Land",
         "description": "Техническое обслуживание Range Rover Velar в специализированных техцентрах Rover Land в Москве.",
@@ -7329,7 +7292,7 @@
       "slug": "zamena-masla",
       "parent_key": "model-page-velar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в двигателе Range Rover Velar — Rover Land",
         "description": "Замена масла в двигателе Range Rover Velar в специализированных техцентрах Rover Land в Москве.",
@@ -7365,7 +7328,7 @@
       "slug": "zamena-masla-v-akpp",
       "parent_key": "model-page-velar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена масла в АКПП Range Rover Velar — Rover Land",
         "description": "Замена масла в АКПП Range Rover Velar в специализированных техцентрах Rover Land в Москве.",
@@ -7398,10 +7361,10 @@
     {
       "key": "legacy-velar-zamena-tormoznyh-kolodok",
       "title": "Замена тормозных колодок Range Rover Velar",
-      "slug": "zamena-tormoznyh-kolodok",
+      "slug": "zamena-kolodok",
       "parent_key": "model-page-velar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена тормозных колодок Range Rover Velar — Rover Land",
         "description": "Замена тормозных колодок Range Rover Velar в специализированных техцентрах Rover Land в Москве.",
@@ -7416,7 +7379,7 @@
           "entity_ref": "service:zamena-tormoznyh-kolodok"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/velar/zamena-tormoznyh-kolodok/",
+        "legacy_source_url": "https://roverland.ru/velar/zamena-kolodok/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена тормозных колодок Range Rover Velar",
         "service_hero_lead": "Замена тормозных колодок Range Rover Velar: профильное обслуживание и ремонт в Rover Land.",
@@ -7434,10 +7397,10 @@
     {
       "key": "legacy-velar-zamena-remnya-grm",
       "title": "Замена ремня ГРМ Range Rover Velar",
-      "slug": "zamena-remnya-grm",
+      "slug": "zamena-grm",
       "parent_key": "model-page-velar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Замена ремня ГРМ Range Rover Velar — Rover Land",
         "description": "Замена ремня ГРМ Range Rover Velar в специализированных техцентрах Rover Land в Москве.",
@@ -7452,7 +7415,7 @@
           "entity_ref": "service:zamena-remnya-grm"
         },
         "service_auto_related": 1,
-        "legacy_source_url": "https://roverland.ru/velar/zamena-remnya-grm/",
+        "legacy_source_url": "https://roverland.ru/velar/zamena-grm/",
         "service_hero_eyebrow": "Rover Land",
         "service_page_h1": "Замена ремня ГРМ Range Rover Velar",
         "service_hero_lead": "Замена ремня ГРМ Range Rover Velar: профильное обслуживание и ремонт в Rover Land.",
@@ -7473,7 +7436,7 @@
       "slug": "diagnostika",
       "parent_key": "model-page-velar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Диагностика Range Rover Velar — Rover Land",
         "description": "Диагностика Range Rover Velar в специализированных техцентрах Rover Land в Москве.",
@@ -7509,7 +7472,7 @@
       "slug": "remont-dvigatelya",
       "parent_key": "model-page-velar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт двигателя Range Rover Velar — Rover Land",
         "description": "Ремонт двигателя Range Rover Velar в специализированных техцентрах Rover Land в Москве.",
@@ -7545,7 +7508,7 @@
       "slug": "remont-akpp",
       "parent_key": "model-page-velar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт АКПП Range Rover Velar — Rover Land",
         "description": "Ремонт АКПП Range Rover Velar в специализированных техцентрах Rover Land в Москве.",
@@ -7581,7 +7544,7 @@
       "slug": "remont-turbiny",
       "parent_key": "model-page-velar",
       "template": "default",
-      "status": "draft",
+      "status": "publish",
       "seo": {
         "title": "Ремонт турбины Range Rover Velar — Rover Land",
         "description": "Ремонт турбины Range Rover Velar в специализированных техцентрах Rover Land в Москве.",
@@ -8182,7 +8145,6 @@
       "key": "model-discovery-sport",
       "title": "Discovery Sport",
       "slug": "discovery-sport",
-      "parent_key": "model-discovery",
       "menu_order": 20,
       "fields": {
         "model_slug": "discovery-sport",
@@ -8213,7 +8175,6 @@
       "key": "model-range-rover-sport",
       "title": "Range Rover Sport",
       "slug": "range-rover-sport",
-      "parent_key": "model-range-rover",
       "menu_order": 40,
       "fields": {
         "model_slug": "range-rover-sport",
@@ -8229,7 +8190,6 @@
       "key": "model-range-rover-evoque",
       "title": "Range Rover Evoque",
       "slug": "range-rover-evoque",
-      "parent_key": "model-range-rover",
       "menu_order": 80,
       "fields": {
         "model_slug": "range-rover-evoque",
@@ -8245,7 +8205,6 @@
       "key": "model-range-rover-velar",
       "title": "Range Rover Velar",
       "slug": "velar",
-      "parent_key": "model-range-rover",
       "menu_order": 90,
       "fields": {
         "model_slug": "velar",
@@ -8527,7 +8486,7 @@
       "fields": {
         "service_slug": "rulevoy-reyki",
         "service_short_name": "Ремонт рулевой рейки",
-        "service_menu_name": "Ремонт рулевой рейки",
+        "service_menu_name": "Ремонт рейки",
         "service_sort": 13
       }
     },
@@ -8732,7 +8691,7 @@
       "fields": {
         "service_slug": "polnaya-pokraska-avto",
         "service_short_name": "Полная покраска",
-        "service_menu_name": "Полная покраска",
+        "service_menu_name": "Покраска",
         "service_sort": 16
       },
       "parent_key": "service-repair"
