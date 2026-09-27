@@ -418,7 +418,8 @@
         "vacancies_form_text": "Заполните короткую анкету, и наш менеджер по персоналу свяжется с вами в ближайшее время для уточнения деталей.",
         "vacancies_show_branches": 1,
         "vacancies_show_map": 1
-      }
+      },
+      "menu_order": 20
     },
     {
       "key": "history",
@@ -512,7 +513,8 @@
           "alt": "История Rover Land"
         }
       },
-      "parent_key": "about"
+      "parent_key": "about",
+      "menu_order": 10
     },
     {
       "key": "privacy",
@@ -1177,7 +1179,8 @@
           }
         ]
       },
-      "status": "publish"
+      "status": "publish",
+      "menu_order": 10
     },
     {
       "key": "discovery",
@@ -1370,7 +1373,8 @@
         "service_show_map": 1,
         "legacy_source_url": "https://roverland.ru/servis/to/"
       },
-      "status": "publish"
+      "status": "publish",
+      "menu_order": 10
     },
     {
       "key": "discovery-3",
@@ -1664,7 +1668,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "repair"
+      "parent_key": "repair",
+      "menu_order": 20
     },
     {
       "key": "repair-steering",
@@ -1697,7 +1702,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "repair"
+      "parent_key": "repair",
+      "menu_order": 30
     },
     {
       "key": "repair-body",
@@ -1730,7 +1736,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "repair"
+      "parent_key": "repair",
+      "menu_order": 40
     },
     {
       "key": "repair-stapelnye",
@@ -1763,7 +1770,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "repair-body"
+      "parent_key": "repair-body",
+      "menu_order": 10
     },
     {
       "key": "repair-paint",
@@ -1796,7 +1804,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "repair"
+      "parent_key": "repair",
+      "menu_order": 50
     },
     {
       "key": "repair-compressor",
@@ -1829,7 +1838,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "repair"
+      "parent_key": "repair",
+      "menu_order": 60
     },
     {
       "key": "service-replacement-car-page",
@@ -1862,7 +1872,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "service"
+      "parent_key": "service",
+      "menu_order": 20
     },
     {
       "key": "service-buyout-page",
@@ -1895,7 +1906,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "service"
+      "parent_key": "service",
+      "menu_order": 30
     },
     {
       "key": "service-offroad-page",
@@ -1928,7 +1940,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "service"
+      "parent_key": "service",
+      "menu_order": 40
     },
     {
       "key": "service-tow-page",
@@ -1961,7 +1974,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "service"
+      "parent_key": "service",
+      "menu_order": 50
     },
     {
       "key": "service-tire-page",
@@ -1994,7 +2008,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "service"
+      "parent_key": "service",
+      "menu_order": 60
     },
     {
       "key": "service-wash-page",
@@ -2027,7 +2042,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "service"
+      "parent_key": "service",
+      "menu_order": 70
     },
     {
       "key": "service-cleaning-page",
@@ -2060,7 +2076,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "service"
+      "parent_key": "service",
+      "menu_order": 80
     },
     {
       "key": "service-polishing-page",
@@ -2093,7 +2110,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "service"
+      "parent_key": "service",
+      "menu_order": 90
     },
     {
       "key": "service-diagnostics-page",
@@ -2126,7 +2144,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "service"
+      "parent_key": "service",
+      "menu_order": 100
     },
     {
       "key": "service-prepurchase-page",
@@ -2159,7 +2178,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "service"
+      "parent_key": "service",
+      "menu_order": 110
     },
     {
       "key": "parts-accessories",
@@ -2192,7 +2212,8 @@
         "service_show_branches": 1,
         "service_show_map": 1
       },
-      "parent_key": "parts"
+      "parent_key": "parts",
+      "menu_order": 10
     },
     {
       "key": "model-page-discovery-4",
