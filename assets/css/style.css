@@ -934,8 +934,8 @@ body.admin-bar .site-header {
 
 
 /* Service text block variants */
-.service-content-block--white { background: var(--color-white); }
-.service-content-block--soft { background: var(--color-background-soft); }
+.service-content-block.service-content-block--white { background: var(--color-white); }
+.service-content-block.service-content-block--soft { background: var(--color-background-soft); }
 
 .service-content-block__layout--full {
   flex-direction: column;
