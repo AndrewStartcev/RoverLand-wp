@@ -46,23 +46,28 @@ function roverland_base_import_render_page() {
 	$data      = roverland_base_import_data();
 	$acf_ready = function_exists( 'update_field' );
 	$can_run   = ! is_wp_error( $data ) && $acf_ready;
+	$page_count = is_array( $data ) && ! empty( $data['pages'] ) && is_array( $data['pages'] ) ? count( $data['pages'] ) : 0;
+	$batch_size = 20;
 	?>
 	<div class="wrap roverland-import">
-		<h1>Импорт базовых данных Rover Land</h1>
+		<h1>Импорт данных Rover Land</h1>
 		<p class="description">
-			Источник: <code>data/base-content.json</code>. Импорт создаёт или обновляет страницы
-			справочники моделей и услуг, главную, базовые страницы, вакансии, акции, портфолио и юридические страницы,
-			заполняет глобальные настройки и автоматически загружает только SVG-иконки в медиатеку.
+			Импорт разбит на независимые части. Уже заполненный контент не нужно прогонять повторно:
+			запускайте только тот раздел, который изменился.
 		</p>
 
 		<?php if ( is_array( $report ) ) : ?>
 			<div class="notice notice-<?php echo empty( $report['errors'] ) ? 'success' : 'warning'; ?> is-dismissible">
-				<p><strong><?php echo empty( $report['errors'] ) ? 'Импорт завершён.' : 'Импорт завершён с замечаниями.'; ?></strong></p>
+				<p><strong><?php echo empty( $report['errors'] ) ? 'Операция завершена.' : 'Операция завершена с замечаниями.'; ?></strong></p>
 				<p>
-					Создано страниц: <?php echo (int) $report['created']; ?>,
+					Создано: <?php echo (int) $report['created']; ?>,
 					обновлено: <?php echo (int) $report['updated']; ?>,
+					пропущено: <?php echo isset( $report['skipped'] ) ? (int) $report['skipped'] : 0; ?>,
 					медиа: <?php echo (int) $report['media']; ?>.
 				</p>
+				<?php if ( ! empty( $report['label'] ) ) : ?>
+					<p><strong>Режим:</strong> <?php echo esc_html( $report['label'] ); ?></p>
+				<?php endif; ?>
 				<?php if ( ! empty( $report['errors'] ) ) : ?>
 					<ul>
 						<?php foreach ( $report['errors'] as $error ) : ?>
@@ -73,50 +78,103 @@ function roverland_base_import_render_page() {
 			</div>
 		<?php endif; ?>
 
-		<div class="roverland-import__card">
-			<h2>Что делает импорт</h2>
-			<div class="roverland-import__grid">
-				<div><strong>Страницы</strong><span>Создаёт/обновляет модели, услуги, базовые страницы, вакансии, акции и работы портфолио; назначает нужные шаблоны.</span></div>
-				<div><strong>ACF</strong><span>Заполняет поля страниц, глобальные данные и общие блоки.</span></div>
-				<div><strong>Медиа</strong><span>Автоматически импортируются только SVG. PNG/JPG/WebP импортёр не трогает — их загружаем вручную.</span></div>
-				<div><strong>Повторный запуск</strong><span>Безопасно обновляет созданные записи по стабильному ключу, без дублей.</span></div>
-			</div>
+		<?php if ( is_wp_error( $data ) ) : ?>
+			<div class="notice notice-error"><p><?php echo esc_html( $data->get_error_message() ); ?></p></div>
+		<?php endif; ?>
 
+		<div class="roverland-import__card">
+			<h2>Безопасная частичная синхронизация</h2>
 			<p>
-				<strong>ACF Pro:</strong>
-				<?php echo $acf_ready ? '<span style="color:#16833b">активен</span>' : '<span style="color:#b32d2e">не активен</span>'; ?>
+				Режим <strong>«только отсутствующее»</strong> создаёт новые записи, но не перезаписывает ACF существующих страниц.
+				Растровые изображения импортёр по-прежнему не трогает.
 			</p>
 
-			<?php if ( is_wp_error( $data ) ) : ?>
-				<p style="color:#b32d2e"><?php echo esc_html( $data->get_error_message() ); ?></p>
-			<?php endif; ?>
-
-			<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
-				<input type="hidden" name="action" value="roverland_base_import">
-				<?php wp_nonce_field( 'roverland_base_import', 'roverland_base_import_nonce' ); ?>
+			<div class="roverland-import__actions">
 				<?php
-				submit_button(
-					'Импортировать / обновить данные',
-					'primary large',
-					'submit',
-					false,
-					$can_run
-						? array( 'onclick' => "return confirm('Обновить базовые страницы и глобальные данные из data/base-content.json?');" )
-						: array( 'disabled' => 'disabled' )
-				);
+				roverland_base_import_button( 'Глобальные настройки', 'options', 0, 0, false, $can_run );
+				roverland_base_import_button( 'Модели и справочник услуг', 'references', 0, 0, false, $can_run );
+				roverland_base_import_button( 'Вакансии', 'vacancies', 0, 0, false, $can_run );
+				roverland_base_import_button( 'Акции', 'promotions', 0, 0, false, $can_run );
+				roverland_base_import_button( 'Портфолио', 'portfolio', 0, 0, false, $can_run );
 				?>
+			</div>
+		</div>
+
+		<div class="roverland-import__card">
+			<h2>Страницы</h2>
+			<p>
+				Страницы идут пачками по <?php echo (int) $batch_size; ?>. По умолчанию существующий ACF-контент сохраняется:
+				обновляется только структура записи (URL, родитель, порядок, шаблон), а поля заполняются только у новых страниц.
+			</p>
+
+			<div class="roverland-import__batches">
+				<?php for ( $offset = 0; $offset < $page_count; $offset += $batch_size ) : ?>
+					<?php
+					$from = $offset + 1;
+					$to   = min( $offset + $batch_size, $page_count );
+					roverland_base_import_button(
+						sprintf( 'Страницы %d–%d', $from, $to ),
+						'pages',
+						$offset,
+						$batch_size,
+						true,
+						$can_run
+					);
+					?>
+				<?php endfor; ?>
+			</div>
+		</div>
+
+		<div class="roverland-import__card roverland-import__card--warning">
+			<h2>Принудительная синхронизация выбранной пачки</h2>
+			<p>
+				Используйте только когда нужно заново применить JSON к уже существующим ACF-полям.
+				Это не требуется для обычного добавления новых страниц.
+			</p>
+			<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" class="roverland-import__force-form">
+				<input type="hidden" name="action" value="roverland_base_import">
+				<input type="hidden" name="scope" value="pages">
+				<input type="hidden" name="preserve_existing" value="0">
+				<?php wp_nonce_field( 'roverland_base_import', 'roverland_base_import_nonce' ); ?>
+				<label>
+					<span>Начать с позиции</span>
+					<input type="number" name="offset" min="0" max="<?php echo esc_attr( max( 0, $page_count - 1 ) ); ?>" value="0">
+				</label>
+				<label>
+					<span>Количество</span>
+					<input type="number" name="limit" min="1" max="30" value="10">
+				</label>
+				<?php submit_button( 'Принудительно обновить пачку', 'secondary', 'submit', false, $can_run ? array( 'onclick' => "return confirm('Перезаписать ACF выбранных существующих страниц данными из JSON?');" ) : array( 'disabled' => 'disabled' ) ); ?>
 			</form>
 		</div>
 	</div>
+
 	<style>
-	.roverland-import{max-width:1050px}
-	.roverland-import__card{margin-top:24px;padding:26px 28px;border:1px solid #dcdcde;border-radius:12px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
-	.roverland-import__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
-	.roverland-import__grid>div{padding:18px;border:1px solid #e2e4e7;border-radius:10px;background:#f8f9fa}
-	.roverland-import__grid strong,.roverland-import__grid span{display:block}
-	.roverland-import__grid span{margin-top:6px;color:#50575e;line-height:1.45}
-	@media(max-width:782px){.roverland-import__grid{grid-template-columns:1fr}}
+	.roverland-import{max-width:1100px}
+	.roverland-import__card{margin-top:24px;padding:24px 28px;border:1px solid #dcdcde;border-radius:12px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+	.roverland-import__card--warning{border-color:#dba617;background:#fffdf5}
+	.roverland-import__actions,.roverland-import__batches{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+	.roverland-import__actions form,.roverland-import__batches form{margin:0}
+	.roverland-import__force-form{display:flex;align-items:end;flex-wrap:wrap;gap:12px;margin-top:16px}
+	.roverland-import__force-form label span{display:block;margin-bottom:5px;font-weight:600}
+	.roverland-import__force-form input{width:130px}
 	</style>
+	<?php
+}
+
+function roverland_base_import_button( $label, $scope, $offset = 0, $limit = 0, $preserve_existing = true, $enabled = true ) {
+	?>
+	<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+		<input type="hidden" name="action" value="roverland_base_import">
+		<input type="hidden" name="scope" value="<?php echo esc_attr( $scope ); ?>">
+		<input type="hidden" name="offset" value="<?php echo (int) $offset; ?>">
+		<input type="hidden" name="limit" value="<?php echo (int) $limit; ?>">
+		<input type="hidden" name="preserve_existing" value="<?php echo $preserve_existing ? '1' : '0'; ?>">
+		<?php wp_nonce_field( 'roverland_base_import', 'roverland_base_import_nonce' ); ?>
+		<button class="button<?php echo 'pages' === $scope ? '' : ' button-primary'; ?>" type="submit"<?php disabled( ! $enabled ); ?>>
+			<?php echo esc_html( $label ); ?>
+		</button>
+	</form>
 	<?php
 }
 
@@ -127,11 +185,23 @@ function roverland_base_import_handle() {
 
 	check_admin_referer( 'roverland_base_import', 'roverland_base_import_nonce' );
 
+	$scope             = isset( $_POST['scope'] ) ? sanitize_key( wp_unslash( $_POST['scope'] ) ) : 'pages';
+	$offset            = isset( $_POST['offset'] ) ? max( 0, (int) $_POST['offset'] ) : 0;
+	$limit             = isset( $_POST['limit'] ) ? max( 0, min( 30, (int) $_POST['limit'] ) ) : 0;
+	$preserve_existing = ! isset( $_POST['preserve_existing'] ) || '0' !== (string) $_POST['preserve_existing'];
+
+	$allowed_scopes = array( 'options', 'references', 'pages', 'vacancies', 'promotions', 'portfolio' );
+	if ( ! in_array( $scope, $allowed_scopes, true ) ) {
+		$scope = 'pages';
+	}
+
 	$report = array(
 		'created' => 0,
 		'updated' => 0,
+		'skipped' => 0,
 		'media'   => 0,
 		'errors'  => array(),
+		'label'   => $scope,
 	);
 
 	if ( ! function_exists( 'update_field' ) ) {
@@ -146,11 +216,13 @@ function roverland_base_import_handle() {
 		roverland_base_import_finish( $report );
 	}
 
-	@set_time_limit( 120 );
+	@set_time_limit( 60 );
 	wp_raise_memory_limit( 'admin' );
 
-	if ( ! empty( $data['options'] ) && is_array( $data['options'] ) ) {
-		foreach ( $data['options'] as $field_name => $value ) {
+	if ( 'options' === $scope ) {
+		$report['label'] = 'Глобальные настройки';
+
+		foreach ( isset( $data['options'] ) && is_array( $data['options'] ) ? $data['options'] : array() as $field_name => $value ) {
 			$current_value = get_field( $field_name, 'option' );
 
 			update_field(
@@ -159,58 +231,31 @@ function roverland_base_import_handle() {
 				'option'
 			);
 		}
+
+		roverland_base_import_finish( $report );
 	}
 
-	$model_ids   = array();
-	$service_ids = array();
-	$page_ids    = array();
-	$vacancy_ids = array();
+	if ( 'references' === $scope ) {
+		$report['label'] = 'Модели и справочник услуг';
+		roverland_base_import_reference_group( isset( $data['models'] ) ? $data['models'] : array(), 'rover_model', 'модель', $report, $preserve_existing );
+		roverland_base_import_reference_group( isset( $data['services'] ) ? $data['services'] : array(), 'rover_service', 'услугу', $report, $preserve_existing );
+		flush_rewrite_rules();
+		roverland_base_import_finish( $report );
+	}
 
-	if ( ! empty( $data['models'] ) && is_array( $data['models'] ) ) {
-		foreach ( $data['models'] as $item_data ) {
-			$parent_id = 0;
+	if ( 'pages' === $scope ) {
+		$pages = isset( $data['pages'] ) && is_array( $data['pages'] ) ? $data['pages'] : array();
 
-			if ( ! empty( $item_data['parent_key'] ) && ! empty( $model_ids[ $item_data['parent_key'] ] ) ) {
-				$parent_id = (int) $model_ids[ $item_data['parent_key'] ];
-			}
-
-			$item_id = roverland_base_import_upsert_content_item( $item_data, 'rover_model', 'модель', $report, $parent_id );
-
-			if ( ! $item_id ) {
-				continue;
-			}
-
-			$model_ids[ $item_data['key'] ] = $item_id;
-			roverland_base_import_apply_fields( $item_id, $item_data, $report );
+		if ( $limit < 1 ) {
+			$limit = 20;
 		}
-	}
 
-	if ( ! empty( $data['services'] ) && is_array( $data['services'] ) ) {
-		foreach ( $data['services'] as $item_data ) {
-			$parent_id = 0;
+		$batch = array_slice( $pages, $offset, $limit );
+		$report['label'] = sprintf( 'Страницы %d–%d', $offset + 1, min( $offset + $limit, count( $pages ) ) );
 
-			if ( ! empty( $item_data['parent_key'] ) && ! empty( $service_ids[ $item_data['parent_key'] ] ) ) {
-				$parent_id = (int) $service_ids[ $item_data['parent_key'] ];
-			}
-
-			$item_id = roverland_base_import_upsert_content_item( $item_data, 'rover_service', 'услугу', $report, $parent_id );
-
-			if ( ! $item_id ) {
-				continue;
-			}
-
-			$service_ids[ $item_data['key'] ] = $item_id;
-			roverland_base_import_apply_fields( $item_id, $item_data, $report );
-		}
-	}
-
-	if ( ! empty( $data['pages'] ) && is_array( $data['pages'] ) ) {
-		foreach ( $data['pages'] as $page_data ) {
-			$parent_id = 0;
-
-			if ( ! empty( $page_data['parent_key'] ) && ! empty( $page_ids[ $page_data['parent_key'] ] ) ) {
-				$parent_id = (int) $page_ids[ $page_data['parent_key'] ];
-			}
+		foreach ( $batch as $page_data ) {
+			$parent_id = ! empty( $page_data['parent_key'] ) ? roverland_base_import_find_post_by_key( 'page', $page_data['parent_key'] ) : 0;
+			$existing  = roverland_base_import_find_page_id( $page_data );
 
 			$page_id = roverland_base_import_upsert_page( $page_data, $report, $parent_id );
 
@@ -218,99 +263,142 @@ function roverland_base_import_handle() {
 				continue;
 			}
 
-			$page_ids[ $page_data['key'] ] = $page_id;
+			$is_new = ! $existing;
 
 			if ( 'home' === $page_data['key'] ) {
 				update_option( 'show_on_front', 'page' );
 				update_option( 'page_on_front', $page_id );
 			}
 
-			if ( ! empty( $page_data['fields'] ) && is_array( $page_data['fields'] ) ) {
-				foreach ( $page_data['fields'] as $field_name => $value ) {
-					$current_value = get_field( $field_name, $page_id );
+			if ( $is_new || ! $preserve_existing ) {
+				roverland_base_import_apply_fields( $page_id, $page_data, $report );
 
-					update_field(
-						$field_name,
-						roverland_base_import_resolve_value( $value, $report, $current_value ),
-						$page_id
-					);
+				if ( ! empty( $page_data['seo'] ) && is_array( $page_data['seo'] ) ) {
+					roverland_base_import_apply_rank_math( $page_id, $page_data['seo'] );
 				}
-			}
-
-			if ( ! empty( $page_data['seo'] ) && is_array( $page_data['seo'] ) ) {
-				roverland_base_import_apply_rank_math( $page_id, $page_data['seo'] );
+			} else {
+				$report['skipped']++;
 			}
 		}
+
+		flush_rewrite_rules();
+		roverland_base_import_finish( $report );
 	}
 
-	if ( ! empty( $data['vacancies'] ) && is_array( $data['vacancies'] ) ) {
-		foreach ( $data['vacancies'] as $vacancy_data ) {
-			$vacancy_id = roverland_base_import_upsert_vacancy( $vacancy_data, $report );
+	if ( 'vacancies' === $scope ) {
+		$report['label'] = 'Вакансии';
 
-			if ( ! $vacancy_id ) {
-				continue;
-			}
+		foreach ( isset( $data['vacancies'] ) && is_array( $data['vacancies'] ) ? $data['vacancies'] : array() as $item_data ) {
+			$existing = roverland_base_import_find_post_by_key( 'vacancy', $item_data['key'] );
+			$item_id  = roverland_base_import_upsert_vacancy( $item_data, $report );
 
-			$vacancy_ids[ $vacancy_data['key'] ] = $vacancy_id;
-
-			if ( ! empty( $vacancy_data['fields'] ) && is_array( $vacancy_data['fields'] ) ) {
-				foreach ( $vacancy_data['fields'] as $field_name => $value ) {
-					$current_value = get_field( $field_name, $vacancy_id );
-
-					update_field(
-						$field_name,
-						roverland_base_import_resolve_value( $value, $report, $current_value ),
-						$vacancy_id
-					);
+			if ( $item_id && ( ! $existing || ! $preserve_existing ) ) {
+				roverland_base_import_apply_fields( $item_id, $item_data, $report );
+				if ( ! empty( $item_data['seo'] ) ) {
+					roverland_base_import_apply_rank_math( $item_id, $item_data['seo'] );
 				}
-			}
-
-			if ( ! empty( $vacancy_data['seo'] ) && is_array( $vacancy_data['seo'] ) ) {
-				roverland_base_import_apply_rank_math( $vacancy_id, $vacancy_data['seo'] );
+			} elseif ( $item_id ) {
+				$report['skipped']++;
 			}
 		}
+
+		roverland_base_import_finish( $report );
 	}
 
-	if ( ! empty( $data['promotions'] ) && is_array( $data['promotions'] ) ) {
-		foreach ( $data['promotions'] as $item_data ) {
-			$item_id = roverland_base_import_upsert_content_item( $item_data, 'promotion', 'акцию', $report );
+	$type_map = array(
+		'promotions' => array( 'key' => 'promotions', 'post_type' => 'promotion', 'label' => 'Акции', 'single' => 'акцию' ),
+		'portfolio'  => array( 'key' => 'portfolio_items', 'post_type' => 'portfolio_item', 'label' => 'Портфолио', 'single' => 'работу портфолио' ),
+	);
 
-			if ( ! $item_id ) {
-				continue;
-			}
+	if ( isset( $type_map[ $scope ] ) ) {
+		$config = $type_map[ $scope ];
+		$report['label'] = $config['label'];
 
-			roverland_base_import_apply_fields( $item_id, $item_data, $report );
+		foreach ( isset( $data[ $config['key'] ] ) && is_array( $data[ $config['key'] ] ) ? $data[ $config['key'] ] : array() as $item_data ) {
+			$existing = roverland_base_import_find_post_by_key( $config['post_type'], $item_data['key'] );
+			$item_id  = roverland_base_import_upsert_content_item( $item_data, $config['post_type'], $config['single'], $report );
 
-			if ( ! empty( $item_data['seo'] ) && is_array( $item_data['seo'] ) ) {
-				roverland_base_import_apply_rank_math( $item_id, $item_data['seo'] );
-			}
-		}
-	}
-
-	if ( ! empty( $data['portfolio_items'] ) && is_array( $data['portfolio_items'] ) ) {
-		foreach ( $data['portfolio_items'] as $item_data ) {
-			$item_id = roverland_base_import_upsert_content_item( $item_data, 'portfolio_item', 'работу портфолио', $report );
-
-			if ( ! $item_id ) {
-				continue;
-			}
-
-			roverland_base_import_apply_fields( $item_id, $item_data, $report );
-
-			if ( ! empty( $item_data['seo'] ) && is_array( $item_data['seo'] ) ) {
-				roverland_base_import_apply_rank_math( $item_id, $item_data['seo'] );
+			if ( $item_id && ( ! $existing || ! $preserve_existing ) ) {
+				roverland_base_import_apply_fields( $item_id, $item_data, $report );
+				if ( ! empty( $item_data['seo'] ) ) {
+					roverland_base_import_apply_rank_math( $item_id, $item_data['seo'] );
+				}
+			} elseif ( $item_id ) {
+				$report['skipped']++;
 			}
 		}
+
+		roverland_base_import_finish( $report );
 	}
 
-	if ( ! empty( $page_ids['privacy'] ) ) {
-		update_option( 'wp_page_for_privacy_policy', (int) $page_ids['privacy'] );
-	}
-
-	roverland_base_import_fix_primary_menu_hierarchy( $page_ids, $vacancy_ids );
-
-	flush_rewrite_rules();
 	roverland_base_import_finish( $report );
+}
+
+function roverland_base_import_find_post_by_key( $post_type, $key ) {
+	$ids = get_posts(
+		array(
+			'post_type'      => $post_type,
+			'post_status'    => 'any',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'meta_key'       => '_roverland_base_import_key',
+			'meta_value'     => sanitize_key( $key ),
+			'no_found_rows'  => true,
+		)
+	);
+
+	return $ids ? (int) $ids[0] : 0;
+}
+
+function roverland_base_import_find_page_id( $page_data ) {
+	if ( ! empty( $page_data['key'] ) ) {
+		$id = roverland_base_import_find_post_by_key( 'page', $page_data['key'] );
+		if ( $id ) {
+			return $id;
+		}
+	}
+
+	if ( ! empty( $page_data['slug'] ) ) {
+		$page = get_page_by_path( $page_data['slug'] );
+		if ( $page ) {
+			return (int) $page->ID;
+		}
+	}
+
+	return 0;
+}
+
+function roverland_base_import_reference_group( $items, $post_type, $label, &$report, $preserve_existing = true ) {
+	if ( ! is_array( $items ) ) {
+		return;
+	}
+
+	$ids = array();
+
+	foreach ( $items as $item_data ) {
+		$parent_id = 0;
+
+		if ( ! empty( $item_data['parent_key'] ) ) {
+			$parent_id = isset( $ids[ $item_data['parent_key'] ] )
+				? (int) $ids[ $item_data['parent_key'] ]
+				: roverland_base_import_find_post_by_key( $post_type, $item_data['parent_key'] );
+		}
+
+		$existing = roverland_base_import_find_post_by_key( $post_type, $item_data['key'] );
+		$item_id  = roverland_base_import_upsert_content_item( $item_data, $post_type, $label, $report, $parent_id );
+
+		if ( ! $item_id ) {
+			continue;
+		}
+
+		$ids[ $item_data['key'] ] = $item_id;
+
+		if ( ! $existing || ! $preserve_existing ) {
+			roverland_base_import_apply_fields( $item_id, $item_data, $report );
+		} else {
+			$report['skipped']++;
+		}
+	}
 }
 
 function roverland_base_import_upsert_page( $page_data, &$report, $parent_id = 0 ) {
