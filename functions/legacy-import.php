@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'admin_menu', 'roverland_legacy_import_register_page', 110 );
 add_action( 'admin_post_roverland_legacy_prepare', 'roverland_legacy_import_prepare' );
 add_action( 'admin_post_roverland_legacy_import', 'roverland_legacy_import_handle' );
+add_action( 'wp_ajax_roverland_legacy_import_batch', 'roverland_legacy_import_ajax_batch' );
 
 function roverland_legacy_import_register_page() {
 	add_submenu_page(
@@ -115,13 +116,32 @@ function roverland_legacy_import_render_page() {
 					у которых <strong>service_sections ещё пустой</strong>. Существующий контент не перезаписывается.
 				</p>
 
-				<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" class="roverland-legacy-import__batch">
-					<input type="hidden" name="action" value="roverland_legacy_import">
-					<input type="hidden" name="mode" value="batch">
-					<?php wp_nonce_field( 'roverland_legacy_import', 'roverland_legacy_nonce' ); ?>
-					<label><input type="checkbox" name="download_images" value="1"> Скачать изображения со старых страниц</label>
-					<?php submit_button( 'Импортировать следующие 5 пустых страниц', 'primary', 'submit', false ); ?>
-				</form>
+				<div class="roverland-legacy-import__batch">
+					<label><input type="checkbox" id="roverland-legacy-download-images" value="1"> Скачать изображения со старых страниц</label>
+
+					<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+						<input type="hidden" name="action" value="roverland_legacy_import">
+						<input type="hidden" name="mode" value="batch">
+						<?php wp_nonce_field( 'roverland_legacy_import', 'roverland_legacy_nonce' ); ?>
+						<input type="hidden" name="download_images" value="0" class="roverland-legacy-images-hidden">
+						<?php submit_button( 'Импортировать следующие 5 пустых страниц', 'secondary', 'submit', false ); ?>
+					</form>
+
+					<button
+						type="button"
+						class="button button-primary"
+						id="roverland-legacy-import-all"
+						data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
+						data-nonce="<?php echo esc_attr( wp_create_nonce( 'roverland_legacy_ajax' ) ); ?>"
+					>
+						Импортировать все пустые страницы
+					</button>
+				</div>
+
+				<div id="roverland-legacy-import-progress" class="roverland-legacy-import__progress" hidden>
+					<div class="roverland-legacy-import__progress-bar"><span></span></div>
+					<p class="roverland-legacy-import__progress-text">Подготовка…</p>
+				</div>
 			</div>
 
 			<div class="roverland-legacy-import__card">
@@ -203,7 +223,112 @@ function roverland_legacy_import_render_page() {
 	.roverland-legacy-import__missing{color:#b32d2e;font-weight:600}
 	.roverland-legacy-import__empty{color:#996800;font-weight:600}
 	.roverland-legacy-import__image-check{display:block;margin-bottom:6px;font-size:12px}
+	.roverland-legacy-import__progress{margin-top:18px;max-width:720px}
+	.roverland-legacy-import__progress-bar{height:10px;overflow:hidden;border-radius:999px;background:#e2e4e7}
+	.roverland-legacy-import__progress-bar span{display:block;width:0;height:100%;background:#3858e9;transition:width .2s ease}
+	.roverland-legacy-import__progress-text{margin:8px 0 0}
 	</style>
+
+	<script>
+	(function () {
+		var imagesToggle = document.getElementById('roverland-legacy-download-images');
+		var singleBatchForm = document.querySelector('.roverland-legacy-import__batch form');
+		var importAllButton = document.getElementById('roverland-legacy-import-all');
+		var progress = document.getElementById('roverland-legacy-import-progress');
+
+		if (singleBatchForm && imagesToggle) {
+			singleBatchForm.addEventListener('submit', function () {
+				var hidden = singleBatchForm.querySelector('.roverland-legacy-images-hidden');
+				if (hidden) hidden.value = imagesToggle.checked ? '1' : '0';
+			});
+		}
+
+		if (!importAllButton || !progress) return;
+
+		var bar = progress.querySelector('.roverland-legacy-import__progress-bar span');
+		var text = progress.querySelector('.roverland-legacy-import__progress-text');
+
+		importAllButton.addEventListener('click', async function () {
+			if (importAllButton.disabled) return;
+
+			importAllButton.disabled = true;
+			progress.hidden = false;
+
+			var skippedIds = [];
+			var totalUpdated = 0;
+			var totalMedia = 0;
+			var totalErrors = [];
+			var initialRemaining = null;
+
+			async function runBatch() {
+				var data = new FormData();
+				data.append('action', 'roverland_legacy_import_batch');
+				data.append('nonce', importAllButton.dataset.nonce || '');
+				data.append('download_images', imagesToggle && imagesToggle.checked ? '1' : '0');
+				data.append('skip_ids', skippedIds.join(','));
+
+				var response = await fetch(importAllButton.dataset.ajaxUrl, {
+					method: 'POST',
+					credentials: 'same-origin',
+					body: data
+				});
+
+				var payload = await response.json();
+
+				if (!payload || !payload.success) {
+					throw new Error(payload && payload.data && payload.data.message ? payload.data.message : 'Ошибка AJAX-импорта.');
+				}
+
+				var result = payload.data || {};
+				var processedIds = Array.isArray(result.processed_ids) ? result.processed_ids : [];
+				skippedIds = skippedIds.concat(processedIds);
+
+				totalUpdated += Number(result.updated || 0);
+				totalMedia += Number(result.media || 0);
+
+				if (Array.isArray(result.errors) && result.errors.length) {
+					totalErrors = totalErrors.concat(result.errors);
+				}
+
+				if (initialRemaining === null) {
+					initialRemaining = Number(result.total || result.remaining || 0);
+				}
+
+				var remaining = Number(result.remaining || 0);
+				var total = Math.max(initialRemaining || 0, totalUpdated + remaining);
+				var done = Math.max(0, total - remaining);
+				var percent = total > 0 ? Math.min(100, Math.round(done / total * 100)) : 100;
+
+				bar.style.width = percent + '%';
+				text.textContent = 'Импортировано страниц: ' + totalUpdated + '. Осталось: ' + remaining + '. Изображений: ' + totalMedia + '.';
+
+				if (remaining > 0 && Number(result.processed || 0) > 0) {
+					await runBatch();
+					return;
+				}
+
+				bar.style.width = '100%';
+
+				if (totalErrors.length) {
+					text.textContent += ' Ошибок: ' + totalErrors.length + '. Обновите страницу — детали будут видны в таблице.';
+				} else {
+					text.textContent += ' Готово.';
+				}
+
+				setTimeout(function () {
+					window.location.reload();
+				}, 1200);
+			}
+
+			try {
+				await runBatch();
+			} catch (error) {
+				text.textContent = 'Импорт остановлен: ' + error.message;
+				importAllButton.disabled = false;
+			}
+		});
+	})();
+	</script>
 	<?php
 }
 
@@ -400,6 +525,104 @@ function roverland_legacy_import_handle() {
 		: 'Пустых страниц с найденным legacy-контентом больше нет.';
 
 	roverland_legacy_import_finish( $report );
+}
+
+function roverland_legacy_import_ajax_batch() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error( array( 'message' => 'Недостаточно прав.' ), 403 );
+	}
+
+	check_ajax_referer( 'roverland_legacy_ajax', 'nonce' );
+
+	if ( ! function_exists( 'update_field' ) ) {
+		wp_send_json_error( array( 'message' => 'ACF Pro не активен.' ), 500 );
+	}
+
+	$download_images = ! empty( $_POST['download_images'] );
+	$skip_ids        = array();
+
+	if ( ! empty( $_POST['skip_ids'] ) ) {
+		$skip_ids = array_values(
+			array_filter(
+				array_map(
+					'absint',
+					explode( ',', sanitize_text_field( wp_unslash( $_POST['skip_ids'] ) ) )
+				)
+			)
+		);
+	}
+
+	@set_time_limit( $download_images ? 90 : 60 );
+	wp_raise_memory_limit( 'admin' );
+
+	$report = array(
+		'updated' => 0,
+		'skipped' => 0,
+		'media'   => 0,
+		'errors'  => array(),
+	);
+
+	$pages      = roverland_legacy_import_wp_pages();
+	$candidates = array();
+
+	foreach ( $pages as $page ) {
+		if ( in_array( (int) $page->ID, $skip_ids, true ) ) {
+			continue;
+		}
+
+		$sections = roverland_field( 'service_sections', array(), $page->ID );
+
+		if ( is_array( $sections ) && $sections ) {
+			continue;
+		}
+
+		if ( ! roverland_legacy_source_for_page( $page->ID ) ) {
+			continue;
+		}
+
+		$candidates[] = $page;
+	}
+
+	$total         = count( $candidates );
+	$batch         = array_slice( $candidates, 0, 5 );
+	$processed_ids = array();
+
+	foreach ( $batch as $page ) {
+		$processed_ids[] = (int) $page->ID;
+		roverland_legacy_import_one_page( $page->ID, false, $download_images, $report );
+	}
+
+	$next_skip_ids = array_merge( $skip_ids, $processed_ids );
+	$remaining     = 0;
+
+	foreach ( $pages as $page ) {
+		if ( in_array( (int) $page->ID, $next_skip_ids, true ) ) {
+			continue;
+		}
+
+		$sections = roverland_field( 'service_sections', array(), $page->ID );
+
+		if ( is_array( $sections ) && $sections ) {
+			continue;
+		}
+
+		if ( roverland_legacy_source_for_page( $page->ID ) ) {
+			$remaining++;
+		}
+	}
+
+	wp_send_json_success(
+		array(
+			'processed'     => count( $processed_ids ),
+			'processed_ids' => $processed_ids,
+			'updated'       => (int) $report['updated'],
+			'skipped'       => (int) $report['skipped'],
+			'media'         => (int) $report['media'],
+			'errors'        => $report['errors'],
+			'remaining'     => $remaining,
+			'total'         => $total,
+		)
+	);
 }
 
 function roverland_legacy_import_one_page( $page_id, $force, $download_images, &$report ) {
