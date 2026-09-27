@@ -34,9 +34,19 @@ function roverland_phone_href( $phone ) {
 }
 
 function roverland_page_url( $slug ) {
-	$page = get_page_by_path( trim( (string) $slug, '/' ) );
+	$slug = trim( (string) $slug, '/' );
 
-	return $page ? get_permalink( $page ) : home_url( '/' . trim( (string) $slug, '/' ) . '/' );
+	$aliases = array(
+		'contacts' => 'kontakty',
+	);
+
+	if ( isset( $aliases[ $slug ] ) ) {
+		$slug = $aliases[ $slug ];
+	}
+
+	$page = get_page_by_path( $slug );
+
+	return $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' );
 }
 
 function roverland_image_url( $image, $fallback = '' ) {
