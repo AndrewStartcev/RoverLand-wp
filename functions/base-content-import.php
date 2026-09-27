@@ -351,6 +351,7 @@ function roverland_base_import_upsert_page( $page_data, &$report, $parent_id = 0
 		'post_title'   => $page_data['title'],
 		'post_name'    => $page_data['slug'],
 		'post_parent'  => (int) $parent_id,
+		'menu_order'   => isset( $page_data['menu_order'] ) ? (int) $page_data['menu_order'] : 0,
 		'post_content' => '',
 	);
 
