@@ -383,8 +383,7 @@
 
   /* Shared service modal */
   function initServiceModal() {
-    var localAppointment = document.getElementById("appointment");
-    var triggers = document.querySelectorAll('a[href="#appointment"], a[href="index.html#appointment"]');
+    var triggers = document.querySelectorAll("[data-appointment-open]");
     if (!triggers.length) return;
 
     var modal = null;
@@ -489,8 +488,6 @@
 
     triggers.forEach(function (trigger) {
       trigger.addEventListener("click", function (event) {
-        var href = trigger.getAttribute("href") || "";
-        if (href === "#appointment" && localAppointment) return;
         event.preventDefault();
         lastTrigger = trigger;
         setOpen(true);

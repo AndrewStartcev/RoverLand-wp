@@ -19,7 +19,7 @@ while ( have_posts() ) :
 				<h1 class="hero__title"><span><?php echo esc_html( roverland_field( 'home_hero_title_first', '' ) ); ?></span><?php echo esc_html( roverland_field( 'home_hero_title_second', '' ) ); ?></h1>
 				<?php if ( roverland_field( 'home_hero_text', '' ) ) : ?><p class="hero__text"><?php echo esc_html( roverland_field( 'home_hero_text', '' ) ); ?></p><?php endif; ?>
 				<div class="hero__actions">
-					<a class="button button--primary" href="#appointment"><?php echo esc_html( roverland_field( 'home_hero_primary_label', 'Запись на ТО' ) ); ?></a>
+					<button class="button button--primary" type="button" data-appointment-open><?php echo esc_html( roverland_field( 'home_hero_primary_label', 'Запись на ТО' ) ); ?></button>
 					<a class="button button--outline" href="<?php echo esc_url( roverland_page_url( 'aktsii' ) ); ?>"><?php echo esc_html( roverland_field( 'home_hero_secondary_label', 'Наши акции' ) ); ?></a>
 				</div>
 			</div>

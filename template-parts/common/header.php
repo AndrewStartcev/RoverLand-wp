@@ -6,7 +6,6 @@ $header_logo       = roverland_option( 'site_header_logo', array() );
 $logo_url          = roverland_image_url( $header_logo, 'assets/images/content/logo-black.png' );
 $logo_alt          = roverland_image_alt( $header_logo, get_bloginfo( 'name' ) );
 $appointment_text  = roverland_option( 'site_header_appointment_label', 'Записаться на ТО' );
-$appointment_url   = home_url( '/#appointment' );
 $socials           = roverland_get_social_links();
 ?>
 <header class="site-header" data-header>
@@ -23,9 +22,9 @@ $socials           = roverland_get_social_links();
 			</nav>
 
 			<div class="site-header__actions">
-				<a class="button button--primary site-header__appointment" href="<?php echo esc_url( $appointment_url ); ?>">
+				<button class="button button--primary site-header__appointment" type="button" data-appointment-open>
 					<?php echo esc_html( $appointment_text ); ?>
-				</a>
+				</button>
 
 				<button class="icon-button site-header__search" type="button" aria-label="Открыть поиск" data-search-open>
 					<img src="<?php echo esc_url( roverland_asset( 'assets/images/icons/ui/search.svg' ) ); ?>" width="26" height="28" alt="" aria-hidden="true">
@@ -80,9 +79,9 @@ $socials           = roverland_get_social_links();
 			<?php roverland_mobile_menu_fallback(); ?>
 		</nav>
 
-		<a class="button button--primary button--wide" href="<?php echo esc_url( $appointment_url ); ?>">
+		<button class="button button--primary button--wide" type="button" data-appointment-open>
 			<?php echo esc_html( $appointment_text ); ?>
-		</a>
+		</button>
 
 		<?php if ( $socials ) : ?>
 			<div class="social-links social-links--mobile" aria-label="Социальные сети">
