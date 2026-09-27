@@ -116,27 +116,57 @@ function roverland_legacy_sql_extract( $sql ) {
 		return new WP_Error( 'roverland_legacy_empty_sql', 'SQL-файл пуст.' );
 	}
 
-	$needle = 'INSERT INTO `b_search_content`';
-	$offset = 0;
-	$pages  = array();
+	$table_info = roverland_legacy_detect_search_table( $sql );
 
-	while ( false !== ( $start = strpos( $sql, $needle, $offset ) ) ) {
-		$values_pos = strpos( $sql, ' VALUES', $start );
+	if ( is_wp_error( $table_info ) ) {
+		return $table_info;
+	}
+
+	$table_name      = $table_info['name'];
+	$default_columns = $table_info['columns'];
+	$pages           = array();
+	$offset          = 0;
+	$insert_count    = 0;
+	$row_count       = 0;
+	$main_count      = 0;
+	$public_count    = 0;
+	$sql_length      = strlen( $sql );
+
+	while ( $offset < $sql_length ) {
+		$insert_pos = stripos( $sql, 'INSERT INTO', $offset );
+
+		if ( false === $insert_pos ) {
+			break;
+		}
+
+		$values_pos = stripos( $sql, 'VALUES', $insert_pos );
 
 		if ( false === $values_pos ) {
 			break;
 		}
 
-		$header = substr( $sql, $start, $values_pos - $start );
-		preg_match_all( '/`([^`]+)`/', $header, $matches );
-		$columns = isset( $matches[1] ) ? $matches[1] : array();
+		$header = substr( $sql, $insert_pos, $values_pos - $insert_pos );
 
-		if ( ! $columns ) {
-			$offset = $values_pos + 7;
+		if ( ! roverland_legacy_insert_targets_table( $header, $table_name ) ) {
+			$offset = $values_pos + 6;
 			continue;
 		}
 
-		$body_start = $values_pos + 7;
+		$insert_count++;
+		$columns = roverland_legacy_insert_columns( $header );
+
+		if ( ! $columns ) {
+			$columns = $default_columns;
+		}
+
+		if ( ! $columns ) {
+			return new WP_Error(
+				'roverland_legacy_no_columns',
+				'Таблица ' . $table_name . ' найдена, но не удалось определить порядок колонок.'
+			);
+		}
+
+		$body_start = $values_pos + 6;
 		$body_end   = roverland_legacy_find_statement_end( $sql, $body_start );
 
 		if ( false === $body_end ) {
@@ -146,24 +176,44 @@ function roverland_legacy_sql_extract( $sql ) {
 		$rows = roverland_legacy_parse_values( substr( $sql, $body_start, $body_end - $body_start ) );
 
 		foreach ( $rows as $row ) {
+			$row_count++;
+
 			if ( count( $row ) !== count( $columns ) ) {
 				continue;
 			}
 
 			$item = array_combine( $columns, $row );
 
-			if ( ! is_array( $item ) || 'main' !== ( $item['MODULE_ID'] ?? '' ) ) {
+			if ( ! is_array( $item ) ) {
 				continue;
 			}
+
+			$module = trim( (string) ( $item['MODULE_ID'] ?? '' ) );
+
+			if ( 'main' !== $module ) {
+				continue;
+			}
+
+			$main_count++;
 
 			$url = trim( (string) ( $item['URL'] ?? '' ) );
 
-			if ( ! $url || '/' !== substr( $url, 0, 1 ) || false !== strpos( $url, '=' ) || preg_match( '/index\(\d+\)\.php$/i', $url ) ) {
+			if (
+				! $url ||
+				'/' !== substr( $url, 0, 1 ) ||
+				false !== strpos( $url, '=' ) ||
+				preg_match( '/index\(\d+\)\.php$/i', $url )
+			) {
 				continue;
 			}
 
+			$public_count++;
 			$url  = roverland_legacy_normalize_path( $url );
 			$body = roverland_legacy_clean_text( $item['BODY'] ?? '' );
+
+			if ( '' === $body ) {
+				continue;
+			}
 
 			$page = array(
 				'source_id'   => (int) ( $item['ID'] ?? 0 ),
@@ -180,7 +230,13 @@ function roverland_legacy_sql_extract( $sql ) {
 
 			$current = $pages[ $url ];
 
-			if ( $page['date_change'] > ( $current['date_change'] ?? '' ) || ( $page['date_change'] === ( $current['date_change'] ?? '' ) && strlen( $page['body'] ) > strlen( $current['body'] ?? '' ) ) ) {
+			if (
+				$page['date_change'] > ( $current['date_change'] ?? '' ) ||
+				(
+					$page['date_change'] === ( $current['date_change'] ?? '' ) &&
+					strlen( $page['body'] ) > strlen( $current['body'] ?? '' )
+				)
+			) {
 				$pages[ $url ] = $page;
 			}
 		}
@@ -189,12 +245,90 @@ function roverland_legacy_sql_extract( $sql ) {
 	}
 
 	if ( ! $pages ) {
-		return new WP_Error( 'roverland_legacy_no_pages', 'В дампе не найден b_search_content с публичными страницами.' );
+		return new WP_Error(
+			'roverland_legacy_no_pages',
+			sprintf(
+				'Таблица %1$s найдена, но публичные страницы не извлечены. INSERT: %2$d, строк: %3$d, MODULE_ID=main: %4$d, публичных URL: %5$d.',
+				$table_name,
+				$insert_count,
+				$row_count,
+				$main_count,
+				$public_count
+			)
+		);
 	}
 
 	ksort( $pages );
 
 	return array_values( $pages );
+}
+
+function roverland_legacy_detect_search_table( $sql ) {
+	if ( ! preg_match_all(
+		'/CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?(?:`([^`]+)`|([a-zA-Z0-9_]+))\s*\((.*?)\)\s*(?:ENGINE|TYPE|;)/isu',
+		$sql,
+		$matches,
+		PREG_SET_ORDER
+	) ) {
+		return new WP_Error( 'roverland_legacy_no_tables', 'В дампе не найдены определения CREATE TABLE.' );
+	}
+
+	foreach ( $matches as $match ) {
+		$name = ! empty( $match[1] ) ? $match[1] : $match[2];
+
+		if ( ! preg_match( '/(?:^|_)b_search_content$/i', $name ) && ! preg_match( '/search_content$/i', $name ) ) {
+			continue;
+		}
+
+		$columns = array();
+
+		foreach ( preg_split( '/\r?\n/', $match[3] ) as $line ) {
+			$line = trim( $line );
+
+			if ( preg_match( '/^`([^`]+)`\s+/u', $line, $column_match ) ) {
+				$columns[] = $column_match[1];
+			} elseif ( preg_match( '/^([a-zA-Z0-9_]+)\s+(?:int|bigint|varchar|char|text|mediumtext|longtext|datetime|date|timestamp|float|double|decimal|tinyint|smallint|mediumint|blob|mediumblob|longblob)\b/i', $line, $column_match ) ) {
+				$columns[] = $column_match[1];
+			}
+		}
+
+		return array(
+			'name'    => $name,
+			'columns' => $columns,
+		);
+	}
+
+	return new WP_Error( 'roverland_legacy_no_search_table', 'В дампе не найдена таблица b_search_content (или таблица с префиксом, оканчивающаяся на search_content).' );
+}
+
+function roverland_legacy_insert_targets_table( $header, $table_name ) {
+	if ( ! preg_match( '/INSERT\s+INTO\s+(?:`([^`]+)`|([a-zA-Z0-9_]+))/iu', $header, $match ) ) {
+		return false;
+	}
+
+	$name = ! empty( $match[1] ) ? $match[1] : $match[2];
+
+	return 0 === strcasecmp( $name, $table_name );
+}
+
+function roverland_legacy_insert_columns( $header ) {
+	if ( ! preg_match( '/INSERT\s+INTO\s+(?:`[^`]+`|[a-zA-Z0-9_]+)\s*\((.*?)\)\s*$/isu', trim( $header ), $match ) ) {
+		return array();
+	}
+
+	preg_match_all( '/`([^`]+)`|\b([a-zA-Z_][a-zA-Z0-9_]*)\b/', $match[1], $matches, PREG_SET_ORDER );
+
+	$columns = array();
+
+	foreach ( $matches as $column_match ) {
+		$name = ! empty( $column_match[1] ) ? $column_match[1] : $column_match[2];
+
+		if ( $name ) {
+			$columns[] = $name;
+		}
+	}
+
+	return $columns;
 }
 
 function roverland_legacy_find_statement_end( $sql, $start ) {
