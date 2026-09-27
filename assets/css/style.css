@@ -887,3 +887,47 @@ body.admin-bar .site-header {
 .models-dropdown--models {
   min-width: 245px;
 }
+
+
+/* Faster desktop dropdown interaction */
+@media (min-width: 992px) {
+  .nav-dropdown,
+  .models-dropdown {
+    transform: translateY(3px);
+    transition:
+      opacity 90ms ease,
+      transform 90ms ease,
+      visibility 0s linear 90ms;
+  }
+
+  .main-nav__item--dropdown:hover > .nav-dropdown,
+  .main-nav__item--dropdown:focus-within > .nav-dropdown,
+  .main-nav__item--dropdown.is-hover-open > .nav-dropdown,
+  .models-nav__item--dropdown:hover > .models-dropdown,
+  .models-nav__item--dropdown:focus-within > .models-dropdown,
+  .models-nav__item--dropdown.is-hover-open > .models-dropdown {
+    transition-delay: 0s;
+  }
+
+  .nav-subdropdown,
+  .models-subdropdown {
+    left: calc(100% + 4px);
+    transform: translateX(3px);
+    transition:
+      opacity 80ms ease,
+      transform 80ms ease,
+      visibility 0s linear 80ms;
+  }
+
+  .nav-subdropdown::before,
+  .models-subdropdown::before {
+    width: 8px;
+  }
+
+  .nav-dropdown__item--has-children:hover > .nav-subdropdown,
+  .nav-dropdown__item--has-children:focus-within > .nav-subdropdown,
+  .models-dropdown__item--has-children:hover > .models-subdropdown,
+  .models-dropdown__item--has-children:focus-within > .models-subdropdown {
+    transition-delay: 0s;
+  }
+}

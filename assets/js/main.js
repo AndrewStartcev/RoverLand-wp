@@ -58,7 +58,7 @@
         timer = window.setTimeout(function () {
           item.classList.remove("is-hover-open");
           timer = null;
-        }, 480);
+        }, 140);
       }
 
       item.addEventListener("mouseenter", open);
