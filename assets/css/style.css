@@ -931,3 +931,25 @@ body.admin-bar .site-header {
     transition-delay: 0s;
   }
 }
+
+
+/* Service text block variants */
+.service-content-block--white { background: var(--color-white); }
+.service-content-block--soft { background: var(--color-background-soft); }
+
+.service-content-block__layout--full {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.service-content-block__layout--full .service-content-block__media {
+  width: 100%;
+  flex-basis: auto;
+  order: -1;
+}
+
+.service-content-block__layout--full .service-content-block__media img {
+  width: 100%;
+  max-height: 560px;
+  object-fit: cover;
+}

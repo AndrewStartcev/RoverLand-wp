@@ -10,10 +10,15 @@ foreach ( $sections as $section ) :
 	if ( 'text' === $layout ) :
 		$image     = isset( $section['image'] ) ? $section['image'] : array();
 		$image_url = roverland_image_url( $image );
-		$position  = isset( $section['image_position'] ) ? $section['image_position'] : 'none';
+		$position   = isset( $section['image_position'] ) ? $section['image_position'] : 'none';
+		$background = isset( $section['background'] ) && 'soft' === $section['background'] ? 'soft' : 'white';
+		$layout_class = 'left' === $position ? ' service-content-block__layout--reverse' : '';
+		if ( 'full' === $position ) {
+			$layout_class .= ' service-content-block__layout--full';
+		}
 		?>
-		<section class="service-content-block service-content-block--text">
-			<div class="container service-content-block__layout<?php echo 'left' === $position ? ' service-content-block__layout--reverse' : ''; ?>">
+		<section class="service-content-block service-content-block--text service-content-block--<?php echo esc_attr( $background ); ?>">
+			<div class="container service-content-block__layout<?php echo esc_attr( $layout_class ); ?>">
 				<div class="service-content-block__copy">
 					<?php if ( ! empty( $section['title'] ) ) : ?><h2><?php echo esc_html( $section['title'] ); ?></h2><?php endif; ?>
 					<?php echo wp_kses_post( isset( $section['content'] ) ? $section['content'] : '' ); ?>

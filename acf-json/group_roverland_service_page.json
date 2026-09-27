@@ -223,10 +223,29 @@
               "choices": {
                 "right": "Справа",
                 "left": "Слева",
+                "full": "Сверху на всю ширину",
                 "none": "Без изображения"
               },
               "default_value": "none",
-              "return_format": "value"
+              "return_format": "value",
+              "wrapper": {
+                "width": "50"
+              }
+            },
+            {
+              "key": "field_rl_service_text_background",
+              "label": "Фон блока",
+              "name": "background",
+              "type": "select",
+              "choices": {
+                "white": "Белый",
+                "soft": "Светло-серый"
+              },
+              "default_value": "white",
+              "return_format": "value",
+              "wrapper": {
+                "width": "50"
+              }
             }
           ]
         },
@@ -654,5 +673,5 @@
   "active": true,
   "description": "Универсальная модель страниц ремонта, сервиса, модели автомобиля и услуг для конкретной модели.",
   "show_in_rest": 0,
-  "modified": 1790374000
+  "modified": 1790375000
 }
