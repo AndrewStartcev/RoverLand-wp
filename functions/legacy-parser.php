@@ -526,6 +526,8 @@ function roverland_legacy_parse_maintenance_sections( $lines ) {
 
 		$rows = array();
 
+		$stop_rows = false;
+
 		while ( $i < $count && preg_match( '/^ТО\s+\d/u', $lines[ $i ] ) ) {
 			$name = $lines[ $i ];
 			$i++;
@@ -533,7 +535,8 @@ function roverland_legacy_parse_maintenance_sections( $lines ) {
 
 			while ( $i < $count && ! preg_match( '/^ТО\s+\d/u', $lines[ $i ] ) && ! preg_match( '/(?:дизель|бензин)/iu', $lines[ $i ] ) ) {
 				if ( preg_match( '/(?:сохранение|гарантия|обслуживаем|если вы не нашли|\* все сведения|записаться)/iu', $lines[ $i ] ) ) {
-					break 2;
+					$stop_rows = true;
+					break;
 				}
 				$payload[] = $lines[ $i ];
 				$i++;
@@ -567,6 +570,10 @@ function roverland_legacy_parse_maintenance_sections( $lines ) {
 				'name'  => $name,
 				'cells' => $cells,
 			);
+
+			if ( $stop_rows ) {
+				break;
+			}
 		}
 
 		if ( $rows ) {
