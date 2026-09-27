@@ -173,13 +173,9 @@ function roverland_render_main_service_menu_item( $path, $label ) {
 
 function roverland_primary_menu_fallback() {
 	echo '<ul class="main-nav__list">';
-
-	roverland_render_main_service_menu_item( 'remont', 'Ремонт' );
-	roverland_render_main_service_menu_item( 'servis', 'Сервис' );
-	roverland_render_main_service_menu_item( 'zapchasti', 'Запчасти' );
+	echo '<li class="main-nav__item"><a class="main-nav__link" href="' . esc_url( home_url( '/' ) ) . '">Главная</a></li>';
 
 	$company = roverland_menu_page( 'kompaniya' );
-
 	if ( $company ) {
 		echo '<li class="main-nav__item main-nav__item--dropdown">';
 		echo '<a class="main-nav__link" href="' . esc_url( get_permalink( $company ) ) . '" aria-haspopup="true">О компании <img class="main-nav__arrow" src="' . esc_url( roverland_asset( 'assets/images/icons/ui/chevron-gray.svg' ) ) . '" width="10" height="6" alt="" aria-hidden="true"></a>';
@@ -215,11 +211,15 @@ function roverland_primary_menu_fallback() {
 		echo '</div></li>';
 	}
 
+	roverland_render_main_service_menu_item( 'remont', 'Ремонт' );
+	roverland_render_main_service_menu_item( 'servis', 'Сервис' );
+	roverland_render_main_service_menu_item( 'zapchasti', 'Запчасти' );
+
 	foreach (
 		array(
 			'aktsii'    => 'Акции',
 			'portfolio' => 'Портфолио',
-			'contacts'  => 'Контакты',
+			'kontakty'  => 'Контакты',
 		) as $path => $label
 	) {
 		$page = roverland_menu_page( $path );
@@ -245,6 +245,21 @@ function roverland_render_mobile_page_children( $parent_id ) {
 }
 
 function roverland_mobile_menu_fallback() {
+	echo '<a href="' . esc_url( home_url( '/' ) ) . '">Главная</a>';
+
+	$company = roverland_menu_page( 'kompaniya' );
+	if ( $company ) {
+		echo '<details class="mobile-nav__group">';
+		echo '<summary>О компании</summary>';
+		echo '<a class="mobile-nav__root" href="' . esc_url( get_permalink( $company ) ) . '">О компании</a>';
+
+		foreach ( roverland_menu_page_children( $company->ID ) as $child ) {
+			echo '<a class="mobile-nav__child" href="' . esc_url( get_permalink( $child ) ) . '">' . esc_html( get_the_title( $child ) ) . '</a>';
+		}
+
+		echo '</details>';
+	}
+
 	foreach (
 		array(
 			'remont'    => 'Ремонт',
@@ -271,24 +286,11 @@ function roverland_mobile_menu_fallback() {
 		}
 	}
 
-	$company = roverland_menu_page( 'kompaniya' );
-	if ( $company ) {
-		echo '<details class="mobile-nav__group">';
-		echo '<summary>О компании</summary>';
-		echo '<a class="mobile-nav__root" href="' . esc_url( get_permalink( $company ) ) . '">О компании</a>';
-
-		foreach ( roverland_menu_page_children( $company->ID ) as $child ) {
-			echo '<a class="mobile-nav__child" href="' . esc_url( get_permalink( $child ) ) . '">' . esc_html( get_the_title( $child ) ) . '</a>';
-		}
-
-		echo '</details>';
-	}
-
 	foreach (
 		array(
 			'aktsii'    => 'Акции',
 			'portfolio' => 'Портфолио',
-			'contacts'  => 'Контакты',
+			'kontakty'  => 'Контакты',
 		) as $path => $label
 	) {
 		$page = roverland_menu_page( $path );
@@ -296,6 +298,65 @@ function roverland_mobile_menu_fallback() {
 			echo '<a href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html( $label ) . '</a>';
 		}
 	}
+}
+
+function roverland_model_service_pages( $model_id ) {
+	$model_id = (int) $model_id;
+
+	$pages = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'meta_query'     => array(
+				'relation' => 'AND',
+				array(
+					'key'   => 'service_related_model',
+					'value' => $model_id,
+				),
+				array(
+					'key'     => 'service_page_kind',
+					'value'   => array( 'model_service', 'maintenance' ),
+					'compare' => 'IN',
+				),
+			),
+			'no_found_rows'  => true,
+		)
+	);
+
+	usort(
+		$pages,
+		static function ( $a, $b ) {
+			$a_service = (int) roverland_field( 'service_related_service', 0, $a->ID );
+			$b_service = (int) roverland_field( 'service_related_service', 0, $b->ID );
+			$a_sort    = $a_service ? (int) roverland_field( 'service_sort', 100, $a_service ) : 100;
+			$b_sort    = $b_service ? (int) roverland_field( 'service_sort', 100, $b_service ) : 100;
+
+			if ( $a_sort === $b_sort ) {
+				return strcasecmp( $a->post_title, $b->post_title );
+			}
+
+			return $a_sort <=> $b_sort;
+		}
+	);
+
+	return $pages;
+}
+
+function roverland_render_model_service_links( $model_id, $class = 'models-dropdown' ) {
+	$services = roverland_model_service_pages( $model_id );
+
+	if ( ! $services ) {
+		return;
+	}
+
+	echo '<div class="' . esc_attr( $class ) . '">';
+
+	foreach ( $services as $page ) {
+		echo '<a href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html( roverland_menu_page_label( $page->ID ) ) . '</a>';
+	}
+
+	echo '</div>';
 }
 
 function roverland_models_menu_fallback() {
@@ -314,6 +375,10 @@ function roverland_models_menu_fallback() {
 
 	foreach ( $models as $model ) {
 		$model_page = roverland_get_service_page_for_model( $model->ID );
+
+		if ( ! $model_page ) {
+			continue;
+		}
 
 		$children = get_posts(
 			array(
@@ -335,34 +400,47 @@ function roverland_models_menu_fallback() {
 			)
 		);
 
-		if ( ! $model_page && ! $children ) {
-			continue;
-		}
-
-		$item_class = 'models-nav__item' . ( $children ? ' models-nav__item--dropdown' : '' );
-		$model_url  = $model_page ? get_permalink( $model_page ) : '#';
+		$direct_services = roverland_model_service_pages( $model->ID );
+		$has_dropdown    = (bool) ( $children || $direct_services );
+		$item_class      = 'models-nav__item' . ( $has_dropdown ? ' models-nav__item--dropdown' : '' );
 
 		echo '<li class="' . esc_attr( $item_class ) . '">';
-		echo '<a class="models-nav__link" href="' . esc_url( $model_url ) . '">';
+		echo '<a class="models-nav__link" href="' . esc_url( get_permalink( $model_page ) ) . '">';
 		echo esc_html( roverland_field( 'model_menu_name', get_the_title( $model ), $model->ID ) );
 
-		if ( $children ) {
+		if ( $has_dropdown ) {
 			echo ' <img class="models-nav__arrow" src="' . esc_url( roverland_asset( 'assets/images/icons/ui/chevron-white.svg' ) ) . '" width="10" height="6" alt="" aria-hidden="true">';
 		}
 
 		echo '</a>';
 
 		if ( $children ) {
-			echo '<div class="models-dropdown">';
-			foreach ( $children as $child ) {
-				$child_page = roverland_get_service_page_for_model( $child->ID );
-				if ( ! $child_page ) {
+			echo '<div class="models-dropdown models-dropdown--models">';
+
+			$branches = array_merge( array( $model ), $children );
+
+			foreach ( $branches as $branch ) {
+				$branch_page = roverland_get_service_page_for_model( $branch->ID );
+				if ( ! $branch_page ) {
 					continue;
 				}
 
-				echo '<a href="' . esc_url( get_permalink( $child_page ) ) . '">' . esc_html( roverland_field( 'model_menu_name', get_the_title( $child ), $child->ID ) ) . '</a>';
+				$services = roverland_model_service_pages( $branch->ID );
+				$label    = roverland_field( 'model_menu_name', get_the_title( $branch ), $branch->ID );
+
+				if ( $services ) {
+					echo '<div class="models-dropdown__item models-dropdown__item--has-children">';
+					echo '<a href="' . esc_url( get_permalink( $branch_page ) ) . '">' . esc_html( $label ) . '<span class="models-dropdown__chevron" aria-hidden="true">›</span></a>';
+					roverland_render_model_service_links( $branch->ID, 'models-subdropdown' );
+					echo '</div>';
+				} else {
+					echo '<a href="' . esc_url( get_permalink( $branch_page ) ) . '">' . esc_html( $label ) . '</a>';
+				}
 			}
+
 			echo '</div>';
+		} elseif ( $direct_services ) {
+			roverland_render_model_service_links( $model->ID );
 		}
 
 		echo '</li>';
@@ -370,4 +448,3 @@ function roverland_models_menu_fallback() {
 
 	echo '</ul>';
 }
-

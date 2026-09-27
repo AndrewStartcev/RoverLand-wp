@@ -14,6 +14,8 @@ add_action(
 		$redirects = array(
 			'/politika-konfidentsialnosti.php' => roverland_page_url( 'politika-konfidentsialnosti' ),
 			'/politika-ispolzovaniya-cookie.php' => roverland_page_url( 'politika-ispolzovaniya-cookie' ),
+			'/contacts' => roverland_page_url( 'kontakty' ),
+			'/contacts/' => roverland_page_url( 'kontakty' ),
 		);
 
 		if ( isset( $redirects[ $path ] ) ) {
