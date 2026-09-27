@@ -133,8 +133,20 @@ function roverland_legacy_import_render_page() {
 						id="roverland-legacy-import-all"
 						data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
 						data-nonce="<?php echo esc_attr( wp_create_nonce( 'roverland_legacy_ajax' ) ); ?>"
+						data-force="0"
 					>
 						Импортировать все пустые страницы
+					</button>
+
+					<button
+						type="button"
+						class="button button-secondary"
+						id="roverland-legacy-import-all-force"
+						data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
+						data-nonce="<?php echo esc_attr( wp_create_nonce( 'roverland_legacy_ajax' ) ); ?>"
+						data-force="1"
+					>
+						Импортировать ВСЕ страницы с перезаписью
 					</button>
 				</div>
 
@@ -233,7 +245,10 @@ function roverland_legacy_import_render_page() {
 	(function () {
 		var imagesToggle = document.getElementById('roverland-legacy-download-images');
 		var singleBatchForm = document.querySelector('.roverland-legacy-import__batch form');
-		var importAllButton = document.getElementById('roverland-legacy-import-all');
+		var importButtons = [
+			document.getElementById('roverland-legacy-import-all'),
+			document.getElementById('roverland-legacy-import-all-force')
+		].filter(Boolean);
 		var progress = document.getElementById('roverland-legacy-import-progress');
 
 		if (singleBatchForm && imagesToggle) {
@@ -243,89 +258,100 @@ function roverland_legacy_import_render_page() {
 			});
 		}
 
-		if (!importAllButton || !progress) return;
+		if (!importButtons.length || !progress) return;
 
 		var bar = progress.querySelector('.roverland-legacy-import__progress-bar span');
 		var text = progress.querySelector('.roverland-legacy-import__progress-text');
 
-		importAllButton.addEventListener('click', async function () {
-			if (importAllButton.disabled) return;
+		importButtons.forEach(function (button) {
+			button.addEventListener('click', async function () {
+				if (button.disabled) return;
 
-			importAllButton.disabled = true;
-			progress.hidden = false;
+				var force = button.dataset.force === '1';
 
-			var skippedIds = [];
-			var totalUpdated = 0;
-			var totalMedia = 0;
-			var totalErrors = [];
-			var initialRemaining = null;
-
-			async function runBatch() {
-				var data = new FormData();
-				data.append('action', 'roverland_legacy_import_batch');
-				data.append('nonce', importAllButton.dataset.nonce || '');
-				data.append('download_images', imagesToggle && imagesToggle.checked ? '1' : '0');
-				data.append('skip_ids', skippedIds.join(','));
-
-				var response = await fetch(importAllButton.dataset.ajaxUrl, {
-					method: 'POST',
-					credentials: 'same-origin',
-					body: data
-				});
-
-				var payload = await response.json();
-
-				if (!payload || !payload.success) {
-					throw new Error(payload && payload.data && payload.data.message ? payload.data.message : 'Ошибка AJAX-импорта.');
-				}
-
-				var result = payload.data || {};
-				var processedIds = Array.isArray(result.processed_ids) ? result.processed_ids : [];
-				skippedIds = skippedIds.concat(processedIds);
-
-				totalUpdated += Number(result.updated || 0);
-				totalMedia += Number(result.media || 0);
-
-				if (Array.isArray(result.errors) && result.errors.length) {
-					totalErrors = totalErrors.concat(result.errors);
-				}
-
-				if (initialRemaining === null) {
-					initialRemaining = Number(result.total || result.remaining || 0);
-				}
-
-				var remaining = Number(result.remaining || 0);
-				var total = Math.max(initialRemaining || 0, totalUpdated + remaining);
-				var done = Math.max(0, total - remaining);
-				var percent = total > 0 ? Math.min(100, Math.round(done / total * 100)) : 100;
-
-				bar.style.width = percent + '%';
-				text.textContent = 'Импортировано страниц: ' + totalUpdated + '. Осталось: ' + remaining + '. Изображений: ' + totalMedia + '.';
-
-				if (remaining > 0 && Number(result.processed || 0) > 0) {
-					await runBatch();
+				if (force && !window.confirm('Перезаписать контент ВСЕХ найденных сервисных страниц данными из старого RoverLand?')) {
 					return;
 				}
 
-				bar.style.width = '100%';
+				importButtons.forEach(function (item) { item.disabled = true; });
+				progress.hidden = false;
+				bar.style.width = '0%';
+				text.textContent = force ? 'Подготовка полного импорта…' : 'Подготовка…';
 
-				if (totalErrors.length) {
-					text.textContent += ' Ошибок: ' + totalErrors.length + '. Обновите страницу — детали будут видны в таблице.';
-				} else {
-					text.textContent += ' Готово.';
+				var skippedIds = [];
+				var totalUpdated = 0;
+				var totalMedia = 0;
+				var totalErrors = [];
+				var initialRemaining = null;
+
+				async function runBatch() {
+					var data = new FormData();
+					data.append('action', 'roverland_legacy_import_batch');
+					data.append('nonce', button.dataset.nonce || '');
+					data.append('download_images', imagesToggle && imagesToggle.checked ? '1' : '0');
+					data.append('force', force ? '1' : '0');
+					data.append('skip_ids', skippedIds.join(','));
+
+					var response = await fetch(button.dataset.ajaxUrl, {
+						method: 'POST',
+						credentials: 'same-origin',
+						body: data
+					});
+
+					var payload = await response.json();
+
+					if (!payload || !payload.success) {
+						throw new Error(payload && payload.data && payload.data.message ? payload.data.message : 'Ошибка AJAX-импорта.');
+					}
+
+					var result = payload.data || {};
+					var processedIds = Array.isArray(result.processed_ids) ? result.processed_ids : [];
+					skippedIds = skippedIds.concat(processedIds);
+
+					totalUpdated += Number(result.updated || 0);
+					totalMedia += Number(result.media || 0);
+
+					if (Array.isArray(result.errors) && result.errors.length) {
+						totalErrors = totalErrors.concat(result.errors);
+					}
+
+					if (initialRemaining === null) {
+						initialRemaining = Number(result.total || result.remaining || 0);
+					}
+
+					var remaining = Number(result.remaining || 0);
+					var total = Math.max(initialRemaining || 0, totalUpdated + remaining);
+					var done = Math.max(0, total - remaining);
+					var percent = total > 0 ? Math.min(100, Math.round(done / total * 100)) : 100;
+
+					bar.style.width = percent + '%';
+					text.textContent = 'Импортировано страниц: ' + totalUpdated + '. Осталось: ' + remaining + '. Изображений: ' + totalMedia + '.';
+
+					if (remaining > 0 && Number(result.processed || 0) > 0) {
+						await runBatch();
+						return;
+					}
+
+					bar.style.width = '100%';
+
+					if (totalErrors.length) {
+						text.textContent += ' Ошибок: ' + totalErrors.length + '. Обновите страницу — детали будут видны в таблице.';
+					} else {
+						text.textContent += ' Готово.';
+					}
+
+					setTimeout(function () {
+						window.location.reload();
+					}, 1200);
 				}
 
-				setTimeout(function () {
-					window.location.reload();
-				}, 1200);
-			}
-
-			try {
-				await runBatch();
-			} catch (error) {
-				text.textContent = 'Импорт остановлен: ' + error.message;
-				importAllButton.disabled = false;
-			}
+				try {
+					await runBatch();
+				} catch (error) {
+					text.textContent = 'Импорт остановлен: ' + error.message;
+					importButtons.forEach(function (item) { item.disabled = false; });
+				}
+			});
 		});
 	})();
 	</script>
@@ -516,7 +542,7 @@ function roverland_legacy_import_handle() {
 			continue;
 		}
 
-		roverland_legacy_import_one_page( $page->ID, false, $download_images, $report );
+		roverland_legacy_import_one_page( $page->ID, $force, $download_images, $report );
 		$done++;
 	}
 
@@ -539,6 +565,7 @@ function roverland_legacy_import_ajax_batch() {
 	}
 
 	$download_images = ! empty( $_POST['download_images'] );
+	$force           = ! empty( $_POST['force'] );
 	$skip_ids        = array();
 
 	if ( ! empty( $_POST['skip_ids'] ) ) {
@@ -572,7 +599,7 @@ function roverland_legacy_import_ajax_batch() {
 
 		$sections = roverland_field( 'service_sections', array(), $page->ID );
 
-		if ( is_array( $sections ) && $sections ) {
+		if ( ! $force && is_array( $sections ) && $sections ) {
 			continue;
 		}
 
@@ -602,7 +629,7 @@ function roverland_legacy_import_ajax_batch() {
 
 		$sections = roverland_field( 'service_sections', array(), $page->ID );
 
-		if ( is_array( $sections ) && $sections ) {
+		if ( ! $force && is_array( $sections ) && $sections ) {
 			continue;
 		}
 
