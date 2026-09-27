@@ -327,10 +327,25 @@ function roverland_model_service_pages( $model_id ) {
 	usort(
 		$pages,
 		static function ( $a, $b ) {
+			$order = array(
+				'to'                         => 10,
+				'zamena-masla'               => 20,
+				'zamena-masla-v-akpp'        => 30,
+				'zamena-tormoznyh-kolodok'   => 40,
+				'zamena-remnya-grm'           => 50,
+				'diagnostika'                 => 60,
+				'remont-dvigatelya'           => 70,
+				'remont-akpp'                 => 80,
+				'remont-turbiny'              => 90,
+				'remont-reduktora'            => 100,
+			);
+
 			$a_service = (int) roverland_field( 'service_related_service', 0, $a->ID );
 			$b_service = (int) roverland_field( 'service_related_service', 0, $b->ID );
-			$a_sort    = $a_service ? (int) roverland_field( 'service_sort', 100, $a_service ) : 100;
-			$b_sort    = $b_service ? (int) roverland_field( 'service_sort', 100, $b_service ) : 100;
+			$a_slug    = $a_service ? (string) roverland_field( 'service_slug', '', $a_service ) : '';
+			$b_slug    = $b_service ? (string) roverland_field( 'service_slug', '', $b_service ) : '';
+			$a_sort    = isset( $order[ $a_slug ] ) ? $order[ $a_slug ] : 999;
+			$b_sort    = isset( $order[ $b_slug ] ) ? $order[ $b_slug ] : 999;
 
 			if ( $a_sort === $b_sort ) {
 				return strcasecmp( $a->post_title, $b->post_title );
