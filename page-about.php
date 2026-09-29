@@ -20,7 +20,7 @@ while ( have_posts() ) :
 	$yandex_org_id       = preg_replace( '/\D+/', '', (string) roverland_field( 'about_yandex_org_id', '126990267000' ) );
 	$yandex_live_theme   = 'dark' === roverland_field( 'about_yandex_live_theme', 'light' ) ? 'dark' : 'light';
 	$yandex_widget_code  = trim( (string) roverland_field( 'about_yandex_widget_code', '' ) );
-	$yandex_org_url      = trim( (string) roverland_field( 'about_yandex_org_url', '' ) );
+	$yandex_org_url      = trim( (string) roverland_field( 'about_yandex_org_url', 'https://yandex.ru/maps/org/rover_lend/126990267000/' ) );
 	$yandex_title        = trim( (string) roverland_field( 'about_yandex_title', 'Rover Land в Яндекс Картах' ) );
 	$yandex_note         = trim( (string) roverland_field( 'about_yandex_note', 'Актуальный рейтинг и отзывы обновляются Яндексом автоматически.' ) );
 	$yandex_widget_src   = '';
