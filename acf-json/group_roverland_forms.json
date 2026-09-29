@@ -1,0 +1,169 @@
+{
+  "key": "group_roverland_forms",
+  "title": "Rover Land — формы",
+  "fields": [
+    {
+      "key": "field_rl_forms_tab_service",
+      "label": "Запись на сервис",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_form_service_recipient",
+      "label": "E-mail получателя",
+      "name": "form_service_recipient",
+      "type": "email",
+      "instructions": "Если пусто — используется e-mail администратора WordPress.",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_form_service_subject",
+      "label": "Тема письма",
+      "name": "form_service_subject",
+      "type": "text",
+      "default_value": "Новая заявка на сервис — Rover Land",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_form_service_modal_eyebrow",
+      "label": "Метка модального окна",
+      "name": "form_service_modal_eyebrow",
+      "type": "text",
+      "default_value": "Запись в Rover Land",
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_form_service_modal_title",
+      "label": "Заголовок модального окна",
+      "name": "form_service_modal_title",
+      "type": "text",
+      "default_value": "Запишитесь на сервис",
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_form_service_modal_lead",
+      "label": "Описание модального окна",
+      "name": "form_service_modal_lead",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "",
+      "wrapper": {
+        "width": "34"
+      }
+    },
+    {
+      "key": "field_rl_form_service_button",
+      "label": "Текст кнопки",
+      "name": "form_service_button",
+      "type": "text",
+      "default_value": "Отправить заявку",
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_form_service_success",
+      "label": "Сообщение после отправки",
+      "name": "form_service_success",
+      "type": "text",
+      "default_value": "Спасибо! Заявка отправлена. Мы свяжемся с вами в ближайшее время.",
+      "wrapper": {
+        "width": "67"
+      }
+    },
+    {
+      "key": "field_rl_forms_tab_career",
+      "label": "Вакансии",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_form_career_recipient",
+      "label": "E-mail получателя",
+      "name": "form_career_recipient",
+      "type": "email",
+      "instructions": "Если пусто — используется e-mail администратора WordPress.",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_form_career_subject",
+      "label": "Тема письма",
+      "name": "form_career_subject",
+      "type": "text",
+      "default_value": "Новый отклик на вакансию — Rover Land",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_form_career_button",
+      "label": "Текст кнопки",
+      "name": "form_career_button",
+      "type": "text",
+      "default_value": "Отправить отклик",
+      "wrapper": {
+        "width": "33"
+      }
+    },
+    {
+      "key": "field_rl_form_career_success",
+      "label": "Сообщение после отправки",
+      "name": "form_career_success",
+      "type": "text",
+      "default_value": "Спасибо! Отклик отправлен. Мы свяжемся с вами после рассмотрения.",
+      "wrapper": {
+        "width": "67"
+      }
+    },
+    {
+      "key": "field_rl_forms_tab_common",
+      "label": "Общие настройки",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_form_error",
+      "label": "Текст общей ошибки",
+      "name": "form_error_message",
+      "type": "text",
+      "default_value": "Не удалось отправить форму. Попробуйте ещё раз или позвоните нам."
+    },
+    {
+      "key": "field_rl_form_privacy_note",
+      "label": "Примечание",
+      "type": "message",
+      "message": "Все формы используют встроенный обработчик темы, nonce-проверку и обязательное согласие на обработку персональных данных. Резюме разрешено в PDF/DOC/DOCX до 8 МБ.",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "options_page",
+        "operator": "==",
+        "value": "roverland-forms"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "Настройки форм записи на сервис и откликов на вакансии.",
+  "show_in_rest": 0,
+  "modified": 1790666815
+}
