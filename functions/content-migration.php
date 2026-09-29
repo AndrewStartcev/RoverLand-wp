@@ -820,7 +820,7 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 		}
 
 		if ( ! $lead && 'p' === $tag && mb_strlen( $text ) >= 70 ) {
-			$lead = $text;
+			$lead = roverland_content_migration_trim_lead( $text );
 			continue;
 		}
 
@@ -873,6 +873,44 @@ function roverland_content_migration_is_chrome_node( $node ) {
 
 function roverland_content_migration_node_text( $node ) {
 	return trim( preg_replace( '/\s+/u', ' ', html_entity_decode( (string) $node->textContent, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) );
+}
+
+function roverland_content_migration_trim_lead( $text, $max_length = 320 ) {
+	$text = trim( preg_replace( '/\s+/u', ' ', (string) $text ) );
+
+	if ( '' === $text ) {
+		return '';
+	}
+
+	$sentences = preg_split( '/(?<=[.!?])\s+/u', $text, -1, PREG_SPLIT_NO_EMPTY );
+	$result    = '';
+
+	foreach ( array_slice( $sentences, 0, 2 ) as $sentence ) {
+		$candidate = trim( $result . ' ' . $sentence );
+
+		if ( mb_strlen( $candidate ) > $max_length ) {
+			break;
+		}
+
+		$result = $candidate;
+	}
+
+	if ( $result ) {
+		return $result;
+	}
+
+	if ( mb_strlen( $text ) <= $max_length ) {
+		return $text;
+	}
+
+	$trimmed = rtrim( mb_substr( $text, 0, $max_length - 1 ) );
+	$space   = mb_strrpos( $trimmed, ' ' );
+
+	if ( false !== $space && $space > (int) ( $max_length * 0.7 ) ) {
+		$trimmed = mb_substr( $trimmed, 0, $space );
+	}
+
+	return rtrim( $trimmed, " \t\n\r\0\x0B,;:-" ) . '…';
 }
 
 function roverland_content_migration_ignore_text( $text ) {
