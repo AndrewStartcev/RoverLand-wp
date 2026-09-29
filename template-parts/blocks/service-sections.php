@@ -12,7 +12,11 @@ foreach ( $sections as $section ) :
 		$image_url = roverland_image_url( $image );
 		$position   = isset( $section['image_position'] ) ? $section['image_position'] : 'none';
 		$background = isset( $section['background'] ) && 'soft' === $section['background'] ? 'soft' : 'white';
+		$has_media  = $image_url && 'none' !== $position;
 		$layout_class = 'left' === $position ? ' service-content-block__layout--reverse' : '';
+		if ( ! $has_media ) {
+			$layout_class .= ' service-content-block__layout--no-media';
+		}
 		if ( 'full' === $position ) {
 			$layout_class .= ' service-content-block__layout--full';
 		}
