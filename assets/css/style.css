@@ -1631,3 +1631,181 @@ body.admin-bar .site-header {
     min-height: 500px;
   }
 }
+
+
+/* Large live Yandex award card */
+.about-yandex-card--live {
+  width: min(100%, 430px);
+  flex: 0 0 430px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+}
+
+.about-yandex-live {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  padding: 28px 28px 30px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,.55), transparent 31%),
+    linear-gradient(180deg, #ffd71a 0%, #ffc900 100%);
+  box-shadow: 0 24px 60px rgba(97, 76, 0, .18);
+  color: #171717;
+}
+
+.about-yandex-live__top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.about-yandex-live__brand {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -.04em;
+}
+
+.about-yandex-live__year {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.55);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.about-yandex-live__star {
+  position: absolute;
+  z-index: 0;
+  top: 86px;
+  left: 50%;
+  width: 330px;
+  height: 330px;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,.94);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 94%,
+    50% 72%,
+    21% 94%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  filter: drop-shadow(0 18px 28px rgba(129, 101, 0, .14));
+}
+
+.about-yandex-live__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: 450px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 50px;
+  text-align: center;
+}
+
+.about-yandex-live__label {
+  margin: 0 0 8px;
+  color: rgba(0,0,0,.6);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.about-yandex-live__content h3 {
+  max-width: 280px;
+  margin: 0 0 24px;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -.035em;
+}
+
+.about-yandex-live__widgets {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about-yandex-live__award,
+.about-yandex-live__rating {
+  display: block;
+  width: 150px;
+  height: 50px;
+  border: 0;
+  transform: scale(1.45);
+  transform-origin: center;
+}
+
+.about-yandex-live__widgets {
+  margin: 16px 0 26px;
+}
+
+.about-yandex-live__note {
+  max-width: 290px;
+  margin: 8px 0 14px;
+  color: rgba(0,0,0,.62);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.about-yandex-live__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #111;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.about-yandex-live__link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+  .about-yandex-card--live {
+    width: min(100%, 520px);
+    flex-basis: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-yandex-live {
+    min-height: 500px;
+    padding: 22px 18px 24px;
+    border-radius: 18px;
+  }
+
+  .about-yandex-live__star {
+    top: 82px;
+    width: 290px;
+    height: 290px;
+  }
+
+  .about-yandex-live__content {
+    min-height: 400px;
+    padding-top: 42px;
+  }
+
+  .about-yandex-live__content h3 {
+    font-size: 26px;
+  }
+
+  .about-yandex-live__award,
+  .about-yandex-live__rating {
+    transform: scale(1.3);
+  }
+}
