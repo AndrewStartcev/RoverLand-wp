@@ -81,6 +81,19 @@ function roverland_content_migration_render() {
 		<?php if ( is_array( $report ) ) : ?>
 			<div class="notice notice-<?php echo empty( $report['errors'] ) ? 'success' : 'warning'; ?> is-dismissible">
 				<p><strong><?php echo esc_html( $report['message'] ?? 'Операция завершена.' ); ?></strong></p>
+				<?php if ( ! empty( $report['items'] ) && is_array( $report['items'] ) ) : ?>
+					<ul>
+						<?php foreach ( $report['items'] as $item ) : ?>
+							<li>
+								<strong><?php echo esc_html( $item['title'] ?? '' ); ?></strong>
+								<?php if ( ! empty( $item['url'] ) ) : ?>
+									— <a href="<?php echo esc_url( $item['url'] ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $item['url'] ); ?></a>
+								<?php endif; ?>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+
 				<?php if ( ! empty( $report['errors'] ) ) : ?>
 					<ul>
 						<?php foreach ( $report['errors'] as $error ) : ?>
@@ -394,7 +407,7 @@ function roverland_content_migration_import_pages_batch() {
 	check_admin_referer( 'roverland_content_import_pages_batch', 'roverland_content_nonce' );
 
 	$download_images = ! empty( $_POST['download_images'] );
-	$report          = array( 'message' => '', 'errors' => array(), 'media' => 0 );
+	$report          = array( 'message' => '', 'errors' => array(), 'media' => 0, 'items' => array() );
 	$done            = 0;
 
 	@set_time_limit( $download_images ? 90 : 60 );
@@ -413,11 +426,16 @@ function roverland_content_migration_import_pages_batch() {
 			continue;
 		}
 
-		roverland_content_migration_apply_page( $page->ID, $download_images, $report );
+		if ( roverland_content_migration_apply_page( $page->ID, $download_images, $report ) ) {
+			$report['items'][] = array(
+				'title' => get_the_title( $page->ID ),
+				'url'   => get_permalink( $page->ID ),
+			);
+		}
 		$done++;
 	}
 
-	$report['message'] = $done ? sprintf( 'Адаптировано страниц: %d.', $done ) : 'Необработанных страниц с legacy URL больше нет.';
+	$report['message'] = $done ? sprintf( 'Адаптировано страниц: %d. Ниже — что именно обновилось.', count( $report['items'] ) ) : 'Необработанных страниц с legacy URL больше нет.';
 	roverland_content_migration_finish( $report );
 }
 
