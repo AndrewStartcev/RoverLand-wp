@@ -48,13 +48,21 @@ while ( have_posts() ) :
 
 		<aside class="vacancy-sidebar">
 			<div class="vacancy-contact-card"><span>КОНТАКТНОЕ ЛИЦО</span><strong><?php echo esc_html( $contact_name ); ?></strong><a href="<?php echo esc_url( 'tel:' . roverland_phone_href( $contact_phone ) ); ?>"><?php echo esc_html( $contact_phone ); ?></a></div>
-			<form class="vacancy-apply-card" id="vacancy-apply" action="#" method="post" novalidate>
+			<form class="vacancy-apply-card" id="vacancy-apply" action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post" data-roverland-form novalidate>
+				<input type="hidden" name="action" value="roverland_submit_form">
+				<input type="hidden" name="form_type" value="career">
+				<input type="hidden" name="page_title" value="<?php echo esc_attr( wp_get_document_title() ); ?>">
+				<input type="hidden" name="page_url" value="<?php echo esc_url( home_url( wp_unslash( $_SERVER['REQUEST_URI'] ?? '/' ) ) ); ?>">
+				<input type="hidden" name="_roverland_form_nonce" value="<?php echo esc_attr( wp_create_nonce( 'roverland_form_submit' ) ); ?>">
+				<input class="roverland-form-hp" type="text" name="website" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
 				<h2>Оставить заявку</h2>
 				<label><span>ВАШЕ ИМЯ</span><input type="text" name="name" placeholder="Имя Фамилия" required></label>
 				<label><span>НОМЕР ТЕЛЕФОНА</span><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required></label>
 				<label><span>ВАКАНСИЯ</span><input type="text" name="position" value="<?php echo esc_attr( get_the_title() ); ?>" readonly></label>
 				<label><span>СООБЩЕНИЕ</span><textarea name="message" rows="4" placeholder="Опишите"></textarea></label>
-				<button class="button button--wide vacancy-apply-card__submit" type="submit">Отправить заявку</button>
+				<label class="career-form__consent"><input type="checkbox" name="consent" value="1" required><span>Нажимая на кнопку, вы соглашаетесь с <a href="<?php echo esc_url( roverland_page_url( 'politika-konfidentsialnosti' ) ); ?>">политикой конфиденциальности</a>.</span></label>
+				<button class="button button--wide vacancy-apply-card__submit" type="submit"><?php echo esc_html( roverland_option( 'form_career_button', 'Отправить отклик' ) ); ?></button>
+				<p class="service-form__status" role="status" aria-live="polite" data-form-status></p>
 			</form>
 		</aside>
 	</div></section>
