@@ -349,6 +349,28 @@
     });
   }
 
+  function showFormSuccess(message) {
+    var modal = document.querySelector("[data-form-success-modal]");
+    if (!modal) return;
+
+    var messageNode = modal.querySelector("[data-form-success-message]");
+    if (messageNode && message) messageNode.textContent = message;
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    body.classList.add("is-locked");
+
+    modal.querySelectorAll("[data-form-success-close]").forEach(function (button) {
+      if (button.dataset.successCloseReady === "1") return;
+      button.dataset.successCloseReady = "1";
+      button.addEventListener("click", function () {
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+        body.classList.remove("is-locked");
+      });
+    });
+  }
+
   function setFormStatus(form, message, success) {
     var status = form.querySelector("[data-form-status]");
     if (!status) return;
@@ -411,6 +433,7 @@
 
           setFormStatus(form, message, true);
           form.reset();
+          showFormSuccess(message);
         } catch (error) {
           setFormStatus(form, error.message || "Не удалось отправить форму.", false);
         } finally {
