@@ -17,7 +17,7 @@ while ( have_posts() ) :
 	$service_title   = roverland_field( 'about_service_title', '' );
 	$service_content = roverland_field( 'about_service_content', '' );
 	$award               = roverland_field( 'about_service_award', array() );
-	$yandex_org_id       = preg_replace( '/\D+/', '', (string) roverland_field( 'about_yandex_org_id', '' ) );
+	$yandex_org_id       = preg_replace( '/\D+/', '', (string) roverland_field( 'about_yandex_org_id', '126990267000' ) );
 	$yandex_live_theme   = 'dark' === roverland_field( 'about_yandex_live_theme', 'light' ) ? 'dark' : 'light';
 	$yandex_widget_code  = trim( (string) roverland_field( 'about_yandex_widget_code', '' ) );
 	$yandex_org_url      = trim( (string) roverland_field( 'about_yandex_org_url', '' ) );
