@@ -1483,3 +1483,151 @@ body.admin-bar .site-header {
     width: 100%;
   }
 }
+
+
+/* Form success modal */
+.form-success-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, visibility .2s ease;
+}
+
+.form-success-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.form-success-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 30, .58);
+  backdrop-filter: blur(5px);
+}
+
+.form-success-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 460px);
+  padding: 42px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 30px 80px rgba(11, 26, 42, .22);
+  text-align: center;
+}
+
+.form-success-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.form-success-modal__icon {
+  display: grid;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: #eaf8f1;
+  color: #168253;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.form-success-modal__dialog h2 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.form-success-modal__dialog p {
+  margin: 0 0 26px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* Live Yandex block on About page */
+.about-yandex-card {
+  width: min(100%, 420px);
+  flex: 0 0 420px;
+  padding: 22px;
+}
+
+.about-yandex-card h3 {
+  margin: 0 0 14px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.about-yandex-card__widget {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f3f5f7;
+}
+
+.about-yandex-card__widget iframe {
+  display: block;
+  width: 100%;
+  min-height: 520px;
+  border: 0;
+}
+
+.about-yandex-card__fallback {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+
+.about-yandex-card p {
+  margin: 16px 0 10px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.about-yandex-card .text-link {
+  font-size: 14px;
+}
+
+@media (max-width: 991px) {
+  .about-yandex-card {
+    width: min(100%, 520px);
+    flex-basis: auto;
+    align-self: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .form-success-modal {
+    padding: 16px;
+  }
+
+  .form-success-modal__dialog {
+    padding: 36px 22px 24px;
+    border-radius: 18px;
+  }
+
+  .form-success-modal__dialog h2 {
+    font-size: 28px;
+  }
+
+  .about-yandex-card {
+    width: 100%;
+    padding: 14px;
+  }
+
+  .about-yandex-card__widget iframe {
+    min-height: 500px;
+  }
+}
