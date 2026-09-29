@@ -33,6 +33,112 @@ function roverland_yandex_feed_category_id( $category ) {
 	return $unsigned ? $unsigned : '1';
 }
 
+function roverland_yandex_feed_numeric_price( $value ) {
+	$value = trim( wp_strip_all_tags( (string) $value ) );
+
+	if ( '' === $value || preg_match( '/(?:^|\s)(?:от|до)(?:\s|$)|[–—]/iu', $value ) ) {
+		return '';
+	}
+
+	preg_match_all( '/\d[\d\s]*(?:[.,]\d+)?/u', $value, $matches );
+
+	if ( empty( $matches[0] ) || 1 !== count( $matches[0] ) ) {
+		return '';
+	}
+
+	$number = str_replace( array( ' ', ',' ), array( '', '.' ), $matches[0][0] );
+
+	return roverland_yandex_feed_price( $number );
+}
+
+function roverland_yandex_feed_page_price( $page_id ) {
+	$sections = roverland_field( 'service_sections', array(), $page_id );
+	$prices   = array();
+
+	if ( ! is_array( $sections ) ) {
+		return '';
+	}
+
+	foreach ( $sections as $section ) {
+		$layout = $section['acf_fc_layout'] ?? '';
+
+		if ( 'price_table' === $layout ) {
+			foreach ( $section['groups'] ?? array() as $group ) {
+				foreach ( $group['rows'] ?? array() as $row ) {
+					foreach ( array( 'work_price', 'parts_price' ) as $key ) {
+						$price = roverland_yandex_feed_numeric_price( $row[ $key ] ?? '' );
+						if ( $price ) {
+							$prices[] = (float) $price;
+						}
+					}
+				}
+			}
+		} elseif ( 'matrix_table' === $layout ) {
+			foreach ( $section['rows'] ?? array() as $row ) {
+				foreach ( $row['cells'] ?? array() as $cell ) {
+					$price = roverland_yandex_feed_numeric_price( $cell['value'] ?? '' );
+					if ( $price ) {
+						$prices[] = (float) $price;
+					}
+				}
+			}
+		}
+	}
+
+	if ( ! $prices ) {
+		return '';
+	}
+
+	return roverland_yandex_feed_price( min( $prices ) );
+}
+
+function roverland_yandex_feed_page_category( $page_id, $default_category ) {
+	$service_id = (int) roverland_field( 'service_related_service', 0, $page_id );
+
+	if ( $service_id ) {
+		$title = trim( (string) get_the_title( $service_id ) );
+		if ( $title ) {
+			return mb_substr( $title, 0, 250 );
+		}
+	}
+
+	return $default_category ?: 'Автосервис';
+}
+
+function roverland_yandex_feed_auto_offer( $page, $default_category ) {
+	$kind = roverland_service_page_kind( $page->ID );
+
+	if ( ! in_array( $kind, array( 'service', 'model_service', 'maintenance' ), true ) ) {
+		return null;
+	}
+
+	$price = roverland_yandex_feed_page_price( $page->ID );
+
+	if ( ! $price ) {
+		return null;
+	}
+
+	$name = trim( (string) roverland_field( 'service_page_h1', get_the_title( $page ), $page->ID ) );
+
+	if ( ! $name ) {
+		return null;
+	}
+
+	$description = trim( (string) roverland_field( 'service_hero_lead', '', $page->ID ) );
+	$picture_url = roverland_image_url( roverland_field( 'service_hero_image', array(), $page->ID ) );
+
+	return array(
+		'id'                => 'page-' . $page->ID,
+		'name'              => mb_substr( $name, 0, 250 ),
+		'category'          => roverland_yandex_feed_page_category( $page->ID, $default_category ),
+		'price'             => $price,
+		'description'       => mb_substr( $description, 0, 3000 ),
+		'short_description' => mb_substr( $description, 0, 250 ),
+		'picture'           => $picture_url,
+		'url'               => get_permalink( $page ),
+	);
+}
+
 function roverland_yandex_feed_collect_offers() {
 	$pages = get_posts(
 		array(
@@ -42,8 +148,8 @@ function roverland_yandex_feed_collect_offers() {
 			'meta_query'     => array(
 				array(
 					'key'     => 'service_page_kind',
-					'value'   => '',
-					'compare' => '!=',
+					'value'   => array( 'service', 'model_service', 'maintenance' ),
+					'compare' => 'IN',
 				),
 			),
 			'orderby'        => array(
@@ -58,46 +164,53 @@ function roverland_yandex_feed_collect_offers() {
 	$offers           = array();
 
 	foreach ( $pages as $page ) {
-		$rows = roverland_field( 'yandex_feed_offers', array(), $page->ID );
+		$rows       = roverland_field( 'yandex_feed_offers', array(), $page->ID );
+		$manual_added = false;
 
-		if ( ! is_array( $rows ) || ! $rows ) {
-			continue;
+		if ( is_array( $rows ) && $rows ) {
+			foreach ( $rows as $index => $row ) {
+				if ( empty( $row['enabled'] ) ) {
+					continue;
+				}
+
+				$name  = trim( (string) ( $row['name'] ?? '' ) );
+				$price = roverland_yandex_feed_price( $row['price'] ?? '' );
+
+				if ( ! $name || ! $price ) {
+					continue;
+				}
+
+				$category = trim( (string) ( $row['category'] ?? '' ) );
+				if ( ! $category ) {
+					$category = roverland_yandex_feed_page_category( $page->ID, $default_category );
+				}
+
+				$picture     = $row['picture'] ?? array();
+				$picture_url = roverland_image_url( $picture );
+
+				if ( ! $picture_url ) {
+					$picture_url = roverland_image_url( roverland_field( 'service_hero_image', array(), $page->ID ) );
+				}
+
+				$offers[] = array(
+					'id'                => 'page-' . $page->ID . '-' . ( (int) $index + 1 ),
+					'name'              => mb_substr( $name, 0, 250 ),
+					'category'          => mb_substr( $category, 0, 250 ),
+					'price'             => $price,
+					'description'       => mb_substr( trim( (string) ( $row['description'] ?? '' ) ), 0, 3000 ),
+					'short_description' => mb_substr( trim( (string) ( $row['short_description'] ?? '' ) ), 0, 250 ),
+					'picture'           => $picture_url,
+					'url'               => get_permalink( $page ),
+				);
+				$manual_added = true;
+			}
 		}
 
-		foreach ( $rows as $index => $row ) {
-			if ( empty( $row['enabled'] ) ) {
-				continue;
+		if ( ! $manual_added ) {
+			$auto = roverland_yandex_feed_auto_offer( $page, $default_category );
+			if ( $auto ) {
+				$offers[] = $auto;
 			}
-
-			$name  = trim( (string) ( $row['name'] ?? '' ) );
-			$price = roverland_yandex_feed_price( $row['price'] ?? '' );
-
-			if ( ! $name || ! $price ) {
-				continue;
-			}
-
-			$category = trim( (string) ( $row['category'] ?? '' ) );
-			if ( ! $category ) {
-				$category = $default_category ?: 'Автосервис';
-			}
-
-			$picture     = $row['picture'] ?? array();
-			$picture_url = roverland_image_url( $picture );
-
-			if ( ! $picture_url ) {
-				$picture_url = roverland_image_url( roverland_field( 'service_hero_image', array(), $page->ID ) );
-			}
-
-			$offers[] = array(
-				'id'                => 'page-' . $page->ID . '-' . ( (int) $index + 1 ),
-				'name'              => mb_substr( $name, 0, 250 ),
-				'category'          => mb_substr( $category, 0, 250 ),
-				'price'             => $price,
-				'description'       => mb_substr( trim( (string) ( $row['description'] ?? '' ) ), 0, 3000 ),
-				'short_description' => mb_substr( trim( (string) ( $row['short_description'] ?? '' ) ), 0, 250 ),
-				'picture'           => $picture_url,
-				'url'               => get_permalink( $page ),
-			);
 		}
 	}
 
