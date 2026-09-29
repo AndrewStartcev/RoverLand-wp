@@ -21,7 +21,7 @@ if ( 'model' === $kind ) {
 	$hero_class .= ' service-universal-hero--hub';
 }
 ?>
-<section class="<?php echo esc_attr( $hero_class ); ?>"<?php if ( $hero_url ) : ?> style="--service-page-hero:url('<?php echo esc_url( $hero_url ); ?>');"<?php endif; ?>>
+<section class="<?php echo esc_attr( $hero_class ); ?>">
 	<div class="container service-universal-hero__container">
 		<div class="service-universal-hero__content">
 			<?php
@@ -51,6 +51,18 @@ if ( 'model' === $kind ) {
 				<?php endif; ?>
 			</div>
 		</div>
+
+		<?php if ( $hero_url ) : ?>
+			<figure class="service-universal-hero__media">
+				<img
+					src="<?php echo esc_url( $hero_url ); ?>"
+					alt="<?php echo esc_attr( roverland_image_alt( $hero_image, $title ) ); ?>"
+					loading="eager"
+					decoding="async"
+					fetchpriority="high"
+				>
+			</figure>
+		<?php endif; ?>
 	</div>
 </section>
 
