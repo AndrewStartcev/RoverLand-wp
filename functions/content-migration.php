@@ -935,8 +935,9 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 	$hero_image  = '';
 	$sections       = array();
 	$current        = array( 'title' => '', 'html' => array(), 'image' => '' );
-	$seen_fragments = array();
-	$nodes          = $xpath->query( '//*' );
+	$seen_fragments    = array();
+	$legacy_stats_added = false;
+	$nodes              = $xpath->query( '//*' );
 
 	foreach ( $nodes as $node ) {
 		if ( $node === $h1_node ) {
@@ -1009,6 +1010,15 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 		}
 
 		if ( ! in_array( $tag, array( 'p', 'ul', 'ol' ), true ) ) {
+			continue;
+		}
+
+		if ( roverland_content_migration_is_legacy_stats_text( $text ) ) {
+			if ( ! $legacy_stats_added ) {
+				roverland_content_migration_flush_text_section( $sections, $current );
+				$sections[] = roverland_content_migration_stats_section();
+				$legacy_stats_added = true;
+			}
 			continue;
 		}
 
@@ -1087,6 +1097,73 @@ function roverland_content_migration_is_chrome_node( $node ) {
 
 function roverland_content_migration_node_text( $node ) {
 	return trim( preg_replace( '/\s+/u', ' ', html_entity_decode( (string) $node->textContent, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) );
+}
+
+function roverland_content_migration_stats_section() {
+	return array(
+		'acf_fc_layout' => 'stats',
+		'items'         => array(
+			array(
+				'value' => '25+',
+				'label' => 'Лет опыта',
+			),
+			array(
+				'value' => '30к+',
+				'label' => 'Клиентов',
+			),
+			array(
+				'value' => '100%',
+				'label' => 'Гарантия',
+			),
+			array(
+				'value' => '4',
+				'label' => 'Филиала',
+			),
+		),
+	);
+}
+
+function roverland_content_migration_is_legacy_stats_text( $text ) {
+	$text = mb_strtolower( trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( (string) $text ) ) ) );
+
+	if ( '' === $text ) {
+		return false;
+	}
+
+	$exact = array(
+		'сохранение',
+		'заводской гарантии',
+		'сохранение заводской гарантии',
+		'обслуживаем',
+		'land rover с 1998 года',
+		'обслуживаем land rover с 1998 года',
+		'гарантия',
+		'1 год на все работы',
+		'гарантия 1 год на все работы',
+	);
+
+	if ( in_array( $text, $exact, true ) ) {
+		return true;
+	}
+
+	$markers = array(
+		'сохранение',
+		'заводской гарантии',
+		'обслуживаем',
+		'land rover с 1998 года',
+		'гарантия',
+		'1 год на все работы',
+	);
+
+	$matched = 0;
+
+	foreach ( $markers as $marker ) {
+		if ( false !== mb_strpos( $text, $marker ) ) {
+			$matched++;
+		}
+	}
+
+	return $matched >= 2 && mb_strlen( $text ) <= 220;
 }
 
 function roverland_content_migration_trim_lead( $text, $max_length = 320 ) {
