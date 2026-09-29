@@ -69,26 +69,28 @@ $socials     = roverland_get_social_links();
 
 		<nav class="site-footer__info" aria-label="Информация">
 			<h2 class="site-footer__heading">Информация</h2>
-			<?php if ( has_nav_menu( 'footer-info-menu' ) ) : ?>
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'footer-info-menu',
-						'container'      => false,
-						'items_wrap'     => '%3$s',
-						'depth'          => 1,
-						'walker'         => new Roverland_Menu_Walker( 'flat' ),
-					)
-				);
-				?>
-			<?php else : ?>
-				<a href="<?php echo esc_url( roverland_page_url( 'service' ) ); ?>">Сервисное обслуживание</a>
-				<a href="<?php echo esc_url( roverland_page_url( 'services' ) ); ?>">Диагностика</a>
-				<a href="<?php echo esc_url( roverland_page_url( 'services' ) ); ?>#bodyshop">Кузовной ремонт</a>
-				<a href="<?php echo esc_url( roverland_page_url( 'engine-repair' ) ); ?>">Ремонт двигателя</a>
-				<a href="<?php echo esc_url( roverland_page_url( 'politika-konfidentsialnosti' ) ); ?>">Политика конфиденциальности</a>
-				<a href="<?php echo esc_url( roverland_page_url( 'politika-ispolzovaniya-cookie' ) ); ?>">Политика использования cookie</a>
-			<?php endif; ?>
+			<?php
+			$footer_info_pages = array(
+				array( 'path' => 'kompaniya', 'label' => 'О компании' ),
+				array( 'path' => 'kompaniya/istoriya', 'label' => 'История' ),
+				array( 'path' => 'kompaniya/vakansii', 'label' => 'Вакансии' ),
+				array( 'path' => 'aktsii', 'label' => 'Акции' ),
+				array( 'path' => 'portfolio', 'label' => 'Портфолио' ),
+				array( 'path' => 'kontakty', 'label' => 'Контакты' ),
+				array( 'path' => 'politika-konfidentsialnosti', 'label' => 'Политика конфиденциальности' ),
+				array( 'path' => 'politika-ispolzovaniya-cookie', 'label' => 'Политика использования cookie' ),
+			);
+
+			foreach ( $footer_info_pages as $footer_item ) {
+				$page = roverland_menu_page( $footer_item['path'] );
+
+				if ( ! $page ) {
+					continue;
+				}
+
+				echo '<a href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html( $footer_item['label'] ) . '</a>';
+			}
+			?>
 		</nav>
 	</div>
 
