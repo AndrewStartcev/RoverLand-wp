@@ -72,13 +72,38 @@
       "instructions": "Используется только если не заполнен официальный виджет Яндекса."
     },
     {
+      "key": "field_rl_about_yandex_org_id",
+      "label": "ID организации Яндекса",
+      "name": "about_yandex_org_id",
+      "type": "text",
+      "instructions": "Числовой ID из ссылки вида yandex.ru/maps/org/.../123456789/. По нему строится живая карточка рейтинга/награды.",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_about_yandex_live_theme",
+      "label": "Тема живой карточки",
+      "name": "about_yandex_live_theme",
+      "type": "select",
+      "choices": {
+        "light": "Светлая",
+        "dark": "Тёмная"
+      },
+      "default_value": "light",
+      "return_format": "value",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
       "key": "field_rl_about_yandex_widget_code",
-      "label": "Официальный виджет / бейдж Яндекса",
+      "label": "Код виджета Яндекса (fallback)",
       "name": "about_yandex_widget_code",
       "type": "textarea",
       "rows": 5,
       "new_lines": "",
-      "instructions": "Вставьте код бейджа рейтинга или виджета отзывов из Яндекс Бизнес / Яндекс Карт. Сайт извлечёт безопасный iframe Яндекса и рейтинг будет обновляться самим Яндексом."
+      "instructions": "Необязательно. Используется только если ID организации не заполнен."
     },
     {
       "key": "field_rl_about_yandex_org_url",
@@ -270,5 +295,5 @@
   "active": true,
   "description": "Контент страницы «О компании».",
   "show_in_rest": 0,
-  "modified": 1790667671
+  "modified": 1790668221
 }
