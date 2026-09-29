@@ -17,11 +17,15 @@ while ( have_posts() ) :
 	$service_title   = roverland_field( 'about_service_title', '' );
 	$service_content = roverland_field( 'about_service_content', '' );
 	$award               = roverland_field( 'about_service_award', array() );
+	$yandex_org_id       = preg_replace( '/\D+/', '', (string) roverland_field( 'about_yandex_org_id', '' ) );
+	$yandex_live_theme   = 'dark' === roverland_field( 'about_yandex_live_theme', 'light' ) ? 'dark' : 'light';
 	$yandex_widget_code  = trim( (string) roverland_field( 'about_yandex_widget_code', '' ) );
 	$yandex_org_url      = trim( (string) roverland_field( 'about_yandex_org_url', '' ) );
 	$yandex_title        = trim( (string) roverland_field( 'about_yandex_title', 'Rover Land в Яндекс Картах' ) );
 	$yandex_note         = trim( (string) roverland_field( 'about_yandex_note', 'Актуальный рейтинг и отзывы обновляются Яндексом автоматически.' ) );
 	$yandex_widget_src   = '';
+	$yandex_rating_src   = '';
+	$yandex_award_src    = '';
 
 	$parts_title   = roverland_field( 'about_parts_title', '' );
 	$parts_content = roverland_field( 'about_parts_content', '' );
@@ -64,7 +68,13 @@ while ( have_posts() ) :
 			</div>
 
 			<?php
-			if ( $yandex_widget_code && preg_match( '/<iframe[^>]+src=["\']([^"\']+)["\']/iu', $yandex_widget_code, $widget_match ) ) {
+			if ( $yandex_org_id ) {
+				$theme_query       = 'dark' === $yandex_live_theme ? '&theme=dark' : '';
+				$yandex_rating_src = 'https://yandex.ru/sprav/widget/rating-badge/' . rawurlencode( $yandex_org_id ) . '?type=rating' . $theme_query;
+				$yandex_award_src  = 'https://yandex.ru/sprav/widget/rating-badge/' . rawurlencode( $yandex_org_id ) . '?type=award' . $theme_query;
+			}
+
+			if ( ! $yandex_org_id && $yandex_widget_code && preg_match( '/<iframe[^>]+src=["\']([^"\']+)["\']/iu', $yandex_widget_code, $widget_match ) ) {
 				$candidate = esc_url_raw( html_entity_decode( $widget_match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
 				$host      = strtolower( (string) wp_parse_url( $candidate, PHP_URL_HOST ) );
 
@@ -76,25 +86,66 @@ while ( have_posts() ) :
 			$award_url = roverland_image_url( $award, 'assets/images/content/about-yandex-award.png' );
 			?>
 
-			<?php if ( $yandex_widget_src || $award_url ) : ?>
-				<aside class="about-service-info__award about-yandex-card">
-					<?php if ( $yandex_title ) : ?><h3><?php echo esc_html( $yandex_title ); ?></h3><?php endif; ?>
+			<?php if ( $yandex_org_id || $yandex_widget_src || $award_url ) : ?>
+				<aside class="about-service-info__award about-yandex-card<?php echo $yandex_org_id ? ' about-yandex-card--live' : ''; ?>">
+					<?php if ( $yandex_org_id ) : ?>
+						<div class="about-yandex-live" aria-label="Актуальные данные Rover Land в Яндексе">
+							<div class="about-yandex-live__top">
+								<span class="about-yandex-live__brand">Яндекс</span>
+								<span class="about-yandex-live__year"><?php echo esc_html( wp_date( 'Y' ) ); ?></span>
+							</div>
 
-					<?php if ( $yandex_widget_src ) : ?>
-						<div class="about-yandex-card__widget">
-							<iframe
-								src="<?php echo esc_url( $yandex_widget_src ); ?>"
-								title="<?php echo esc_attr( $yandex_title ?: 'Рейтинг Rover Land в Яндекс Картах' ); ?>"
-								loading="lazy"
-								referrerpolicy="no-referrer-when-downgrade"
-							></iframe>
+							<div class="about-yandex-live__star" aria-hidden="true"></div>
+
+							<div class="about-yandex-live__content">
+								<p class="about-yandex-live__label">Актуальные данные организации</p>
+								<h3><?php echo esc_html( $yandex_title ?: 'Rover Land в Яндекс Картах' ); ?></h3>
+
+								<div class="about-yandex-live__widgets">
+									<iframe
+										class="about-yandex-live__award"
+										src="<?php echo esc_url( $yandex_award_src ); ?>"
+										width="150"
+										height="50"
+										title="Награда Rover Land в Яндексе"
+										loading="lazy"
+										frameborder="0"
+									></iframe>
+
+									<iframe
+										class="about-yandex-live__rating"
+										src="<?php echo esc_url( $yandex_rating_src ); ?>"
+										width="150"
+										height="50"
+										title="Актуальный рейтинг Rover Land в Яндексе"
+										loading="lazy"
+										frameborder="0"
+									></iframe>
+								</div>
+
+								<?php if ( $yandex_note ) : ?><p class="about-yandex-live__note"><?php echo esc_html( $yandex_note ); ?></p><?php endif; ?>
+								<?php if ( $yandex_org_url ) : ?><a class="about-yandex-live__link" href="<?php echo esc_url( $yandex_org_url ); ?>" target="_blank" rel="noopener noreferrer">Отзывы и карточка организации <span aria-hidden="true">→</span></a><?php endif; ?>
+							</div>
 						</div>
-					<?php elseif ( $award_url ) : ?>
-						<img class="about-yandex-card__fallback" src="<?php echo esc_url( $award_url ); ?>" alt="<?php echo esc_attr( roverland_image_alt( $award, 'Награда Яндекс — Хорошее место' ) ); ?>" loading="lazy" decoding="async">
-					<?php endif; ?>
+					<?php else : ?>
+						<?php if ( $yandex_title ) : ?><h3><?php echo esc_html( $yandex_title ); ?></h3><?php endif; ?>
 
-					<?php if ( $yandex_note ) : ?><p><?php echo esc_html( $yandex_note ); ?></p><?php endif; ?>
-					<?php if ( $yandex_org_url ) : ?><a class="text-link" href="<?php echo esc_url( $yandex_org_url ); ?>" target="_blank" rel="noopener noreferrer">Открыть в Яндекс Картах <span aria-hidden="true">→</span></a><?php endif; ?>
+						<?php if ( $yandex_widget_src ) : ?>
+							<div class="about-yandex-card__widget">
+								<iframe
+									src="<?php echo esc_url( $yandex_widget_src ); ?>"
+									title="<?php echo esc_attr( $yandex_title ?: 'Рейтинг Rover Land в Яндекс Картах' ); ?>"
+									loading="lazy"
+									referrerpolicy="no-referrer-when-downgrade"
+								></iframe>
+							</div>
+						<?php elseif ( $award_url ) : ?>
+							<img class="about-yandex-card__fallback" src="<?php echo esc_url( $award_url ); ?>" alt="<?php echo esc_attr( roverland_image_alt( $award, 'Награда Яндекс — Хорошее место' ) ); ?>" loading="lazy" decoding="async">
+						<?php endif; ?>
+
+						<?php if ( $yandex_note ) : ?><p><?php echo esc_html( $yandex_note ); ?></p><?php endif; ?>
+						<?php if ( $yandex_org_url ) : ?><a class="text-link" href="<?php echo esc_url( $yandex_org_url ); ?>" target="_blank" rel="noopener noreferrer">Открыть в Яндекс Картах <span aria-hidden="true">→</span></a><?php endif; ?>
+					<?php endif; ?>
 				</aside>
 			<?php endif; ?>
 		</div>
