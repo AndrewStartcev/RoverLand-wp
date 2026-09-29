@@ -6,7 +6,7 @@ $title       = roverland_option( 'common_appointment_title', 'Запишитес
 $accent      = roverland_option( 'common_appointment_accent', 'прямо сейчас' );
 $description = roverland_option( 'common_appointment_description', '' );
 $phone       = roverland_option( 'common_appointment_phone', roverland_option( 'site_main_phone', '' ) );
-$button      = roverland_option( 'common_appointment_button', 'Отправить заявку' );
+$button      = roverland_option( 'form_service_button', roverland_option( 'common_appointment_button', 'Отправить заявку' ) );
 $branches    = roverland_get_branches();
 ?>
 <section class="appointment" id="appointment">
@@ -29,17 +29,23 @@ $branches    = roverland_get_branches();
 			<?php endif; ?>
 		</div>
 
-		<form class="service-form" action="#" method="post" data-service-form novalidate>
+		<form class="service-form" action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post" data-roverland-form novalidate>
+			<input type="hidden" name="action" value="roverland_submit_form">
+			<input type="hidden" name="form_type" value="service">
+			<input type="hidden" name="page_title" value="<?php echo esc_attr( wp_get_document_title() ); ?>">
+			<input type="hidden" name="page_url" value="<?php echo esc_url( home_url( wp_unslash( $_SERVER['REQUEST_URI'] ?? '/' ) ) ); ?>">
+			<input type="hidden" name="_roverland_form_nonce" value="<?php echo esc_attr( wp_create_nonce( 'roverland_form_submit' ) ); ?>">
+			<input class="roverland-form-hp" type="text" name="website" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
 			<div class="service-form__row">
 				<label class="field">
 					<span class="field__label">Ваше имя</span>
-					<input class="field__control" type="text" name="your-name" placeholder="Иван" autocomplete="name" required>
+					<input class="field__control" type="text" name="name" placeholder="Иван" autocomplete="name" required>
 					<span class="field__error" data-error>Введите имя</span>
 				</label>
 
 				<label class="field">
 					<span class="field__label">Телефон</span>
-					<input class="field__control" type="tel" name="your-phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+					<input class="field__control" type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
 					<span class="field__error" data-error>Введите телефон</span>
 				</label>
 			</div>
