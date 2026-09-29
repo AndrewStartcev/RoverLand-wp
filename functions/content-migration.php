@@ -7,6 +7,7 @@ add_action( 'admin_post_roverland_content_prepare_dump', 'roverland_content_migr
 add_action( 'admin_post_roverland_content_import_page', 'roverland_content_migration_import_page' );
 add_action( 'admin_post_roverland_content_import_pages_batch', 'roverland_content_migration_import_pages_batch' );
 add_action( 'admin_post_roverland_content_import_portfolio_batch', 'roverland_content_migration_import_portfolio_batch' );
+add_action( 'wp_ajax_roverland_content_import_portfolio_all', 'roverland_content_migration_import_portfolio_all_ajax' );
 
 function roverland_content_migration_register_page() {
 	add_submenu_page(
@@ -118,11 +119,28 @@ function roverland_content_migration_render() {
 						<strong><?php echo (int) array_sum( array_map( static function ( $item ) { return count( $item['gallery'] ?? array() ); }, $portfolio['items'] ) ); ?></strong> фотографий.
 					</p>
 
-					<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
-						<input type="hidden" name="action" value="roverland_content_import_portfolio_batch">
-						<?php wp_nonce_field( 'roverland_content_import_portfolio_batch', 'roverland_content_nonce' ); ?>
-						<?php submit_button( 'Импортировать следующие 2 работы', 'primary', 'submit', false ); ?>
-					</form>
+					<div class="roverland-content-migration__portfolio-actions">
+						<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+							<input type="hidden" name="action" value="roverland_content_import_portfolio_batch">
+							<?php wp_nonce_field( 'roverland_content_import_portfolio_batch', 'roverland_content_nonce' ); ?>
+							<?php submit_button( 'Импортировать следующие 2 работы', 'secondary', 'submit', false ); ?>
+						</form>
+
+						<button
+							type="button"
+							class="button button-primary"
+							id="roverland-import-all-portfolio"
+							data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
+							data-nonce="<?php echo esc_attr( wp_create_nonce( 'roverland_content_import_portfolio_all' ) ); ?>"
+						>
+							Импортировать всё портфолио
+						</button>
+					</div>
+
+					<div id="roverland-portfolio-progress" class="roverland-content-migration__progress" hidden>
+						<div class="roverland-content-migration__progress-bar"><span></span></div>
+						<p class="roverland-content-migration__progress-text">Подготовка…</p>
+					</div>
 				<?php else : ?>
 					<p>Сначала загрузите SQL-дамп. Из него берутся точные связи кейс → фотографии через <code>b_iblock_section</code>, <code>b_iblock_element</code> и <code>b_file</code>.</p>
 
@@ -220,8 +238,101 @@ function roverland_content_migration_render() {
 	.roverland-content-migration__grid .roverland-content-migration__card{margin-top:0}
 	.roverland-content-migration td{vertical-align:middle}
 	.roverland-content-migration__small{display:block;margin-bottom:6px;font-size:12px}
+	.roverland-content-migration__portfolio-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:16px}
+	.roverland-content-migration__portfolio-actions form{margin:0}
+	.roverland-content-migration__progress{margin-top:16px}
+	.roverland-content-migration__progress-bar{height:10px;overflow:hidden;border-radius:999px;background:#e2e4e7}
+	.roverland-content-migration__progress-bar span{display:block;width:0;height:100%;background:#3858e9;transition:width .2s ease}
+	.roverland-content-migration__progress-text{margin:8px 0 0}
 	@media(max-width:900px){.roverland-content-migration__grid{grid-template-columns:1fr}}
 	</style>
+
+	<script>
+	(function () {
+		var button = document.getElementById('roverland-import-all-portfolio');
+		var progress = document.getElementById('roverland-portfolio-progress');
+
+		if (!button || !progress) return;
+
+		var bar = progress.querySelector('.roverland-content-migration__progress-bar span');
+		var text = progress.querySelector('.roverland-content-migration__progress-text');
+
+		button.addEventListener('click', async function () {
+			if (button.disabled) return;
+
+			button.disabled = true;
+			progress.hidden = false;
+			bar.style.width = '0%';
+			text.textContent = 'Начинаю импорт портфолио…';
+
+			var processedIds = [];
+			var imported = 0;
+			var media = 0;
+			var errors = [];
+			var initialTotal = null;
+
+			async function runBatch() {
+				var form = new FormData();
+				form.append('action', 'roverland_content_import_portfolio_all');
+				form.append('nonce', button.dataset.nonce || '');
+				form.append('skip_ids', processedIds.join(','));
+
+				var response = await fetch(button.dataset.ajaxUrl, {
+					method: 'POST',
+					credentials: 'same-origin',
+					body: form
+				});
+
+				var payload = await response.json();
+
+				if (!payload || !payload.success) {
+					throw new Error(payload && payload.data && payload.data.message ? payload.data.message : 'Ошибка AJAX-импорта.');
+				}
+
+				var result = payload.data || {};
+				var ids = Array.isArray(result.processed_ids) ? result.processed_ids : [];
+				processedIds = processedIds.concat(ids);
+				imported += Number(result.imported || 0);
+				media += Number(result.media || 0);
+
+				if (Array.isArray(result.errors) && result.errors.length) {
+					errors = errors.concat(result.errors);
+				}
+
+				if (initialTotal === null) {
+					initialTotal = Number(result.total || 0);
+				}
+
+				var remaining = Number(result.remaining || 0);
+				var total = Math.max(initialTotal || 0, imported + remaining);
+				var done = Math.max(0, total - remaining);
+				var percent = total > 0 ? Math.min(100, Math.round(done / total * 100)) : 100;
+
+				bar.style.width = percent + '%';
+				text.textContent = 'Импортировано работ: ' + imported + '. Осталось: ' + remaining + '. Новых файлов: ' + media + '.';
+
+				if (remaining > 0 && ids.length > 0) {
+					await runBatch();
+					return;
+				}
+
+				bar.style.width = '100%';
+				text.textContent += errors.length ? ' Ошибок: ' + errors.length + '.' : ' Готово.';
+
+				setTimeout(function () {
+					window.location.reload();
+				}, 1200);
+			}
+
+			try {
+				await runBatch();
+			} catch (error) {
+				text.textContent = 'Импорт остановлен: ' + error.message;
+				button.disabled = false;
+			}
+		});
+	})();
+	</script>
 	<?php
 }
 
@@ -346,6 +457,107 @@ function roverland_content_migration_import_portfolio_batch() {
 
 	$report['message'] = $done ? sprintf( 'Импортировано работ портфолио: %d.', $done ) : 'Портфолио полностью импортировано.';
 	roverland_content_migration_finish( $report );
+}
+
+function roverland_content_migration_import_portfolio_all_ajax() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error( array( 'message' => 'Недостаточно прав.' ), 403 );
+	}
+
+	check_ajax_referer( 'roverland_content_import_portfolio_all', 'nonce' );
+
+	$cache = roverland_bitrix_load_portfolio_cache();
+
+	if ( ! $cache ) {
+		wp_send_json_error( array( 'message' => 'Кеш портфолио не найден. Сначала разберите SQL-дамп.' ), 400 );
+	}
+
+	$skip_ids = array();
+
+	if ( ! empty( $_POST['skip_ids'] ) ) {
+		$skip_ids = array_values(
+			array_filter(
+				array_map(
+					'absint',
+					explode( ',', sanitize_text_field( wp_unslash( $_POST['skip_ids'] ) ) )
+				)
+			)
+		);
+	}
+
+	@set_time_limit( 120 );
+	wp_raise_memory_limit( 'admin' );
+
+	$report = array(
+		'message' => '',
+		'errors'  => array(),
+		'media'   => 0,
+	);
+
+	$candidates = array();
+
+	foreach ( $cache['items'] as $item ) {
+		$legacy_id = (int) ( $item['legacy_id'] ?? 0 );
+
+		if ( ! $legacy_id || in_array( $legacy_id, $skip_ids, true ) ) {
+			continue;
+		}
+
+		$existing = roverland_content_migration_find_portfolio( $legacy_id );
+
+		if ( $existing && get_post_meta( $existing, '_roverland_curated_portfolio_imported', true ) ) {
+			continue;
+		}
+
+		$candidates[] = $item;
+	}
+
+	$total = count( $candidates );
+
+	// Keep each request small because one portfolio item may contain dozens of large images.
+	$batch = array_slice( $candidates, 0, 2 );
+
+	$processed_ids = array();
+	$imported      = 0;
+
+	foreach ( $batch as $item ) {
+		$legacy_id       = (int) $item['legacy_id'];
+		$processed_ids[] = $legacy_id;
+
+		if ( roverland_content_migration_apply_portfolio( $item, $report ) ) {
+			$imported++;
+		}
+	}
+
+	$next_skip = array_merge( $skip_ids, $processed_ids );
+	$remaining = 0;
+
+	foreach ( $cache['items'] as $item ) {
+		$legacy_id = (int) ( $item['legacy_id'] ?? 0 );
+
+		if ( ! $legacy_id || in_array( $legacy_id, $next_skip, true ) ) {
+			continue;
+		}
+
+		$existing = roverland_content_migration_find_portfolio( $legacy_id );
+
+		if ( $existing && get_post_meta( $existing, '_roverland_curated_portfolio_imported', true ) ) {
+			continue;
+		}
+
+		$remaining++;
+	}
+
+	wp_send_json_success(
+		array(
+			'processed_ids' => $processed_ids,
+			'imported'      => $imported,
+			'media'         => (int) $report['media'],
+			'errors'        => $report['errors'],
+			'remaining'     => $remaining,
+			'total'         => $total,
+		)
+	);
 }
 
 function roverland_content_migration_apply_page( $page_id, $download_images, &$report ) {
