@@ -306,6 +306,42 @@
             }
           ]
         },
+        "layout_rl_service_stats": {
+          "key": "layout_rl_service_stats",
+          "name": "stats",
+          "label": "Статистика",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_rl_service_stats_items",
+              "label": "Показатели",
+              "name": "items",
+              "type": "repeater",
+              "layout": "table",
+              "button_label": "Добавить показатель",
+              "sub_fields": [
+                {
+                  "key": "field_rl_service_stats_value",
+                  "label": "Значение",
+                  "name": "value",
+                  "type": "text",
+                  "wrapper": {
+                    "width": "35"
+                  }
+                },
+                {
+                  "key": "field_rl_service_stats_label",
+                  "label": "Подпись",
+                  "name": "label",
+                  "type": "text",
+                  "wrapper": {
+                    "width": "65"
+                  }
+                }
+              ]
+            }
+          ]
+        },
         "layout_rl_service_price_table": {
           "key": "layout_rl_service_price_table",
           "name": "price_table",
@@ -673,5 +709,5 @@
   "active": true,
   "description": "Универсальная модель страниц ремонта, сервиса, модели автомобиля и услуг для конкретной модели.",
   "show_in_rest": 0,
-  "modified": 1790375000
+  "modified": 1790665992
 }
