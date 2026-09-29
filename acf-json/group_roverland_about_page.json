@@ -76,10 +76,11 @@
       "label": "ID организации Яндекса",
       "name": "about_yandex_org_id",
       "type": "text",
-      "instructions": "Числовой ID из ссылки вида yandex.ru/maps/org/.../123456789/. По нему строится живая карточка рейтинга/награды.",
+      "instructions": "ID организации Rover Land в Яндекс Картах. Текущий: 126990267000. По нему строится живая карточка рейтинга/награды.",
       "wrapper": {
         "width": "50"
-      }
+      },
+      "default_value": "126990267000"
     },
     {
       "key": "field_rl_about_yandex_live_theme",
@@ -295,5 +296,5 @@
   "active": true,
   "description": "Контент страницы «О компании».",
   "show_in_rest": 0,
-  "modified": 1790668221
+  "modified": 1790668437
 }
