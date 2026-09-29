@@ -736,9 +736,10 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 	$started     = false;
 	$lead        = '';
 	$hero_image  = '';
-	$sections    = array();
-	$current     = array( 'title' => '', 'html' => array(), 'image' => '' );
-	$nodes       = $xpath->query( '//*' );
+	$sections       = array();
+	$current        = array( 'title' => '', 'html' => array(), 'image' => '' );
+	$seen_fragments = array();
+	$nodes          = $xpath->query( '//*' );
 
 	foreach ( $nodes as $node ) {
 		if ( $node === $h1_node ) {
@@ -823,10 +824,19 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 			continue;
 		}
 
+		$signature = mb_strtolower( preg_replace( '/\s+/u', ' ', trim( $text ) ) );
+
+		if ( $signature && isset( $seen_fragments[ $signature ] ) ) {
+			continue;
+		}
+
 		$html_part = roverland_content_migration_safe_fragment( $dom, $node );
 
 		if ( $html_part ) {
 			$current['html'][] = $html_part;
+			if ( $signature ) {
+				$seen_fragments[ $signature ] = true;
+			}
 		}
 	}
 
