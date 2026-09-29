@@ -1109,3 +1109,29 @@ body.admin-bar .site-header {
     font-size: 13px;
   }
 }
+
+
+/* Explicit list markers inside migrated service content */
+.service-content-block__copy ul {
+  list-style: disc;
+}
+
+.service-content-block__copy ol {
+  list-style: decimal;
+}
+
+.service-content-block__copy ul,
+.service-content-block__copy ol {
+  padding-left: 24px;
+}
+
+.service-content-block__copy ul li,
+.service-content-block__copy ol li {
+  display: list-item;
+}
+
+.service-content-block__copy ul li::marker,
+.service-content-block__copy ol li::marker {
+  color: var(--color-primary);
+  font-weight: 600;
+}
