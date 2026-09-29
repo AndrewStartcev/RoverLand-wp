@@ -2556,3 +2556,246 @@ body.admin-bar .site-header {
   }
 }
 
+/* RoverLand standalone pages polish v2 */
+
+/* Keep both standalone pages in the Rover Land white + blue visual system. */
+.feedback-page__hero-card {
+  min-height: 360px;
+  border: 1px solid rgba(0, 95, 176, .16);
+  background:
+    linear-gradient(145deg, #ffffff 0%, #f4f9fd 100%);
+  box-shadow: 0 22px 54px rgba(0, 95, 176, .10);
+  color: var(--color-text-primary);
+}
+
+.feedback-page__hero-card::before {
+  border-color: rgba(0, 95, 176, .16);
+}
+
+.feedback-page__hero-card-label {
+  color: var(--color-primary);
+}
+
+.feedback-page__hero-card strong {
+  color: var(--color-text-primary);
+}
+
+.feedback-page__hero-card li {
+  color: var(--color-text-secondary);
+}
+
+.feedback-page__hero-card li span {
+  border-color: rgba(0, 95, 176, .20);
+  background: #fff;
+  color: var(--color-primary);
+}
+
+/* No sticky/fixed behaviour on the page content. */
+.feedback-page__form-intro,
+.partner-page__aside {
+  position: static;
+  top: auto;
+}
+
+/* Partnership CTA card: white surface, blue accent, no black block. */
+.partner-page__aside {
+  padding: 34px 32px;
+  border: 1px solid rgba(0, 95, 176, .16);
+  border-top: 4px solid var(--color-primary);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 18px 46px rgba(0, 95, 176, .08);
+}
+
+.partner-page__aside .legacy-section-label {
+  color: var(--color-primary);
+}
+
+.partner-page__aside h2 {
+  color: var(--color-text-primary);
+}
+
+.partner-page__aside > p:not(.legacy-section-label) {
+  color: var(--color-text-secondary);
+}
+
+.partner-page__aside > span {
+  color: var(--color-text-muted);
+}
+
+/* Forms: remove the old career-form box inside the new card and use full width. */
+.feedback-page__form .seeded-form,
+.partner-page__form .seeded-form {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.feedback-page__form .seeded-form-card,
+.partner-page__form .seeded-form-card {
+  width: 100%;
+  padding: 38px;
+  border: 1px solid rgba(0, 95, 176, .12);
+  border-radius: 18px;
+  box-shadow: 0 16px 42px rgba(0, 95, 176, .06);
+}
+
+.feedback-page__form .seeded-form-card > h2,
+.partner-page__form .seeded-form-card > h2 {
+  margin-bottom: 8px;
+  font-size: 32px;
+  line-height: 1.12;
+}
+
+.feedback-page__form .seeded-form-card > p {
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+.feedback-page__form .seeded-form .career-form__row,
+.partner-page__form .seeded-form .career-form__row {
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 22px;
+}
+
+.feedback-page__form .seeded-form label,
+.partner-page__form .seeded-form label,
+.feedback-page__form .seeded-form .career-form__row label,
+.partner-page__form .seeded-form .career-form__row label {
+  width: 100%;
+  min-width: 0;
+  margin: 0 !important;
+}
+
+.feedback-page__form .seeded-form label > span:first-child,
+.partner-page__form .seeded-form label > span:first-child {
+  margin: 0 !important;
+  color: var(--color-text-primary);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: .08em;
+}
+
+.feedback-page__form .seeded-form input,
+.feedback-page__form .seeded-form select,
+.feedback-page__form .seeded-form textarea,
+.partner-page__form .seeded-form input,
+.partner-page__form .seeded-form select,
+.partner-page__form .seeded-form textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 54px;
+  padding: 13px 16px;
+  border: 1px solid #d8e0e8;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.feedback-page__form .seeded-form select,
+.partner-page__form .seeded-form select {
+  padding-right: 44px;
+}
+
+.feedback-page__form .seeded-form textarea,
+.partner-page__form .seeded-form textarea {
+  min-height: 132px;
+  padding-top: 14px;
+}
+
+.feedback-page__form .seeded-form input:hover,
+.feedback-page__form .seeded-form select:hover,
+.feedback-page__form .seeded-form textarea:hover,
+.partner-page__form .seeded-form input:hover,
+.partner-page__form .seeded-form select:hover,
+.partner-page__form .seeded-form textarea:hover {
+  border-color: #afc8dc;
+}
+
+.feedback-page__form .seeded-form input:focus,
+.feedback-page__form .seeded-form select:focus,
+.feedback-page__form .seeded-form textarea:focus,
+.partner-page__form .seeded-form input:focus,
+.partner-page__form .seeded-form select:focus,
+.partner-page__form .seeded-form textarea:focus {
+  border-color: var(--color-primary);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 95, 176, .08);
+}
+
+.feedback-page__form .seeded-form .career-form__consent,
+.partner-page__form .seeded-form .career-form__consent {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 2px 0 0 !important;
+}
+
+.feedback-page__form .seeded-form .career-form__consent input,
+.partner-page__form .seeded-form .career-form__consent input {
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  min-height: 18px;
+  padding: 0;
+  margin-top: 1px;
+}
+
+.feedback-page__form .seeded-form .career-form__consent span,
+.partner-page__form .seeded-form .career-form__consent span {
+  margin: 0 !important;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.feedback-page__form .seeded-form .button,
+.partner-page__form .seeded-form .button {
+  min-width: 230px;
+  margin-top: 4px;
+}
+
+@media (max-width: 767px) {
+  .feedback-page__hero-card {
+    min-height: 0;
+  }
+
+  .feedback-page__form .seeded-form-card,
+  .partner-page__form .seeded-form-card {
+    padding: 24px 18px;
+    border-radius: 14px;
+  }
+
+  .feedback-page__form .seeded-form-card > h2,
+  .partner-page__form .seeded-form-card > h2 {
+    font-size: 26px;
+  }
+
+  .feedback-page__form .seeded-form .career-form__row,
+  .partner-page__form .seeded-form .career-form__row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .feedback-page__form .seeded-form input,
+  .feedback-page__form .seeded-form select,
+  .partner-page__form .seeded-form input,
+  .partner-page__form .seeded-form select {
+    min-height: 52px;
+  }
+
+  .partner-page__aside {
+    padding: 26px 22px;
+    border-radius: 14px;
+  }
+}
+
