@@ -50,5 +50,15 @@ add_action(
 				'capability'  => 'manage_options',
 			)
 		);
+
+		acf_add_options_sub_page(
+			array(
+				'page_title'  => 'Формы Rover Land',
+				'menu_title'  => 'Формы',
+				'menu_slug'   => 'roverland-forms',
+				'parent_slug' => 'roverland-settings',
+				'capability'  => 'manage_options',
+			)
+		);
 	}
 );
