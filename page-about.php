@@ -16,7 +16,12 @@ while ( have_posts() ) :
 
 	$service_title   = roverland_field( 'about_service_title', '' );
 	$service_content = roverland_field( 'about_service_content', '' );
-	$award            = roverland_field( 'about_service_award', array() );
+	$award               = roverland_field( 'about_service_award', array() );
+	$yandex_widget_code  = trim( (string) roverland_field( 'about_yandex_widget_code', '' ) );
+	$yandex_org_url      = trim( (string) roverland_field( 'about_yandex_org_url', '' ) );
+	$yandex_title        = trim( (string) roverland_field( 'about_yandex_title', 'Rover Land в Яндекс Картах' ) );
+	$yandex_note         = trim( (string) roverland_field( 'about_yandex_note', 'Актуальный рейтинг и отзывы обновляются Яндексом автоматически.' ) );
+	$yandex_widget_src   = '';
 
 	$parts_title   = roverland_field( 'about_parts_title', '' );
 	$parts_content = roverland_field( 'about_parts_content', '' );
@@ -59,12 +64,38 @@ while ( have_posts() ) :
 			</div>
 
 			<?php
+			if ( $yandex_widget_code && preg_match( '/<iframe[^>]+src=["\']([^"\']+)["\']/iu', $yandex_widget_code, $widget_match ) ) {
+				$candidate = esc_url_raw( html_entity_decode( $widget_match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
+				$host      = strtolower( (string) wp_parse_url( $candidate, PHP_URL_HOST ) );
+
+				if ( $host && ( 'yandex.ru' === $host || str_ends_with( $host, '.yandex.ru' ) ) ) {
+					$yandex_widget_src = $candidate;
+				}
+			}
+
 			$award_url = roverland_image_url( $award, 'assets/images/content/about-yandex-award.png' );
-			if ( $award_url ) :
-				?>
-				<div class="about-service-info__award">
-					<img src="<?php echo esc_url( $award_url ); ?>" alt="<?php echo esc_attr( roverland_image_alt( $award, 'Награда Яндекс — Хорошее место' ) ); ?>" loading="lazy" decoding="async">
-				</div>
+			?>
+
+			<?php if ( $yandex_widget_src || $award_url ) : ?>
+				<aside class="about-service-info__award about-yandex-card">
+					<?php if ( $yandex_title ) : ?><h3><?php echo esc_html( $yandex_title ); ?></h3><?php endif; ?>
+
+					<?php if ( $yandex_widget_src ) : ?>
+						<div class="about-yandex-card__widget">
+							<iframe
+								src="<?php echo esc_url( $yandex_widget_src ); ?>"
+								title="<?php echo esc_attr( $yandex_title ?: 'Рейтинг Rover Land в Яндекс Картах' ); ?>"
+								loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"
+							></iframe>
+						</div>
+					<?php elseif ( $award_url ) : ?>
+						<img class="about-yandex-card__fallback" src="<?php echo esc_url( $award_url ); ?>" alt="<?php echo esc_attr( roverland_image_alt( $award, 'Награда Яндекс — Хорошее место' ) ); ?>" loading="lazy" decoding="async">
+					<?php endif; ?>
+
+					<?php if ( $yandex_note ) : ?><p><?php echo esc_html( $yandex_note ); ?></p><?php endif; ?>
+					<?php if ( $yandex_org_url ) : ?><a class="text-link" href="<?php echo esc_url( $yandex_org_url ); ?>" target="_blank" rel="noopener noreferrer">Открыть в Яндекс Картах <span aria-hidden="true">→</span></a><?php endif; ?>
+				</aside>
 			<?php endif; ?>
 		</div>
 	</section>
