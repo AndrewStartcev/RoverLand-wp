@@ -332,145 +332,103 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initPageModules);
   else initPageModules();
 
-  var form = document.querySelector("[data-service-form]");
-  if (form) {
-    var phoneInput = form.querySelector("input[type='tel']");
-    if (phoneInput) {
-      phoneInput.addEventListener("input", function () {
-        var digits = phoneInput.value.replace(/\D/g, "").replace(/^8/, "7").slice(0, 11);
-        if (!digits) return;
-        if (digits.charAt(0) !== "7") digits = "7" + digits;
-        var value = "+7";
-        if (digits.length > 1) value += " (" + digits.slice(1, 4);
-        if (digits.length >= 4) value += ") " + digits.slice(4, 7);
-        if (digits.length >= 7) value += "-" + digits.slice(7, 9);
-        if (digits.length >= 9) value += "-" + digits.slice(9, 11);
-        phoneInput.value = value;
-      });
-    }
+  function maskPhoneInput(input) {
+    if (!input) return;
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      var valid = true;
-      var status = form.querySelector("[data-form-status]");
+    input.addEventListener("input", function () {
+      var digits = input.value.replace(/\D/g, "").replace(/^8/, "7").slice(0, 11);
+      if (!digits) return;
+      if (digits.charAt(0) !== "7") digits = "7" + digits;
 
-      form.querySelectorAll(".field").forEach(function (field) {
-        var control = field.querySelector("input, select, textarea");
-        if (!control) return;
-        var fieldValid = control.checkValidity();
-        if (control.type === "tel" && control.value.replace(/\D/g, "").length < 11) fieldValid = false;
-        field.classList.toggle("is-invalid", !fieldValid);
-        if (!fieldValid) valid = false;
-      });
+      var value = "+7";
+      if (digits.length > 1) value += " (" + digits.slice(1, 4);
+      if (digits.length >= 4) value += ") " + digits.slice(4, 7);
+      if (digits.length >= 7) value += "-" + digits.slice(7, 9);
+      if (digits.length >= 9) value += "-" + digits.slice(9, 11);
+      input.value = value;
+    });
+  }
 
-      var consent = form.querySelector("input[name='consent']");
-      if (consent && !consent.checked) valid = false;
+  function setFormStatus(form, message, success) {
+    var status = form.querySelector("[data-form-status]");
+    if (!status) return;
 
-      if (!valid) {
-        if (status) {
-          status.className = "service-form__status";
-          status.textContent = "Проверьте обязательные поля и согласие на обработку данных.";
+    status.className = "service-form__status" + (success ? " is-success" : "");
+    status.textContent = message || "";
+  }
+
+  function validateRoverlandForm(form) {
+    var valid = true;
+
+    form.querySelectorAll("input, select, textarea").forEach(function (control) {
+      if (control.classList.contains("roverland-form-hp") || control.type === "hidden") return;
+
+      var controlValid = control.checkValidity();
+      if (control.type === "tel" && control.value.replace(/\D/g, "").length < 11) controlValid = false;
+
+      var field = control.closest(".field, label");
+      if (field) field.classList.toggle("is-invalid", !controlValid);
+      if (!controlValid) valid = false;
+    });
+
+    return valid;
+  }
+
+  function initRoverlandForms() {
+    document.querySelectorAll("[data-roverland-form]").forEach(function (form) {
+      if (form.dataset.roverlandFormReady === "1") return;
+      form.dataset.roverlandFormReady = "1";
+
+      form.querySelectorAll("input[type='tel']").forEach(maskPhoneInput);
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        if (!validateRoverlandForm(form)) {
+          setFormStatus(form, "Проверьте обязательные поля и согласие на обработку данных.", false);
+          return;
         }
-        return;
-      }
 
-      if (status) {
-        status.className = "service-form__status is-success";
-        status.textContent = "Спасибо! Заявка принята. В WordPress здесь будет обработчик Contact Form 7.";
-      }
+        var button = form.querySelector("button[type='submit']");
+        if (button) button.disabled = true;
+        setFormStatus(form, "Отправляем…", false);
+
+        try {
+          var response = await fetch(form.action, {
+            method: "POST",
+            credentials: "same-origin",
+            body: new FormData(form)
+          });
+
+          var payload = await response.json();
+          var message = payload && payload.data && payload.data.message
+            ? payload.data.message
+            : "Не удалось отправить форму.";
+
+          if (!payload || !payload.success) {
+            throw new Error(message);
+          }
+
+          setFormStatus(form, message, true);
+          form.reset();
+        } catch (error) {
+          setFormStatus(form, error.message || "Не удалось отправить форму.", false);
+        } finally {
+          if (button) button.disabled = false;
+        }
+      });
     });
   }
 
   /* Shared service modal */
   function initServiceModal() {
     var triggers = document.querySelectorAll("[data-appointment-open]");
-    if (!triggers.length) return;
+    var modal = document.querySelector("[data-service-modal]");
+    if (!triggers.length || !modal) return;
 
-    var modal = null;
     var lastTrigger = null;
 
-    function ensureModal() {
-      if (modal) return modal;
-
-      modal = document.createElement("div");
-      modal.className = "service-modal";
-      modal.setAttribute("aria-hidden", "true");
-      modal.innerHTML =
-        '<div class="service-modal__backdrop" data-service-modal-close></div>' +
-        '<div class="service-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">' +
-          '<button class="icon-button service-modal__close" type="button" aria-label="Закрыть форму" data-service-modal-close>' +
-            '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"></path></svg>' +
-          '</button>' +
-          '<p class="service-modal__eyebrow">Запись в Rover Land</p>' +
-          '<h2 id="service-modal-title">Запишитесь на сервис</h2>' +
-          '<p class="service-modal__lead">Оставьте контактные данные — мастер-консультант свяжется с вами для уточнения деталей.</p>' +
-          '<form class="service-form service-modal__form" action="#" method="post" data-service-modal-form novalidate>' +
-            '<div class="service-form__row">' +
-              '<label class="field"><span class="field__label">Ваше имя</span><input class="field__control" type="text" name="your-name" placeholder="Иван" autocomplete="name" required><span class="field__error" data-error>Введите имя</span></label>' +
-              '<label class="field"><span class="field__label">Телефон</span><input class="field__control" type="tel" name="your-phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required><span class="field__error" data-error>Введите телефон</span></label>' +
-            '</div>' +
-            '<label class="field field--full"><span class="field__label">Выберите филиал</span><select class="field__control" name="branch" required>' +
-              '<option value="">Выберите филиал</option><option>Запад — Новорижское шоссе</option><option>Юго-Запад — Нагатинская улица</option><option>Северо-Запад — Сервис</option><option>Северо-Запад — Кузовной</option><option>Юг — Нагатинская улица</option>' +
-            '</select><span class="field__error" data-error>Выберите филиал</span></label>' +
-            '<label class="service-form__consent"><input type="checkbox" name="consent" required><span>Нажимая на кнопку, я принимаю <a href="#">согласие</a> на обработку <a href="#">персональных данных</a></span></label>' +
-            '<button class="button button--primary button--wide" type="submit">Отправить заявку</button>' +
-            '<p class="service-form__status" role="status" aria-live="polite" data-form-status></p>' +
-          '</form>' +
-        '</div>';
-
-      document.body.appendChild(modal);
-
-      modal.querySelectorAll("[data-service-modal-close]").forEach(function (button) {
-        button.addEventListener("click", function () { setOpen(false); });
-      });
-
-      var form = modal.querySelector("[data-service-modal-form]");
-      var phone = form.querySelector("input[type='tel']");
-
-      phone.addEventListener("input", function () {
-        var digits = phone.value.replace(/\D/g, "").replace(/^8/, "7").slice(0, 11);
-        if (!digits) return;
-        if (digits.charAt(0) !== "7") digits = "7" + digits;
-        var value = "+7";
-        if (digits.length > 1) value += " (" + digits.slice(1, 4);
-        if (digits.length >= 4) value += ") " + digits.slice(4, 7);
-        if (digits.length >= 7) value += "-" + digits.slice(7, 9);
-        if (digits.length >= 9) value += "-" + digits.slice(9, 11);
-        phone.value = value;
-      });
-
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        var valid = true;
-        var status = form.querySelector("[data-form-status]");
-
-        form.querySelectorAll(".field").forEach(function (field) {
-          var control = field.querySelector("input, select, textarea");
-          if (!control) return;
-          var fieldValid = control.checkValidity();
-          if (control.type === "tel" && control.value.replace(/\D/g, "").length < 11) fieldValid = false;
-          field.classList.toggle("is-invalid", !fieldValid);
-          if (!fieldValid) valid = false;
-        });
-
-        var consent = form.querySelector("input[name='consent']");
-        if (consent && !consent.checked) valid = false;
-
-        if (!valid) {
-          status.className = "service-form__status";
-          status.textContent = "Проверьте обязательные поля и согласие на обработку данных.";
-          return;
-        }
-
-        status.className = "service-form__status is-success";
-        status.textContent = "Спасибо! Заявка принята. В WordPress здесь будет Contact Form 7.";
-      });
-
-      return modal;
-    }
-
     function setOpen(open) {
-      ensureModal();
       modal.classList.toggle("is-open", open);
       modal.setAttribute("aria-hidden", String(!open));
       body.classList.toggle("is-locked", open);
@@ -478,7 +436,7 @@
       if (open) {
         setMenu(false);
         window.setTimeout(function () {
-          var input = modal.querySelector("input[name='your-name']");
+          var input = modal.querySelector("input[name='name']");
           if (input) input.focus();
         }, 20);
       } else if (lastTrigger) {
@@ -494,13 +452,24 @@
       });
     });
 
+    modal.querySelectorAll("[data-service-modal-close]").forEach(function (button) {
+      button.addEventListener("click", function () { setOpen(false); });
+    });
+
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && modal && modal.classList.contains("is-open")) setOpen(false);
+      if (event.key === "Escape" && modal.classList.contains("is-open")) setOpen(false);
     });
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initServiceModal);
-  else initServiceModal();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      initRoverlandForms();
+      initServiceModal();
+    });
+  } else {
+    initRoverlandForms();
+    initServiceModal();
+  }
 
 
   /* Back to top */
