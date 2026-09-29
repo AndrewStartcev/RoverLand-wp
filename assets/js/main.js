@@ -356,6 +356,12 @@
     var messageNode = modal.querySelector("[data-form-success-message]");
     if (messageNode && message) messageNode.textContent = message;
 
+    var serviceModal = document.querySelector("[data-service-modal]");
+    if (serviceModal) {
+      serviceModal.classList.remove("is-open");
+      serviceModal.setAttribute("aria-hidden", "true");
+    }
+
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     body.classList.add("is-locked");
