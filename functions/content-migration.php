@@ -842,6 +842,23 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 
 	roverland_content_migration_flush_text_section( $sections, $current );
 
+	// Some old model pages keep their first meaningful image inside the article
+	// rather than in the hero. Promote it so the new layout does not render an
+	// empty visual column, and remove it from that text block to avoid a duplicate.
+	if ( ! $hero_image ) {
+		foreach ( $sections as &$section ) {
+			if ( 'text' !== ( $section['acf_fc_layout'] ?? '' ) || empty( $section['_image_url'] ) ) {
+				continue;
+			}
+
+			$hero_image = $section['_image_url'];
+			$section['_image_url'] = '';
+			$section['image_position'] = 'none';
+			break;
+		}
+		unset( $section );
+	}
+
 	libxml_clear_errors();
 	libxml_use_internal_errors( $previous );
 
