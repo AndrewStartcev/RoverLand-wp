@@ -8,6 +8,7 @@ add_action( 'admin_post_roverland_content_import_page', 'roverland_content_migra
 add_action( 'admin_post_roverland_content_import_pages_batch', 'roverland_content_migration_import_pages_batch' );
 add_action( 'admin_post_roverland_content_import_portfolio_batch', 'roverland_content_migration_import_portfolio_batch' );
 add_action( 'wp_ajax_roverland_content_import_portfolio_all', 'roverland_content_migration_import_portfolio_all_ajax' );
+add_action( 'wp_ajax_roverland_content_rebuild_all_pages', 'roverland_content_migration_rebuild_all_pages_ajax' );
 
 function roverland_content_migration_register_page() {
 	add_submenu_page(
@@ -119,8 +120,26 @@ function roverland_content_migration_render() {
 					<input type="hidden" name="action" value="roverland_content_import_pages_batch">
 					<?php wp_nonce_field( 'roverland_content_import_pages_batch', 'roverland_content_nonce' ); ?>
 					<label><input type="checkbox" name="download_images" value="1" checked> Скачивать картинки со старого сайта</label>
-					<?php submit_button( 'Импортировать следующие 2 страницы', 'primary', 'submit', false ); ?>
+					<?php submit_button( 'Импортировать следующие 2 страницы', 'secondary', 'submit', false ); ?>
 				</form>
+
+				<div class="roverland-content-migration__rebuild-actions">
+					<label><input type="checkbox" id="roverland-rebuild-download-images" value="1" checked> Картинки</label>
+					<button
+						type="button"
+						class="button button-primary"
+						id="roverland-rebuild-all-pages"
+						data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
+						data-nonce="<?php echo esc_attr( wp_create_nonce( 'roverland_content_rebuild_all_pages' ) ); ?>"
+					>
+						Пересобрать все услуги и модели
+					</button>
+				</div>
+
+				<div id="roverland-rebuild-progress" class="roverland-content-migration__progress" hidden>
+					<div class="roverland-content-migration__progress-bar"><span></span></div>
+					<p class="roverland-content-migration__progress-text">Подготовка…</p>
+				</div>
 			</section>
 
 			<section class="roverland-content-migration__card">
@@ -251,7 +270,7 @@ function roverland_content_migration_render() {
 	.roverland-content-migration__grid .roverland-content-migration__card{margin-top:0}
 	.roverland-content-migration td{vertical-align:middle}
 	.roverland-content-migration__small{display:block;margin-bottom:6px;font-size:12px}
-	.roverland-content-migration__portfolio-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:16px}
+	.roverland-content-migration__portfolio-actions,.roverland-content-migration__rebuild-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:16px}
 	.roverland-content-migration__portfolio-actions form{margin:0}
 	.roverland-content-migration__progress{margin-top:16px}
 	.roverland-content-migration__progress-bar{height:10px;overflow:hidden;border-radius:999px;background:#e2e4e7}
@@ -341,6 +360,99 @@ function roverland_content_migration_render() {
 				await runBatch();
 			} catch (error) {
 				text.textContent = 'Импорт остановлен: ' + error.message;
+				button.disabled = false;
+			}
+		});
+	})();
+	</script>
+
+	<script>
+	(function () {
+		var button = document.getElementById('roverland-rebuild-all-pages');
+		var progress = document.getElementById('roverland-rebuild-progress');
+		var imagesToggle = document.getElementById('roverland-rebuild-download-images');
+
+		if (!button || !progress) return;
+
+		var bar = progress.querySelector('.roverland-content-migration__progress-bar span');
+		var text = progress.querySelector('.roverland-content-migration__progress-text');
+
+		button.addEventListener('click', async function () {
+			if (button.disabled) return;
+
+			if (!window.confirm('Принудительно пересобрать ВСЕ услуги, модели, услуги моделей и ТО по старому RoverLand?')) {
+				return;
+			}
+
+			button.disabled = true;
+			progress.hidden = false;
+			bar.style.width = '0%';
+			text.textContent = 'Начинаю пересборку…';
+
+			var processedIds = [];
+			var rebuilt = 0;
+			var media = 0;
+			var errors = [];
+			var totalInitial = null;
+
+			async function runBatch() {
+				var form = new FormData();
+				form.append('action', 'roverland_content_rebuild_all_pages');
+				form.append('nonce', button.dataset.nonce || '');
+				form.append('download_images', imagesToggle && imagesToggle.checked ? '1' : '0');
+				form.append('skip_ids', processedIds.join(','));
+
+				var response = await fetch(button.dataset.ajaxUrl, {
+					method: 'POST',
+					credentials: 'same-origin',
+					body: form
+				});
+
+				var payload = await response.json();
+
+				if (!payload || !payload.success) {
+					throw new Error(payload && payload.data && payload.data.message ? payload.data.message : 'Ошибка AJAX-пересборки.');
+				}
+
+				var result = payload.data || {};
+				var ids = Array.isArray(result.processed_ids) ? result.processed_ids : [];
+				processedIds = processedIds.concat(ids);
+				rebuilt += Number(result.rebuilt || 0);
+				media += Number(result.media || 0);
+
+				if (Array.isArray(result.errors) && result.errors.length) {
+					errors = errors.concat(result.errors);
+				}
+
+				if (totalInitial === null) {
+					totalInitial = Number(result.total || 0);
+				}
+
+				var remaining = Number(result.remaining || 0);
+				var total = Math.max(totalInitial || 0, rebuilt + remaining);
+				var done = Math.max(0, total - remaining);
+				var percent = total > 0 ? Math.min(100, Math.round(done / total * 100)) : 100;
+
+				bar.style.width = percent + '%';
+				text.textContent = 'Пересобрано: ' + rebuilt + '. Осталось: ' + remaining + '. Новых картинок: ' + media + '.';
+
+				if (remaining > 0 && ids.length > 0) {
+					await runBatch();
+					return;
+				}
+
+				bar.style.width = '100%';
+				text.textContent += errors.length ? ' Ошибок: ' + errors.length + '.' : ' Готово.';
+
+				setTimeout(function () {
+					window.location.reload();
+				}, 1200);
+			}
+
+			try {
+				await runBatch();
+			} catch (error) {
+				text.textContent = 'Пересборка остановлена: ' + error.message;
 				button.disabled = false;
 			}
 		});
@@ -475,6 +587,91 @@ function roverland_content_migration_import_portfolio_batch() {
 
 	$report['message'] = $done ? sprintf( 'Импортировано работ портфолио: %d.', $done ) : 'Портфолио полностью импортировано.';
 	roverland_content_migration_finish( $report );
+}
+
+function roverland_content_migration_rebuild_all_pages_ajax() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error( array( 'message' => 'Недостаточно прав.' ), 403 );
+	}
+
+	check_ajax_referer( 'roverland_content_rebuild_all_pages', 'nonce' );
+
+	$download_images = ! empty( $_POST['download_images'] );
+	$skip_ids        = array();
+
+	if ( ! empty( $_POST['skip_ids'] ) ) {
+		$skip_ids = array_values(
+			array_filter(
+				array_map(
+					'absint',
+					explode( ',', sanitize_text_field( wp_unslash( $_POST['skip_ids'] ) ) )
+				)
+			)
+		);
+	}
+
+	@set_time_limit( $download_images ? 120 : 75 );
+	wp_raise_memory_limit( 'admin' );
+
+	$report = array(
+		'message' => '',
+		'errors'  => array(),
+		'media'   => 0,
+	);
+
+	$candidates = array();
+
+	foreach ( roverland_content_migration_pages() as $page ) {
+		if ( in_array( (int) $page->ID, $skip_ids, true ) ) {
+			continue;
+		}
+
+		if ( ! roverland_field( 'legacy_source_url', '', $page->ID ) ) {
+			continue;
+		}
+
+		$candidates[] = $page;
+	}
+
+	$total = count( $candidates );
+
+	// Small batches keep old-site requests and image sideloads away from server timeouts.
+	$batch = array_slice( $candidates, 0, 2 );
+
+	$processed_ids = array();
+	$rebuilt       = 0;
+
+	foreach ( $batch as $page ) {
+		$processed_ids[] = (int) $page->ID;
+
+		if ( roverland_content_migration_apply_page( $page->ID, $download_images, $report ) ) {
+			$rebuilt++;
+		}
+	}
+
+	$next_skip = array_merge( $skip_ids, $processed_ids );
+	$remaining = 0;
+
+	foreach ( roverland_content_migration_pages() as $page ) {
+		if ( in_array( (int) $page->ID, $next_skip, true ) ) {
+			continue;
+		}
+
+		if ( roverland_field( 'legacy_source_url', '', $page->ID ) ) {
+			$remaining++;
+		}
+	}
+
+	wp_send_json_success(
+		array(
+			'processed_ids' => $processed_ids,
+			'rebuilt'       => $rebuilt,
+			'media'         => (int) $report['media'],
+			'errors'        => $report['errors'],
+			'remaining'     => $remaining,
+			'total'         => $total,
+		)
+	);
 }
 
 function roverland_content_migration_import_portfolio_all_ajax() {
