@@ -62,13 +62,50 @@
     },
     {
       "key": "field_rl_about_service_award",
-      "label": "Награда",
+      "label": "Старая награда Яндекса (fallback)",
       "name": "about_service_award",
       "type": "image",
       "return_format": "array",
       "preview_size": "medium",
       "library": "all",
-      "mime_types": "png,webp,jpg,jpeg"
+      "mime_types": "png,webp,jpg,jpeg",
+      "instructions": "Используется только если не заполнен официальный виджет Яндекса."
+    },
+    {
+      "key": "field_rl_about_yandex_widget_code",
+      "label": "Официальный виджет / бейдж Яндекса",
+      "name": "about_yandex_widget_code",
+      "type": "textarea",
+      "rows": 5,
+      "new_lines": "",
+      "instructions": "Вставьте код бейджа рейтинга или виджета отзывов из Яндекс Бизнес / Яндекс Карт. Сайт извлечёт безопасный iframe Яндекса и рейтинг будет обновляться самим Яндексом."
+    },
+    {
+      "key": "field_rl_about_yandex_org_url",
+      "label": "Ссылка на организацию в Яндекс Картах",
+      "name": "about_yandex_org_url",
+      "type": "url",
+      "instructions": "Ссылка открывается по клику под виджетом.",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_about_yandex_title",
+      "label": "Заголовок блока",
+      "name": "about_yandex_title",
+      "type": "text",
+      "default_value": "Rover Land в Яндекс Картах",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_about_yandex_note",
+      "label": "Подпись",
+      "name": "about_yandex_note",
+      "type": "text",
+      "default_value": "Актуальный рейтинг и отзывы обновляются Яндексом автоматически."
     },
     {
       "key": "field_rl_about_tab_parts",
@@ -233,5 +270,5 @@
   "active": true,
   "description": "Контент страницы «О компании».",
   "show_in_rest": 0,
-  "modified": 1789920300
+  "modified": 1790667671
 }
