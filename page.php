@@ -23,6 +23,12 @@ while ( have_posts() ) :
 			</div>
 		</div>
 	</section>
+
+	<?php
+	if ( get_post_meta( get_the_ID(), '_roverland_seed_append_appointment', true ) ) {
+		get_template_part( 'template-parts/blocks/appointment' );
+	}
+	?>
 	<?php
 endwhile;
 
