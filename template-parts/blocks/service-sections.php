@@ -54,6 +54,22 @@ foreach ( $sections as $section ) :
 			</div>
 		</section>
 		<?php
+	elseif ( 'stats' === $layout ) :
+		$items = isset( $section['items'] ) && is_array( $section['items'] ) ? $section['items'] : array();
+		?>
+		<?php if ( $items ) : ?>
+			<section class="about-stats service-content-stats" aria-label="Rover Land в цифрах">
+				<div class="container about-stats__list">
+					<?php foreach ( $items as $item ) : ?>
+						<div class="about-stat">
+							<strong><?php echo esc_html( isset( $item['value'] ) ? $item['value'] : '' ); ?></strong>
+							<span><?php echo esc_html( isset( $item['label'] ) ? $item['label'] : '' ); ?></span>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			</section>
+		<?php endif; ?>
+		<?php
 	elseif ( 'price_table' === $layout ) :
 		$groups = isset( $section['groups'] ) && is_array( $section['groups'] ) ? $section['groups'] : array();
 		?>
