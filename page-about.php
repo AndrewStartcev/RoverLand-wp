@@ -68,7 +68,7 @@ while ( have_posts() ) :
 				$candidate = esc_url_raw( html_entity_decode( $widget_match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
 				$host      = strtolower( (string) wp_parse_url( $candidate, PHP_URL_HOST ) );
 
-				if ( $host && ( 'yandex.ru' === $host || str_ends_with( $host, '.yandex.ru' ) ) ) {
+				if ( $host && ( 'yandex.ru' === $host || '.yandex.ru' === substr( $host, -10 ) ) ) {
 					$yandex_widget_src = $candidate;
 				}
 			}
