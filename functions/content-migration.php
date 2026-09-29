@@ -106,7 +106,7 @@ function roverland_content_migration_render() {
 					<input type="hidden" name="action" value="roverland_content_import_pages_batch">
 					<?php wp_nonce_field( 'roverland_content_import_pages_batch', 'roverland_content_nonce' ); ?>
 					<label><input type="checkbox" name="download_images" value="1" checked> Скачивать картинки со старого сайта</label>
-					<?php submit_button( 'Импортировать следующие 3 страницы', 'primary', 'submit', false ); ?>
+					<?php submit_button( 'Импортировать следующие 2 страницы', 'primary', 'submit', false ); ?>
 				</form>
 			</section>
 
@@ -401,7 +401,7 @@ function roverland_content_migration_import_pages_batch() {
 	wp_raise_memory_limit( 'admin' );
 
 	foreach ( roverland_content_migration_pages() as $page ) {
-		if ( $done >= 3 ) {
+		if ( $done >= 2 ) {
 			break;
 		}
 
