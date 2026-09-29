@@ -542,10 +542,22 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 		}
 
 		if ( 'table' === $tag ) {
-			roverland_content_migration_flush_text_section( $sections, $current );
+			$table_title = '';
+
+			if ( ! empty( $current['title'] ) && empty( $current['html'] ) && empty( $current['image'] ) ) {
+				$table_title = $current['title'];
+				$current     = array( 'title' => '', 'html' => array(), 'image' => '' );
+			} else {
+				roverland_content_migration_flush_text_section( $sections, $current );
+			}
+
 			$table_section = roverland_content_migration_table_section( $node, $kind );
 
 			if ( $table_section ) {
+				if ( $table_title ) {
+					$table_section['title'] = $table_title;
+				}
+
 				$sections[] = $table_section;
 			}
 
