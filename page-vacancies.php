@@ -72,7 +72,13 @@ while ( have_posts() ) :
 				<li><img src="<?php echo esc_url( roverland_asset( 'assets/images/icons/ui/vacancies-privacy.svg' ) ); ?>" width="20" height="20" alt="" aria-hidden="true"><span>Конфиденциальность данных</span></li>
 			</ul>
 		</div>
-		<form class="career-form" action="#" method="post" enctype="multipart/form-data" novalidate>
+		<form class="career-form" action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post" enctype="multipart/form-data" data-roverland-form novalidate>
+			<input type="hidden" name="action" value="roverland_submit_form">
+			<input type="hidden" name="form_type" value="career">
+			<input type="hidden" name="page_title" value="<?php echo esc_attr( wp_get_document_title() ); ?>">
+			<input type="hidden" name="page_url" value="<?php echo esc_url( home_url( wp_unslash( $_SERVER['REQUEST_URI'] ?? '/' ) ) ); ?>">
+			<input type="hidden" name="_roverland_form_nonce" value="<?php echo esc_attr( wp_create_nonce( 'roverland_form_submit' ) ); ?>">
+			<input class="roverland-form-hp" type="text" name="website" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
 			<div class="career-form__row"><label><span>ВАШЕ ИМЯ</span><input type="text" name="name" placeholder="Имя Фамилия" required></label><label><span>ТЕЛЕФОН</span><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required></label></div>
 			<label><span>ЖЕЛАЕМАЯ ДОЛЖНОСТЬ</span><select name="position" required><option value="">Выберите должность</option>
 				<?php foreach ( get_posts( array( 'post_type' => 'vacancy', 'post_status' => 'publish', 'numberposts' => -1, 'orderby' => 'menu_order title', 'order' => 'ASC' ) ) as $position ) : ?><option><?php echo esc_html( $position->post_title ); ?></option><?php endforeach; ?>
@@ -81,7 +87,8 @@ while ( have_posts() ) :
 			<label class="career-form__file"><span>ПРИКРЕПИТЬ РЕЗЮМЕ</span><input type="file" name="resume" accept=".pdf,.doc,.docx"><span class="career-form__file-control">Добавить файл</span></label>
 			<label><span>СООБЩЕНИЕ</span><textarea name="message" rows="5" placeholder="Расскажите немного о себе и вашем опыте..."></textarea></label>
 			<label class="career-form__consent"><input type="checkbox" name="consent" required><span>Нажимая на кнопку, вы соглашаетесь с <a href="<?php echo esc_url( roverland_page_url( 'politika-konfidentsialnosti' ) ); ?>">политикой конфиденциальности</a>.</span></label>
-			<button class="button button--primary button--wide" type="submit">Отправить отклик</button>
+			<button class="button button--primary button--wide" type="submit"><?php echo esc_html( roverland_option( 'form_career_button', 'Отправить отклик' ) ); ?></button>
+			<p class="service-form__status" role="status" aria-live="polite" data-form-status></p>
 		</form>
 	</div></section>
 
