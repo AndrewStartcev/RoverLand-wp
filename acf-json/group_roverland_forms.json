@@ -126,6 +126,58 @@
       }
     },
     {
+      "key": "field_rl_forms_tab_feedback",
+      "label": "Обратная связь",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_form_feedback_subject",
+      "label": "Тема письма",
+      "name": "form_feedback_subject",
+      "type": "text",
+      "default_value": "Новая обратная связь — Rover Land",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_form_feedback_success",
+      "label": "Сообщение после отправки",
+      "name": "form_feedback_success",
+      "type": "text",
+      "default_value": "Спасибо за обратную связь! Мы разберём обращение и свяжемся с вами.",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_forms_tab_partner",
+      "label": "Партнерство",
+      "type": "tab",
+      "placement": "left"
+    },
+    {
+      "key": "field_rl_form_partner_subject",
+      "label": "Тема письма",
+      "name": "form_partner_subject",
+      "type": "text",
+      "default_value": "Новая заявка на партнерство — Rover Land",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
+      "key": "field_rl_form_partner_success",
+      "label": "Сообщение после отправки",
+      "name": "form_partner_success",
+      "type": "text",
+      "default_value": "Спасибо! Заявка на партнерство отправлена. Мы свяжемся с вами.",
+      "wrapper": {
+        "width": "50"
+      }
+    },
+    {
       "key": "field_rl_forms_tab_common",
       "label": "Общие настройки",
       "type": "tab",
@@ -165,5 +217,5 @@
   "active": true,
   "description": "Настройки форм записи на сервис и откликов на вакансии.",
   "show_in_rest": 0,
-  "modified": 1790666815
+  "modified": 1790699274
 }
