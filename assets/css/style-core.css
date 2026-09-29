@@ -1883,7 +1883,7 @@ select.field__control {
 
   .hero {
     min-height: 0;
-    background-image: none;
+    background-image: none !important;
     background-color: var(--color-background);
   }
 
