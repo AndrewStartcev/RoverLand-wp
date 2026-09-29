@@ -114,7 +114,8 @@
       "instructions": "Ссылка открывается по клику под виджетом.",
       "wrapper": {
         "width": "50"
-      }
+      },
+      "default_value": "https://yandex.ru/maps/org/rover_lend/126990267000/"
     },
     {
       "key": "field_rl_about_yandex_title",
@@ -296,5 +297,5 @@
   "active": true,
   "description": "Контент страницы «О компании».",
   "show_in_rest": 0,
-  "modified": 1790668437
+  "modified": 1790668512
 }
