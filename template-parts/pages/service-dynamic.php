@@ -10,6 +10,7 @@ $lead         = roverland_field( 'service_hero_lead', '', $post_id );
 $hero_image   = roverland_field( 'service_hero_image', array(), $post_id );
 $hero_url     = roverland_image_url( $hero_image );
 $sections     = roverland_field( 'service_sections', array(), $post_id );
+if (is_page('to')) { $sections = array_filter($sections, function($section) { return ($section['acf_fc_layout'] ?? '') !== 'cards'; }); }
 $related      = roverland_field( 'service_auto_related', true, $post_id ) ? roverland_get_related_service_pages( $post_id, -1 ) : array();
 
 $hero_class = 'service-universal-hero';
@@ -47,7 +48,7 @@ if ( 'model' === $kind ) {
 			<div class="service-universal-hero__actions">
 				<a class="button button--primary" href="#appointment"><?php echo esc_html( roverland_field( 'service_primary_button_label', 'Записаться на сервис', $post_id ) ); ?></a>
 				<?php if ( roverland_field( 'service_secondary_button_label', '', $post_id ) ) : ?>
-					<a class="button button--outline" href="#service-content"><?php echo esc_html( roverland_field( 'service_secondary_button_label', '', $post_id ) ); ?></a>
+					<a class="button button--outline" href="<?php echo is_page('servis') ? '#service-catalog' : '#service-content'; ?>"><?php echo esc_html( roverland_field( 'service_secondary_button_label', '', $post_id ) ); ?></a>
 				<?php endif; ?>
 			</div>
 		</div>
@@ -68,7 +69,10 @@ if ( 'model' === $kind ) {
 
 <div id="service-content">
 	<?php
-	if ( is_array( $sections ) && $sections ) {
+	$revision_content = roverland_field('service_revision_content', '', $post_id);
+	if ($revision_content) {
+		echo '<section class="service-content-block service-content-block--text"><div class="container service-revision-copy">' . wp_kses_post($revision_content) . '</div></section>';
+	} elseif ( is_array( $sections ) && $sections ) {
 		get_template_part(
 			'template-parts/blocks/service-sections',
 			null,
@@ -78,6 +82,7 @@ if ( 'model' === $kind ) {
 		);
 	}
 	?>
+	<?php get_template_part('template-parts/blocks/service-catalog'); ?>
 
 	<?php if ( $related ) : ?>
 		<section class="service-related">
@@ -114,13 +119,13 @@ if ( 'model' === $kind ) {
 </div>
 
 <?php
-if ( in_array($kind, array('service', 'hub'), true) ) {
+if ( in_array($kind, array('service', 'hub'), true) || $revision_content || is_page('to') ) {
 	get_template_part('template-parts/blocks/selected-cases');
 	get_template_part('template-parts/blocks/service-offers');
 	get_template_part('template-parts/blocks/company-videos');
 }
 if ( roverland_field( 'service_show_appointment', true, $post_id ) ) {
-	get_template_part( 'template-parts/blocks/appointment' );
+	get_template_part( is_page('prodat-avtomobil') ? 'template-parts/blocks/sell-car-form' : 'template-parts/blocks/appointment' );
 }
 
 if ( roverland_field( 'service_show_branches', true, $post_id ) ) {

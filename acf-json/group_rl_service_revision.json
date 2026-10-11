@@ -1,0 +1,1 @@
+{"key":"group_rl_service_revision","title":"Текст услуги — восстановление по ТЗ","fields":[{"key":"field_rl_service_revision_content","name":"service_revision_content","label":"Основное содержание (текст, списки, таблицы)","type":"wysiwyg","tabs":"all","toolbar":"full","media_upload":1}],"location":[[{"param":"post_type","operator":"==","value":"page"}]],"active":true}

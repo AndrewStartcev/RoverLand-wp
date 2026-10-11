@@ -202,7 +202,7 @@ function roverland_handle_form_submit() {
 
 	$type = roverland_form_value( 'form_type' );
 
-	if ( ! in_array( $type, array( 'service', 'career', 'feedback', 'partner' ), true ) ) {
+	if ( ! in_array( $type, array( 'service', 'career', 'feedback', 'partner', 'sell' ), true ) ) {
 		wp_send_json_error( array( 'message' => roverland_form_error_message() ), 400 );
 	}
 
@@ -211,6 +211,9 @@ function roverland_handle_form_submit() {
 	$digits  = roverland_form_clean_phone( $phone );
 	$consent = ! empty( $_POST['consent'] );
 	$errors  = array();
+	if ('sell' === $type && (!roverland_form_value('car_make') || !roverland_form_value('car_model'))) {
+		$errors[] = 'Укажите марку и модель автомобиля.';
+	}
 
 	if ( mb_strlen( $name ) < 2 ) {
 		$errors[] = 'Укажите имя.';
@@ -235,6 +238,7 @@ function roverland_handle_form_submit() {
 		'career'   => 'Отклик на вакансию',
 		'feedback' => 'Обратная связь',
 		'partner'  => 'Заявка на партнерство',
+		'sell'     => 'Заявка на выкуп автомобиля',
 	);
 	$lines      = array(
 		'Тип формы: ' . ( $type_labels[ $type ] ?? $type ),
@@ -242,7 +246,11 @@ function roverland_handle_form_submit() {
 		'Телефон: ' . $phone,
 	);
 
-	if ( 'service' === $type ) {
+	if ('sell' === $type) {
+		foreach(array('car_make'=>'Марка','car_model'=>'Модель','car_year'=>'Год выпуска','car_mileage'=>'Пробег','car_price'=>'Желаемая цена') as $key=>$label) {
+			$lines[]=$label . ': ' . roverland_form_value($key);
+		}
+	} elseif ( 'service' === $type ) {
 		$branch = roverland_form_value( 'branch' );
 
 		if ( $branch ) {
