@@ -1,20 +1,15 @@
 <?php defined('ABSPATH') || exit;
-$offers = array(
- array('newdiscount.jpg','Дисконтная накопительная программа','до 6%','/aktsii/diskontnaya-programma/'),
- array('newpodmena.jpg','Круглосуточный эвакуатор','','/servis/sluzhba-evakuatsii/'),
- array('newevak.jpg','Подменный автомобиль на время ремонта','','/servis/podmennyy-avtomobil/')
+$original=is_singular('portfolio_item');
+$base=$original?'assets/images/banners/':'assets/images/generated/';
+$offers=array(
+ array('image'=>$original?'newdiscount.jpg':'discount-2026.webp','title'=>'Дисконтная накопительная программа','text'=>'Скидка до 6%','url'=>'/aktsii/diskontnaya-programma/'),
+ array('image'=>$original?'newpodmena.jpg':'tow-2026.webp','title'=>'Круглосуточный эвакуатор','text'=>'Эвакуация автомобиля в сервис Rover Land','url'=>'/servis/sluzhba-evakuatsii/'),
+ array('image'=>$original?'newevak.jpg':'loaner-2026.webp','title'=>'Подменный автомобиль','text'=>'На время ремонта вашего автомобиля','url'=>'/servis/podmennyy-avtomobil/')
 );
-$image_base='assets/images/banners/';
-if (!is_singular('portfolio_item')) {
-    $image_base='assets/images/generated/';
-    $offers[0][0]='discount-2026.webp';
-    $offers[1][0]='tow-2026.webp';
-    $offers[2][0]='loaner-2026.webp';
-}
 ?>
-<section class="service-offers content-revision-section<?php echo !is_singular('portfolio_item') ? ' service-offers--generated' : ''; ?>" aria-label="Предложения Rover Land"><div class="container service-offers__grid">
- <?php foreach ($offers as $item) : ?><a class="service-offers__card" href="<?php echo esc_url(home_url($item[3])); ?>">
-   <img src="<?php echo esc_url(roverland_asset($image_base.$item[0])); ?>" alt="" loading="lazy">
-   <span class="service-offers__copy"><strong><?php echo esc_html($item[1]); ?></strong><?php if ($item[2]) : ?><span><?php echo esc_html($item[2]); ?></span><?php endif; ?><span class="service-offers__link">Узнать подробнее <span class="rl-chevron rl-chevron--right" aria-hidden="true"></span></span></span>
- </a><?php endforeach; ?>
+<section class="offers content-revision-section" aria-label="Предложения Rover Land"><div class="container">
+ <div class="section-heading section-heading--center"><h2 class="section-heading__title">Наши предложения</h2></div>
+ <div class="offers-slider swiper" data-offers-slider><div class="swiper-wrapper">
+ <?php foreach($offers as $offer): $offer['image']=array('url'=>roverland_asset($base.$offer['image'])); get_template_part('template-parts/elements/offer-card',null,array('offer'=>$offer)); endforeach; ?>
+ </div><div class="offers-slider__pagination swiper-pagination"></div></div>
 </div></section>

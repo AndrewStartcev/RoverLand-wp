@@ -53,9 +53,9 @@ while ( have_posts() ) :
 
 	<?php if ( is_array( $advantages ) && $advantages ) : ?>
 		<section class="advantages" aria-label="Преимущества Rover Land"><div class="container advantages__list">
-			<?php foreach ( $advantages as $advantage ) : ?>
+			<?php foreach ( $advantages as $advantage_index => $advantage ) : ?>
 				<article class="advantage-card">
-					<?php $icon_url = roverland_image_url( $advantage['icon'] ?? array() ); ?>
+					<?php $advantage_icons=array('about-guarantee.svg','advantage_2.svg','about-experience.svg','advantage_3.svg','about-warranty.svg','about-supply.svg'); $icon_url=roverland_asset('assets/images/icons/ui/'.$advantage_icons[$advantage_index % 6]); ?>
 					<?php if ( $icon_url ) : ?><div class="advantage-card__icon" aria-hidden="true"><img src="<?php echo esc_url( $icon_url ); ?>" alt=""></div><?php endif; ?>
 					<h3><?php echo esc_html( $advantage['title'] ?? '' ); ?></h3><p><?php echo esc_html( $advantage['text'] ?? '' ); ?></p>
 				</article>
@@ -68,11 +68,7 @@ while ( have_posts() ) :
 			<div class="section-heading section-heading--center"><h2 class="section-heading__title"><?php echo esc_html( roverland_field( 'home_offers_title', '' ) ); ?></h2><?php if ( roverland_field( 'home_offers_text', '' ) ) : ?><p class="section-heading__text"><?php echo esc_html( roverland_field( 'home_offers_text', '' ) ); ?></p><?php endif; ?></div>
 			<?php if ( is_array( $offers ) && $offers ) : ?><div class="offers-slider swiper" data-offers-slider><div class="swiper-wrapper">
 				<?php foreach ( $offers as $offer ) : ?>
-					<article class="offer-card swiper-slide">
-						<?php $image = $offer['image'] ?? array(); $image_url = roverland_image_url( $image ); ?>
-						<?php if ( $image_url ) : ?><img class="offer-card__image" src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( roverland_image_alt( $image, $offer['title'] ?? '' ) ); ?>" loading="lazy" decoding="async"><?php endif; ?>
-						<div class="offer-card__body"><h3><?php echo esc_html( $offer['title'] ?? '' ); ?></h3><p><?php echo esc_html( $offer['text'] ?? '' ); ?></p><?php if ( ! empty( $offer['url'] ) ) : ?><a class="text-link" href="<?php echo esc_url( home_url( $offer['url'] ) ); ?>">Узнать больше <span aria-hidden="true">→</span></a><?php endif; ?></div>
-					</article>
+					<?php get_template_part('template-parts/elements/offer-card', null, array('offer'=>$offer)); ?>
 				<?php endforeach; ?>
 			</div><div class="offers-slider__pagination swiper-pagination"></div></div><?php endif; ?>
 		</div>
