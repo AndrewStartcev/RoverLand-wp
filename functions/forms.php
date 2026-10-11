@@ -16,6 +16,9 @@ function roverland_form_subject( $type ) {
 	if ( 'career' === $type ) {
 		$key = 'form_career_subject';
 		$default = 'Новый отклик на вакансию — Rover Land';
+	} elseif ( 'sell' === $type ) {
+		$key = 'form_sell_subject';
+		$default = 'Заявка на выкуп автомобиля — Rover Land';
 	} elseif ( 'feedback' === $type ) {
 		$key = 'form_feedback_subject';
 		$default = 'Новая обратная связь — Rover Land';
