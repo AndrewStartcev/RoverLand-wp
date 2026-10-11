@@ -22,6 +22,7 @@ $socials           = roverland_get_social_links();
 			</nav>
 
 			<div class="site-header__actions">
+				<?php get_template_part('template-parts/blocks/header-branches'); ?>
 				<button class="button button--primary site-header__appointment" type="button" data-appointment-open>
 					<?php echo esc_html( $appointment_text ); ?>
 				</button>
@@ -106,4 +107,3 @@ $socials           = roverland_get_social_links();
 
 	<div class="mobile-menu-backdrop" data-menu-backdrop></div>
 </header>
-<?php get_template_part('template-parts/blocks/header-branches'); ?>
