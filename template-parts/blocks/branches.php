@@ -50,7 +50,7 @@ if ( empty( $branches ) ) {
 					<?php endif; ?>
 
 					<?php if ( $address ) : ?>
-						<p><?php if (!empty($branch['map_url'])) : ?><a href="<?php echo esc_url($branch['map_url']); ?>"><?php echo esc_html($address); ?></a><?php else : ?><?php echo esc_html($address); ?><?php endif; ?></p>
+						<p class="branch-card__address"><?php if (!empty($branch['map_url'])) : ?><a href="<?php echo esc_url($branch['map_url']); ?>"><?php echo esc_html($address); ?></a><?php else : ?><?php echo esc_html($address); ?><?php endif; ?></p>
 					<?php endif; ?>
 					<?php if ('contacts-centers' === $section_class) : ?>
 						<?php if (!empty($branch['telegram_url'])) : ?><p>Telegram: <a href="<?php echo esc_url($branch['telegram_url']); ?>"><?php echo esc_html($branch['telegram_phone'] ?? 'Написать'); ?></a></p><?php endif; ?>
