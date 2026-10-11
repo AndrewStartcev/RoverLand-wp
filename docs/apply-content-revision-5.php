@@ -6,6 +6,8 @@ require_once ABSPATH . 'wp-admin/includes/image.php';
 $data = json_decode(file_get_contents($root . '/data/service-content-revision.json'), true);
 foreach($data as $path=>$item) {
     $id=$page($path); $content=$item['content'];
+    $content=preg_replace('~href="(/upload/[^"]+)"~','href="https://roverland.ru$1"',$content);
+    $content=str_replace('tel:+%2074956680776','tel:+74956680776',$content);
     foreach(array_unique($item['images']) as $source) {
         if (strpos($source, 'https://roverland.ru/') !== 0) { continue; }
         $existing=get_posts(array('post_type'=>'attachment','post_status'=>'inherit','posts_per_page'=>1,'meta_key'=>'_source_url','meta_value'=>$source));
@@ -24,6 +26,7 @@ foreach($data as $path=>$item) {
     if (in_array($path,array('zapchasti','zapchasti/aksessuary-i-tyuning'),true)) {$set($id,'service_hero_lead','Широчайший ассортимент запчастей в наличии в магазине и на заказ.');}
 }
 $set($page('servis'),'service_secondary_button_label','Каталог услуг');
+$set($page('servis/prodat-avtomobil'),'service_primary_button_label','Оставить заявку на выкуп');
 $set($page('servis/to'),'service_auto_related',0);
 $to_cases=array();foreach(array(40,41) as $legacy){$case=roverland_content_migration_find_portfolio($legacy);if($case){$to_cases[]=$case;}}
 $set($page('servis/to'),'service_selected_cases',$to_cases);

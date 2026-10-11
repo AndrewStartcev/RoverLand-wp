@@ -110,7 +110,7 @@ if ( 'model' === $kind ) {
 								?>
 								<p><?php echo esc_html( $related_lead ); ?></p>
 							<?php endif; ?>
-							<a class="text-link" href="<?php echo esc_url( get_permalink( $related_page ) ); ?>">Подробнее <span aria-hidden="true">→</span></a>
+							<a class="text-link" href="<?php echo esc_url( get_permalink( $related_page ) ); ?>">Подробнее <span class="rl-chevron rl-chevron--right" aria-hidden="true"></span></a>
 						</article>
 					<?php endforeach; ?>
 				</div>
