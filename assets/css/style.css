@@ -3366,3 +3366,4 @@ body.admin-bar .site-header {
 .branches:not(.contacts-centers) .branch-card{min-height:0;padding:28px 26px}
 .branches:not(.contacts-centers) .branch-card h3{min-height:0;margin-bottom:24px}
 @media(max-width:767px){.header-branches summary{height:42px;padding-inline:8px}}
+.site-header__search{width:52px;height:52px;border:1px solid var(--color-primary);border-radius:var(--radius-sm)}@media(max-width:767px){.site-header__search{width:42px;height:42px}}

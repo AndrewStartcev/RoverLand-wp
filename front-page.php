@@ -55,7 +55,7 @@ while ( have_posts() ) :
 		<section class="advantages" aria-label="Преимущества Rover Land"><div class="container advantages__list">
 			<?php foreach ( $advantages as $advantage_index => $advantage ) : ?>
 				<article class="advantage-card">
-					<?php $advantage_icons=array('about-guarantee.svg','advantage_2.svg','about-experience.svg','advantage_3.svg','about-warranty.svg','about-supply.svg'); $icon_url=roverland_asset('assets/images/icons/ui/'.$advantage_icons[$advantage_index % 6]); ?>
+					<?php $advantage_icons=array('advantage_1.svg','advantage_2.svg','about-experience.svg','advantage_3.svg','about-warranty.svg','about-supply.svg'); $icon_url=roverland_asset('assets/images/icons/ui/'.$advantage_icons[$advantage_index % 6]); ?>
 					<?php if ( $icon_url ) : ?><div class="advantage-card__icon" aria-hidden="true"><img src="<?php echo esc_url( $icon_url ); ?>" alt=""></div><?php endif; ?>
 					<h3><?php echo esc_html( $advantage['title'] ?? '' ); ?></h3><p><?php echo esc_html( $advantage['text'] ?? '' ); ?></p>
 				</article>
