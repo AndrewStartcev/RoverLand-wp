@@ -163,6 +163,37 @@
           }
         },
         {
+          "key": "field_rl_branch_telegram_url",
+          "label": "Telegram филиала",
+          "name": "telegram_url",
+          "type": "url"
+        },
+        {
+          "key": "field_rl_branch_telegram_phone",
+          "label": "Номер Telegram",
+          "name": "telegram_phone",
+          "type": "text"
+        },
+        {
+          "key": "field_rl_branch_hours",
+          "label": "Время работы",
+          "name": "hours",
+          "type": "textarea",
+          "rows": 2
+        },
+        {
+          "key": "field_rl_branch_map_embed",
+          "label": "URL отдельной карты Яндекс",
+          "name": "map_embed",
+          "type": "url"
+        },
+        {
+          "key": "field_rl_branch_map_url",
+          "label": "Ссылка на филиал в Яндекс Картах",
+          "name": "map_url",
+          "type": "url"
+        },
+        {
           "key": "field_rl_branch_footer",
           "label": "Показывать в подвале",
           "name": "show_in_footer",

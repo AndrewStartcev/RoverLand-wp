@@ -39,7 +39,7 @@ while ( have_posts() ) :
 
 				<div class="partner-page__stats" aria-label="Ключевые условия партнерства">
 					<div class="partner-page__stat">
-						<strong>20+</strong>
+						<strong>25+</strong>
 						<span>лет опыта и экспертизы</span>
 					</div>
 					<div class="partner-page__stat">

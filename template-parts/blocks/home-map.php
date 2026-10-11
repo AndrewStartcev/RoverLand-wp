@@ -9,7 +9,7 @@ $branches = roverland_get_branches();
 	<div class="container service-map__container">
 		<div class="service-map__card">
 			<h2>Наши техцентры</h2>
-			<?php foreach ( array_slice( $branches, 0, 2 ) as $branch ) : ?>
+			<?php foreach ( $branches as $branch ) : ?>
 				<div><strong>RoverLand <?php echo esc_html( $branch['name'] ?? '' ); ?></strong><span><?php echo esc_html( $branch['address'] ?? '' ); ?></span></div>
 			<?php endforeach; ?>
 			<a class="text-link" href="<?php echo esc_url( roverland_page_url( 'contacts' ) ); ?>">Посмотреть на карте</a>

@@ -32,7 +32,7 @@ $note_text  = roverland_field( 'privacy_note_text', '' );
 			<?php if ( is_array( $sections ) ) : ?>
 				<?php foreach ( $sections as $section ) : ?>
 					<section>
-						<h2><?php echo nl2br( esc_html( isset( $section['title'] ) ? $section['title'] : '' ) ); ?></h2>
+						<?php if (!empty($section['title'])) : ?><h2><?php echo nl2br( esc_html( $section['title'] ) ); ?></h2><?php endif; ?>
 						<?php echo wp_kses_post( isset( $section['content'] ) ? $section['content'] : '' ); ?>
 					</section>
 				<?php endforeach; ?>
