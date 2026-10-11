@@ -7,6 +7,7 @@ while ( have_posts() ) :
 
 	$gallery = roverland_field( 'portfolio_gallery', array() );
 	$content = roverland_field( 'portfolio_content', '' );
+	$videos = roverland_field('portfolio_videos', array());
 	?>
 	<section class="portfolio-detail-hero">
 		<div class="container">
@@ -34,6 +35,12 @@ while ( have_posts() ) :
 		</div>
 	</section>
 
+	<?php if ($videos) : ?><section class="portfolio-work-videos content-revision-section"><div class="container company-videos__grid">
+		<?php foreach ($videos as $video) : ?><figure>
+			<video controls playsinline preload="none"<?php if (!empty($video['poster'])) : ?> poster="<?php echo esc_url(roverland_image_url($video['poster'])); ?>"<?php endif; ?>><source src="<?php echo esc_url($video['url']); ?>" type="video/mp4"></video>
+			<?php if (!empty($video['title'])) : ?><figcaption><?php echo esc_html($video['title']); ?></figcaption><?php endif; ?>
+		</figure><?php endforeach; ?>
+	</div></section><?php endif; ?>
 	<section class="portfolio-detail-content">
 		<div class="container portfolio-detail-content__layout">
 			<div class="portfolio-detail-content__copy">
@@ -79,6 +86,17 @@ while ( have_posts() ) :
 	</section>
 
 	<?php
+	$ordered = get_posts(array('post_type'=>'portfolio_item','post_status'=>'publish','posts_per_page'=>-1,'orderby'=>array('menu_order'=>'ASC','date'=>'DESC'),'fields'=>'ids'));
+	$position = array_search(get_the_ID(), $ordered, true);
+	if (false !== $position) : ?>
+	<nav class="portfolio-neighbours container" aria-label="Другие работы">
+		<?php if ($position > 0) : ?><a href="<?php echo esc_url(get_permalink($ordered[$position-1])); ?>">← Предыдущая работа<br><strong><?php echo esc_html(get_the_title($ordered[$position-1])); ?></strong></a><?php endif; ?>
+		<a href="<?php echo esc_url(roverland_page_url('portfolio')); ?>">Все работы</a>
+		<?php if (isset($ordered[$position+1])) : ?><a href="<?php echo esc_url(get_permalink($ordered[$position+1])); ?>">Следующая работа →<br><strong><?php echo esc_html(get_the_title($ordered[$position+1])); ?></strong></a><?php endif; ?>
+	</nav>
+	<?php endif;
+	get_template_part('template-parts/blocks/service-offers');
+	get_template_part('template-parts/blocks/company-videos');
 	get_template_part( 'template-parts/blocks/appointment' );
 	get_template_part(
 		'template-parts/blocks/branches',

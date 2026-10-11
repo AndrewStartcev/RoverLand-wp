@@ -1,0 +1,44 @@
+{
+  "key": "group_rl_portfolio_video",
+  "title": "Видео работы",
+  "fields": [
+    {
+      "key": "field_rl_portfolio_videos",
+      "name": "portfolio_videos",
+      "label": "Видео",
+      "type": "repeater",
+      "layout": "row",
+      "sub_fields": [
+        {
+          "key": "field_rl_portfolio_video_title",
+          "name": "title",
+          "label": "Подпись",
+          "type": "text"
+        },
+        {
+          "key": "field_rl_portfolio_video_url",
+          "name": "url",
+          "label": "Ссылка на MP4",
+          "type": "url"
+        },
+        {
+          "key": "field_rl_portfolio_video_poster",
+          "name": "poster",
+          "label": "Постер",
+          "type": "image",
+          "return_format": "array"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "portfolio_item"
+      }
+    ]
+  ],
+  "active": true
+}

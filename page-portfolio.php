@@ -8,12 +8,14 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 
+	$video_only = isset($_GET['media']) && 'video' === sanitize_key(wp_unslash($_GET['media']));
 	$works = new WP_Query(
 		array(
 			'post_type'      => 'portfolio_item',
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
 			'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'DESC' ),
+			'meta_query'     => $video_only ? array(array('key'=>'portfolio_videos','value'=>0,'compare'=>'>','type'=>'NUMERIC')) : array(),
 		)
 	);
 	?>
@@ -38,7 +40,8 @@ while ( have_posts() ) :
 			<?php endif; ?>
 
 			<div class="portfolio-tabs" aria-label="Тип портфолио">
-				<span class="portfolio-tabs__button is-active">Галерея</span>
+				<a class="portfolio-tabs__button<?php echo !$video_only ? ' is-active' : ''; ?>" href="<?php echo esc_url(get_permalink()); ?>"<?php if (!$video_only) : ?> aria-current="page"<?php endif; ?>>Галерея</a>
+				<a class="portfolio-tabs__button<?php echo $video_only ? ' is-active' : ''; ?>" href="<?php echo esc_url(add_query_arg('media','video',get_permalink())); ?>"<?php if ($video_only) : ?> aria-current="page"<?php endif; ?>>Видео</a>
 			</div>
 		</div>
 	</section>
@@ -56,9 +59,6 @@ while ( have_posts() ) :
 					<?php endif; ?>
 					<div class="portfolio-card__body">
 						<h2><?php echo esc_html( get_the_title() ); ?></h2>
-						<?php if ( roverland_field( 'portfolio_summary', '', get_the_ID() ) ) : ?>
-							<p><?php echo esc_html( roverland_field( 'portfolio_summary', '', get_the_ID() ) ); ?></p>
-						<?php endif; ?>
 						<a class="text-link" href="<?php the_permalink(); ?>">Подробнее <span aria-hidden="true">→</span></a>
 					</div>
 				</article>
