@@ -10,7 +10,7 @@ $lead         = roverland_field( 'service_hero_lead', '', $post_id );
 $hero_image   = roverland_field( 'service_hero_image', array(), $post_id );
 $hero_url     = roverland_image_url( $hero_image );
 $sections     = roverland_field( 'service_sections', array(), $post_id );
-$related      = roverland_field( 'service_auto_related', true, $post_id ) ? roverland_get_related_service_pages( $post_id, 12 ) : array();
+$related      = roverland_field( 'service_auto_related', true, $post_id ) ? roverland_get_related_service_pages( $post_id, -1 ) : array();
 
 $hero_class = 'service-universal-hero';
 if ( 'model' === $kind ) {
@@ -114,6 +114,11 @@ if ( 'model' === $kind ) {
 </div>
 
 <?php
+if ( in_array($kind, array('service', 'hub'), true) ) {
+	get_template_part('template-parts/blocks/selected-cases');
+	get_template_part('template-parts/blocks/service-offers');
+	get_template_part('template-parts/blocks/company-videos');
+}
 if ( roverland_field( 'service_show_appointment', true, $post_id ) ) {
 	get_template_part( 'template-parts/blocks/appointment' );
 }

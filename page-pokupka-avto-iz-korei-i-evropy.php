@@ -22,167 +22,22 @@ while ( have_posts() ) :
 			'no_found_rows'  => true,
 		)
 	);
+	$copy = json_decode(file_get_contents(get_template_directory() . '/data/vehicle-import-revision.json'), true);
+	$get = function($key) use ($copy) { return roverland_field('import_' . $key, $copy[$key] ?? ''); };
 	?>
-	<main class="vehicle-import-page">
-		<section class="vehicle-import-hero">
-			<div class="container vehicle-import-hero__layout">
-				<div class="vehicle-import-hero__content">
-					<?php
-					get_template_part(
-						'template-parts/elements/breadcrumbs',
-						null,
-						array(
-							'items' => array(
-								array( 'label' => 'Главная', 'url' => home_url( '/' ) ),
-								array( 'label' => get_the_title() ),
-							),
-						)
-					);
-					?>
-
-					<p class="vehicle-import-eyebrow">Автомобили из Европы и Кореи</p>
-					<h1><?php echo esc_html( $page_h1 ); ?></h1>
-					<p class="vehicle-import-hero__lead">
-						Подберём автомобиль под ваши требования и бюджет, проверим его до покупки,
-						сопроводим сделку и организуем доставку.
-					</p>
-
-					<div class="vehicle-import-hero__actions">
-						<a class="button button--primary" href="#appointment">Получить консультацию</a>
-						<a class="button button--outline" href="#vehicle-import-benefits">Как это работает</a>
-					</div>
-				</div>
-
-				<div class="vehicle-import-hero__panel">
-					<div class="vehicle-import-hero__panel-head">
-						<span>Rover Land</span>
-						<strong>Покупка автомобиля без лишних рисков</strong>
-					</div>
-
-					<ul class="vehicle-import-hero__facts">
-						<li>
-							<span>01</span>
-							<div>
-								<strong>Официальный договор</strong>
-								<p>Условия сделки фиксируются документально.</p>
-							</div>
-						</li>
-						<li>
-							<span>02</span>
-							<div>
-								<strong>Полная проверка</strong>
-								<p>Осмотр автомобиля с фото- и видеофиксацией.</p>
-							</div>
-						</li>
-						<li>
-							<span>03</span>
-							<div>
-								<strong>Прозрачная оплата</strong>
-								<p>Безналичный расчёт напрямую продавцу.</p>
-							</div>
-						</li>
-						<li>
-							<span>04</span>
-							<div>
-								<strong>Большой выбор</strong>
-								<p>Подбор практически любой зарубежной марки.</p>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</section>
-
-		<section class="vehicle-import-benefits" id="vehicle-import-benefits">
-			<div class="container">
-				<div class="vehicle-import-heading">
-					<p class="vehicle-import-eyebrow">Почему это удобно</p>
-					<h2>Подбираем автомобиль под задачу, а не под остатки на площадке</h2>
-					<p>
-						Автомобили из Европы и Кореи дают больше вариантов по комплектациям,
-						состоянию и стоимости. Мы берём на себя основные этапы сделки.
-					</p>
-				</div>
-
-				<div class="vehicle-import-benefits__grid">
-					<article class="vehicle-import-benefit">
-						<span class="vehicle-import-benefit__number">01</span>
-						<h3>Выгодная стоимость</h3>
-						<p>Подбираем варианты на зарубежных рынках и сравниваем их с доступными предложениями в России.</p>
-					</article>
-
-					<article class="vehicle-import-benefit">
-						<span class="vehicle-import-benefit__number">02</span>
-						<h3>Юридическая прозрачность</h3>
-						<p>Сделка проходит официально, с договором и понятными условиями на каждом этапе.</p>
-					</article>
-
-					<article class="vehicle-import-benefit">
-						<span class="vehicle-import-benefit__number">03</span>
-						<h3>Проверка до покупки</h3>
-						<p>Перед бронированием проводим осмотр и показываем состояние автомобиля на фото и видео.</p>
-					</article>
-
-					<article class="vehicle-import-benefit">
-						<span class="vehicle-import-benefit__number">04</span>
-						<h3>Не ограничиваем выбор</h3>
-						<p>Работаем не только с Land Rover и Volvo — можно подобрать практически любую зарубежную марку.</p>
-					</article>
-				</div>
-			</div>
-		</section>
-
-		<section class="vehicle-import-process">
-			<div class="container vehicle-import-process__layout">
-				<div class="vehicle-import-process__intro">
-					<p class="vehicle-import-eyebrow">Процесс покупки</p>
-					<h2>От запроса до автомобиля в России</h2>
-					<p>
-						Сначала определяем бюджет и требования, затем подбираем конкретные автомобили
-						и только после согласования переходим к покупке.
-					</p>
-				</div>
-
-				<ol class="vehicle-import-process__steps">
-					<li>
-						<span>01</span>
-						<div>
-							<h3>Фиксируем требования</h3>
-							<p>Марка, модель, год, комплектация, пробег, бюджет и важные для вас опции.</p>
-						</div>
-					</li>
-					<li>
-						<span>02</span>
-						<div>
-							<h3>Подбираем варианты</h3>
-							<p>Ищем подходящие автомобили и предоставляем информацию для сравнения.</p>
-						</div>
-					</li>
-					<li>
-						<span>03</span>
-						<div>
-							<h3>Проверяем автомобиль</h3>
-							<p>Проводим осмотр до бронирования, фиксируем состояние на фото и видео.</p>
-						</div>
-					</li>
-					<li>
-						<span>04</span>
-						<div>
-							<h3>Оформляем сделку</h3>
-							<p>Заключаем договор и сопровождаем оплату и необходимые документы.</p>
-						</div>
-					</li>
-					<li>
-						<span>05</span>
-						<div>
-							<h3>Организуем доставку</h3>
-							<p>Сопровождаем автомобиль до завершения процесса передачи клиенту.</p>
-						</div>
-					</li>
-				</ol>
-			</div>
-		</section>
-
+<div class="vehicle-import-page">
+<section class="vehicle-import-hero"><div class="container vehicle-import-hero__layout"><div class="vehicle-import-hero__content">
+<?php get_template_part('template-parts/elements/breadcrumbs', null, array('items'=>array(array('label'=>'Главная','url'=>home_url('/')),array('label'=>get_the_title())))); ?>
+<h1><?php echo esc_html($get('title')); ?></h1><p class="vehicle-import-hero__lead"><?php echo esc_html($get('lead')); ?></p>
+<div class="vehicle-import-hero__actions"><a class="button button--primary" href="#appointment">Получить консультацию</a><a class="button button--outline" href="#vehicle-import-benefits">Как это работает</a></div></div>
+<div class="vehicle-import-hero__panel"><div class="vehicle-import-hero__panel-head"><span>Rover Land</span><h2><?php echo esc_html($get('facts_title')); ?></h2></div><ul class="vehicle-import-hero__facts">
+<?php foreach($get('facts') as $i=>$item): ?><li><span><?php echo esc_html(sprintf('%02d',$i+1)); ?></span><div><strong><?php echo esc_html($item['title']); ?></strong><p><?php echo esc_html($item['text']); ?></p></div></li><?php endforeach; ?></ul></div></div></section>
+<section class="vehicle-import-benefits" id="vehicle-import-benefits"><div class="container"><div class="vehicle-import-heading"><h2><?php echo esc_html($get('benefits_title')); ?></h2><p><?php echo esc_html($get('benefits_lead')); ?></p></div><div class="vehicle-import-benefits__grid">
+<?php foreach($get('benefits') as $i=>$item): ?><article class="vehicle-import-benefit"><span class="vehicle-import-benefit__number"><?php echo esc_html(sprintf('%02d',$i+1)); ?></span><h3><?php echo esc_html($item['title']); ?></h3><p><?php echo esc_html($item['text']); ?></p></article><?php endforeach; ?></div><p class="vehicle-import-price-note"><?php echo esc_html($get('benefits_note')); ?></p></div></section>
+<section class="vehicle-import-process"><div class="container vehicle-import-process__layout"><div class="vehicle-import-process__intro"><h2><?php echo esc_html($get('process_title')); ?></h2></div><ol class="vehicle-import-process__steps">
+<?php foreach($get('process') as $i=>$item): ?><li><span><?php echo esc_html(sprintf('%02d',$i+1)); ?></span><div><h3><?php echo esc_html($item['title']); ?></h3><p><?php echo esc_html($item['text']); ?></p></div></li><?php endforeach; ?></ol></div></section>
+<section class="vehicle-import-benefits"><div class="container vehicle-import-heading"><h2><?php echo esc_html($get('price_title')); ?></h2><?php echo wp_kses_post(wpautop($get('price_text'))); ?><img class="vehicle-import-prices" src="<?php echo esc_url(roverland_image_url(roverland_field('import_price_image',array()),'assets/images/vehicle-import-prices.png')); ?>" alt="Стартовые цены автомобилей Land Rover и Volvo" loading="lazy"></div></section>
+<section class="vehicle-import-process"><div class="container vehicle-import-heading"><h2><?php echo esc_html($get('service_title')); ?></h2><?php echo wp_kses_post(wpautop($get('service_text'))); ?></div></section>
 		<?php if ( $cases->have_posts() ) : ?>
 			<section class="vehicle-import-cases" aria-label="Наши кейсы">
 				<div class="container">
@@ -239,7 +94,7 @@ while ( have_posts() ) :
 		wp_reset_postdata();
 		get_template_part( 'template-parts/blocks/appointment' );
 		?>
-	</main>
+	</div>
 	<?php
 endwhile;
 

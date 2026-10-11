@@ -9,6 +9,7 @@ $walk = function($fields) use (&$walk, &$keys, &$names) {
     foreach ($fields as $field) {
         if (!empty($field['name'])) { $keys[$field['name']] = $field['key']; $names[$field['key']] = $field['name']; }
         if (!empty($field['sub_fields'])) { $walk($field['sub_fields']); }
+        foreach ($field['layouts'] ?? array() as $layout) { $walk($layout['sub_fields'] ?? array()); }
     }
 };
 foreach (glob($root . '/acf-json/*.json') as $file) {

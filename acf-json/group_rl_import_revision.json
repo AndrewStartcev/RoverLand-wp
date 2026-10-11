@@ -1,0 +1,152 @@
+{
+  "key": "group_rl_import_revision",
+  "title": "Автомобили из Европы и Кореи — содержание",
+  "fields": [
+    {
+      "key": "field_rl_import_title",
+      "name": "import_title",
+      "label": "title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_import_lead",
+      "name": "import_lead",
+      "label": "lead",
+      "type": "textarea"
+    },
+    {
+      "key": "field_rl_import_facts_title",
+      "name": "import_facts_title",
+      "label": "facts_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_import_facts",
+      "name": "import_facts",
+      "label": "facts",
+      "type": "repeater",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_rl_import_facts_title",
+          "name": "title",
+          "label": "title",
+          "type": "text"
+        },
+        {
+          "key": "field_rl_import_facts_text",
+          "name": "text",
+          "label": "text",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "key": "field_rl_import_benefits_title",
+      "name": "import_benefits_title",
+      "label": "benefits_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_import_benefits_lead",
+      "name": "import_benefits_lead",
+      "label": "benefits_lead",
+      "type": "textarea"
+    },
+    {
+      "key": "field_rl_import_benefits",
+      "name": "import_benefits",
+      "label": "benefits",
+      "type": "repeater",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_rl_import_benefits_title",
+          "name": "title",
+          "label": "title",
+          "type": "text"
+        },
+        {
+          "key": "field_rl_import_benefits_text",
+          "name": "text",
+          "label": "text",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "key": "field_rl_import_benefits_note",
+      "name": "import_benefits_note",
+      "label": "benefits_note",
+      "type": "textarea"
+    },
+    {
+      "key": "field_rl_import_process_title",
+      "name": "import_process_title",
+      "label": "process_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_import_process",
+      "name": "import_process",
+      "label": "process",
+      "type": "repeater",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_rl_import_process_title",
+          "name": "title",
+          "label": "title",
+          "type": "text"
+        },
+        {
+          "key": "field_rl_import_process_text",
+          "name": "text",
+          "label": "text",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "key": "field_rl_import_price_title",
+      "name": "import_price_title",
+      "label": "price_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_import_price_text",
+      "name": "import_price_text",
+      "label": "price_text",
+      "type": "textarea"
+    },
+    {
+      "key": "field_rl_import_service_title",
+      "name": "import_service_title",
+      "label": "service_title",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_import_service_text",
+      "name": "import_service_text",
+      "label": "service_text",
+      "type": "textarea"
+    },
+    {
+      "key": "field_rl_import_price_image",
+      "name": "import_price_image",
+      "label": "Изображение цен",
+      "type": "image",
+      "return_format": "array"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-pokupka-avto-iz-korei-i-evropy.php"
+      }
+    ]
+  ],
+  "active": true
+}
