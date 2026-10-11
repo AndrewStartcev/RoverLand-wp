@@ -4,9 +4,10 @@ if ( ! defined('WP_CLI') || ! WP_CLI ) { return; }
 if ( ! function_exists('update_field') ) { WP_CLI::error('ACF is required.'); }
 $root = dirname(__DIR__);
 $keys = array();
-$walk = function($fields) use (&$walk, &$keys) {
+$names = array();
+$walk = function($fields) use (&$walk, &$keys, &$names) {
     foreach ($fields as $field) {
-        if (!empty($field['name'])) { $keys[$field['name']] = $field['key']; }
+        if (!empty($field['name'])) { $keys[$field['name']] = $field['key']; $names[$field['key']] = $field['name']; }
         if (!empty($field['sub_fields'])) { $walk($field['sub_fields']); }
     }
 };
@@ -15,6 +16,12 @@ foreach (glob($root . '/acf-json/*.json') as $file) {
     $walk($group['fields'] ?? array());
 }
 $backup = get_option('roverland_revision_20261011_backup', array());
+$normalize = function($value) use (&$normalize, $names) {
+    if (!is_array($value)) { return $value; }
+    $result = array();
+    foreach ($value as $key=>$item) { $result[$names[$key] ?? $key] = $normalize($item); }
+    return $result;
+};
 $set = function($id, $name, $value) use ($keys, &$backup) {
     if (!isset($keys[$name])) { WP_CLI::error('Unknown field: ' . $name); }
     $token = $id . ':' . $name;
@@ -36,7 +43,7 @@ if (!$home) { WP_CLI::error('Missing front page'); }
 require_once ABSPATH . 'wp-admin/includes/media.php';
 require_once ABSPATH . 'wp-admin/includes/file.php';
 require_once ABSPATH . 'wp-admin/includes/image.php';
-$old = get_field('home_services', $home, false) ?: array();
+$old = $normalize($backup[$home . ':home_services'] ?? get_field('home_services', $home, false)) ?: array();
 $services = array();
 foreach ($data['services'] as $index => $row) {
     $row['image'] = $old[$index]['image'] ?? 0;
@@ -51,7 +58,7 @@ foreach ($data['services'] as $index => $row) {
     $services[] = $row;
 }
 $set($home, 'home_services', $services);
-$old = get_field('home_advantages', $home, false) ?: array();
+$old = $normalize($backup[$home . ':home_advantages'] ?? get_field('home_advantages', $home, false)) ?: array();
 $advantages = array();
 foreach ($data['advantages'] as $row) {
     foreach ($old as $item) { if ($item['title'] === $row['title']) { $row['icon'] = $item['icon']; } }
@@ -71,7 +78,7 @@ foreach (array('about_service_title', 'about_parts_title', 'about_service_conten
 $jobs = $page('kompaniya/vakansii');
 $set($jobs, 'vacancies_hero_title', 'Вакансии нашей компании');
 $set($jobs, 'vacancies_hero_lead', 'Компания Ровер Ленд постоянно совершенствуется и развивается. В связи с этим нашей дружной команде требуются новые сотрудники, которые хотят профессионально развиваться и работать с автомобилями Land Rover и Jaguar.');
-$old = get_field('vacancies_advantages', $jobs, false) ?: array();
+$old = $normalize($backup[$jobs . ':vacancies_advantages'] ?? get_field('vacancies_advantages', $jobs, false)) ?: array();
 $copy = array(
     array('Специализация на Land Rover и Jaguar', 'Ровер Ленд специализируется на техническом обслуживании и ремонте автомобилей Land Rover и Jaguar.'),
     array('Экспертная среда', 'Работа в команде профессионалов, где ценят качество, точность и глубокое знание автомобилей.'),
