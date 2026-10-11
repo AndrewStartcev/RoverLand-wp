@@ -3,6 +3,26 @@
 
   document.documentElement.classList.remove("no-js");
 
+  document.querySelectorAll('.service-selected-cases').forEach(function(section) {
+    var track = section.querySelector('.service-selected-cases__track');
+    var buttons = section.querySelectorAll('[data-case-direction]');
+    if (!track) return;
+    function sync() {
+      buttons.forEach(function(button) {
+        button.disabled = Number(button.dataset.caseDirection) < 0 ? track.scrollLeft < 2 : track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      });
+    }
+    buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var card = track.querySelector('.service-selected-case');
+        track.scrollBy({left: Number(button.dataset.caseDirection) * (card ? card.offsetWidth + 24 : track.clientWidth), behavior: 'smooth'});
+      });
+    });
+    track.addEventListener('scroll', sync, {passive: true});
+    window.addEventListener('resize', sync);
+    sync();
+  });
+
   var body = document.body;
   var menu = document.querySelector("[data-mobile-menu]");
   var menuToggle = document.querySelector("[data-menu-toggle]");

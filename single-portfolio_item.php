@@ -37,7 +37,8 @@ while ( have_posts() ) :
 
 	<?php if ($videos) : ?><section class="portfolio-work-videos content-revision-section"><div class="container company-videos__grid">
 		<?php foreach ($videos as $video) : ?><figure>
-			<video controls playsinline preload="none"<?php if (!empty($video['poster'])) : ?> poster="<?php echo esc_url(roverland_image_url($video['poster'])); ?>"<?php endif; ?>><source src="<?php echo esc_url($video['url']); ?>" type="video/mp4"></video>
+			<?php $poster = !empty($video['poster']) ? roverland_image_url($video['poster']) : roverland_image_url(roverland_field('portfolio_card_image', array())); ?>
+			<video controls playsinline preload="none"<?php if ($poster) : ?> poster="<?php echo esc_url($poster); ?>"<?php endif; ?>><source src="<?php echo esc_url($video['url']); ?>" type="video/mp4"></video>
 			<?php if (!empty($video['title'])) : ?><figcaption><?php echo esc_html($video['title']); ?></figcaption><?php endif; ?>
 		</figure><?php endforeach; ?>
 	</div></section><?php endif; ?>
