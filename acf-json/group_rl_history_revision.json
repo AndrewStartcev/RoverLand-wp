@@ -1,0 +1,31 @@
+{
+  "key": "group_rl_history_revision",
+  "title": "История — внедорожное направление",
+  "fields": [
+    {
+      "key": "field_rl_history_offroad_title",
+      "name": "history_offroad_title",
+      "label": "Заголовок",
+      "type": "text"
+    },
+    {
+      "key": "field_rl_history_offroad_content",
+      "name": "history_offroad_content",
+      "label": "Текст",
+      "type": "wysiwyg",
+      "tabs": "all",
+      "toolbar": "full",
+      "media_upload": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-history.php"
+      }
+    ]
+  ],
+  "active": true
+}

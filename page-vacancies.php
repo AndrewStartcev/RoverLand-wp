@@ -35,7 +35,7 @@ while ( have_posts() ) :
 		</div></div>
 	</section>
 
-	<?php if ( is_array( $advantages ) && $advantages ) : ?><section class="vacancies-advantages"><div class="container vacancies-advantages__list">
+	<?php if ( is_array( $advantages ) && $advantages ) : ?><section class="vacancies-advantages"><div class="container"><h2 class="section-heading__title">Работа в Ровер Ленд</h2></div><div class="container vacancies-advantages__list">
 		<?php foreach ( $advantages as $item ) : ?><article class="vacancies-advantage-card">
 			<?php $icon_url = roverland_image_url( $item['icon'] ?? array() ); if ( $icon_url ) : ?><img src="<?php echo esc_url( $icon_url ); ?>" width="30" height="30" alt="" aria-hidden="true"><?php endif; ?>
 			<h2><?php echo esc_html( $item['title'] ?? '' ); ?></h2><p><?php echo esc_html( $item['text'] ?? '' ); ?></p>

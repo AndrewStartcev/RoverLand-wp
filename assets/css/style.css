@@ -1,4 +1,37 @@
 @import url("./style-core.css");
+/* Content specification, October 2026. */
+.header-branches { position: relative; z-index: 40; background: #f3f4f3; border-bottom: 1px solid #ddd; }
+.header-branches summary { cursor: pointer; padding: 12px max(24px, calc((100% - 1280px)/2)); font-weight: 600; list-style: none; }
+.header-branches summary::-webkit-details-marker { display: none; }
+.header-branches summary span { margin-left: 8px; }
+.header-branches__list { position: absolute; top: 100%; left: 0; right: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 24px max(24px, calc((100% - 1280px)/2)); background: white; box-shadow: 0 12px 22px #0002; }
+.header-branches__list > div { display: flex; flex-direction: column; gap: 8px; }
+.header-branches__list a { color: inherit; }
+.advantages__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.content-revision-section { padding: 64px 0; }
+.company-videos__grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 32px; }
+.company-videos figure { margin: 0; min-width: 0; }
+.company-videos video { display: block; width: 100%; aspect-ratio: 16/9; background: #151515; object-fit: contain; border-radius: 10px; }
+.company-videos figcaption { margin-top: 14px; font-size: 20px; font-weight: 600; }
+.home-process { background: #f5f5f3; }
+.home-process__list { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 28px; padding-left: 24px; }
+.home-process__list li::marker { font-weight: 700; color: #47723c; }
+.home-process h3 { font-size: 22px; margin-bottom: 18px; }
+.home-process p { margin-bottom: 12px; line-height: 1.6; }
+.home-feedback { text-align: center; }
+.home-feedback p { max-width: 700px; margin: 22px auto 28px; }
+.history-offroad h2 { font-size: clamp(28px, 4vw, 42px); margin-bottom: 24px; }
+.history-offroad p { margin-bottom: 16px; line-height: 1.7; }
+.history-timeline__copy p { white-space: pre-line; }
+.vacancies-advantages > .container > .section-heading__title { margin-bottom: 36px; }
+@media (max-width: 900px) {
+  .home-process__list, .header-branches__list { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 600px) {
+  .advantages__list, .company-videos__grid, .home-process__list, .header-branches__list { grid-template-columns: 1fr; }
+  .header-branches__list { max-height: 65vh; overflow-y: auto; }
+  .content-revision-section { padding: 42px 0; }
+}
 
 /* Rover Land — visual corrections */
 .site-footer {

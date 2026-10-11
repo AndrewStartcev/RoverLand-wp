@@ -123,6 +123,11 @@ while ( have_posts() ) :
 		</div>
 	</section>
 
+	<?php $revision = json_decode(file_get_contents(get_theme_file_path('data/content-revision-2026-10-11.json')), true); ?>
+	<section class="history-offroad content-revision-section"><div class="container">
+		<h2><?php echo esc_html(roverland_field('history_offroad_title', $revision['history']['history_offroad_title'])); ?></h2>
+		<?php echo wp_kses_post(roverland_field('history_offroad_content', $revision['history']['history_offroad_content'])); ?>
+	</div></section>
 	<section class="history-values">
 		<div class="container history-values__layout">
 			<div class="history-values__intro">

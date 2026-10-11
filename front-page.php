@@ -79,6 +79,8 @@ while ( have_posts() ) :
 	</section>
 
 	<?php
+	get_template_part('template-parts/blocks/company-videos');
+	get_template_part('template-parts/blocks/home-process');
 	if ( roverland_field( 'home_show_appointment', true ) ) {
 		get_template_part( 'template-parts/blocks/appointment' );
 	}

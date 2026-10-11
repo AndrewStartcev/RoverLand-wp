@@ -228,6 +228,7 @@ while ( have_posts() ) :
 		</div>
 	</section>
 	<?php
+get_template_part('template-parts/blocks/company-videos');
 endwhile;
 
 get_footer();
