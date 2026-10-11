@@ -22,5 +22,5 @@ if(!$items){return;}
 ?>
 <section class="service-content-block" id="service-catalog"><div class="container"><h2><?php echo $path==='servis'?'Каталог услуг':'Выберите модель автомобиля'; ?></h2><div class="service-catalog-grid">
 <?php foreach($items as $item):$url=roverland_image_url($item['image']); ?>
-<a class="service-catalog-card" href="<?php echo esc_url($item['url']); ?>"><?php if($url): ?><img src="<?php echo esc_url($url); ?>" alt="<?php echo esc_attr($item['title']); ?>" loading="lazy"><?php endif; ?><h3><?php echo esc_html($item['title']); ?></h3><span>Подробнее →</span></a>
+<a class="service-catalog-card" href="<?php echo esc_url($item['url']); ?>"><?php if($url): ?><img src="<?php echo esc_url($url); ?>" alt="<?php echo esc_attr($item['title']); ?>" loading="lazy"><?php endif; ?><h3><?php echo esc_html($item['title']); ?></h3><span>Подробнее <span class="rl-chevron rl-chevron--right" aria-hidden="true"></span></span></a>
 <?php endforeach; ?></div></div></section>

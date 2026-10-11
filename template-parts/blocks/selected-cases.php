@@ -7,5 +7,5 @@ if (!$cases) { return; }
 ?>
 <section class="service-selected-cases"><div class="container"><h2><?php echo esc_html(roverland_field('service_cases_title','Наши работы')); ?></h2><div class="service-selected-cases__track" tabindex="0" aria-label="Карусель выполненных работ">
 <?php foreach($cases as $case): $image=roverland_field('portfolio_card_image',array(),$case->ID); $url=roverland_image_url($image); ?>
-<a class="service-selected-case" href="<?php echo esc_url(get_permalink($case)); ?>"><?php if($url): ?><img src="<?php echo esc_url($url); ?>" alt="<?php echo esc_attr(get_the_title($case)); ?>" loading="lazy"><?php endif; ?><h3><?php echo esc_html(get_the_title($case)); ?></h3><span>Подробнее →</span></a>
+<a class="service-selected-case" href="<?php echo esc_url(get_permalink($case)); ?>"><?php if($url): ?><img src="<?php echo esc_url($url); ?>" alt="<?php echo esc_attr(get_the_title($case)); ?>" loading="lazy"><?php endif; ?><h3><?php echo esc_html(get_the_title($case)); ?></h3><span>Подробнее <span class="rl-chevron rl-chevron--right" aria-hidden="true"></span></span></a>
 <?php endforeach; ?></div></div></section>

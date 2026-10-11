@@ -90,9 +90,9 @@ while ( have_posts() ) :
 	$position = array_search(get_the_ID(), $ordered, true);
 	if (false !== $position) : ?>
 	<nav class="portfolio-neighbours container" aria-label="Другие работы">
-		<?php if ($position > 0) : ?><a href="<?php echo esc_url(get_permalink($ordered[$position-1])); ?>">← Предыдущая работа<br><strong><?php echo esc_html(get_the_title($ordered[$position-1])); ?></strong></a><?php endif; ?>
+		<?php if ($position > 0) : ?><a href="<?php echo esc_url(get_permalink($ordered[$position-1])); ?>"><span class="rl-chevron rl-chevron--left" aria-hidden="true"></span> Предыдущая работа<br><strong><?php echo esc_html(get_the_title($ordered[$position-1])); ?></strong></a><?php endif; ?>
 		<a href="<?php echo esc_url(roverland_page_url('portfolio')); ?>">Все работы</a>
-		<?php if (isset($ordered[$position+1])) : ?><a href="<?php echo esc_url(get_permalink($ordered[$position+1])); ?>">Следующая работа →<br><strong><?php echo esc_html(get_the_title($ordered[$position+1])); ?></strong></a><?php endif; ?>
+		<?php if (isset($ordered[$position+1])) : ?><a href="<?php echo esc_url(get_permalink($ordered[$position+1])); ?>">Следующая работа <span class="rl-chevron rl-chevron--right" aria-hidden="true"></span><br><strong><?php echo esc_html(get_the_title($ordered[$position+1])); ?></strong></a><?php endif; ?>
 	</nav>
 	<?php endif;
 	get_template_part('template-parts/blocks/service-offers');

@@ -8,6 +8,6 @@ $offers = array(
 <section class="service-offers content-revision-section" aria-label="Предложения Rover Land"><div class="container service-offers__grid">
  <?php foreach ($offers as $item) : ?><a class="service-offers__card" href="<?php echo esc_url(home_url($item[3])); ?>">
    <img src="<?php echo esc_url(roverland_asset('assets/images/banners/'.$item[0])); ?>" alt="" loading="lazy">
-   <span class="service-offers__copy"><strong><?php echo esc_html($item[1]); ?></strong><?php if ($item[2]) : ?><span><?php echo esc_html($item[2]); ?></span><?php endif; ?><span class="service-offers__link">Узнать подробнее →</span></span>
+   <span class="service-offers__copy"><strong><?php echo esc_html($item[1]); ?></strong><?php if ($item[2]) : ?><span><?php echo esc_html($item[2]); ?></span><?php endif; ?><span class="service-offers__link">Узнать подробнее <span class="rl-chevron rl-chevron--right" aria-hidden="true"></span></span></span>
  </a><?php endforeach; ?>
 </div></section>
