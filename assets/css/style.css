@@ -12,6 +12,7 @@
 .service-offers__copy strong { max-width: 65%; font-size: clamp(18px,1.5vw,27px); line-height: 1.15; }
 .service-offers__copy > span { font-size: 18px; }
 .service-offers__link { margin-top: auto; }
+.service-offers--generated .service-offers__card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(246,248,250,.98),rgba(246,248,250,.9) 40%,rgba(246,248,250,0) 90%);pointer-events:none}.service-offers--generated .service-offers__copy{z-index:1}.service-offers--generated .service-offers__copy strong{max-width:70%}
 .portfolio-work-videos video { width: 100%; aspect-ratio: 16/9; object-fit: contain; max-height: 650px; background: #111; }
 .portfolio-work-videos figure { margin: 0; }
 .service-selected-cases__head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}.service-selected-cases__head h2{margin:0}.service-selected-cases__controls{display:flex;gap:8px}.service-selected-cases__controls button{width:44px;height:44px;border:1px solid #0068b7;border-radius:50%;background:#fff;color:#0068b7;cursor:pointer}.service-selected-cases__controls button:disabled{opacity:.35;cursor:default}
