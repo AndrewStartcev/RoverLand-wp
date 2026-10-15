@@ -1,0 +1,131 @@
+{
+  "published_pages_checked": 249,
+  "affected_pages": [
+    {
+      "url": "https://rover.argokov.ru/velar/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/range-rover-evoque/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/freelander/zamena-masla-v-akpp/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/discovery-3/zamena-masla-v-akpp/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/freelander/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/defender/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/jaguar/x-type/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/jaguar/xf/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/jaguar/xj/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/jaguar/fpace/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/jaguar/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/range-rover-sport/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/range-rover-vogue/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/range-rover/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/discovery-sport/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/discovery/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    },
+    {
+      "url": "https://rover.argokov.ru/discovery-3/to/",
+      "callouts": 1,
+      "buttons": 1,
+      "modal": true,
+      "unstyled_notice": false
+    }
+  ],
+  "other_findings": [
+    {
+      "url": "https://rover.argokov.ru/vacancies/",
+      "status": 404,
+      "note": "Linked legacy path; canonical vacancies page is /kompaniya/vakansii/."
+    }
+  ]
+}
