@@ -23,10 +23,12 @@ function roverland_revision_cell_text( $node ) {
 	$copy = $node->cloneNode( true );
 	$xpath = new DOMXPath( $copy->ownerDocument );
 	foreach ( $xpath->query( './/br', $copy ) as $br ) {
-		$br->parentNode->replaceChild( $copy->ownerDocument->createTextNode( "\n" ), $br );
+		$br->parentNode->replaceChild( $copy->ownerDocument->createTextNode( "\x1F" ), $br );
 	}
+	foreach ( $xpath->query( './/p', $copy ) as $paragraph ) { $paragraph->appendChild( $copy->ownerDocument->createTextNode( "\x1F" ) ); }
 	$text = html_entity_decode( $copy->textContent, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
-	return trim( preg_replace( '/[^\S\n]+/u', ' ', $text ) );
+	$text = preg_replace( '/\s+/u', ' ', $text );
+	return trim( preg_replace( '/ *\n+ */', "\n", str_replace( "\x1F", "\n", $text ) ) );
 }
 
 /** Preserve the source column order, including mileage and oil specifications. */
