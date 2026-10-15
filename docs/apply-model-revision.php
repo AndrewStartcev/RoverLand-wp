@@ -17,7 +17,7 @@ foreach ( 'all' === $target ? $paths : array( $target ) as $path ) {
 	if ( 'apply' === $mode && get_post_meta( $id, '_roverland_model_revision_20261016', true ) ) { WP_CLI::log( 'Already applied: ' . $path ); continue; }
 	if ( 'rollback' === $mode ) {
 		if ( empty( $backup[$id] ) ) { WP_CLI::warning( 'No snapshot: ' . $path ); continue; }
-		foreach ( $fields as $name => $key ) { update_field( $key, $backup[$id][$name], $id ); }
+		foreach ( $fields as $name => $key ) { update_field( $key, wp_slash( $backup[$id][$name] ), $id ); }
 		delete_post_meta( $id, '_roverland_model_revision_20261016' );
 		WP_CLI::log( 'Restored ' . $path ); continue;
 	}
@@ -42,7 +42,7 @@ foreach ( 'all' === $target ? $paths : array( $target ) as $path ) {
 			foreach ( $fields as $name => $key ) { $backup[$id][$name] = get_field( $name, $id, false ); }
 			update_option( 'roverland_model_revision_20261016_backup', $backup, false );
 		}
-		update_field( $fields['service_sections'], $sections, $id );
+		update_field( $fields['service_sections'], wp_slash( $sections ), $id );
 		// The full source introduction is now in the text sections, never a truncated legal note.
 		update_field( $fields['service_hero_lead'], '', $id );
 		if ( ! get_field( 'service_selected_cases', $id ) && $default_cases ) { update_field( $fields['service_selected_cases'], $default_cases, $id ); }

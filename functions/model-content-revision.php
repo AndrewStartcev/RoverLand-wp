@@ -35,6 +35,9 @@ function roverland_revision_cell_text( $node ) {
 function roverland_revision_model_table( $table ) {
 	$rows = array();
 	foreach ( $table->getElementsByTagName( 'tr' ) as $tr ) {
+		$parent_table = $tr->parentNode;
+		while ( $parent_table instanceof DOMElement && 'table' !== strtolower( $parent_table->nodeName ) ) { $parent_table = $parent_table->parentNode; }
+		if ( $parent_table !== $table ) { continue; }
 		$cells = array();
 		foreach ( $tr->childNodes as $cell ) {
 			if ( $cell instanceof DOMElement && in_array( strtolower( $cell->nodeName ), array( 'th', 'td' ), true ) ) {

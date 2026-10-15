@@ -1,6 +1,9 @@
 <?php
 defined('ABSPATH') || exit;
 $ids = roverland_field('service_selected_cases', array());
+if (!$ids && in_array(roverland_service_page_kind(), array('model', 'model_service', 'maintenance'), true)) {
+	$ids = get_posts(array('post_type'=>'portfolio_item','post_status'=>'publish','posts_per_page'=>3,'fields'=>'ids'));
+}
 if (!$ids) { return; }
 $cases = get_posts(array('post_type'=>'portfolio_item','post_status'=>'publish','post__in'=>array_map('intval',$ids),'orderby'=>'post__in','posts_per_page'=>-1));
 if (!$cases) { return; }
