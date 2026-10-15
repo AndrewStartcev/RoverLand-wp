@@ -3380,3 +3380,8 @@ body.admin-bar .site-header {
 .service-content-block--prices + .service-content-block--prices { padding-top: 24px; }
 .service-content-block--matrix h2,
 .service-content-block--prices h2 { text-align: left; }
+.service-price-table--matrix { min-width: 0; }
+.service-price-table--matrix th:first-child,
+.service-price-table--matrix td:first-child { min-width: 150px; }
+.service-content-block--text:has(+ .service-content-block--matrix) { padding-bottom: 24px; }
+.service-content-block--text + .service-content-block--matrix { padding-top: 24px; }
