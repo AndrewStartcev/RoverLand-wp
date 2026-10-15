@@ -14,3 +14,6 @@ $text = implode( '', array_column( $parsed['sections'], 'content' ) );
 $check( 1 === substr_count( $text, 'One' ) && false === strpos( $text, 'Oil' ), 'List items and table paragraphs are not duplicated as body text' );
 $check( '' === $parsed['lead'], 'Legal note is never extracted into hero lead' );
 WP_CLI::success( 'Model source parser checks passed.' );
+$check( roverland_is_consultation_section( array( 'content' => '<p>Если вы не нашли в списке своего пробега, пожалуйста свяжитесь с нами для консультации.</p>' ) ), 'Standalone mileage notice is a consultation callout' );
+$check( ! roverland_is_consultation_section( array( 'title' => 'Описание услуги', 'content' => '<p>Если вы не нашли своего пробега, свяжитесь с нами.</p>' ) ), 'Editorial sections with headings keep their layout' );
+$check( ! roverland_is_consultation_section( array( 'content' => '<p>Автомобиль Discovery надежен. Если требуется ремонт, обращайтесь в наш автосервис.</p>' ) ), 'Service introduction is not mistaken for a consultation block' );

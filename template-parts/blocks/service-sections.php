@@ -8,6 +8,25 @@ foreach ( $sections as $section ) :
 	$layout = isset( $section['acf_fc_layout'] ) ? $section['acf_fc_layout'] : '';
 
 	if ( 'text' === $layout ) :
+		if ( roverland_is_consultation_section( $section ) ) :
+			$consultation_notes = array();
+			$consultation_content = preg_replace_callback( '/<p\b[^>]*>.*?<\/p>/is', static function( $match ) use ( &$consultation_notes ) {
+				if ( preg_match( '/^\s*\*\s*(?:Стоимость|Все сведения)/iu', wp_strip_all_tags( $match[0] ) ) ) { $consultation_notes[] = $match[0]; return ''; }
+				return $match[0];
+			}, $section['content'] );
+			?>
+			<section class="service-content-block service-content-block--consultation" aria-label="Консультация по обслуживанию">
+				<div class="container">
+					<?php if ( $consultation_notes ) : ?><div class="service-consultation__note"><?php echo wp_kses_post( implode( '', $consultation_notes ) ); ?></div><?php endif; ?>
+					<div class="service-consultation">
+					<div class="service-consultation__icon" aria-hidden="true"><img src="<?php echo esc_url( roverland_asset( 'assets/images/icons/ui/call.svg' ) ); ?>" width="28" height="28" alt=""></div>
+					<div class="service-consultation__copy"><h2><?php echo false !== mb_stripos( wp_strip_all_tags( $consultation_content ), 'пробега' ) ? 'Не нашли свой пробег?' : 'Нужна консультация?'; ?></h2><?php echo wp_kses_post( $consultation_content ); ?></div>
+					<button class="button button--primary service-consultation__button" type="button" data-appointment-open>Оставить заявку</button>
+				</div></div>
+			</section>
+			<?php
+			continue;
+		endif;
 		$image     = isset( $section['image'] ) ? $section['image'] : array();
 		$image_url = roverland_image_url( $image );
 		$position   = isset( $section['image_position'] ) ? $section['image_position'] : 'none';

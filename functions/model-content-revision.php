@@ -1,6 +1,15 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
+/** Recognize short, standalone consultation copy without changing editorial sections. */
+function roverland_is_consultation_section( $section ) {
+	if ( ! empty( $section['title'] ) || ! empty( $section['image'] ) ) { return false; }
+	$content = (string) ( $section['content'] ?? '' );
+	$text = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( $content ) ) );
+	if ( ! $text || mb_strlen( $text ) > 500 || preg_match( '/<(?:h[1-6]|img|ul|ol|table|button|form)\b/i', $content ) ) { return false; }
+	return (bool) preg_match( '/^Если.*не нашли|Для замены масла мы рекомендуем обратиться|^Для.*(?:получить консультацию|заказать)|^Обращайтесь/iu', $text );
+}
+
 function roverland_price_disclaimer() {
 	return '* Все сведения, включая указанные на сайте цены, носят информационный характер и не являются публичной офертой, определяемой положениями статьи 437 Гражданского кодекса Российской Федерации. Фактическая стоимость товаров и услуг может отличаться от размещённой на сайте. Подробную информацию и актуальные цены уточняйте по телефону у наших менеджеров.';
 }

@@ -3385,3 +3385,23 @@ body.admin-bar .site-header {
 .service-price-table--matrix td:first-child { min-width: 150px; }
 .service-content-block--text:has(+ .service-content-block--matrix) { padding-bottom: 24px; }
 .service-content-block--text + .service-content-block--matrix { padding-top: 24px; }
+
+/* Compact consultation callout reuses the existing text section and service modal. */
+.service-content-block--consultation { padding: 32px 0; background: var(--color-white); }
+.service-consultation { display: flex; align-items: center; gap: 24px; padding: 32px; border: 1px solid #d6e8f6; border-radius: 16px; background: #edf6fc; }
+.service-consultation__icon { flex: 0 0 56px; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #fff; }
+.service-consultation__copy { flex: 1; min-width: 0; }
+.service-consultation__copy h2 { margin: 0 0 10px; font-size: 28px; line-height: 1.2; }
+.service-consultation__copy p { margin: 0; font-size: 16px; line-height: 1.6; }
+.service-consultation__button { flex-shrink: 0; }
+@media (max-width: 767px) {
+ .service-content-block--consultation { padding: 24px 0; }
+ .service-consultation { align-items: flex-start; flex-wrap: wrap; gap: 18px; padding: 24px; }
+ .service-consultation__icon { flex-basis: 44px; width: 44px; height: 44px; }
+ .service-consultation__copy { flex-basis: calc(100% - 62px); }
+ .service-consultation__copy h2 { font-size: 24px; }
+ .service-consultation__copy p { font-size: 15px; }
+ .service-consultation__button { width: 100%; }
+}
+.service-consultation__note { margin-bottom: 20px; color: var(--color-text-secondary); font-size: 12px; line-height: 1.6; }
+.service-consultation__note p { margin: 0; }
