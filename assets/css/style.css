@@ -3368,3 +3368,15 @@ body.admin-bar .site-header {
 @media(max-width:767px){.header-branches summary{height:42px;padding-inline:8px}}
 .site-header__search{width:52px;height:52px;border:1px solid var(--color-primary);border-radius:var(--radius-sm)}@media(max-width:767px){.site-header__search{width:42px;height:42px}}
 @media(max-width:767px){.site-header__wide{gap:16px}.site-header__logo{min-width:0}.site-header__actions{gap:8px}}
+
+/* TZ part 2: extend existing statistic cards and preserve readable model tables. */
+.stat-description { display: block; margin-top: 9px; max-width: 250px; font-size: 12px; line-height: 1.5; }
+.about-stat .stat-description { color: inherit; }
+.service-content-block--matrix .service-price-table td,
+.service-content-block--matrix .service-price-table th { white-space: normal; overflow-wrap: break-word; vertical-align: top; }
+.service-content-block--matrix .service-price-table td:first-child { min-width: 150px; }
+.service-content-block--matrix .service-price-table td:not(:first-child) { min-width: 150px; }
+.service-content-block--matrix + .service-content-block--matrix,
+.service-content-block--prices + .service-content-block--prices { padding-top: 24px; }
+.service-content-block--matrix h2,
+.service-content-block--prices h2 { text-align: left; }

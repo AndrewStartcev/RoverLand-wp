@@ -60,10 +60,11 @@ foreach ( $sections as $section ) :
 		<?php if ( $items ) : ?>
 			<section class="about-stats service-content-stats" aria-label="Rover Land в цифрах">
 				<div class="container about-stats__list">
-					<?php foreach ( $items as $item ) : ?>
+					<?php foreach ( $items as $item ) : $item = roverland_revision_stat( $item ); ?>
 						<div class="about-stat">
 							<strong><?php echo esc_html( isset( $item['value'] ) ? $item['value'] : '' ); ?></strong>
 							<span><?php echo esc_html( isset( $item['label'] ) ? $item['label'] : '' ); ?></span>
+							<?php if ( ! empty( $item['description'] ) ) : ?><small class="stat-description"><?php echo esc_html( $item['description'] ); ?></small><?php endif; ?>
 						</div>
 					<?php endforeach; ?>
 				</div>
@@ -108,16 +109,16 @@ foreach ( $sections as $section ) :
 					<table class="service-price-table service-price-table--matrix">
 						<thead>
 							<tr>
-								<th>Работа</th>
+								<th scope="col"><?php echo esc_html( $section['first_header'] ?? 'Услуга' ); ?></th>
 								<?php foreach ( $headers as $header ) : ?><th><?php echo esc_html( isset( $header['label'] ) ? $header['label'] : '' ); ?></th><?php endforeach; ?>
 							</tr>
 						</thead>
 						<tbody>
 							<?php foreach ( $rows as $row ) : ?>
 								<tr>
-									<td><?php echo esc_html( isset( $row['name'] ) ? $row['name'] : '' ); ?></td>
+									<td><?php echo nl2br( esc_html( isset( $row['name'] ) ? $row['name'] : '' ) ); ?></td>
 									<?php foreach ( isset( $row['cells'] ) && is_array( $row['cells'] ) ? $row['cells'] : array() as $cell ) : ?>
-										<td><?php echo esc_html( isset( $cell['value'] ) ? $cell['value'] : '' ); ?></td>
+										<td><?php echo nl2br( esc_html( isset( $cell['value'] ) ? $cell['value'] : '' ) ); ?></td>
 									<?php endforeach; ?>
 								</tr>
 							<?php endforeach; ?>

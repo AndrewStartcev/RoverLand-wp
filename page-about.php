@@ -189,10 +189,11 @@ while ( have_posts() ) :
 	<?php if ( is_array( $stats ) && $stats ) : ?>
 		<section class="about-stats" aria-label="Rover Land в цифрах">
 			<div class="container about-stats__list">
-				<?php foreach ( $stats as $stat ) : ?>
+				<?php foreach ( $stats as $stat ) : $stat = roverland_revision_stat( $stat ); ?>
 					<div class="about-stat">
 						<strong><?php echo esc_html( isset( $stat['value'] ) ? $stat['value'] : '' ); ?></strong>
 						<span><?php echo esc_html( isset( $stat['label'] ) ? $stat['label'] : '' ); ?></span>
+						<?php if ( ! empty( $stat['description'] ) ) : ?><small class="stat-description"><?php echo esc_html( $stat['description'] ); ?></small><?php endif; ?>
 					</div>
 				<?php endforeach; ?>
 			</div>

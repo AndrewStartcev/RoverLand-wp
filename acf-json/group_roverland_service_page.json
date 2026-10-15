@@ -421,6 +421,13 @@
               "type": "text"
             },
             {
+              "key": "field_rl_service_matrix_first_header",
+              "label": "Заголовок первого столбца",
+              "name": "first_header",
+              "type": "text",
+              "default_value": "Услуга"
+            },
+            {
               "key": "field_rl_service_matrix_headers",
               "label": "Заголовки колонок",
               "name": "headers",
@@ -448,7 +455,9 @@
                   "key": "field_rl_service_matrix_row_name",
                   "label": "Название",
                   "name": "name",
-                  "type": "text"
+                  "type": "textarea",
+                  "rows": 2,
+                  "new_lines": ""
                 },
                 {
                   "key": "field_rl_service_matrix_cells",
@@ -462,7 +471,9 @@
                       "key": "field_rl_service_matrix_cell",
                       "label": "Значение",
                       "name": "value",
-                      "type": "text"
+                      "type": "textarea",
+                      "rows": 3,
+                      "new_lines": ""
                     }
                   ]
                 }

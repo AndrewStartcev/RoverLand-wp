@@ -28,7 +28,7 @@ while ( have_posts() ) :
 
 	<?php if ( is_array( $stats ) && $stats ) : ?>
 		<section class="stats" aria-label="Rover Land в цифрах"><div class="container stats__list">
-			<?php foreach ( $stats as $stat ) : ?><div class="stat"><strong class="stat__value"><?php echo esc_html( $stat['value'] ?? '' ); ?></strong><span class="stat__label"><?php echo esc_html( $stat['label'] ?? '' ); ?></span></div><?php endforeach; ?>
+			<?php foreach ( $stats as $stat ) : $stat = roverland_revision_stat( $stat ); ?><div class="stat"><strong class="stat__value"><?php echo esc_html( $stat['value'] ?? '' ); ?></strong><span class="stat__label"><?php echo esc_html( $stat['label'] ?? '' ); ?></span><?php if ( ! empty( $stat['description'] ) ) : ?><small class="stat-description"><?php echo esc_html( $stat['description'] ); ?></small><?php endif; ?></div><?php endforeach; ?>
 		</div></section>
 	<?php endif; ?>
 

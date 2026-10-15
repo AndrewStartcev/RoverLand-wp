@@ -120,7 +120,7 @@ if ( 'model' === $kind ) {
 </div>
 
 <?php
-if ( in_array($kind, array('service', 'hub'), true) || $revision_content || (trim(wp_parse_url(get_permalink(), PHP_URL_PATH), '/') === 'servis/to') ) {
+if ( in_array($kind, array('service', 'hub', 'model', 'model_service', 'maintenance'), true) || $revision_content || (trim(wp_parse_url(get_permalink(), PHP_URL_PATH), '/') === 'servis/to') ) {
 	get_template_part('template-parts/blocks/selected-cases');
 	get_template_part('template-parts/blocks/service-offers');
 	get_template_part('template-parts/blocks/company-videos');

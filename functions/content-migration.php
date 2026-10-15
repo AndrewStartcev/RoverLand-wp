@@ -951,6 +951,14 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 
 		$tag  = strtolower( $node->nodeName );
 		$text = roverland_content_migration_node_text( $node );
+		if ( 'model_revision' === $kind ) {
+			// A table/list is imported as a whole. Its nested paragraphs are not new sections.
+			$nested = false;
+			for ( $parent = $node->parentNode; $parent instanceof DOMElement; $parent = $parent->parentNode ) {
+				if ( in_array( strtolower( $parent->nodeName ), array( 'table', 'ul', 'ol' ), true ) ) { $nested = true; break; }
+			}
+			if ( $nested || preg_match( '/Все сведения, включая указанные на сайте цены/iu', $text ) && in_array( $tag, array( 'p', 'ul', 'ol' ), true ) ) { continue; }
+		}
 
 		if (
 			'form' === $tag ||
@@ -980,7 +988,7 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 				roverland_content_migration_flush_text_section( $sections, $current );
 			}
 
-			$table_section = roverland_content_migration_table_section( $node, $kind );
+			$table_section = 'model_revision' === $kind ? roverland_revision_model_table( $node ) : roverland_content_migration_table_section( $node, $kind );
 
 			if ( $table_section ) {
 				if ( $table_title ) {
@@ -1026,7 +1034,7 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 			continue;
 		}
 
-		if ( ! $lead && 'p' === $tag && mb_strlen( $text ) >= 70 ) {
+		if ( 'model_revision' !== $kind && ! $lead && 'p' === $tag && mb_strlen( $text ) >= 70 ) {
 			$lead = roverland_content_migration_trim_lead( $text );
 			continue;
 		}
@@ -1041,6 +1049,11 @@ function roverland_content_migration_parse_html( $html, $source_url, $kind ) {
 
 		if ( $html_part ) {
 			$current['html'][] = $html_part;
+			if ( 'model_revision' === $kind && in_array( $tag, array( 'ul', 'ol' ), true ) ) {
+				foreach ( $node->getElementsByTagName( 'li' ) as $li ) {
+					$seen_fragments[ mb_strtolower( preg_replace( '/\s+/u', ' ', roverland_content_migration_node_text( $li ) ) ) ] = true;
+				}
+			}
 			if ( $signature ) {
 				$seen_fragments[ $signature ] = true;
 			}
