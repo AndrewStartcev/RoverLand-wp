@@ -163,3 +163,9 @@ add_action('wp_head',function(){
  $url=roverland_audit_canonical();
  if ($url) {echo '<link rel="canonical" href="'.esc_url($url).'" />'."\n";}
 },99);
+
+add_filter('robots_txt',function($output,$public){
+ if ($public) {return $output;}
+ $rules="User-agent: *\nDisallow: /\nDisallow: /cgi-bin/\nDisallow: *?s=\nDisallow: *&s=\nDisallow: /search/\nDisallow: /author/\nDisallow: /users/\nDisallow: */trackback\nDisallow: */feed\nDisallow: */rss\nDisallow: */embed\nDisallow: */wlwmanifest.xml\nDisallow: /xmlrpc.php\nDisallow: /wp-admin/\nDisallow: *utm*=\nDisallow: *openstat=\nDisallow: *?\nDisallow: *?media=\nAllow: /wp-admin/admin-ajax.php\nAllow: /wp-content/uploads/\nAllow: /wp-content/themes/\nAllow: /wp-content/plugins/\nAllow: /*/*.js\nAllow: /*/*.css\nAllow: /wp-*.png\nAllow: /wp-*.jpg\nAllow: /wp-*.jpeg\nAllow: /wp-*.gif\nAllow: /wp-*.webp\n";
+ return $rules."\nSitemap: ".home_url('/sitemap.xml')."\n";
+},99,2);
