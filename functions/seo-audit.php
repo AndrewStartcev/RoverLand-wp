@@ -8,7 +8,9 @@ function roverland_audit_meta($post_id = 0) {
  if (null === $rows) {
   $rows = array();
   foreach (json_decode(file_get_contents(get_template_directory().'/data/seo-audit-2026-10.json'), true) ?: array() as $row) {
-   $rows[trailingslashit(wp_parse_url($row[0], PHP_URL_PATH) ?: '/')] = $row;
+   $path=wp_parse_url($row[0], PHP_URL_PATH) ?: '/';
+   if (in_array($path,array('/politika-ispolzovaniya-cookie.php','/politika-konfidentsialnosti.php'),true)) {$path=preg_replace('/\.php$/','/',$path);}
+   $rows[trailingslashit($path)] = $row;
   }
  }
  $url = $post_id ? get_permalink($post_id) : (is_front_page() ? home_url('/') : (is_singular() ? get_permalink(get_queried_object_id()) : ''));
