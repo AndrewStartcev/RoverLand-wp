@@ -159,7 +159,7 @@ foreach ( $sections as $section ) :
 						<article class="service-related-card">
 							<?php $icon_url = roverland_image_url( isset( $item['icon'] ) ? $item['icon'] : array() ); ?>
 							<?php if ( $icon_url ) : ?><img src="<?php echo esc_url( $icon_url ); ?>" width="30" height="30" alt="" aria-hidden="true"><?php endif; ?>
-							<h3><?php echo esc_html( isset( $item['title'] ) ? $item['title'] : '' ); ?></h3>
+							<h3><?php if (!empty($item['url'])) : ?><a href="<?php echo esc_url($item['url']); ?>"><?php endif; ?><?php echo esc_html($item['title'] ?? ''); ?><?php if (!empty($item['url'])) : ?></a><?php endif; ?></h3>
 							<?php if ( ! empty( $item['text'] ) ) : ?><p><?php echo esc_html( $item['text'] ); ?></p><?php endif; ?>
 							<?php if ( ! empty( $item['url'] ) ) : ?><a class="text-link" href="<?php echo esc_url( $item['url'] ); ?>">Подробнее <span aria-hidden="true">→</span></a><?php endif; ?>
 						</article>

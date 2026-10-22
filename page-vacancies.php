@@ -30,7 +30,7 @@ while ( have_posts() ) :
 				array( 'label' => 'О компании', 'url' => roverland_page_url( 'kompaniya' ) ),
 				array( 'label' => get_the_title() ),
 			) ) ); ?>
-			<h1 class="vacancies-hero__title"><?php echo nl2br( esc_html( roverland_field( 'vacancies_hero_title', get_the_title() ) ) ); ?></h1>
+			<h1 class="vacancies-hero__title"><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo nl2br( esc_html( roverland_field( 'vacancies_hero_title', get_the_title() ) ) ); ?><?php } ?></h1>
 			<?php if ( roverland_field( 'vacancies_hero_lead', '' ) ) : ?><p class="vacancies-hero__lead"><?php echo esc_html( roverland_field( 'vacancies_hero_lead', '' ) ); ?></p><?php endif; ?>
 		</div></div>
 	</section>

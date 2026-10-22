@@ -11,7 +11,7 @@
 			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"></path></svg>
 		</button>
 		<div class="form-success-modal__icon" aria-hidden="true">✓</div>
-		<h2 id="form-success-title">Заявка отправлена</h2>
+		<p class="modal-title" id="form-success-title">Заявка отправлена</p>
 		<p data-form-success-message>Спасибо! Мы свяжемся с вами в ближайшее время.</p>
 		<button class="button button--primary" type="button" data-form-success-close>Хорошо</button>
 	</div>

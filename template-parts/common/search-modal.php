@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 		</button>
 
 		<p class="search-modal__eyebrow">Поиск по сайту</p>
-		<h2 id="search-title">Что вы ищете?</h2>
+		<p class="modal-title" id="search-title">Что вы ищете?</p>
 
 		<form class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
 			<label class="visually-hidden" for="site-search">Поисковый запрос</label>

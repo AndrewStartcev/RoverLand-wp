@@ -28,7 +28,7 @@ while ( have_posts() ) :
 <div class="vehicle-import-page">
 <section class="vehicle-import-hero"><div class="container vehicle-import-hero__layout"><div class="vehicle-import-hero__content">
 <?php get_template_part('template-parts/elements/breadcrumbs', null, array('items'=>array(array('label'=>'Главная','url'=>home_url('/')),array('label'=>get_the_title())))); ?>
-<h1><?php echo esc_html($get('title')); ?></h1><p class="vehicle-import-hero__lead"><?php echo esc_html($get('lead')); ?></p>
+<h1><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo esc_html($get('title')); ?><?php } ?></h1><p class="vehicle-import-hero__lead"><?php echo esc_html($get('lead')); ?></p>
 <div class="vehicle-import-hero__actions"><a class="button button--primary" href="#appointment">Получить консультацию</a><a class="button button--outline" href="#vehicle-import-benefits">Как это работает</a></div></div>
 <div class="vehicle-import-hero__panel"><div class="vehicle-import-hero__panel-head"><span>Rover Land</span><h2><?php echo esc_html($get('facts_title')); ?></h2></div><ul class="vehicle-import-hero__facts">
 <?php foreach($get('facts') as $i=>$item): ?><li><span><?php echo esc_html(sprintf('%02d',$i+1)); ?></span><div><strong><?php echo esc_html($item['title']); ?></strong><p><?php echo esc_html($item['text']); ?></p></div></li><?php endforeach; ?></ul></div></div></section>

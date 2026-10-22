@@ -1025,7 +1025,7 @@ select.field__control {
   text-transform: uppercase;
 }
 
-.search-modal h2 {
+.search-modal .modal-title {
   margin-bottom: 28px;
   font-size: 38px;
 }
@@ -2109,7 +2109,7 @@ select.field__control {
     padding: 42px 20px 24px;
   }
 
-  .search-modal h2 {
+  .search-modal .modal-title {
     font-size: 30px;
   }
 
@@ -2368,7 +2368,7 @@ select.field__control {
   text-transform: uppercase;
 }
 
-.service-modal__dialog h2 {
+.service-modal__dialog .modal-title {
   margin: 0 56px 14px 0;
   font-size: 34px;
   font-weight: 500;
@@ -2402,7 +2402,7 @@ select.field__control {
     border-radius: 16px 16px 8px 8px;
   }
 
-  .service-modal__dialog h2 {
+  .service-modal__dialog .modal-title {
     font-size: 28px;
   }
 

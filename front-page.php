@@ -16,7 +16,7 @@ while ( have_posts() ) :
 		<div class="container hero__container">
 			<div class="hero__content">
 				<?php if ( roverland_field( 'home_hero_eyebrow', '' ) ) : ?><p class="hero__eyebrow"><?php echo esc_html( roverland_field( 'home_hero_eyebrow', '' ) ); ?></p><?php endif; ?>
-				<h1 class="hero__title"><span><?php echo esc_html( roverland_field( 'home_hero_title_first', '' ) ); ?></span><?php echo esc_html( roverland_field( 'home_hero_title_second', '' ) ); ?></h1>
+				<h1 class="hero__title"><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><span><?php echo esc_html( roverland_field( 'home_hero_title_first', '' ) ); ?></span><?php echo esc_html( roverland_field( 'home_hero_title_second', '' ) ); ?><?php } ?></h1>
 				<?php if ( roverland_field( 'home_hero_text', '' ) ) : ?><p class="hero__text"><?php echo esc_html( roverland_field( 'home_hero_text', '' ) ); ?></p><?php endif; ?>
 				<div class="hero__actions">
 					<button class="button button--primary" type="button" data-appointment-open><?php echo esc_html( roverland_field( 'home_hero_primary_label', 'Запись на ТО' ) ); ?></button>
@@ -44,7 +44,7 @@ while ( have_posts() ) :
 					<article class="service-card">
 						<?php $image = $service['image'] ?? array(); $image_url = roverland_image_url( $image ); ?>
 						<?php if ( $image_url ) : ?><img class="service-card__image" src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( roverland_image_alt( $image, $service['title'] ?? '' ) ); ?>" loading="lazy" decoding="async"><?php endif; ?>
-						<div class="service-card__body"><h3><?php echo esc_html( $service['title'] ?? '' ); ?></h3><p><?php echo esc_html( $service['text'] ?? '' ); ?></p><?php if ( ! empty( $service['url'] ) ) : ?><a class="text-link" href="<?php echo esc_url( home_url( $service['url'] ) ); ?>">Подробнее</a><?php endif; ?></div>
+						<div class="service-card__body"><h3><a href="<?php echo esc_url(home_url( $service['url'] ?? '/' )); ?>"><?php echo esc_html( $service['title'] ?? '' ); ?></a></h3><p><?php echo esc_html( $service['text'] ?? '' ); ?></p><?php if ( ! empty( $service['url'] ) ) : ?><a class="text-link" href="<?php echo esc_url( home_url( $service['url'] ) ); ?>">Подробнее</a><?php endif; ?></div>
 					</article>
 				<?php endforeach; ?>
 			</div><?php endif; ?>

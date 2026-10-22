@@ -68,7 +68,7 @@ $socials     = roverland_get_social_links();
 		</div>
 
 		<nav class="site-footer__info" aria-label="Информация">
-			<h2 class="site-footer__heading">Информация</h2>
+			<p class="site-footer__heading">Информация</p>
 			<?php
 			$footer_info_pages = array(
 				array( 'path' => 'kompaniya', 'label' => 'О компании' ),
@@ -95,6 +95,7 @@ $socials     = roverland_get_social_links();
 	</div>
 
 	<div class="container site-footer__bottom">
-		<span>© <?php echo esc_html( wp_date( 'Y' ) . ' ' . $copyright ); ?></span>
+		<span>© <?php echo esc_html( '1999–' . wp_date( 'Y' ) . ' РоверЛенд — сервис и ремонт Land Rover' ); ?></span>
+		<p>Информация о ценах, размещённая на сайте, носит справочный характер и не является публичной офертой.</p>
 	</div>
 </footer>

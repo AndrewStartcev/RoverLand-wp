@@ -16,7 +16,7 @@ while ( have_posts() ) :
 	?>
 	<section class="content-page">
 		<div class="container">
-			<h1><?php echo esc_html( $page_h1 ); ?></h1>
+			<h1><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo esc_html( $page_h1 ); ?><?php } ?></h1>
 
 			<div class="content-page__body">
 				<?php the_content(); ?>

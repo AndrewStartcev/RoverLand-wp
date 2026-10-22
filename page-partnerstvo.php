@@ -29,7 +29,7 @@ while ( have_posts() ) :
 					?>
 
 					<p class="legacy-page-hero__eyebrow">Партнерство Rover Land</p>
-					<h1 class="legacy-page-hero__title"><?php echo esc_html( $page_h1 ); ?></h1>
+					<h1 class="legacy-page-hero__title"><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo esc_html( $page_h1 ); ?><?php } ?></h1>
 					<p class="legacy-page-hero__lead">Развивайте существующий автосервис или запускайте новую СТО вместе с командой Rover Land.</p>
 
 					<div class="legacy-page-hero__actions">

@@ -34,7 +34,7 @@ while ( have_posts() ) :
 					)
 				);
 				?>
-				<h1 class="promotions-hero__title"><?php echo nl2br( esc_html( roverland_field( 'promotions_hero_title', get_the_title() ) ) ); ?></h1>
+				<h1 class="promotions-hero__title"><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo nl2br( esc_html( roverland_field( 'promotions_hero_title', get_the_title() ) ) ); ?><?php } ?></h1>
 				<?php if ( roverland_field( 'promotions_hero_lead', '' ) ) : ?>
 					<p class="promotions-hero__lead"><?php echo esc_html( roverland_field( 'promotions_hero_lead', '' ) ); ?></p>
 				<?php endif; ?>

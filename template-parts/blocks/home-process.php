@@ -11,5 +11,5 @@
 <section class="home-feedback content-revision-section"><div class="container">
   <h2 class="section-heading__title">Обратная связь по качеству обслуживания</h2>
   <p>Пожалуйста, ответьте на несколько вопросов и помогите нам стать лучше. Примерное время заполнения 5 — 7 минут</p>
-  <a class="button button--primary" href="https://roverland.ru/otziv/">Оставить отзыв</a>
+  <a class="button button--primary" href="<?php echo esc_url(roverland_page_url('otziv')); ?>">Оставить отзыв</a>
 </div></section>

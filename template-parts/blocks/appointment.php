@@ -8,8 +8,13 @@ $description = roverland_option( 'common_appointment_description', '' );
 $phone       = roverland_option( 'common_appointment_phone', roverland_option( 'site_main_phone', '' ) );
 $button      = roverland_option( 'form_service_button', roverland_option( 'common_appointment_button', 'Отправить заявку' ) );
 $branches    = roverland_get_branches();
+if ( roverland_service_page_kind() ) {
+ $title = 'Запись на услугу: ' . roverland_audit_h1(get_the_title());
+ $accent = '';
+}
+$appointment_id = !empty($args['id']) ? $args['id'] : 'appointment';
 ?>
-<section class="appointment" id="appointment">
+<section class="appointment" id="<?php echo esc_attr($appointment_id); ?>">
 	<div class="container appointment__layout">
 		<div class="appointment__content">
 			<h2>

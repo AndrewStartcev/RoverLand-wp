@@ -34,7 +34,7 @@ while ( have_posts() ) :
 			);
 			?>
 
-			<h1 class="portfolio-intro__title"><?php echo nl2br( esc_html( roverland_field( 'portfolio_title', get_the_title() ) ) ); ?></h1>
+			<h1 class="portfolio-intro__title"><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo nl2br( esc_html( roverland_field( 'portfolio_title', get_the_title() ) ) ); ?><?php } ?></h1>
 			<?php if ( roverland_field( 'portfolio_lead', '' ) ) : ?>
 				<p class="portfolio-intro__lead"><?php echo esc_html( roverland_field( 'portfolio_lead', '' ) ); ?></p>
 			<?php endif; ?>
@@ -58,7 +58,7 @@ while ( have_posts() ) :
 						<img class="portfolio-card__image" src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( roverland_image_alt( $image, get_the_title() ) ); ?>" loading="lazy" decoding="async">
 					<?php endif; ?>
 					<div class="portfolio-card__body">
-						<h2><?php echo esc_html( get_the_title() ); ?></h2>
+						<h2><a href="<?php echo esc_url(get_permalink()); ?>"><?php echo esc_html( get_the_title() ); ?></a></h2>
 						<a class="text-link" href="<?php the_permalink(); ?>">Подробнее <span aria-hidden="true">→</span></a>
 					</div>
 				</article>

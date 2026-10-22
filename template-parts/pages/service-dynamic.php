@@ -40,7 +40,7 @@ if ( 'model' === $kind ) {
 				<p class="service-universal-hero__eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
 			<?php endif; ?>
 
-			<h1 class="service-universal-hero__title"><?php echo nl2br( esc_html( $title ) ); ?></h1>
+			<h1 class="service-universal-hero__title"><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo nl2br( esc_html( $title ) ); ?><?php } ?></h1>
 
 			<?php if ( $lead ) : ?>
 				<p class="service-universal-hero__lead"><?php echo esc_html( $lead ); ?></p>
@@ -83,6 +83,9 @@ if ( 'model' === $kind ) {
 		);
 	}
 	?>
+<?php if ( !is_page('prodat-avtomobil') && !is_page('servis/prodat-avtomobil') ) {
+ get_template_part('template-parts/blocks/appointment', null, array('id'=>'appointment-content'));
+} ?>
 	<?php get_template_part('template-parts/blocks/service-catalog'); ?>
 
 	<?php if ( $related ) : ?>
@@ -103,7 +106,7 @@ if ( 'model' === $kind ) {
 				<div class="service-related__grid">
 					<?php foreach ( $related as $related_page ) : ?>
 						<article class="service-related-card">
-							<h3><?php echo esc_html( get_the_title( $related_page ) ); ?></h3>
+							<h3><a href="<?php echo esc_url(get_permalink( $related_page )); ?>"><?php echo esc_html( get_the_title( $related_page ) ); ?></a></h3>
 							<?php
 							$related_lead = roverland_field( 'service_hero_lead', '', $related_page->ID );
 							if ( $related_lead ) :

@@ -26,7 +26,7 @@ while ( have_posts() ) :
 			);
 			?>
 
-			<h1 class="services-page__title"><?php echo nl2br( esc_html( $title ) ); ?></h1>
+			<h1 class="services-page__title"><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo nl2br( esc_html( $title ) ); ?><?php } ?></h1>
 
 			<?php if ( $lead ) : ?>
 				<p class="services-page__lead"><?php echo esc_html( $lead ); ?></p>

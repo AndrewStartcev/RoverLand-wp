@@ -54,7 +54,7 @@ while ( have_posts() ) :
 				?>
 
 				<?php if ( $hero_eyebrow ) : ?><p class="about-hero__eyebrow"><?php echo esc_html( $hero_eyebrow ); ?></p><?php endif; ?>
-				<h1 class="about-hero__title"><?php echo nl2br( esc_html( $hero_title ) ); ?></h1>
+				<h1 class="about-hero__title"><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo nl2br( esc_html( $hero_title ) ); ?><?php } ?></h1>
 				<?php if ( $hero_lead ) : ?><p class="about-hero__lead"><?php echo esc_html( $hero_lead ); ?></p><?php endif; ?>
 			</div>
 		</div>
@@ -158,7 +158,7 @@ while ( have_posts() ) :
 				<?php echo wp_kses_post( $parts_content ); ?>
 
 				<div class="about-parts__actions">
-					<a class="button button--primary" href="<?php echo esc_url( roverland_page_url( 'vacancies' ) ); ?>">Стать частью команды</a>
+					<a class="button button--primary" href="<?php echo esc_url( roverland_page_url( 'kompaniya/vakansii' ) ); ?>">Стать частью команды</a>
 					<a class="button button--primary" href="<?php echo esc_url( roverland_page_url( 'kompaniya/istoriya' ) ); ?>">Наша история</a>
 				</div>
 			</div>

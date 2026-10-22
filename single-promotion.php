@@ -29,7 +29,7 @@ while ( have_posts() ) :
 			<div class="promo-detail__layout">
 				<div class="promo-detail__content">
 					<p class="promo-detail__eyebrow">Акция Rover Land</p>
-					<h1><?php echo nl2br( esc_html( roverland_field( 'promotion_h1', get_the_title() ) ) ); ?></h1>
+					<h1><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo nl2br( esc_html( roverland_field( 'promotion_h1', get_the_title() ) ) ); ?><?php } ?></h1>
 					<?php echo wp_kses_post( $content ); ?>
 
 					<?php if ( $note ) : ?>

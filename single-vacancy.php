@@ -21,7 +21,7 @@ while ( have_posts() ) :
 				array( 'label' => 'Вакансии', 'url' => roverland_page_url( 'kompaniya/vakansii' ) ),
 				array( 'label' => get_the_title() ),
 			) ) ); ?>
-			<h1 class="vacancy-hero__title"><?php echo nl2br( esc_html( roverland_field( 'vacancy_hero_title', get_the_title() ) ) ); ?></h1>
+			<h1 class="vacancy-hero__title"><?php $audit_h1 = roverland_audit_h1(''); if ($audit_h1) { echo esc_html($audit_h1); } else { ?><?php echo nl2br( esc_html( roverland_field( 'vacancy_hero_title', get_the_title() ) ) ); ?><?php } ?></h1>
 			<a class="button button--primary vacancy-hero__button" href="#vacancy-apply">Оставить заявку</a>
 		</div></div>
 	</section>

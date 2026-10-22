@@ -16,7 +16,7 @@ $button   = roverland_option( 'form_service_button', 'Отправить зая�
 		</button>
 
 		<?php if ( $eyebrow ) : ?><p class="service-modal__eyebrow"><?php echo esc_html( $eyebrow ); ?></p><?php endif; ?>
-		<h2 id="service-modal-title"><?php echo esc_html( $title ); ?></h2>
+		<p class="modal-title" id="service-modal-title"><?php echo esc_html( $title ); ?></p>
 		<?php if ( $lead ) : ?><p class="service-modal__lead"><?php echo esc_html( $lead ); ?></p><?php endif; ?>
 
 		<form class="service-form service-modal__form" action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post" data-roverland-form novalidate>
