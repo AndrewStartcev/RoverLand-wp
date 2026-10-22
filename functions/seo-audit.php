@@ -154,3 +154,12 @@ add_action('template_redirect',function() {
  foreach (array_keys($urls) as $url) {echo '<url><loc>'.esc_xml($url).'</loc></url>';}
  echo '</urlset>'; exit;
 },0);
+
+// Rank Math omits canonicals on noindex staging pages. Keep a single self URL
+// without changing the staging robots policy.
+add_filter('rank_math/frontend/canonical','__return_false',100);
+add_action('wp',function(){remove_action('wp_head','rel_canonical');});
+add_action('wp_head',function(){
+ $url=roverland_audit_canonical();
+ if ($url) {echo '<link rel="canonical" href="'.esc_url($url).'" />'."\n";}
+},99);
