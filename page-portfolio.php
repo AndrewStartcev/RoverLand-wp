@@ -59,7 +59,7 @@ while ( have_posts() ) :
 					<?php endif; ?>
 					<div class="portfolio-card__body">
 						<h2><a href="<?php echo esc_url(get_permalink()); ?>"><?php echo esc_html( get_the_title() ); ?></a></h2>
-						<a class="text-link" href="<?php the_permalink(); ?>">Подробнее <span aria-hidden="true">→</span></a>
+						<a class="text-link card-link" href="<?php the_permalink(); ?>">Подробнее <span aria-hidden="true">→</span></a>
 					</div>
 				</article>
 			<?php endwhile; wp_reset_postdata(); ?>

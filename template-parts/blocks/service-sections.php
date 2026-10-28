@@ -96,23 +96,12 @@ foreach ( $sections as $section ) :
 		<section class="service-content-block service-content-block--prices">
 			<div class="container">
 				<?php if ( ! empty( $section['title'] ) ) : ?><h2><?php echo esc_html( $section['title'] ); ?></h2><?php endif; ?>
-				<div class="service-price-table-wrap">
-					<table class="service-price-table">
-						<thead><tr><th>Наименование работ</th><th>Стоимость работы (₽)</th><th>Стоимость запчастей (₽)</th></tr></thead>
-						<tbody>
-							<?php foreach ( $groups as $group ) : ?>
-								<?php if ( ! empty( $group['title'] ) ) : ?><tr class="service-price-table__group"><th colspan="3"><?php echo esc_html( $group['title'] ); ?></th></tr><?php endif; ?>
-								<?php foreach ( isset( $group['rows'] ) && is_array( $group['rows'] ) ? $group['rows'] : array() as $row ) : ?>
-									<tr>
-										<td><?php echo esc_html( isset( $row['name'] ) ? $row['name'] : '' ); ?></td>
-										<td><?php echo esc_html( isset( $row['work_price'] ) ? $row['work_price'] : '' ); ?></td>
-										<td><?php echo esc_html( isset( $row['parts_price'] ) ? $row['parts_price'] : '' ); ?></td>
-									</tr>
-								<?php endforeach; ?>
-							<?php endforeach; ?>
-						</tbody>
-					</table>
-				</div>
+                <?php foreach ($groups as $group) : ?>
+                <?php if (!empty($group['title'])) : ?><details class="price-category"><summary><?php echo esc_html($group['title']); ?></summary><?php endif; ?>
+                <div class="service-price-table-wrap"><table class="service-price-table"><thead><tr><th scope="col">Наименование работ</th><th scope="col">Стоимость работы (₽)</th><th scope="col">Стоимость запчастей (₽)</th></tr></thead><tbody>
+                <?php foreach ($group['rows'] ?? array() as $row) : ?><tr><td><?php echo esc_html($row['name'] ?? ''); ?></td><td><?php echo esc_html($row['work_price'] ?? ''); ?></td><td><?php echo esc_html($row['parts_price'] ?? ''); ?></td></tr><?php endforeach; ?>
+                </tbody></table></div><?php if (!empty($group['title'])) : ?></details><?php endif; ?>
+                <?php endforeach; ?>
 				<?php if ( ! empty( $section['note'] ) ) : ?><p class="service-content-block__note"><?php echo esc_html( $section['note'] ); ?></p><?php endif; ?>
 			</div>
 		</section>
@@ -124,6 +113,30 @@ foreach ( $sections as $section ) :
 		<section class="service-content-block service-content-block--matrix">
 			<div class="container">
 				<?php if ( ! empty( $section['title'] ) ) : ?><h2><?php echo esc_html( $section['title'] ); ?></h2><?php endif; ?>
+                <?php $matrix_groups = roverland_usability_matrix_groups($section); if ($matrix_groups) : ?>
+                <?php foreach ($matrix_groups as $matrix_group) : ?><details class="price-category"><summary><?php echo esc_html($matrix_group['title']); ?></summary>
+				<div class="service-price-table-wrap">
+					<table class="service-price-table service-price-table--matrix">
+						<thead>
+							<tr>
+								<th scope="col"><?php echo esc_html( 'Наименование работ' ); ?></th>
+								<?php foreach ( $headers as $header ) : ?><th><?php echo esc_html( isset( $header['label'] ) ? $header['label'] : '' ); ?></th><?php endforeach; ?>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ( $matrix_group['rows'] as $row ) : ?>
+								<tr>
+									<td><?php echo nl2br( esc_html( isset( $row['name'] ) ? $row['name'] : '' ) ); ?></td>
+									<?php foreach ( isset( $row['cells'] ) && is_array( $row['cells'] ) ? $row['cells'] : array() as $cell ) : ?>
+										<td><?php echo nl2br( esc_html( isset( $cell['value'] ) ? $cell['value'] : '' ) ); ?></td>
+									<?php endforeach; ?>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+                </details><?php endforeach; ?>
+                <?php else : ?>
 				<div class="service-price-table-wrap">
 					<table class="service-price-table service-price-table--matrix">
 						<thead>
@@ -144,6 +157,7 @@ foreach ( $sections as $section ) :
 						</tbody>
 					</table>
 				</div>
+                <?php endif; ?>
 				<?php if ( ! empty( $section['note'] ) ) : ?><p class="service-content-block__note"><?php echo esc_html( $section['note'] ); ?></p><?php endif; ?>
 			</div>
 		</section>
@@ -161,7 +175,7 @@ foreach ( $sections as $section ) :
 							<?php if ( $icon_url ) : ?><img src="<?php echo esc_url( $icon_url ); ?>" width="30" height="30" alt="" aria-hidden="true"><?php endif; ?>
 							<h3><?php if (!empty($item['url'])) : ?><a href="<?php echo esc_url($item['url']); ?>"><?php endif; ?><?php echo esc_html($item['title'] ?? ''); ?><?php if (!empty($item['url'])) : ?></a><?php endif; ?></h3>
 							<?php if ( ! empty( $item['text'] ) ) : ?><p><?php echo esc_html( $item['text'] ); ?></p><?php endif; ?>
-							<?php if ( ! empty( $item['url'] ) ) : ?><a class="text-link" href="<?php echo esc_url( $item['url'] ); ?>">Подробнее <span aria-hidden="true">→</span></a><?php endif; ?>
+							<?php if ( ! empty( $item['url'] ) ) : ?><a class="text-link card-link" href="<?php echo esc_url( $item['url'] ); ?>">Подробнее <span aria-hidden="true">→</span></a><?php endif; ?>
 						</article>
 					<?php endforeach; ?>
 				</div>

@@ -24,7 +24,7 @@ if ( empty( $branches ) ) {
 <?php endif; ?>
 
 		<div class="branches__list">
-			<?php foreach ( $branches as $branch ) : ?>
+			<?php foreach ( $branches as $branch_index => $branch ) : ?>
 				<?php
 				$name       = isset( $branch['name'] ) ? $branch['name'] : '';
 				$department = isset( $branch['department'] ) ? $branch['department'] : '';
@@ -35,7 +35,7 @@ if ( empty( $branches ) ) {
 					continue;
 				}
 				?>
-				<article class="branch-card"
+				<article class="branch-card" data-branch-card
 					<?php if ( ! empty( $branch['map_address'] ) ) : ?>
 						data-map-address="<?php echo esc_attr( $branch['map_address'] ); ?>"
 					<?php endif; ?>
@@ -52,9 +52,11 @@ if ( empty( $branches ) ) {
 					<?php if ( $address ) : ?>
 						<p class="branch-card__address"><?php if (!empty($branch['map_url'])) : ?><a href="<?php echo esc_url($branch['map_url']); ?>"><?php echo esc_html($address); ?></a><?php else : ?><?php echo esc_html($address); ?><?php endif; ?></p>
 					<?php endif; ?>
-					<?php if ('contacts-centers' === $section_class) : ?>
-						<?php if (!empty($branch['telegram_url'])) : ?><p>Telegram: <a href="<?php echo esc_url($branch['telegram_url']); ?>"><?php echo esc_html($branch['telegram_phone'] ?? 'Написать'); ?></a></p><?php endif; ?>
-						<?php if (!empty($branch['hours'])) : ?><p><strong>Время работы:</strong><br><?php echo nl2br(esc_html($branch['hours'])); ?></p><?php endif; ?>
+					<?php if (!empty($branch['hours'])) : ?><p class="branch-card__hours"><?php echo roverland_contact_icon('clock'); ?><span><?php echo nl2br(esc_html($branch['hours'])); ?></span></p><?php endif; ?>
+                    <?php if ('contacts-centers' !== $section_class) : ?><button type="button" class="text-link branch-card__select" data-branch-select aria-label="Показать на карте: <?php echo esc_attr($name); ?>">Показать на карте <span aria-hidden="true">→</span></button><?php endif; ?>
+                    <?php if ('contacts-centers' === $section_class) : ?>
+						<?php if (!empty($branch['telegram_url'])) : ?><p class="branch-card__telegram"><?php echo roverland_contact_icon('telegram'); ?> Telegram: <a href="<?php echo esc_url($branch['telegram_url']); ?>"><?php echo esc_html($branch['telegram_phone'] ?? 'Написать'); ?></a></p><?php endif; ?>
+
 						<?php if (!empty($branch['map_embed'])) : ?><iframe class="branch-card__map" src="<?php echo esc_url($branch['map_embed']); ?>" title="Карта техцентра <?php echo esc_attr($name); ?>" loading="lazy" allowfullscreen></iframe><?php endif; ?>
 					<?php endif; ?>
 				</article>

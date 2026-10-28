@@ -38,6 +38,8 @@ $socials     = roverland_get_social_links();
 					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
+            <p class="footer-email"><?php echo roverland_contact_icon("mail"); ?> E-mail: <a href="mailto:info@roverland.ru">info@roverland.ru</a></p>
+            <p class="site-footer__about">Мы — одна из старейших ныне действующих компаний, предоставляющая качественный сервис и обслуживание автомобилей Ленд Ровер в России.</p><p>С 1998-го года мы профессионально занимаемся обслуживанием, тюнингом и ремонтом Land Rover.</p>
 		</div>
 
 		<div class="site-footer__addresses">
@@ -60,8 +62,9 @@ $socials     = roverland_get_social_links();
 					?>
 					<address>
 						<strong><?php echo esc_html( $name ); ?></strong>
-						<?php if ( $address ) : ?><span><?php echo esc_html( $address ); ?>, Москва</span><?php endif; ?>
-						<?php if ( $phone ) : ?><a href="<?php echo esc_url( 'tel:' . roverland_phone_href( $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a><?php endif; ?>
+						<?php if ( $address ) : ?><span><?php echo roverland_contact_icon('location'); ?> <?php echo esc_html( $address ); ?>, Москва</span><?php endif; ?>
+						<?php if ( $phone ) : ?><a href="<?php echo esc_url( 'tel:' . roverland_phone_href( $phone ) ); ?>"><?php echo roverland_contact_icon('phone'); ?> <?php echo esc_html( $phone ); ?></a><?php endif; ?>
+                        <?php if (!empty($branch["hours"])) : ?><span class="contact-hours"><?php echo roverland_contact_icon("clock"); ?><?php echo nl2br(esc_html($branch["hours"])); ?></span><?php endif; ?>
 					</address>
 				<?php endforeach; ?>
 			</div>
@@ -94,6 +97,7 @@ $socials     = roverland_get_social_links();
 		</nav>
 	</div>
 
+    <details class="container footer-sitemap"><summary>Карта сайта</summary><nav aria-label="HTML-карта сайта"><ul><?php wp_list_pages(array('title_li'=>'','sort_column'=>'menu_order,post_title','post_status'=>'publish')); ?></ul></nav></details>
 	<div class="container site-footer__bottom">
 		<span>© <?php echo esc_html( '1999–' . wp_date( 'Y' ) . ' РоверЛенд — сервис и ремонт Land Rover' ); ?></span>
 		<p>Информация о ценах, размещённая на сайте, носит справочный характер и не является публичной офертой.</p>

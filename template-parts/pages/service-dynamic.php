@@ -54,7 +54,7 @@ if ( 'model' === $kind ) {
 			</div>
 		</div>
 
-		<?php if ( $hero_url ) : ?>
+		<?php if (is_page('prodat-avtomobil')) : ?><div class="sell-car-hero-form"><?php get_template_part('template-parts/blocks/sell-car-form'); ?></div><?php elseif ( $hero_url ) : ?>
 			<figure class="service-universal-hero__media">
 				<img
 					src="<?php echo esc_url( $hero_url ); ?>"
@@ -72,7 +72,7 @@ if ( 'model' === $kind ) {
 	<?php
 	$revision_content = roverland_field('service_revision_content', '', $post_id);
 	if ($revision_content) {
-		echo '<section class="service-content-block service-content-block--text"><div class="container service-revision-copy">' . wp_kses_post($revision_content) . '</div></section>';
+		echo '<section class="service-content-block service-content-block--text"><div class="container service-revision-copy">' . roverland_usability_price_tables(wp_kses_post($revision_content)) . '</div></section>';
 	} elseif ( is_array( $sections ) && $sections ) {
 		get_template_part(
 			'template-parts/blocks/service-sections',
@@ -113,7 +113,7 @@ if ( 'model' === $kind ) {
 								?>
 								<p><?php echo esc_html( $related_lead ); ?></p>
 							<?php endif; ?>
-							<a class="text-link" href="<?php echo esc_url( get_permalink( $related_page ) ); ?>">Подробнее <span class="rl-chevron rl-chevron--right" aria-hidden="true"></span></a>
+							<a class="text-link card-link" href="<?php echo esc_url( get_permalink( $related_page ) ); ?>">Подробнее <span class="rl-chevron rl-chevron--right" aria-hidden="true"></span></a>
 						</article>
 					<?php endforeach; ?>
 				</div>
@@ -128,7 +128,7 @@ if ( in_array($kind, array('service', 'hub', 'model', 'model_service', 'maintena
 	get_template_part('template-parts/blocks/service-offers');
 	get_template_part('template-parts/blocks/company-videos');
 }
-if ( roverland_field( 'service_show_appointment', true, $post_id ) ) {
+if ( !is_page('prodat-avtomobil') && roverland_field( 'service_show_appointment', true, $post_id ) ) {
 	get_template_part( is_page('prodat-avtomobil') ? 'template-parts/blocks/sell-car-form' : 'template-parts/blocks/appointment' );
 }
 

@@ -46,7 +46,8 @@ while ( have_posts() ) :
 		);
 	}
 
-	// Each branch card includes its own map.
+    get_template_part('template-parts/blocks/contact-details');
+    // Each branch card includes its own map.
 
 	if ( roverland_field( 'contacts_show_appointment', true ) ) {
 		get_template_part( 'template-parts/blocks/appointment' );

@@ -69,7 +69,8 @@ function roverland_enqueue_assets() {
 		'roverland-main',
 		'roverlandTheme',
 		array(
-			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+			'mapMarker' => roverland_asset('assets/images/icons/ui/map-rover-logo.png'),
+            'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 			'nonce'   => wp_create_nonce( 'roverland_ajax' ),
 			'homeUrl' => home_url( '/' ),
 		)

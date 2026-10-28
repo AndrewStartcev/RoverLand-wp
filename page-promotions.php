@@ -56,7 +56,7 @@ while ( have_posts() ) :
 					<div class="promo-card__body">
 						<h2><?php echo esc_html( get_the_title() ); ?></h2>
 						<p><?php echo esc_html( roverland_field( 'promotion_summary', '', get_the_ID() ) ); ?></p>
-						<a class="text-link" href="<?php the_permalink(); ?>">Узнать больше <span aria-hidden="true">→</span></a>
+						<a class="text-link card-link" href="<?php the_permalink(); ?>">Узнать больше <span aria-hidden="true">→</span></a>
 					</div>
 				</article>
 			<?php endwhile; wp_reset_postdata(); ?>

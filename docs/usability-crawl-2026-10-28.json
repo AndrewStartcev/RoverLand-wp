@@ -1,0 +1,1318 @@
+[
+  {
+    "url": "https://rover.argokov.ru/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/aktsii/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/defender/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/defender/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/defender/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/defender/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/defender/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/defender/to/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/defender/zamena-grm/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/defender/zamena-kolodok/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/defender/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/defender/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-3/",
+    "status": 200,
+    "tables": 9,
+    "categories": 9,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-3/remont-akpp/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-3/to/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-3/zamena-kolodok/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-3/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-3/zamena-masla/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-4/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-4/to/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-4/zamena-kolodok/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-4/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-4/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-5/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-5/to/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-sport/",
+    "status": 200,
+    "tables": 10,
+    "categories": 9,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-sport/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-sport/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-sport/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-sport/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-sport/to/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-sport/zamena-grm/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-sport/zamena-kolodok/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-sport/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery-sport/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery/",
+    "status": 200,
+    "tables": 9,
+    "categories": 9,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery/to/",
+    "status": 200,
+    "tables": 6,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery/zamena-grm/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery/zamena-kolodok/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/discovery/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/",
+    "status": 200,
+    "tables": 9,
+    "categories": 9,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/remont-reduktora/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/remont-turbiny/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/to/",
+    "status": 200,
+    "tables": 3,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/zamena-grm/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/zamena-kolodok/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/freelander/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/",
+    "status": 200,
+    "tables": 9,
+    "categories": 9,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/fpace/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/fpace/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/fpace/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/fpace/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/fpace/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/fpace/to/",
+    "status": 200,
+    "tables": 3,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/fpace/zamena-grm/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/fpace/zamena-kolodok/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/fpace/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/fpace/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/to/",
+    "status": 200,
+    "tables": 24,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/x-type/",
+    "status": 200,
+    "tables": 8,
+    "categories": 7,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/x-type/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/x-type/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/x-type/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/x-type/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/x-type/to/",
+    "status": 200,
+    "tables": 3,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/x-type/zamena-grm/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/x-type/zamena-kolodok/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/x-type/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/x-type/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xf/",
+    "status": 200,
+    "tables": 8,
+    "categories": 8,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xf/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xf/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xf/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xf/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xf/to/",
+    "status": 200,
+    "tables": 6,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xf/zamena-grm/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xf/zamena-kolodok/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xf/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xf/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xj/",
+    "status": 200,
+    "tables": 8,
+    "categories": 8,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xj/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xj/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xj/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xj/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xj/to/",
+    "status": 200,
+    "tables": 5,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xj/zamena-grm/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xj/zamena-kolodok/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xj/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/xj/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/zamena-grm/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/zamena-kolodok/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/jaguar/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/kompaniya/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/kompaniya/istoriya/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/kompaniya/vakansii/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/kontakty/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/otziv/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/partnerstvo/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/pokupka-avto-iz-korei-i-evropy/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/politika-ispolzovaniya-cookie/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/politika-konfidentsialnosti/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/portfolio/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/",
+    "status": 200,
+    "tables": 8,
+    "categories": 8,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/remont-reduktora/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/to/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/zamena-grm/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/zamena-kolodok/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-evoque/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-sport/",
+    "status": 200,
+    "tables": 9,
+    "categories": 9,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-sport/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-sport/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-sport/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-sport/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-sport/to/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-sport/zamena-grm/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-sport/zamena-kolodok/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-sport/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-sport/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-vogue/",
+    "status": 200,
+    "tables": 9,
+    "categories": 9,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-vogue/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-vogue/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-vogue/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-vogue/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-vogue/to/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-vogue/zamena-kolodok/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-vogue/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover-vogue/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover/",
+    "status": 200,
+    "tables": 9,
+    "categories": 9,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover/remont-turbiny/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover/to/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover/zamena-grm/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover/zamena-kolodok/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/range-rover/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/remont/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/remont/akpp/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/remont/dvigatel/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/remont/kompressora-pnevmopodveski/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/remont/kuzovnoj-remont/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/remont/kuzovnoj-remont/stapelnye-raboty/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/remont/polnaya-pokraska-avto/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/remont/rulevoy-reyki/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/khimchistka-salona/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/mojka-kuzova/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/off-road/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/podmennyy-avtomobil/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/predprodazhnaya-proverka-avtomobilya/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/prodat-avtomobil/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/professionalnaya-polirovka/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/shinomontazh/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/sluzhba-evakuatsii/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/servis/to/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/velar/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/velar/diagnostika/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/velar/remont-akpp/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/velar/remont-dvigatelya/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/velar/remont-turbiny/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/velar/to/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/velar/zamena-grm/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/velar/zamena-kolodok/",
+    "status": 200,
+    "tables": 2,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/velar/zamena-masla-v-akpp/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/velar/zamena-masla/",
+    "status": 200,
+    "tables": 1,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/zapchasti/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  },
+  {
+    "url": "https://rover.argokov.ru/zapchasti/aksessuary-i-tyuning/",
+    "status": 200,
+    "tables": 0,
+    "categories": 0,
+    "blank_price_rows": []
+  }
+]

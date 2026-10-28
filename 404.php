@@ -18,7 +18,7 @@ $contact  = roverland_menu_page( 'kontakty' );
 			<div class="error-page__actions">
 				<a class="button button--primary" href="<?php echo esc_url( home_url( '/' ) ); ?>">На главную</a>
 				<?php if ( $services ) : ?>
-					<a class="button button--outline" href="<?php echo esc_url( get_permalink( $services ) ); ?>">Услуги сервиса</a>
+					<a class="button button--outline" href="<?php echo esc_url( get_permalink( $services ) ); ?>">Услуги сервиса</a><a class="button button--outline" href="<?php echo esc_url(home_url('/remont/')); ?>">Услуги ремонта</a>
 				<?php endif; ?>
 			</div>
 

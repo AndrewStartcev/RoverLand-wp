@@ -2,11 +2,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$title       = roverland_option( 'common_appointment_title', 'Запишитесь на сервис' );
-$accent      = roverland_option( 'common_appointment_accent', 'прямо сейчас' );
-$description = roverland_option( 'common_appointment_description', '' );
+$title       = $args['title'] ?? 'Запишитесь на ремонт или ТО';
+$accent      = $args['accent'] ?? '';
+$description = $args['description'] ?? roverland_option( 'common_appointment_description', '' );
 $phone       = roverland_option( 'common_appointment_phone', roverland_option( 'site_main_phone', '' ) );
-$button      = roverland_option( 'form_service_button', roverland_option( 'common_appointment_button', 'Отправить заявку' ) );
+$button      = $args['button'] ?? roverland_option( 'form_service_button', roverland_option( 'common_appointment_button', 'Отправить заявку' ) );
 $branches    = roverland_get_branches();
 if ( roverland_service_page_kind() ) {
  $title = 'Запись на услугу: ' . roverland_audit_h1(get_the_title());

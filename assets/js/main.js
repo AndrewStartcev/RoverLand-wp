@@ -18,11 +18,39 @@
         track.scrollBy({left: Number(button.dataset.caseDirection) * (card ? card.offsetWidth + 24 : track.clientWidth), behavior: 'smooth'});
       });
     });
+    track.addEventListener('wheel', function(event) {
+      if (Math.abs(event.deltaX) >= Math.abs(event.deltaY) || event.ctrlKey) return;
+      var direction = event.deltaY;
+      if ((direction > 0 && track.scrollLeft + track.clientWidth < track.scrollWidth - 2) || (direction < 0 && track.scrollLeft > 2)) {
+        event.preventDefault(); track.scrollLeft += direction;
+      }
+    }, {passive: false});
+    var drag = null, dragged = false;
+    track.addEventListener('pointerdown', function(event) {
+      if (event.pointerType !== 'mouse' || event.button !== 0) return;
+      drag = {x:event.clientX, left:track.scrollLeft}; dragged = false;
+    });
+    window.addEventListener('pointermove', function(event) {
+      if (!drag) return;
+      if (Math.abs(event.clientX - drag.x) > 6) dragged = true;
+      if (dragged) { track.classList.add('is-dragging'); track.scrollLeft = drag.left - (event.clientX - drag.x); }
+    });
+    window.addEventListener('pointerup', function() { drag = null; track.classList.remove('is-dragging'); });
+    track.addEventListener('dragstart', function(event) { event.preventDefault(); });
+    track.addEventListener('click', function(event) { if (dragged) {event.preventDefault(); event.stopPropagation(); dragged=false;} }, true);
     track.addEventListener('scroll', sync, {passive: true});
     window.addEventListener('resize', sync);
     sync();
   });
 
+  var branchPopover = document.querySelector('.header-branches');
+  if (branchPopover) {
+    function closeBranches(focus) { branchPopover.open = false; if (focus) branchPopover.querySelector('summary').focus(); }
+    var closeBranchesButton = branchPopover.querySelector('[data-branches-close]');
+    if (closeBranchesButton) closeBranchesButton.addEventListener('click', function() {closeBranches(true);});
+    document.addEventListener('click', function(event) { if (branchPopover.open && !branchPopover.contains(event.target)) closeBranches(false); });
+    document.addEventListener('keydown', function(event) { if (event.key === 'Escape' && branchPopover.open) closeBranches(true); });
+  }
   var body = document.body;
   var menu = document.querySelector("[data-mobile-menu]");
   var menuToggle = document.querySelector("[data-menu-toggle]");
@@ -53,7 +81,9 @@
     source.querySelectorAll(":scope > .models-nav__item > .models-nav__link").forEach(function (link) {
       var mobileLink = document.createElement("a");
       mobileLink.className = "mobile-models__link";
-      mobileLink.href = link.getAttribute("href") || "#";
+      if (link.hasAttribute('href')) mobileLink.href = link.getAttribute('href');
+      if (link.hasAttribute('aria-current')) mobileLink.setAttribute('aria-current', 'page');
+      if (link.classList.contains('is-current-section') || link.parentElement.querySelector('[aria-current="page"]')) mobileLink.classList.add('is-current-section');
       mobileLink.textContent = link.textContent.trim();
       mobileLink.addEventListener("click", function () { setMenu(false); });
       list.appendChild(mobileLink);
@@ -102,6 +132,21 @@
 
   initMobileModelsMenu();
   initDesktopDropdownIntent();
+  document.querySelectorAll('.mobile-nav__group').forEach(function(group) {
+    if (group.querySelector('[aria-current="page"], .is-current-section')) {
+      group.open = true;
+      group.querySelector('summary').classList.add('is-current-section');
+    }
+  });
+  document.querySelectorAll('.service-universal-hero__actions a.button--outline').forEach(function(link) {
+    var priceLink = /цен|прайс/i.test(link.textContent);
+    var cardsLink = /модел|услуг|каталог/i.test(link.textContent);
+    var target = priceLink ? document.querySelector('.price-category, .service-price-table-wrap, .service-revision-copy table') : cardsLink ? document.querySelector('.service-catalog-grid, .service-related__grid, .service-content-block--cards') : null;
+    if (target) {
+      if (!target.id) target.id = 'service-jump-target';
+      link.setAttribute('href', '#' + target.id);
+    }
+  });
 
   var searchModal = document.querySelector("[data-search-modal]");
   var lastSearchTrigger = null;
@@ -159,7 +204,8 @@
       var key = address.toLowerCase();
 
       var customMapAddress = card.getAttribute("data-map-address");
-      if (!grouped[key]) grouped[key] = { name: name, address: address, geocodeAddress: customMapAddress || ("Москва, " + address), offices: [] };
+      if (!grouped[key]) grouped[key] = { name: name, address: address, geocodeAddress: customMapAddress || ("Москва, " + address), offices: [], cards: [] };
+      grouped[key].cards.push(card);
       grouped[key].offices.push({ office: office, phone: phone ? phone.textContent.trim() : "" });
     });
     return Object.keys(grouped).map(function (key) { return grouped[key]; });
@@ -184,19 +230,52 @@
       var map = new window.ymaps.Map(canvas, { center: [55.751244, 37.618423], zoom: 10, controls: ["zoomControl"] }, { suppressMapOpenBlock: true });
       map.behaviors.disable("scrollZoom");
       var remaining = branches.length;
+      var selected = null;
+      function selectBranch(branch, scroll) {
+        selected = branch;
+        branches.forEach(function (item) {
+          item.cards.forEach(function (card) {
+            card.classList.toggle('is-selected', item === branch);
+            var button = card.querySelector('[data-branch-select]');
+            if (button) button.setAttribute('aria-pressed', String(item === branch));
+          });
+          if (item.marker) item.marker.options.set('iconImageSize', item === branch ? [38, 52] : [28, 38]);
+        });
+        document.querySelectorAll('[data-map-branch]').forEach(function(button) { button.setAttribute('aria-pressed', String(button.dataset.mapBranch === branch.name)); });
+        if (branch.marker) {
+          map.setCenter(branch.marker.geometry.getCoordinates(), 14, {duration: 300});
+          branch.marker.balloon.open();
+        }
+        if (scroll) canvas.scrollIntoView({behavior: 'smooth', block: 'center'});
+      }
+      branches.forEach(function(branch) {
+        branch.cards.forEach(function(card) {
+          card.addEventListener('click', function(event) {
+            if (event.target.closest('a,iframe')) return;
+            selectBranch(branch, true);
+          });
+        });
+      });
+      document.querySelectorAll('[data-map-branch]').forEach(function(button) {
+        button.addEventListener('click', function() {
+          var branch = branches.find(function(item) {return item.name === button.dataset.mapBranch;});
+          if (branch) selectBranch(branch, false);
+        });
+      });
 
       function finishPoint() {
         remaining -= 1;
         if (remaining > 0) return;
         var bounds = map.geoObjects.getBounds();
-        if (bounds) map.setBounds(bounds, { checkZoomRange: true, zoomMargin: [54, 54, 54, 54] });
+        if (selected) selectBranch(selected, false);
+        else if (bounds) map.setBounds(bounds, { checkZoomRange: true, zoomMargin: [54, 54, 54, 54] });
       }
 
       branches.forEach(function (branch) {
         window.ymaps.geocode(branch.geocodeAddress, { results: 1 }).then(function (result) {
           var geoObject = result.geoObjects.get(0);
           if (!geoObject) { finishPoint(); return; }
-          map.geoObjects.add(new window.ymaps.Placemark(
+          branch.marker = new window.ymaps.Placemark(
             geoObject.geometry.getCoordinates(),
             {
               iconCaption: branch.name,
@@ -204,8 +283,10 @@
               balloonContentHeader: "Rover Land — " + escapeHtml(branch.name),
               balloonContentBody: buildBranchBalloon(branch)
             },
-            { preset: "islands#blueAutoIcon" }
-          ));
+            { iconLayout: 'default#image', iconImageHref: roverlandTheme.mapMarker, iconImageSize: [28, 38], iconImageOffset: [-14, -38] }
+          );
+          map.geoObjects.add(branch.marker);
+          branch.marker.events.add('click', function() { selectBranch(branch, false); });
           finishPoint();
         }, finishPoint);
       });
@@ -341,7 +422,31 @@
     });
   }
 
+  function initPhotoZoom() {
+    var photos = document.querySelectorAll('.about-gallery img, .history-expertise__media img, .portfolio-detail-gallery img, .contacts-page__gallery img, .service-content-block__media img');
+    if (!photos.length || typeof HTMLDialogElement === 'undefined') return;
+    var dialog = document.createElement('dialog');
+    dialog.className = 'photo-dialog'; dialog.setAttribute('aria-label','Просмотр фотографии');
+    dialog.innerHTML = '<button type="button" class="photo-dialog__close" aria-label="Закрыть фотографию">×</button><img alt=""><p></p>';
+    document.body.appendChild(dialog);
+    var image = dialog.querySelector('img'), caption = dialog.querySelector('p');
+    dialog.querySelector('button').addEventListener('click', function() {dialog.close();});
+    dialog.addEventListener('click', function(event) {if (event.target === dialog) dialog.close();});
+    dialog.addEventListener('close', function() {document.body.classList.remove('has-photo-zoom');});
+    photos.forEach(function(photo) {
+      if (photo.closest('a,button')) return;
+      var button = document.createElement('button'); button.type = 'button'; button.className = 'photo-zoom';
+      button.setAttribute('aria-label','Увеличить фото: ' + (photo.alt || 'Rover Land'));
+      photo.parentNode.insertBefore(button, photo); button.appendChild(photo);
+      button.addEventListener('click', function() {
+        image.src = photo.currentSrc || photo.src; image.alt = photo.alt; caption.textContent = photo.alt;
+        document.body.classList.add('has-photo-zoom'); dialog.showModal();
+      });
+    });
+  }
+
   function initPageModules() {
+    initPhotoZoom();
     normalizeBranchMetaIcons();
     initOffersSlider();
     initAboutGallery();

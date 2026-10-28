@@ -172,6 +172,10 @@ function roverland_render_main_service_menu_item( $path, $label ) {
 }
 
 function roverland_primary_menu_fallback() {
+ roverland_usability_nav("roverland_primary_menu_content");
+}
+
+function roverland_primary_menu_content() {
 	echo '<ul class="main-nav__list">';
 	echo '<li class="main-nav__item"><a class="main-nav__link" href="' . esc_url( home_url( '/' ) ) . '">Главная</a></li>';
 
@@ -245,6 +249,10 @@ function roverland_render_mobile_page_children( $parent_id ) {
 }
 
 function roverland_mobile_menu_fallback() {
+ roverland_usability_nav("roverland_mobile_menu_content");
+}
+
+function roverland_mobile_menu_content() {
 	echo '<a href="' . esc_url( home_url( '/' ) ) . '">Главная</a>';
 
 	$company = roverland_menu_page( 'kompaniya' );
@@ -278,7 +286,7 @@ function roverland_mobile_menu_fallback() {
 		if ( $children ) {
 			echo '<details class="mobile-nav__group">';
 			echo '<summary>' . esc_html( $label ) . '</summary>';
-			echo '<a class="mobile-nav__root" href="' . esc_url( get_permalink( $page ) ) . '">Все: ' . esc_html( $label ) . '</a>';
+			echo '<a class="mobile-nav__root" href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html( $label ) . '</a>';
 			roverland_render_mobile_page_children( $page->ID );
 			echo '</details>';
 		} else {
@@ -375,6 +383,10 @@ function roverland_render_model_service_links( $model_id, $class = 'models-dropd
 }
 
 function roverland_models_menu_fallback() {
+ roverland_usability_nav("roverland_models_menu_content");
+}
+
+function roverland_models_menu_content() {
 	$models = get_posts(
 		array(
 			'post_type'      => 'rover_model',

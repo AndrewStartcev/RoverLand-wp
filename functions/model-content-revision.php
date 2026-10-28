@@ -15,6 +15,7 @@ function roverland_price_disclaimer() {
 }
 
 function roverland_revision_stat( $item ) {
+    $item['value'] = preg_replace('/^50[кk]\+$/iu', '50 000+', trim($item['value'] ?? ''));
 	$label = mb_strtolower( $item['label'] ?? '' );
 	if ( false !== mb_strpos( $label, 'клиент' ) ) {
 		$item['value'] = '30 000+';

@@ -3410,3 +3410,72 @@ body.admin-bar .site-header {
 .service-card__body h3 a,.offer-card__body h3 a,.service-related-card h3 a,.portfolio-card__body h2 a{color:inherit;text-decoration:none}
 .service-card__body h3 a:hover,.offer-card__body h3 a:hover,.service-related-card h3 a:hover,.portfolio-card__body h2 a:hover{text-decoration:underline}
 .site-footer__bottom{flex-wrap:wrap}.site-footer__bottom>p{flex-basis:100%;margin:8px 0 0}
+
+/* Usability audit t-20261027-003. */
+.site-header__top .site-header__wide{gap:clamp(16px,1.5vw,32px);justify-content:space-between}
+.site-header .main-nav{position:static;left:auto;transform:none;flex:0 1 auto;min-width:0;margin-inline:auto}
+.site-header .main-nav__list{gap:clamp(12px,1.25vw,26px)}
+.site-header__actions{flex-shrink:0}
+@media(min-width:1281px) and (max-width:1500px){.site-header__logo img{width:150px}.main-nav__link{font-size:14px}.site-header__appointment{padding-inline:16px}.site-header__actions{gap:8px}}
+.main-nav a[aria-current],.mobile-nav a[aria-current],.models-nav a[aria-current],.mobile-models a[aria-current],.is-current-section{color:var(--color-primary);font-weight:600;text-decoration:underline;text-underline-offset:6px}
+.models-nav a[aria-current],.models-nav .is-current-section{color:#fff;background:#ffffff24;border-radius:4px}
+a[aria-current=page]{cursor:default}
+.nav-dropdown a[aria-current],.models-dropdown a[aria-current]{background:#e6f3fc;color:var(--color-primary)}
+.main-nav__link:hover,.main-nav__link:focus-visible{color:var(--color-primary);text-decoration:underline;text-underline-offset:6px}
+.site-header .social-link,.site-header__search,.header-branches summary{transition:background .18s,color .18s,transform .18s}
+.site-header .social-link:hover,.site-header__search:hover,.header-branches summary:hover{background:#e4f3fd;transform:translateY(-2px)}
+.breadcrumbs a:hover,.breadcrumbs a:focus-visible{color:var(--color-primary);text-decoration:underline;text-underline-offset:4px}
+:where(a,button,summary):focus-visible{outline:3px solid #3389cf;outline-offset:4px}
+.header-branches__list,.admin-bar .header-branches__list{position:absolute;top:calc(100% + 12px);right:0;width:min(680px,calc(100vw - 40px));padding:46px 24px 24px}
+.header-branches__close{position:absolute;right:12px;top:8px;width:32px;height:32px;border:0;border-radius:50%;background:#edf6fc;color:#0068b7;font-size:26px;cursor:pointer}
+.header-branches__list .contact-hours{font-size:13px;line-height:1.5}
+.stats__list,.about-stats__list{align-items:stretch}
+.stat,.about-stat{display:flex;flex-direction:column;align-items:center;text-align:center}
+.stat__value{display:flex;align-items:center;justify-content:center;min-height:1.4em;white-space:nowrap}
+.stat__label{min-height:2.8em;max-width:240px;display:flex;align-items:center;justify-content:center}
+.stat-description{margin-inline:auto}
+.advantages__list{align-items:stretch}
+.advantage-card{display:flex;flex-direction:column;align-items:center;text-align:center}
+.advantage-card h3{min-height:2.5em;display:flex;align-items:center;justify-content:center}
+.advantage-card p{margin-top:0}
+.section-heading--center .section-heading__text{margin-inline:auto;text-align:center}
+.services .section-heading--row{display:block;text-align:center}.services .section-heading__text{margin-inline:auto}.services .section-heading .text-link{display:inline-flex;margin-top:20px}
+.home-process .advantage-card__icon{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:#e2f1fc}
+.home-process .advantage-card__icon img{width:30px;height:30px}
+.home-process__list p+p{padding-top:14px;border-top:1px solid #d4dde6;margin-top:14px}
+.home-process__list h3{min-height:2.5em}
+.branch-card>a,.branch-card__address,.branch-card p{font-size:16px!important;line-height:1.6}
+.contact-icon{display:inline-block;flex:0 0 20px;vertical-align:middle;color:var(--color-primary)}
+.branch-card__hours,.contact-hours,.footer-email{display:flex;align-items:flex-start;gap:8px}
+.branch-card .branch-card__hours::before,.branch-card .branch-card__telegram::before{content:none}
+.branch-card__select{border:0;background:transparent;cursor:pointer;text-align:left;margin-top:16px;position:static}
+.branch-card.is-selected{outline:2px solid var(--color-primary);background:#e9f5fd}
+.branch-card:has(.branch-card__select){cursor:pointer;transition:background .2s,box-shadow .2s}
+.branch-card:has(.branch-card__select):hover{box-shadow:0 8px 24px #0068b71c}
+.service-map__branch{display:block;width:100%;border:0;background:transparent;text-align:left;color:inherit;padding:10px 0;cursor:pointer}.service-map__branch strong,.service-map__branch span{display:block}.service-map__branch:hover,.service-map__branch[aria-pressed=true]{color:var(--color-primary)}
+.service-card,.offer-card,.service-related-card,.service-content-card,.portfolio-card{position:relative;transition:box-shadow .2s,transform .2s,border-color .2s}
+.card-link::after{content:"";position:absolute;inset:0;z-index:1}
+.service-card:has(a):hover,.offer-card:has(a):hover,.service-related-card:has(a):hover,.service-content-card:has(a):hover,.portfolio-card:has(a):hover,.service-catalog-card:hover{box-shadow:0 10px 28px #163e6520;transform:translateY(-3px);border-color:var(--color-primary)}
+.service-card:focus-within,.offer-card:focus-within,.service-related-card:focus-within,.portfolio-card:focus-within{outline:2px solid var(--color-primary);outline-offset:3px}
+/* Supersede decorative arrows only on links stretched across their card. */
+.offer-card .card-link::after,.portfolio-card .card-link::after{width:auto;height:auto;background:none;mask:none;transform:none}
+.service-selected-cases__head{position:relative;display:block;text-align:center;margin-bottom:48px;padding-inline:120px}.service-selected-cases__controls{position:absolute;right:0;top:50%;transform:translateY(-50%)}
+.service-selected-cases__track{scrollbar-width:none;cursor:grab}.service-selected-cases__track::-webkit-scrollbar{display:none}.service-selected-cases__track.is-dragging{cursor:grabbing;user-select:none;scroll-snap-type:none}
+.price-category{border:1px solid #d7e4ef;border-radius:8px;margin:14px 0;overflow:hidden}.price-category>summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 24px;background:#edf6fc;cursor:pointer;list-style:none;font-weight:600}.price-category>summary::-webkit-details-marker{display:none}.price-category>summary::after{content:"";width:9px;height:9px;flex:0 0 9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .2s}.price-category[open]>summary::after{transform:rotate(225deg)}.price-category table{margin:0}.price-category .service-price-table-wrap{margin:0}
+.search-results-page{padding:64px 0 80px}.search-results-page h1{margin-bottom:32px}.search-repeat{margin:24px 0 40px;max-width:780px}.search-repeat label{display:block;margin-bottom:10px}.search-repeat>div{display:flex;gap:12px}.search-repeat input{min-width:0;flex:1}.search-suggestions{margin-top:48px}.search-suggestions>div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.search-suggestions h2{margin-bottom:24px}
+.contact-details{padding:0 0 72px}.contact-email{width:calc((100% - 32px)/2);padding:30px;border:1px solid #dbe5ef;border-radius:14px;background:#f7fbff}.contact-email h2{font-size:26px;margin-bottom:18px}.contact-email p{margin-bottom:16px}.contact-email>a{color:var(--color-primary);font-size:22px;font-weight:600}.contact-legal{margin-top:48px;border-top:1px solid #dbe5ef;padding-top:24px}.contact-legal>summary{cursor:pointer;font-size:26px;font-weight:600}.contact-legal dl{margin-top:24px}.contact-legal dl>div{display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:24px;padding:16px 0;border-bottom:1px solid #e0e6eb}.contact-legal dt{font-weight:600}.contact-legal dd{margin:0;overflow-wrap:anywhere}
+.site-footer .footer-email a{color:var(--color-primary)}.site-footer__address-grid .contact-hours{margin-top:12px;line-height:1.5;text-transform:none}.site-footer__address-grid address>span::before{content:none}
+.history-timeline__item{min-height:0;padding:30px 0;align-items:center}.history-timeline__copy{flex:1;min-width:0}.history-timeline__icon{flex:1}.history-timeline__copy p{font-size:16px;line-height:1.7;font-weight:400;font-style:normal;text-align:left;white-space:pre-line}.history-timeline__copy h3{font-weight:600}.history-timeline__item:last-child{padding-bottom:0}
+.sell-car-hero-form{width:100%;max-width:760px;margin-inline:auto}.sell-car-hero-form .appointment{padding:0;background:transparent}.sell-car-hero-form .container{width:100%}.sell-car-hero-form h2{font-size:26px;margin-bottom:24px;text-align:center}.sell-car-hero-form .service-form{margin:0 auto;width:100%}.service-universal-hero__container:has(.sell-car-hero-form){display:block}.service-universal-hero__container:has(.sell-car-hero-form) .service-universal-hero__content{max-width:900px;text-align:center;margin:0 auto 36px}.service-universal-hero__container:has(.sell-car-hero-form) .service-universal-hero__actions{justify-content:center}
+html{scroll-padding-top:calc(var(--header-top-height) + 90px)}
+[id]{scroll-margin-top:24px}
+@media(max-width:1280px){html{scroll-padding-top:calc(var(--header-top-height) + 24px)}}
+@media(max-width:767px){.header-branches__list,.admin-bar .header-branches__list{right:0;width:min(340px,calc(100vw - 32px));grid-template-columns:1fr;padding:44px 20px 20px}.site-header__top .site-header__wide{gap:12px}.stat__value{font-size:36px}.stat__label{font-size:12px}.service-selected-cases__head{padding-inline:0;margin-bottom:32px}.service-selected-cases__controls{position:static;justify-content:center;transform:none;margin-top:20px}.contact-email{width:100%;padding:24px}.contact-legal dl>div{grid-template-columns:1fr;gap:8px}.search-suggestions>div{grid-template-columns:1fr}.search-repeat>div{flex-wrap:wrap}.search-repeat button{width:100%}.history-timeline__copy,.history-timeline__icon{flex:auto}.history-timeline__item{padding:0}.home-process__list h3{min-height:0}.price-category>summary{padding:18px}.contact-email h2,.contact-legal>summary{font-size:22px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{transition-duration:0s!important;scroll-behavior:auto!important}}
+
+.footer-sitemap{padding-block:24px}.footer-sitemap>summary{cursor:pointer;color:var(--color-primary);font-weight:600}.footer-sitemap nav>ul{columns:3;column-gap:32px;padding:24px 0;list-style:none}.footer-sitemap li{break-inside:avoid;margin:8px 0}.footer-sitemap ul ul{padding-left:20px;list-style:disc}.footer-sitemap a:hover{text-decoration:underline}@media(max-width:767px){.footer-sitemap nav>ul{columns:1}}
+@media(min-width:768px){.history-timeline__item{display:grid;grid-template-columns:minmax(0,1fr) 14px minmax(0,1fr);column-gap:44px}.history-timeline__item>*{grid-row:1}.history-timeline__dot{grid-column:2;margin:0}.history-timeline__copy,.history-timeline__icon{width:100%}.history-timeline__item--left .history-timeline__copy,.history-timeline__item--right .history-timeline__icon{grid-column:1}.history-timeline__item--right .history-timeline__copy,.history-timeline__item--left .history-timeline__icon{grid-column:3}}
+@media(max-width:767px){.header-branches__list,.admin-bar .header-branches__list{position:fixed;right:16px;top:calc(var(--header-top-height) + 12px)}.admin-bar .header-branches__list{top:calc(var(--header-top-height) + 58px)}.service-map:has(.service-map__card){min-height:0}.service-map:has(.service-map__card) .service-map__canvas{position:relative;height:400px;min-height:400px}.service-map:has(.service-map__card) .service-map__container{min-height:0;padding-block:24px}.service-map:has(.service-map__card) .service-map__card{position:static;width:100%;margin:0}.stat-description{min-height:3em}.search-results-page h1{overflow-wrap:anywhere}}
+
+.promo-card,.service-detail-card{position:relative;transition:box-shadow .2s,transform .2s}.promo-card:has(a):hover,.service-detail-card:has(a):hover{box-shadow:0 10px 28px #163e6520;transform:translateY(-3px)}.service-detail-card .text-link::after{content:"";position:absolute;inset:0;z-index:1}.service-detail-card .text-link{position:static}.photo-zoom{display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in}.photo-zoom img{width:100%}.photo-dialog{width:min(1100px,94vw);max-width:94vw;max-height:94dvh;padding:46px 16px 16px;border:0;border-radius:12px;background:#fff;color:#182c3c}.photo-dialog::backdrop{background:#071828dc}.photo-dialog>img{display:block;max-width:100%;width:auto;max-height:calc(90dvh - 110px);margin:auto;object-fit:contain}.photo-dialog>p{text-align:center;margin:12px 0 0}.photo-dialog__close{position:absolute;right:10px;top:6px;width:36px;height:36px;border:0;border-radius:50%;font-size:28px;color:#0068b7;cursor:pointer}.has-photo-zoom{overflow:hidden}.about-gallery .photo-zoom img{height:auto}.service-map__branch .contact-hours{display:flex;font-size:12px;line-height:1.4;margin-top:6px}
+@media(min-width:768px){.stats__list{padding-block:40px}.models-nav__item:has([aria-current=page])>.models-nav__link{color:#fff;background:#ffffff24;border-radius:4px}}

@@ -44,7 +44,7 @@ while ( have_posts() ) :
 					<article class="service-card">
 						<?php $image = $service['image'] ?? array(); $image_url = roverland_image_url( $image ); ?>
 						<?php if ( $image_url ) : ?><img class="service-card__image" src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( roverland_image_alt( $image, $service['title'] ?? '' ) ); ?>" loading="lazy" decoding="async"><?php endif; ?>
-						<div class="service-card__body"><h3><a href="<?php echo esc_url(home_url( $service['url'] ?? '/' )); ?>"><?php echo esc_html( $service['title'] ?? '' ); ?></a></h3><p><?php echo esc_html( $service['text'] ?? '' ); ?></p><?php if ( ! empty( $service['url'] ) ) : ?><a class="text-link" href="<?php echo esc_url( home_url( $service['url'] ) ); ?>">Подробнее</a><?php endif; ?></div>
+						<div class="service-card__body"><h3><a href="<?php echo esc_url(home_url( $service['url'] ?? '/' )); ?>"><?php echo esc_html( $service['title'] ?? '' ); ?></a></h3><p><?php echo esc_html( $service['text'] ?? '' ); ?></p><?php if ( ! empty( $service['url'] ) ) : ?><a class="text-link card-link" href="<?php echo esc_url( home_url( $service['url'] ) ); ?>">Подробнее</a><?php endif; ?></div>
 					</article>
 				<?php endforeach; ?>
 			</div><?php endif; ?>
@@ -52,7 +52,7 @@ while ( have_posts() ) :
 	</section>
 
 	<?php if ( is_array( $advantages ) && $advantages ) : ?>
-		<section class="advantages" aria-label="Преимущества Rover Land"><div class="container advantages__list">
+		<section class="advantages" aria-label="Преимущества Rover Land"><div class="container"><div class="section-heading section-heading--center"><h2 class="section-heading__title">Почему выбирают Rover Land</h2></div><div class="advantages__list">
 			<?php foreach ( $advantages as $advantage_index => $advantage ) : ?>
 				<article class="advantage-card">
 					<?php $advantage_icons=array('advantage_1.svg','advantage_2.svg','about-experience.svg','advantage_3.svg','about-warranty.svg','about-supply.svg'); $icon_url=roverland_asset('assets/images/icons/ui/'.$advantage_icons[$advantage_index % 6]); ?>
@@ -60,7 +60,7 @@ while ( have_posts() ) :
 					<h3><?php echo esc_html( $advantage['title'] ?? '' ); ?></h3><p><?php echo esc_html( $advantage['text'] ?? '' ); ?></p>
 				</article>
 			<?php endforeach; ?>
-		</div></section>
+		</div></div></section>
 	<?php endif; ?>
 
 	<section class="offers" id="offers">

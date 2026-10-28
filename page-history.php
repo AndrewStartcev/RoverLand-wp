@@ -87,6 +87,7 @@ while ( have_posts() ) :
 					<?php foreach ( $timeline as $index => $item ) : ?>
 						<?php
 						$is_right = 1 === ( $index % 2 );
+                        foreach (array('title','text') as $key) { if (!empty($item[$key])) $item[$key] = mb_strtoupper(mb_substr($item[$key],0,1)) . mb_substr($item[$key],1); }
 						$icon     = isset( $item['icon'] ) ? $item['icon'] : array();
 						$icon_url = roverland_image_url( $icon );
 						?>
