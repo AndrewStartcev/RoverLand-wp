@@ -3479,3 +3479,124 @@ html{scroll-padding-top:calc(var(--header-top-height) + 90px)}
 
 .promo-card,.service-detail-card{position:relative;transition:box-shadow .2s,transform .2s}.promo-card:has(a):hover,.service-detail-card:has(a):hover{box-shadow:0 10px 28px #163e6520;transform:translateY(-3px)}.service-detail-card .text-link::after{content:"";position:absolute;inset:0;z-index:1}.service-detail-card .text-link{position:static}.photo-zoom{display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in}.photo-zoom img{width:100%}.photo-dialog{width:min(1100px,94vw);max-width:94vw;max-height:94dvh;padding:46px 16px 16px;border:0;border-radius:12px;background:#fff;color:#182c3c}.photo-dialog::backdrop{background:#071828dc}.photo-dialog>img{display:block;max-width:100%;width:auto;max-height:calc(90dvh - 110px);margin:auto;object-fit:contain}.photo-dialog>p{text-align:center;margin:12px 0 0}.photo-dialog__close{position:absolute;right:10px;top:6px;width:36px;height:36px;border:0;border-radius:50%;font-size:28px;color:#0068b7;cursor:pointer}.has-photo-zoom{overflow:hidden}.about-gallery .photo-zoom img{height:auto}.service-map__branch .contact-hours{display:flex;font-size:12px;line-height:1.4;margin-top:6px}
 @media(min-width:768px){.stats__list{padding-block:40px}.models-nav__item:has([aria-current=page])>.models-nav__link{color:#fff;background:#ffffff24;border-radius:4px}}
+
+/* Final mobile review, November 2026: shared contact rows and compact rhythm. */
+:root { --section-space: 56px; --section-space-mobile: 36px; }
+.site-header__logo img, .mobile-menu__head > img, .site-footer__brand > img { height: auto; }
+.contact-row,
+.site-footer__address-grid .contact-row,
+.header-branches__list .contact-row {
+  display: grid; grid-template-columns: 20px minmax(0, 1fr); align-items: start;
+  gap: 10px; padding: 0; line-height: 1.5;
+}
+.contact-row > .contact-icon { width: 20px; height: 20px; margin-top: 2px; }
+.contact-row > span { min-width: 0; }
+.branch-card > .contact-row { margin: 14px 0 0; }
+.branch-card > .contact-row::before { content: none; }
+.branch-card > a.contact-row, .branch-card__telegram a { color: var(--color-primary); }
+.branch-card h3 { min-height: 2.5em; }
+.branches:not(.contacts-centers) .branch-card h3 { min-height: 2.5em; margin-bottom: 18px; }
+.site-footer__address-grid .contact-row { margin-top: 10px; margin-bottom: 0; }
+.site-footer__address-grid a.contact-row, .site-footer .footer-email a { color: var(--color-primary); }
+.site-footer .footer-email { margin-top: 22px; }
+a[href^="tel:"]:hover, a[href^="tel:"]:focus-visible,
+.footer-email a:hover, .footer-email a:focus-visible,
+.branch-card__telegram a:hover, .branch-card__telegram a:focus-visible,
+.branch-card__select:hover, .branch-card__select:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+.header-branches__list .contact-hours { font-size: 16px; line-height: 1.5; }
+.header-branches__close { display: grid; place-items: center; padding: 7px; }
+.header-branches__close svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; }
+.site-header .header-branches summary, .site-header__search { border: 0; background: transparent; box-shadow: none; }
+.site-header__appointment { background: var(--color-primary); background-image: none; box-shadow: none; border-color: transparent; }
+.site-header__appointment:hover { background: var(--color-primary-dark); }
+.site-header .main-nav a, .site-header .models-nav a,
+.site-header .mobile-nav a[aria-current], .mobile-models a[aria-current] { text-decoration: none; }
+.site-header .models-nav a[aria-current], .site-header .models-nav .is-current-section { background: transparent; font-weight: 700; }
+.site-header .models-nav .models-nav__link:hover { background: transparent; font-weight: 700; }
+.nav-dropdown__item.is-hover-open > .nav-subdropdown,
+.models-dropdown__item.is-hover-open > .models-subdropdown { visibility: visible; opacity: 1; transform: none; pointer-events: auto; }
+/* The next level must not change the positioning context of its parent menu. */
+@media (min-width: 992px) {
+  .nav-dropdown:has(.nav-subdropdown:hover), .models-dropdown:has(.models-subdropdown:hover) { visibility: visible; opacity: 1; pointer-events: auto; transform: none; }
+  .nav-subdropdown, .models-subdropdown { left: 100%; transform: none; }
+}
+.service-map { min-height: 500px; }
+.service-map__canvas { min-height: 500px; }
+.video-player { position: relative; width: 100%; }
+.video-player video { display: block; width: 100%; }
+.video-player__play { position: absolute; inset: 0 0 44px; display: grid; place-items: center; border: 0; border-radius: 12px 12px 0 0; padding: 0; background: transparent; cursor: pointer; color: #fff; }
+.video-player__play span { display: grid; place-items: center; width: 60px; height: 60px; padding-left: 4px; border-radius: 50%; background: #005fb0e6; font-size: 26px; box-shadow: 0 2px 12px #0004; }
+.video-player__play:hover span, .video-player__play:focus-visible span { background: var(--color-primary-dark); }
+.video-player__play[hidden] { display: none; }
+.search-results-page .pagination .screen-reader-text { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.search-results-page .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 32px; }
+.search-results-page .page-numbers { display: inline-flex; justify-content: center; align-items: center; min-width: 44px; min-height: 44px; padding: 10px 16px; border: 1px solid var(--color-primary); border-radius: var(--radius-sm); color: var(--color-primary); text-decoration: none; font-weight: 600; }
+.search-results-page .page-numbers.current, .search-results-page a.page-numbers:hover { background: var(--color-primary); color: #fff; }
+.search-results-page .page-numbers.dots { border-color: transparent; }
+.portfolio-neighbours { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding-block: 28px; align-items: stretch; }
+.portfolio-neighbours > a { max-width: none; min-width: 0; white-space: normal; text-align: center; display: flex; flex-direction: column; gap: 8px; letter-spacing: 0; text-transform: none; }
+.portfolio-neighbours .button--primary { grid-column: 2; grid-row: 1; }
+.portfolio-neighbours > a:last-child:not(.button--primary) { grid-column: 3; }
+.single-portfolio_item #main { overflow-wrap: anywhere; }
+.portfolio-detail-content__copy, .portfolio-detail-content__aside, .portfolio-detail-gallery__grid > *, .portfolio-card, .portfolio-card__body { min-width: 0; overflow-wrap: anywhere; }
+.portfolio-detail-content__copy img { max-width: 100%; height: auto; }
+.portfolio-detail-content__copy table { width: 100%; table-layout: fixed; }
+.service-universal-hero__container:has(.sell-car-hero-form) .service-universal-hero__lead { margin-inline: auto; text-align: center; }
+/* Shared spacing covers page templates as well as all model/service/portfolio entries. */
+.services, .advantages, .offers, .appointment, .branches,
+.content-revision-section, .service-content-block, .service-related, .service-benefits,
+.service-selected-cases, .portfolio-detail-hero, .portfolio-detail-content,
+.portfolio-detail-gallery, .promotions-catalog, .promo-detail,
+.service-universal-hero, .contacts-centers { padding-block: var(--section-space); }
+.portfolio-detail-service { padding-block: 0 var(--section-space); }
+.portfolio-detail-hero .breadcrumbs { margin-bottom: 28px; }
+.portfolio-detail-content__layout { gap: 36px; }
+.section-heading { margin-bottom: 28px; }
+.home-process__list h3 { margin-bottom: 16px; }
+.home-process__list p:first-of-type { border-top: 1px solid #d4dde6; padding-top: 14px; }
+.home-process__list { row-gap: 32px; }
+.branches__title { margin-bottom: 28px; }
+.site-footer { padding-top: 0; }
+.site-footer__top { padding-top: 40px; padding-bottom: 0; }
+.footer-sitemap { margin-top: 24px; margin-bottom: 0; padding-block: 20px; }
+.site-footer__bottom { padding-block: 20px; }
+.service-price-table-wrap { margin-inline: auto; }
+.service-content-block--prices .service-price-table { min-width: 0; }
+.service-content-block--prices .service-price-table :is(th,td):last-child { width: 26%; text-align: center; }
+@media (max-width: 767px) {
+  .services, .advantages, .offers, .appointment, .branches,
+  .content-revision-section, .service-content-block, .service-related, .service-benefits,
+  .service-selected-cases, .portfolio-detail-hero, .portfolio-detail-content,
+  .portfolio-detail-gallery, .promotions-catalog, .promo-detail,
+  .service-universal-hero, .contacts-centers { padding-block: var(--section-space-mobile); }
+  .portfolio-detail-service { padding-block: 0 var(--section-space-mobile); }
+  .portfolio-detail-content__layout { gap: 28px; }
+  .portfolio-detail-hero .breadcrumbs { margin-bottom: 24px; }
+  .portfolio-neighbours { grid-template-columns: 1fr; gap: 12px; }
+  .portfolio-neighbours .button--primary, .portfolio-neighbours > a:last-child:not(.button--primary) { grid-column: auto; grid-row: auto; }
+  .branches:not(.contacts-centers) .branch-card h3, .branch-card h3 { min-height: 0; }
+  .promotions-hero::after { display: none; }
+  .promotions-hero, .promotions-hero__container { min-height: 0; }
+  .promotions-hero__content { padding-block: 32px; }
+  .service-map, .service-map__canvas { min-height: 400px; }
+  .service-universal-hero__actions { justify-content: center; }
+  .service-content-block--prices .service-price-table :is(th,td) { padding: 14px 10px; overflow-wrap: anywhere; }
+  .service-content-block--prices .service-price-table :is(th,td):last-child { width: 32%; }
+  .portfolio-cta__box { padding: 36px 20px; }
+  .site-footer__top { gap: 28px; padding-top: 32px; }
+}
+/* Contact templates had more specific legacy block/pseudo-icon rules. */
+.branch-card > .contact-row,
+.contacts-centers .branch-card > .contact-row {
+  display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px;
+  padding: 0; align-items: start;
+}
+.branch-card > p.contact-row::before,
+.contacts-centers .branch-card > .contact-row::before { content: none; }
+.breadcrumbs > a, .breadcrumbs > span:not([aria-current]) { flex-shrink: 0; overflow-wrap: normal; }
+.breadcrumbs > [aria-current] { min-width: 0; }
+.contacts-page__intro { padding-bottom: 0; }
+@media(max-width:767px) {
+  .services-page__intro, .portfolio-intro, .content-page { padding-top: 32px; }
+  .contacts-page__intro { padding-bottom: 0; }
+}

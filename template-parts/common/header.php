@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $header_logo       = roverland_option( 'site_header_logo', array() );
-$logo_url          = roverland_image_url( $header_logo, 'assets/images/content/logo-black.png' );
+$logo_url          = roverland_asset( 'assets/images/content/logo-client.png' );
 $logo_alt          = roverland_image_alt( $header_logo, get_bloginfo( 'name' ) );
 $appointment_text  = roverland_option( 'site_header_appointment_label', 'Записаться на ТО' );
 $socials           = roverland_get_social_links();
@@ -12,7 +12,7 @@ $socials           = roverland_get_social_links();
 	<div class="site-header__top">
 		<div class="site-header__wide">
 			<a class="site-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> — на главную">
-				<img src="<?php echo esc_url( $logo_url ); ?>" width="183" height="36" alt="<?php echo esc_attr( $logo_alt ); ?>">
+				<img src="<?php echo esc_url( $logo_url ); ?>" width="183" height="34" alt="<?php echo esc_attr( $logo_alt ); ?>">
 			</a>
 
 			<nav class="main-nav" aria-label="Основная навигация" data-desktop-nav>
@@ -70,7 +70,7 @@ $socials           = roverland_get_social_links();
 
 	<div class="mobile-menu" data-mobile-menu aria-hidden="true">
 		<div class="mobile-menu__head">
-			<img src="<?php echo esc_url( $logo_url ); ?>" width="183" height="36" alt="<?php echo esc_attr( $logo_alt ); ?>">
+			<img src="<?php echo esc_url( $logo_url ); ?>" width="183" height="34" alt="<?php echo esc_attr( $logo_alt ); ?>">
 			<button class="icon-button" type="button" aria-label="Закрыть меню" data-menu-close>
 				<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"></path></svg>
 			</button>

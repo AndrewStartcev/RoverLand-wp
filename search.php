@@ -16,7 +16,7 @@ $query = get_search_query();
 				</article>
 			<?php endwhile; ?>
 
-			<?php the_posts_pagination(); ?>
+			<?php the_posts_pagination( array( 'screen_reader_text' => 'Страницы результатов поиска', 'prev_text' => 'Назад', 'next_text' => 'Далее' ) ); ?>
 		<?php else : ?>
 			<p>По вашему запросу ничего не найдено. Попробуйте изменить запрос или выберите раздел ниже.</p><nav class="search-suggestions" aria-label="Возможно, вам подойдёт"><h2>Возможно, вам подойдёт</h2><div><?php foreach (array('/'=>'Главная страница', '/remont/'=>'Ремонт автомобиля', '/servis/to/'=>'Техническое обслуживание', '/servis/diagnostika/'=>'Диагностика') as $path=>$label) : ?><a class="service-catalog-card" href="<?php echo esc_url(home_url($path)); ?>"><?php echo esc_html($label); ?> <span aria-hidden="true">→</span></a><?php endforeach; ?></div></nav>
 		<?php endif; ?>

@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $footer_logo = roverland_option( 'site_footer_logo', array() );
-$logo_url    = roverland_image_url( $footer_logo, 'assets/images/content/logo-black.png' );
+$logo_url    = roverland_asset( 'assets/images/content/logo-client.png' );
 $logo_alt    = roverland_image_alt( $footer_logo, get_bloginfo( 'name' ) );
 $description = roverland_option( 'site_footer_description', 'РоверЛэнд — сервис и ремонт Land Rover.' );
 $copyright   = roverland_option( 'site_copyright', 'РоверЛэнд. Все права защищены.' );
@@ -13,7 +13,7 @@ $socials     = roverland_get_social_links();
 <footer class="site-footer">
 	<div class="container site-footer__top">
 		<div class="site-footer__brand">
-			<img src="<?php echo esc_url( $logo_url ); ?>" width="183" height="36" alt="<?php echo esc_attr( $logo_alt ); ?>">
+			<img src="<?php echo esc_url( $logo_url ); ?>" width="183" height="34" alt="<?php echo esc_attr( $logo_alt ); ?>">
 
 			<?php if ( $description ) : ?>
 				<p><?php echo esc_html( $description ); ?></p>
@@ -38,7 +38,7 @@ $socials     = roverland_get_social_links();
 					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
-            <p class="footer-email"><?php echo roverland_contact_icon("mail"); ?> E-mail: <a href="mailto:info@roverland.ru">info@roverland.ru</a></p>
+            <p class="footer-email contact-row"><?php echo roverland_contact_icon("mail"); ?><span>E-mail: <a href="mailto:info@roverland.ru">info@roverland.ru</a></span></p>
             <p class="site-footer__about">Мы — одна из старейших ныне действующих компаний, предоставляющая качественный сервис и обслуживание автомобилей Ленд Ровер в России.</p><p>С 1998-го года мы профессионально занимаемся обслуживанием, тюнингом и ремонтом Land Rover.</p>
 		</div>
 
@@ -62,9 +62,9 @@ $socials     = roverland_get_social_links();
 					?>
 					<address>
 						<strong><?php echo esc_html( $name ); ?></strong>
-						<?php if ( $address ) : ?><span><?php echo roverland_contact_icon('location'); ?> <?php echo esc_html( $address ); ?>, Москва</span><?php endif; ?>
-						<?php if ( $phone ) : ?><a href="<?php echo esc_url( 'tel:' . roverland_phone_href( $phone ) ); ?>"><?php echo roverland_contact_icon('phone'); ?> <?php echo esc_html( $phone ); ?></a><?php endif; ?>
-                        <?php if (!empty($branch["hours"])) : ?><span class="contact-hours"><?php echo roverland_contact_icon("clock"); ?><?php echo nl2br(esc_html($branch["hours"])); ?></span><?php endif; ?>
+						<?php if ( $address ) : ?><span class="contact-row"><?php echo roverland_contact_icon('location'); ?><span><?php echo esc_html( $address ); ?>, Москва</span></span><?php endif; ?>
+						<?php if ( $phone ) : ?><a class="contact-row" href="<?php echo esc_url( 'tel:' . roverland_phone_href( $phone ) ); ?>"><?php echo roverland_contact_icon('phone'); ?><span><?php echo esc_html( $phone ); ?></span></a><?php endif; ?>
+                        <?php if (!empty($branch["hours"])) : ?><span class="contact-row contact-hours"><?php echo roverland_contact_icon("clock"); ?><span><?php echo nl2br(esc_html($branch["hours"])); ?></span></span><?php endif; ?>
 					</address>
 				<?php endforeach; ?>
 			</div>

@@ -93,20 +93,22 @@
   }
 
   function initDesktopDropdownIntent() {
-    document.querySelectorAll(".main-nav__item--dropdown, .models-nav__item--dropdown").forEach(function (item) {
+    document.querySelectorAll(".main-nav__item--dropdown, .models-nav__item--dropdown, .nav-dropdown__item--has-children, .models-dropdown__item--has-children").forEach(function (item) {
       var timer = null;
-      var dropdown = item.querySelector(".nav-dropdown, .models-dropdown");
+      var dropdown = item.querySelector(":scope > .nav-dropdown, :scope > .models-dropdown, :scope > .nav-subdropdown, :scope > .models-subdropdown");
 
       function open() {
         if (timer) window.clearTimeout(timer);
         timer = null;
         item.classList.add("is-hover-open");
+        var parent = item.parentElement.closest(".main-nav__item--dropdown, .models-nav__item--dropdown");
+        if (parent) parent.classList.add("is-hover-open");
       }
 
       function close() {
         if (timer) window.clearTimeout(timer);
         timer = window.setTimeout(function () {
-          item.classList.remove("is-hover-open");
+          if (!item.matches(":hover") && !item.contains(document.activeElement)) item.classList.remove("is-hover-open");
           timer = null;
         }, 140);
       }
@@ -239,12 +241,19 @@
             var button = card.querySelector('[data-branch-select]');
             if (button) button.setAttribute('aria-pressed', String(item === branch));
           });
-          if (item.marker) item.marker.options.set('iconImageSize', item === branch ? [38, 52] : [28, 38]);
+          if (item.marker) {
+            var size = item === branch ? 44 : 36;
+            item.marker.options.set({iconImageSize: [size, size], iconImageOffset: [-size / 2, -size / 2]});
+          }
         });
         document.querySelectorAll('[data-map-branch]').forEach(function(button) { button.setAttribute('aria-pressed', String(button.dataset.mapBranch === branch.name)); });
         if (branch.marker) {
-          map.setCenter(branch.marker.geometry.getCoordinates(), 14, {duration: 300});
-          branch.marker.balloon.open();
+          map.container.fitToViewport();
+          var balloonWidth = Math.min(280, canvas.clientWidth - 64);
+          branch.marker.options.set({balloonMaxWidth: balloonWidth, balloonOffset: [canvas.clientWidth < 600 ? 50 - balloonWidth / 2 : 0, -22]});
+          map.setCenter(branch.marker.geometry.getCoordinates(), 14, {duration: 300}).then(function () {
+            if (selected === branch) branch.marker.balloon.open();
+          });
         }
         if (scroll) canvas.scrollIntoView({behavior: 'smooth', block: 'center'});
       }
@@ -283,7 +292,7 @@
               balloonContentHeader: "Rover Land — " + escapeHtml(branch.name),
               balloonContentBody: buildBranchBalloon(branch)
             },
-            { iconLayout: 'default#image', iconImageHref: roverlandTheme.mapMarker, iconImageSize: [28, 38], iconImageOffset: [-14, -38] }
+            { iconLayout: 'default#image', iconImageHref: roverlandTheme.mapMarker, iconImageSize: [36, 36], iconImageOffset: [-18, -18], balloonAutoPan: false, hideIconOnBalloonOpen: false, openBalloonOnClick: false, balloonPanelMaxMapArea: 0, balloonMaxWidth: 280 }
           );
           map.geoObjects.add(branch.marker);
           branch.marker.events.add('click', function() { selectBranch(branch, false); });
@@ -675,4 +684,23 @@
   initBackToTop();
   initCookieNotice();
 
+  document.querySelectorAll('.company-videos video, .portfolio-work-videos video').forEach(function (video) {
+    var player = document.createElement('div');
+    player.className = 'video-player';
+    video.parentNode.insertBefore(player, video);
+    player.appendChild(video);
+    var play = document.createElement('button');
+    play.type = 'button';
+    play.className = 'video-player__play';
+    play.setAttribute('aria-label', 'Воспроизвести видео');
+    play.innerHTML = '<span aria-hidden="true">▶</span>';
+    player.appendChild(play);
+    play.addEventListener('click', function () {
+      var pending = video.play();
+      if (pending && pending.catch) pending.catch(function () { play.hidden = false; });
+    });
+    video.addEventListener('play', function () { play.hidden = true; });
+    video.addEventListener('pause', function () { play.hidden = false; });
+    video.addEventListener('ended', function () { play.hidden = false; });
+  });
 })();

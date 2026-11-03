@@ -46,18 +46,19 @@ if ( empty( $branches ) ) {
 					</h3>
 
 					<?php if ( $phone ) : ?>
-						<a href="<?php echo esc_url( 'tel:' . roverland_phone_href( $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a>
+						<a class="contact-row branch-card__phone" href="<?php echo esc_url( 'tel:' . roverland_phone_href( $phone ) ); ?>"><?php echo roverland_contact_icon('phone'); ?><span><?php echo esc_html( $phone ); ?></span></a>
 					<?php endif; ?>
 
 					<?php if ( $address ) : ?>
-						<p class="branch-card__address"><?php if (!empty($branch['map_url'])) : ?><a href="<?php echo esc_url($branch['map_url']); ?>"><?php echo esc_html($address); ?></a><?php else : ?><?php echo esc_html($address); ?><?php endif; ?></p>
+						<p class="contact-row branch-card__address"><?php echo roverland_contact_icon('location'); ?><span><?php if (!empty($branch['map_url'])) : ?><a href="<?php echo esc_url($branch['map_url']); ?>"><?php echo esc_html($address); ?></a><?php else : ?><?php echo esc_html($address); ?><?php endif; ?></span></p>
 					<?php endif; ?>
-					<?php if (!empty($branch['hours'])) : ?><p class="branch-card__hours"><?php echo roverland_contact_icon('clock'); ?><span><?php echo nl2br(esc_html($branch['hours'])); ?></span></p><?php endif; ?>
+					<?php if (!empty($branch['hours'])) : ?><p class="contact-row branch-card__hours"><?php echo roverland_contact_icon('clock'); ?><span><?php echo nl2br(esc_html($branch['hours'])); ?></span></p><?php endif; ?>
                     <?php if ('contacts-centers' !== $section_class) : ?><button type="button" class="text-link branch-card__select" data-branch-select aria-label="Показать на карте: <?php echo esc_attr($name); ?>">Показать на карте <span aria-hidden="true">→</span></button><?php endif; ?>
                     <?php if ('contacts-centers' === $section_class) : ?>
-						<?php if (!empty($branch['telegram_url'])) : ?><p class="branch-card__telegram"><?php echo roverland_contact_icon('telegram'); ?> Telegram: <a href="<?php echo esc_url($branch['telegram_url']); ?>"><?php echo esc_html($branch['telegram_phone'] ?? 'Написать'); ?></a></p><?php endif; ?>
+						<?php if (!empty($branch['telegram_url'])) : ?><p class="contact-row branch-card__telegram"><?php echo roverland_contact_icon('telegram'); ?><span>Telegram: <a href="<?php echo esc_url($branch['telegram_url']); ?>"><?php echo esc_html($branch['telegram_phone'] ?? 'Написать'); ?></a></span></p><?php endif; ?>
 
-						<?php if (!empty($branch['map_embed'])) : ?><iframe class="branch-card__map" src="<?php echo esc_url($branch['map_embed']); ?>" title="Карта техцентра <?php echo esc_attr($name); ?>" loading="lazy" allowfullscreen></iframe><?php endif; ?>
+						<?php $contact_maps = array('Запад' => '126990267000', 'Юго-Запад' => '18970455953', 'Северо-Запад' => '229914719361'); $map_embed = isset($contact_maps[$name]) ? 'https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=' . $contact_maps[$name] : ($branch['map_embed'] ?? ''); ?>
+						<?php if ($map_embed) : ?><iframe class="branch-card__map" src="<?php echo esc_url($map_embed); ?>" title="Карта техцентра <?php echo esc_attr($name); ?>" loading="lazy" allowfullscreen></iframe><?php endif; ?>
 					<?php endif; ?>
 				</article>
 			<?php endforeach; ?>

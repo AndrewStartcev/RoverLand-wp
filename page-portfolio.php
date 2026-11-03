@@ -71,7 +71,7 @@ while ( have_posts() ) :
 			<div class="portfolio-cta__box">
 				<h2><?php echo esc_html( roverland_field( 'portfolio_cta_title', 'Ваш автомобиль достоин лучшего' ) ); ?></h2>
 				<p><?php echo nl2br( esc_html( roverland_field( 'portfolio_cta_text', '' ) ) ); ?></p>
-				<a class="button button--primary" href="<?php echo esc_url( home_url( '/#appointment' ) ); ?>"><?php echo esc_html( roverland_field( 'portfolio_cta_button', 'Записаться в сервис' ) ); ?></a>
+				<button class="button button--primary" type="button" data-appointment-open><?php echo esc_html( roverland_field( 'portfolio_cta_button', 'Записаться в сервис' ) ); ?></button>
 			</div>
 		</div>
 	</section>
